@@ -1,23 +1,24 @@
 {
-  "name": "sliceofprima",
+  "name": "exobilvard",
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon api/index.js",
-    "start": "node api/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "versel-start": "node index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/miankks/sliceofprima.git"
+    "url": "git+https://github.com/miankks/exobilvard.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/miankks/sliceofprima/issues"
+    "url": "https://github.com/miankks/exobilvard/issues"
   },
-  "homepage": "https://github.com/miankks/sliceofprima#readme",
+  "homepage": "https://github.com/miankks/exobilvard#readme",
   "description": "",
   "dependencies": {
     "bcrypt": "^6.0.0",
