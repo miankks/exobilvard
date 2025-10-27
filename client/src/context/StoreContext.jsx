@@ -51,6 +51,11 @@ const StoreContextProvider = (props) => {
         setCarList(response.data.data);
     }
 
+    const loadCartData = async (token) => {
+        const response = await axios.post(url+"/api/cart/get", {}, {headers:{token}});
+        setCartItems(response.data.cartData);
+    }
+
     // to keep the token available when page is refreshed
     useEffect(()=> {
         
@@ -58,6 +63,7 @@ const StoreContextProvider = (props) => {
             await fetchCarList();
             if (localStorage.getItem('token')) {
             setToken(localStorage.getItem('token'))
+            await loadCartData(localStorage.getItem("token"));
         }}
         loadData();
     },[])
