@@ -38,7 +38,8 @@ connectDB();
 //         console.log(err, "there is an error connecting");
 //     }
 // }
-// add middleware
+
+//add middleware
 // app.use((req, res, next) => {
 //     if (!isConnected) {
 //         connectDB();
@@ -56,7 +57,7 @@ app.get("/", (req, res) => {
     res.send("API working")
 })
 
-// module.exports = app
+// export default app
 
 app.listen(port, () => {
     console.log(`Server started on http://localhost:${port}`);
