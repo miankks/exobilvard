@@ -12,7 +12,7 @@ const StoreContextProvider = (props) => {
     const url = "http://localhost:3000";
     const [token, setToken] = useState("")
 
-    const addToCart = (itemId) => {
+    const addToCart = async (itemId) => {
         // if user add item first time in the cart, this statement will be executed, key ID is itemId
         // else if any item is already available and quantity is one, else statement will increase that
         if (!cartItems[itemId]) {
@@ -20,10 +20,18 @@ const StoreContextProvider = (props) => {
         } else {
             setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }))
         }
+
+        if (token) {
+            await axios.post(url+ "/api/cart/add", {itemId}, {headers:{token}})
+        }
     }
 
-    const removeFromCart = (itemId) => {
+    const removeFromCart =async (itemId) => {
         setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }))
+
+        if (token) {
+            await axios.post(url+ "/api/cart/remove", {itemId}, {headers:{token}})
+        }
     }
 
     const getTotalCartAmount = () => {
