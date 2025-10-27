@@ -32,10 +32,7 @@ const removeFromCart = async (req, res) => {
         
 
         // remove the item
-        // cartData[itemId] > 0 && cartData[itemId] -= 1;
-        if (cartData[itemId] > 0) {
-            cartData[itemId] -= 1;
-        }
+        cartData[itemId] > 0 && (cartData[itemId] -= 1);
 
         // update the cartData now
         await userModel.findByIdAndUpdate(userId, {cartData})
@@ -49,7 +46,16 @@ const removeFromCart = async (req, res) => {
 }
 
 const getCart = async (req, res) => {
+    try {
+        let {userId, itemId } = req.body;
+        let userData = await userModel.findById(userId);
+        let cartData = await userData.cartData;
+        res.json({success: true, cartData})
 
+    } catch (error) {
+        console.log(error);
+        res.json({success: false, message: "Error"})
+    }
 }
 
 export {addToCart, removeFromCart, getCart } 
