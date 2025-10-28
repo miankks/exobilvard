@@ -19,7 +19,7 @@ const orderSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        default: "Car processing"
+        default: "Väntar att godkänna"
     },
     date: {
         type: Date,

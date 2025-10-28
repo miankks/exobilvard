@@ -10,6 +10,7 @@ const Verify = () => {
     const success = searchParams.get("success");
     const orderId = searchParams.get("orderId");
 
+    // get backend url from contextAPI
     const {url} = useContext(StoreContext)
     const navigate = useNavigate();
 
