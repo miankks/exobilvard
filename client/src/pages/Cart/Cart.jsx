@@ -48,15 +48,15 @@ const Cart = () => {
               <p>Subtotal</p>
               <p>{getTotalCartAmount()}{" "}sek</p>
             </div>
-            <hr />
+            {/* <hr />
             <div className="cart-total-details">
               <p>Delivery Fee</p>
               <p>{getTotalCartAmount() === 0 ? 0 : 50}{" "}sek</p>
-            </div>
+            </div> */}
             <hr />
             <div className="cart-total-details">
               <b>Total</b>
-              <b>{getTotalCartAmount() === 0 ? 0 : getTotalCartAmount()+50}{" "}sek</b>
+              <b>{getTotalCartAmount() === 0 ? 0 : getTotalCartAmount()}{" "}sek</b>
             </div>
           </div>
           <button onClick={() => navigate('/order')}>Proceed to checkout</button>

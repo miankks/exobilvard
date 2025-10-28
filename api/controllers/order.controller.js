@@ -30,7 +30,7 @@ const placeOrder = async (req, res) => {
                 product_data: {
                     name: item.name
                 },
-                unit_amount: item.price * 100 * 10
+                unit_amount: item.price * 100
             },
             quantity: item.quantity
         }))
@@ -42,7 +42,7 @@ const placeOrder = async (req, res) => {
                 product_data: {
                     name: "Delivery charges"
                 },
-                unit_amount: 2*100*10
+                unit_amount: 2*100
             },
             quantity: 1
         })
@@ -64,11 +64,11 @@ const placeOrder = async (req, res) => {
 }
 
 const verifyOrder = async (req, res) => {
-    const { ordderId, success} = req.body
+    const { orderId, success} = req.body
 
     try {
         if (success=== "true") {
-            await orderModel.findByIdAndUpdate(ordderId, {payment: true})
+            await orderModel.findByIdAndUpdate(orderId, {payment: true})
             res.json({success: true, message: "Paid"})
         } else {
             await orderModel.findByIdAndDelete(ordderId)
