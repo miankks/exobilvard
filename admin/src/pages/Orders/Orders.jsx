@@ -12,13 +12,21 @@ export const Orders = ({url}) => {
     
     if (response.data.success) {
       setOrders(response.data.data);
-      console.log(response.data.data);
-      
     } else {
       toast.error("Error")
     }
   }
 
+  const statusHandler = async (e, orderId) => {
+    const response = await axios.post(url+"/api/order/status", {
+      orderId,
+      status: e.target.value
+    })    
+
+    if (response.data.success) {
+      await fetchAllOrders();
+    }
+  }
   useEffect(() => {
     fetchAllOrders();
   },[])
@@ -51,7 +59,7 @@ export const Orders = ({url}) => {
             </div>
             <p>Items: {order.items.length}</p>
             <p>sek {order.amount}</p>
-            <select>
+            <select onChange={(e) => statusHandler(e, order._id)} value={order.status}>
               <option value="Pending to accept">Pending to accept</option>
               <option value="Accepted">Accepted</option>
               <option value="Rejected">Rejected</option>
