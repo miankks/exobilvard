@@ -35,6 +35,7 @@ const List = ({url}) => {
             <b>Category</b>
             <b>Pris</b>
             <b>Action</b>
+            <b>Edit</b>
         </div>
         {list.map((item, index) => {
           return (
@@ -44,6 +45,7 @@ const List = ({url}) => {
               <p>{item.category}</p>
               <p>{item.price} {" "}sek</p>
               <p className='cursor' onClick={() => removeCar(item._id)}>x</p>
+              <button>edit</button>
             </div>
           )
         })}
