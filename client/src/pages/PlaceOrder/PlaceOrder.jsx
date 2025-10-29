@@ -59,9 +59,10 @@ const PlaceOrder = () => {
     useEffect(() => {
       if (!token) {
         navigate('/cart')
-      } else if(getTotalCartAmount() === 0){
-        navigate('/cart')
-      }
+      } 
+      // else if(getTotalCartAmount() === 0){
+      //   navigate('/cart')
+      // }
     }, [token])
 
   return (

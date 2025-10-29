@@ -63,6 +63,7 @@ export const Orders = ({url}) => {
               <option value="Pending to accept">Pending to accept</option>
               <option value="Accepted">Accepted</option>
               <option value="Rejected">Rejected</option>
+              <option value="Completed">Completed</option>
             </select>
           </div>
         ))}

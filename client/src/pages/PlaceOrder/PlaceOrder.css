@@ -17,6 +17,19 @@
     margin-bottom: 50px;
 }
 
+.place-order-title {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    color: gray;
+    font-size: max(1vw, 12px);
+}
+
+.order-items-item{
+    margin: 10px 0px;
+    color: black;
+}
+
 .place-order-left input{
     margin-bottom: 15px;
     width: 100%;
