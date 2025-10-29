@@ -44,10 +44,18 @@ export const Orders = ({url}) => {
                 {order.address.firstName+ " " + order.address.lastName}
               </p>
               <div className='order-item-address'>
-                {order.address.street+ ", "}
+                <p>{order.address.street+ ", "}</p>
+                <p>{order.address.city+ " " + order.address.state+", " + order.address.country+ " " + order.address.zipcode}</p>
               </div>
-              <p>{order.address.city+ " " + order.address.state+", " + order.address.country+ " " + order.address.zipcode}</p>
+              <p className='order-item-phone'>{order.address.phone}</p>
             </div>
+            <p>Items: {order.items.length}</p>
+            <p>sek {order.amount}</p>
+            <select>
+              <option value="Pending to accept">Pending to accept</option>
+              <option value="Accepted">Accepted</option>
+              <option value="Rejected">Rejected</option>
+            </select>
           </div>
         ))}
       </div>
