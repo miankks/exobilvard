@@ -3,9 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import './PlaceOrder.css';
 import { StoreContext } from '../../context/StoreContext';
 import axios from 'axios';
+import {toast} from 'react-toastify'
 
 const PlaceOrder = () => {
-    const { getTotalCartAmount, token, car_list,removeFromCart, cartItems, url } = useContext(StoreContext);
+    const { token, car_list,removeFromCart, cartItems, url } = useContext(StoreContext);
     const navigate = useNavigate();
 
     const [data, setData] = useState({
@@ -37,25 +38,25 @@ const PlaceOrder = () => {
       let orderData = {
         address: data,
         items: orderItems,
-        amount: getTotalCartAmount(),
       }
       console.log(orderData);
       
+      toast.success("hello")
       let response = await axios.post(url+'/api/order/place', orderData, {headers: {token}})
       if (response.data.success) {
         const { session_url} = response.data;
-        navigate('/')
         // send user to session url
         window.location.replace(session_url);
+        navigate('/myorders')
       } else {
         alert('Elert error')
       }
-      
+      // response.data.data ? navigate('/') : alert('Elert error')
     }
 
     useEffect(() => {
       if (!token) {
-        navigate('/cart')
+        navigate('/myorders')
       } 
     }, [token])
 
@@ -103,7 +104,7 @@ const PlaceOrder = () => {
         })}
       </div>
           </div>
-          <button type='submit'>Complete Booking</button>
+          <button type='submit' >Complete Booking</button>
         </div>
       </div>
     </form>
