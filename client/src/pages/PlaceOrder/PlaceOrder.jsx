@@ -77,23 +77,6 @@ const PlaceOrder = () => {
         <div className="cart-total">
           <h2>Väljat services</h2>
           <div>
-<<<<<<< HEAD
-            <div className="cart-total-details">
-              <p>Subtotal</p>
-              <p>{getTotalCartAmount()}{" "}sek</p>
-              <p>changes</p>
-            </div>
-            <hr />
-            {/* <div className="cart-total-details">
-              <p>Delivery Fee</p>
-              <p>{getTotalCartAmount() === 0 ? 0 : 50}{" "}sek</p>
-            </div> */}
-            <hr />
-            <div className="cart-total-details">
-              <b>Total</b>
-              <b>{getTotalCartAmount() === 0 ? 0 : getTotalCartAmount()}{" "}sek</b>
-            </div>
-=======
             <div className="cart-items">
         <div className="cart-items-title">
           <p>Artiklar</p>
@@ -120,7 +103,6 @@ const PlaceOrder = () => {
           }
         })}
       </div>
->>>>>>> 73343746a473fdb31d064b15b274c4e33783fc68
           </div>
           <button type='submit' >Complete Booking</button>
         </div>
