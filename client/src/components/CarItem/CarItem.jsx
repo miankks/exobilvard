@@ -26,7 +26,6 @@ const CarItem = ({ id, name, price, description, image}) => {
                 <img src={assets.rating_starts} alt="" />
             </div>
             <p className="car-item-description"> {description} </p>
-            <p className="car-item-price">{price} sek</p>
         </div>
     </div>
   )
