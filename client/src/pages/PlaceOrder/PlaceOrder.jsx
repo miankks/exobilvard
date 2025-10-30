@@ -92,6 +92,7 @@ const PlaceOrder = () => {
             <div className="cart-total-details">
               <p>Subtotal</p>
               <p>{getTotalCartAmount()}{" "}sek</p>
+              <p>changes</p>
             </div>
             <hr />
             {/* <div className="cart-total-details">
