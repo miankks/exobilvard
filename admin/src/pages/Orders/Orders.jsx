@@ -12,6 +12,7 @@ export const Orders = ({url}) => {
     
     if (response.data.success) {
       setOrders(response.data.data);
+      
     } else {
       toast.error("Error")
     }
@@ -49,20 +50,17 @@ export const Orders = ({url}) => {
                 })}
               </p>
               <p className='order-item-name'>
-                {order.address.firstName+ " " + order.address.lastName}
+                {order.address.fullName}
               </p>
-              <div className='order-item-address'>
-                <p>{order.address.street+ ", "}</p>
-                <p>{order.address.city+ " " + order.address.state+", " + order.address.country+ " " + order.address.zipcode}</p>
-              </div>
+              <p className='order-item-phone'>{order.address.email}</p>
               <p className='order-item-phone'>{order.address.phone}</p>
             </div>
             <p>Items: {order.items.length}</p>
-            <p>sek {order.amount}</p>
             <select onChange={(e) => statusHandler(e, order._id)} value={order.status}>
               <option value="Pending to accept">Pending to accept</option>
               <option value="Accepted">Accepted</option>
               <option value="Rejected">Rejected</option>
+              <option value="Completed">Completed</option>
             </select>
           </div>
         ))}

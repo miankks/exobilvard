@@ -3,6 +3,7 @@ import './CarDisplay.css'
 import { StoreContext } from '../../context/StoreContext'
 // import CarItem from '../carItem/carItem';
 import CarItem from '../CarItem/CarItem'
+import { Link } from 'react-router-dom'
 
 const CarDisplay = ({ category }) => {
     const { car_list } = useContext(StoreContext);
@@ -17,6 +18,9 @@ const CarDisplay = ({ category }) => {
               }
             })}
         </div>
+        <Link to={'/cart'}>
+          <button>Proceed to cart</button>
+        </Link>
     </div>
   )
 }
