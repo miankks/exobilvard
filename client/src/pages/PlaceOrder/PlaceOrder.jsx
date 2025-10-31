@@ -104,6 +104,7 @@ const PlaceOrder = () => {
             </div>
           </div>
           <button type='submit'>Proceed to payment</button>
+          <button>Hi</button>
         </div>
       </div>
     </form>
