@@ -71,3 +71,8 @@
 .car-item-counter img {
     width: 30px;
 }
+
+.car-item:hover{
+    transform: scale(1.1);
+}
+

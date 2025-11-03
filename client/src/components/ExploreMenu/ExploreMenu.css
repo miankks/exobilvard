@@ -24,6 +24,10 @@
     overflow: scroll;
 }
 
+.explore-menu-list-item:hover{
+    transform: scale(1.1);
+}
+
 .explore-menu-list::-webkit-scrollbar{
     display: none;
 }
