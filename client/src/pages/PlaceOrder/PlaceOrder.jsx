@@ -104,7 +104,12 @@ const PlaceOrder = () => {
         })}
       </div>
           </div>
+<<<<<<< HEAD
+          <button type='submit'>Proceed to payment</button>
+          <button>Hi</button>
+=======
           <button type='submit' >Complete Booking</button>
+>>>>>>> e4d9b669d88611f46f9a558d4097f758664d5954
         </div>
       </div>
     </form>
