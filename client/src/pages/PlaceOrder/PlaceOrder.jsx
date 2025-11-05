@@ -39,10 +39,9 @@ const PlaceOrder = () => {
         address: data,
         items: orderItems,
       }
-      console.log(orderData);
       
-      toast.success("hello")
       let response = await axios.post(url+'/api/order/place', orderData, {headers: {token}})
+      console.log(response.data);
       if (response.data.success) {
         const { session_url} = response.data;
         // send user to session url
