@@ -17,6 +17,6 @@ const upload = multer({storage:storage})
 
 carRouter.post('/addcar',upload.single("image"), addCar);
 carRouter.get("/listcar", listCar)
-carRouter.post("/remove", removeCar)
+carRouter.post("/removecar", removeCar)
 
 export default carRouter;

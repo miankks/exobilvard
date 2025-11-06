@@ -21,7 +21,7 @@ const List = ({url}) => {
   }, [])
 
   const removeCar = async (carId) => {
-    const response = await axios.post(`${url}/api/car/remove`, {id: carId})
+    const response = await axios.post(`${url}/api/car/removecar`, {id: carId})
     await fetchList();
     response.data.success ? toast.success(response.data.message) : toast.error('Error')
   }
