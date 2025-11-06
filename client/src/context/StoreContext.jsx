@@ -47,7 +47,7 @@ const StoreContextProvider = (props) => {
     }
 
     const fetchCarList = async () => {
-        const response = await axios.get(url+'/api/car/list');
+        const response = await axios.get(url+'/api/car/listcar');
         setCarList(response.data.data);
     }
 
