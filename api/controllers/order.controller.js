@@ -24,7 +24,7 @@ const placeOrder = async (req, res) => {
 
     } catch (error) {
         console.log(error);
-        res.json({success: false, message: 'Error'})
+        res.json({success: false, message: 'Place order Error'})
     }
 }
 
@@ -36,7 +36,7 @@ const userOrders = async (req, res) => {
         res.json({success: true, data: orders})
     } catch (error) {
         console.log(error);
-        res.json({success: false, message: "Error"})
+        res.json({success: false, message: "user orders Error"})
         
     }
 }
@@ -48,7 +48,7 @@ const listOrders = async (req, res) => {
         res.json({success: true, data: orders})
     } catch (error) {
         console.log(error);
-        res.json({success: false, message: "Error"})
+        res.json({success: false, message: "list orders Error"})
     }
 }
 
@@ -60,7 +60,7 @@ const updateStatus = async (req, res) => {
         res.json({success: true, message: "Status updated"})
     } catch (error) {
         console.log(error);
-        res.json({success: false, message: "Error"})
+        res.json({success: false, message: "Status update Error"})
     }
 }
 export {placeOrder, userOrders, listOrders, updateStatus}

@@ -18,7 +18,7 @@ const addCar = async (req, res, next) => {
         res.json({success: true, message: "Car Added"})
     } catch (error) {
         console.log(error);
-        res.json({success: false, message: "Error detected"})
+        res.json({success: false, message: "Car add Error detected"})
     }
 }
 
@@ -30,7 +30,7 @@ const listCar = async (req,res) => {
         res.json({success: true, data: cars})
     } catch (error) {
         console.log(error);
-        res.json({success: false, message: "Error"})
+        res.json({success: false, message: "List car Error"})
     }
 }
 
@@ -45,7 +45,7 @@ const removeCar = async (req, res) => {
         res.json({success: true, message: 'Car removed'})
     } catch (error) {
         console.log(error);
-        res.json({success: false, message: 'Error'})
+        res.json({success: false, message: 'Car remove Error'})
     }
 }
 
