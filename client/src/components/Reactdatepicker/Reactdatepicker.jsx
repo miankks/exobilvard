@@ -15,24 +15,30 @@ import Button from '@mui/material/Button';
 
 const Reactdatepicker = ({sendDataToParent}) => {
   let date =  Date();
-  
+
     const [selectedDate, setSelectedDate ] = useState(dayjs(date))
     const [selectedTime, setSelectedTime ] = useState(dayjs(date))
-    
-    
+
+    // console.log(selectedTime);
+    // console.log({selectedTime: selectedTime && selectedTime.toLocaleTimeString("sv-SE")});
+    // console.log(new Date(date).toLocaleDateString());
+
+
+
     const minDate = new Date();
     // const maxDate = new Date()
     // const minDate = new Date(setDate(toDate()));
     // const maxDate = new Date(setDate("2026-12-31"))
-    
+
     const handleDateChange = (data) => {
       setSelectedDate(data)
       sendDataToParent(selectedDate)
-      
+
     }
-     const handleTimeChange = (data) => {
+     const handleTimeChange = async(data) => {
       setSelectedTime(data)
       sendDataToParent(selectedTime)
+
     }
     return (
       <div>
@@ -40,15 +46,17 @@ const Reactdatepicker = ({sendDataToParent}) => {
         <div className='datepicker'>
           <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="sv">
             <Stack spacing={4} sx={{width:'250px'}}>
-            <DatePicker 
-              value={selectedDate}
-              onChange={(newValue) => handleDateChange(newValue)}
-            />
-              </Stack>
-            <TimePicker 
-              value={selectedTime}
-              onChange={(newValue) => handleTimeChange(newValue)}
-            />
+              <DatePicker
+                value={selectedDate}
+                onChange={(newValue) => handleDateChange(newValue)}
+              />
+            </Stack>
+            <Stack spacing={4} sx={{width:'250px'}} className='timepicker'>
+              <TimePicker
+                value={selectedTime}
+                onChange={(newValue) => handleTimeChange(newValue)}
+              />
+            </Stack>
           </LocalizationProvider>
         </div>
     </div>
@@ -86,7 +94,7 @@ export default Reactdatepicker
 // }
 
 {/* <div>
-  <DatePicker 
+  <DatePicker
   inline
   selected={selectedDate}
   onChange={handleDateChange}

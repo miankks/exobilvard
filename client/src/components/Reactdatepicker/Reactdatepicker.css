@@ -1,13 +1,17 @@
-.datepicker {
+/* .datepicker { */
     /* text-align: center; */
     /* justify-content: center; */
     /* display: grid; */
     /* grid-template-columns: 100%; */
     /* margin: 10% 30% 10% 30%; */
     /* gap: 10%; */
-}
+/* } */
 
 .datepicker button {
     margin-top: 0px;
     background-color: lightblue;
+}
+
+.timepicker{
+    margin-top: 20px;
 }
