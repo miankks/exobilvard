@@ -4,9 +4,13 @@ import { StoreContext } from '../../context/StoreContext'
 // import CarItem from '../carItem/carItem';
 import CarItem from '../CarItem/CarItem'
 import { Link } from 'react-router-dom'
+import moment from 'moment'
+import Moment from 'react-moment'
+import Reactdatepicker from '../Reactdatepicker/Reactdatepicker'
 
 const CarDisplay = ({ category }) => {
     const { car_list } = useContext(StoreContext);
+    
   return ( 
     <div className='car-display' id='car-display'>
         <h2>Våra tjänster</h2>
@@ -21,6 +25,9 @@ const CarDisplay = ({ category }) => {
         <Link to={'/cart'}>
           <button>Proceed to cart</button>
         </Link>
+        <div>
+          <Reactdatepicker />
+        </div>
     </div>
   )
 }

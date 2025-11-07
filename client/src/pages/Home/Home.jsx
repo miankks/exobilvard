@@ -12,7 +12,7 @@ const Home = () => {
   return (
     <div>
         <Header />
-        <BackToTop />
+        {/* <BackToTop /> */}
         <ExploreMenu category={category} setCategory={setCategory}/>
         <CarDisplay category={category}/>
         {/* <AppDownload /> */}
