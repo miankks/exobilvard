@@ -16,10 +16,7 @@ const Reactdatepicker = () => {
   
     const [selectedDate, setSelectedDate ] = useState(dayjs(date))
     const [selectedTime, setSelectedTime ] = useState(dayjs(date))
-    console.log({
-      // selectedTime: selectedTime && selectedTime
-      selectedTime: selectedTime && selectedTime.toLocaleTimeString()
-    });
+    
     
     const minDate = new Date();
     // const maxDate = new Date()
@@ -31,7 +28,7 @@ const Reactdatepicker = () => {
 }
     return (
       <div>
-        <h4>MUI dapte picker</h4>
+        <h4>Välj tid</h4>
         <div className='datepicker'>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker 
@@ -43,7 +40,6 @@ const Reactdatepicker = () => {
               onChange={(newValue) => setSelectedTime(newValue)}
             />
           </LocalizationProvider>
-          <Button variant='contained' onClick={handleClick}>Add appointment</Button>
         </div>
     </div>
   )

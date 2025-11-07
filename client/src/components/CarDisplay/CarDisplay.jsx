@@ -25,9 +25,6 @@ const CarDisplay = ({ category }) => {
         <Link to={'/cart'}>
           <button>Proceed to cart</button>
         </Link>
-        <div>
-          <Reactdatepicker />
-        </div>
     </div>
   )
 }

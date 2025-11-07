@@ -4,6 +4,7 @@ import './PlaceOrder.css';
 import { StoreContext } from '../../context/StoreContext';
 import axios from 'axios';
 import {toast} from 'react-toastify'
+import Reactdatepicker from '../../components/Reactdatepicker/Reactdatepicker';
 
 const PlaceOrder = () => {
     const { token, car_list,removeFromCart, cartItems, url } = useContext(StoreContext);
@@ -71,6 +72,7 @@ const PlaceOrder = () => {
         <input required name='phone' onChange={onChangeHandler} value={data.phone} type="text" placeholder='Phone' />
         <label htmlFor="">Registreringsnummer</label>
         <input required  name='regnummer' onChange={onChangeHandler} value={data.regnummer} type="text" placeholder='ABC123' />
+        <Reactdatepicker />
       </div>
       <div className="place-order-right">
         <div className="cart-total">
