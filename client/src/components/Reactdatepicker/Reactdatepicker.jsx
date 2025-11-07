@@ -1,17 +1,19 @@
 import React, { useState } from 'react'
 // import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'
+import {Stack, TextField} from '@mui/material';
 import {DatePicker} from '@mui/x-date-pickers/DatePicker'
 import {TimePicker} from '@mui/x-date-pickers/TimePicker';
 import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
 import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
+import 'dayjs/locale/sv';
 import {addDays, isWeekend, setDate, toDate} from 'date-fns'
 import './Reactdatepicker.css';
 import Button from '@mui/material/Button';
 
 
-const Reactdatepicker = () => {
+const Reactdatepicker = ({sendDataToParent}) => {
   let date =  Date();
   
     const [selectedDate, setSelectedDate ] = useState(dayjs(date))
@@ -23,21 +25,29 @@ const Reactdatepicker = () => {
     // const minDate = new Date(setDate(toDate()));
     // const maxDate = new Date(setDate("2026-12-31"))
     
-    const handleClick = () => {
-  alert(selectedDate)
-}
+    const handleDateChange = (data) => {
+      setSelectedDate(data)
+      sendDataToParent(selectedDate)
+      
+    }
+     const handleTimeChange = (data) => {
+      setSelectedTime(data)
+      sendDataToParent(selectedTime)
+    }
     return (
       <div>
         <h4>Välj tid</h4>
         <div className='datepicker'>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="sv">
+            <Stack spacing={4} sx={{width:'250px'}}>
             <DatePicker 
               value={selectedDate}
-              onChange={(newValue) => setSelectedDate(newValue)}
+              onChange={(newValue) => handleDateChange(newValue)}
             />
+              </Stack>
             <TimePicker 
               value={selectedTime}
-              onChange={(newValue) => setSelectedTime(newValue)}
+              onChange={(newValue) => handleTimeChange(newValue)}
             />
           </LocalizationProvider>
         </div>

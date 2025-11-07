@@ -21,6 +21,14 @@ const orderSchema = new mongoose.Schema({
         type: Object,
         required: true
     },
+    bookDate:{
+        type: String,
+        required: true
+    },
+    bookTime:{
+        type: String,
+        required: true
+    }
 })
 
 const orderModel = mongoose.models.order || mongoose.model("order", orderSchema);

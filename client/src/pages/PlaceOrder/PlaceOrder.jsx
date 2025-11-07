@@ -8,6 +8,7 @@ import Reactdatepicker from '../../components/Reactdatepicker/Reactdatepicker';
 
 const PlaceOrder = () => {
     const { token, car_list,removeFromCart, cartItems, url } = useContext(StoreContext);
+    const [dataFromChild, setDataFromChild ] = useState("");
     const navigate = useNavigate();
 
     const [data, setData] = useState({
@@ -54,6 +55,10 @@ const PlaceOrder = () => {
       // response.data.data ? navigate('/') : alert('Elert error')
     }
 
+    const handleDataFromChild = (e) => {
+      setDataFromChild(e)
+    }
+
     useEffect(() => {
       if (!token) {
         navigate('/myorders')
@@ -72,7 +77,7 @@ const PlaceOrder = () => {
         <input required name='phone' onChange={onChangeHandler} value={data.phone} type="text" placeholder='Phone' />
         <label htmlFor="">Registreringsnummer</label>
         <input required  name='regnummer' onChange={onChangeHandler} value={data.regnummer} type="text" placeholder='ABC123' />
-        <Reactdatepicker />
+        <Reactdatepicker sendDataToParent={(e) => handleDataFromChild(e)}/>
       </div>
       <div className="place-order-right">
         <div className="cart-total">
