@@ -43,19 +43,19 @@ const PlaceOrder = () => {
       }
       
       let response = await axios.post(url+'/api/order/place', orderData, {headers: {token}})
-      console.log(response.data);
       if (response.data.success) {
         const { session_url} = response.data;
         // send user to session url
         window.location.replace(session_url);
         navigate('/myorders')
       } else {
-        alert('Elert error')
+        navigate('/orderconfirmation')
       }
-      // response.data.data ? navigate('/') : alert('Elert error')
     }
 
     const handleDataFromChild = (e) => {
+      console.log(e);
+      
       setDataFromChild(e)
     }
 

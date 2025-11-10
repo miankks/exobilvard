@@ -7,11 +7,18 @@
     /* gap: 10%; */
 /* } */
 
+.datepicker {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;    
+}
 .datepicker button {
     margin-top: 0px;
     background-color: lightblue;
 }
 
 .timepicker{
-    margin-top: 20px;
+    /* margin-top: 20px; */
 }

@@ -47,12 +47,14 @@ const Reactdatepicker = ({sendDataToParent}) => {
           <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="sv">
             <Stack spacing={4} sx={{width:'250px'}}>
               <DatePicker
+                label="Välj datum"
                 value={selectedDate}
                 onChange={(newValue) => handleDateChange(newValue)}
               />
             </Stack>
             <Stack spacing={4} sx={{width:'250px'}} className='timepicker'>
               <TimePicker
+                label="Välj tid"
                 value={selectedTime}
                 onChange={(newValue) => handleTimeChange(newValue)}
               />
