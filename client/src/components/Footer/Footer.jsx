@@ -9,7 +9,7 @@ const Footer = () => {
     <div className='footer' id='footer'>
         <div className="footer-content">
             <div className="footer-content-left">
-                <img src={assets.exobil} alt="logo" className='footer-logo'/>
+                <img src={assets.exobil_logo} alt="logo" className='footer-logo'/>
                 <p>Professionell bilservice och biltvätt. Snabb, 
                     prisvärd och pålitlig service för ditt fordon.
                 </p>
