@@ -54,8 +54,6 @@ const PlaceOrder = () => {
     }
 
     const handleDataFromChild = (e) => {
-      console.log(e);
-      
       setDataFromChild(e)
     }
 

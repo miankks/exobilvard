@@ -8,32 +8,24 @@ import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
 import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
 import 'dayjs/locale/sv';
-import {addDays, isWeekend, setDate, toDate} from 'date-fns'
 import './Reactdatepicker.css';
-import Button from '@mui/material/Button';
-
+const initialValues =    {
+  startedAt: '', // this might be an issue
+  endsAt: dayjs(),
+}
 
 const Reactdatepicker = ({sendDataToParent}) => {
   let date =  Date();
 
-    const [selectedDate, setSelectedDate ] = useState(dayjs(date))
+    const [selectedDate, setSelectedDate ] = useState(initialValues)
+    // const [selectedDate, setSelectedDate ] = useState(dayjs(date))
     const [selectedTime, setSelectedTime ] = useState(dayjs(date))
 
-    // console.log(selectedTime);
-    // console.log({selectedTime: selectedTime && selectedTime.toLocaleTimeString("sv-SE")});
-    // console.log(new Date(date).toLocaleDateString());
-
-
-
-    const minDate = new Date();
-    // const maxDate = new Date()
-    // const minDate = new Date(setDate(toDate()));
-    // const maxDate = new Date(setDate("2026-12-31"))
-
-    const handleDateChange = (data) => {
-      setSelectedDate(data)
+    const handleDateChange = (date, dateType) => {
+      setSelectedDate({...selectedDate, [dateType]: date})
+      console.log(selectedDate);
+      
       sendDataToParent(selectedDate)
-
     }
      const handleTimeChange = async(data) => {
       setSelectedTime(data)
@@ -48,8 +40,9 @@ const Reactdatepicker = ({sendDataToParent}) => {
             <Stack spacing={4} sx={{width:'250px'}}>
               <DatePicker
                 label="Välj datum"
-                value={selectedDate}
-                onChange={(newValue) => handleDateChange(newValue)}
+                // value={selectedDate}
+                value={datejs(formData.dateAvailable)}
+                onChange={(newValue) => handleDateChange(newValue, "startedAt")}
               />
             </Stack>
             <Stack spacing={4} sx={{width:'250px'}} className='timepicker'>
@@ -66,53 +59,3 @@ const Reactdatepicker = ({sendDataToParent}) => {
 }
 
 export default Reactdatepicker
-
-// const importantDates = ["2025-11-06", "2025-11-05", "2025-11-04"]
-
-// const highlightImportantDates = (date) => {
-//   const formatedDate = date.toLocaleString("sv");
-//   return importantDates.includes(formatedDate)
-// }
-// const handleDateChange = (date) => {
-//     setSelectedDate(date)
-// }
-
-// // Function to check if a date is a weekend
-// const isWeekendDay = (date) => {
-//   return isWeekend(date);
-// }
-
-// // Function to filter out weekends
-// const filterWeekends = (date) => {
-//   return !isWeekendDay(date)
-// }
-
-// const disableDateRanges = (date) => {
-//   {start: new Date("2025-11-11"); end: new Date("2025-11-12")}
-// }
-
-// const handleClick = () => {
-//   alert(selectedDate)
-// }
-
-{/* <div>
-  <DatePicker
-  inline
-  selected={selectedDate}
-  onChange={handleDateChange}
-  // dateFormat="DD/MM/YYYY; hh:mm"
-  dateFormat="y-MM-dd; HH:mm"
-  minDate={minDate}
-  // maxDate={maxDate}
-  filterDate={filterWeekends}
-  showTimeSelect
-  timeIntervals={30}
-  timeFormat='HH:mm'
-  highlightDates={importantDates.map((dateString) => new Date(dateString))}
-  // excludeDateIntervals={disableDateRanges}
-  // showMonthDropdown
-  // showYearDropdown
-  // scrollableYearDropdown
-    showWeekNumbers
-  />
-</div> */}
