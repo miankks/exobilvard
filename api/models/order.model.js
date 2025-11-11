@@ -20,14 +20,6 @@ const orderSchema = new mongoose.Schema({
         address: {
         type: Object,
         required: true
-    },
-    bookDate:{
-        type: String,
-        required: true
-    },
-    bookTime:{
-        type: String,
-        required: true
     }
 })
 
