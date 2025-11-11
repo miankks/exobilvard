@@ -17,7 +17,6 @@ const PlaceOrder = () => {
       email: '',
       phone: '',
       regnummer: '',
-      bookTime: '',
       bookDate:'',
     })
 
@@ -56,9 +55,9 @@ const PlaceOrder = () => {
       }
     }
 
-    const handleDataFromChild = (e, i) => {
-      i === 'date' ? setData({...data, bookDate: e}) : setData({...data, bookTime: e})
-      console.log(data, i);
+    const handleDataFromChild = (data) => {
+      const bookingTime = data.combined.format('YYYY MM DD HH:mm')
+      setData({...data, bookDate: bookingTime})
     }
 
     useEffect(() => {
@@ -82,9 +81,8 @@ const PlaceOrder = () => {
         <label htmlFor="">Registreringsnummer</label>
         <input required  name='regnummer' onChange={onChangeHandler} value={data.regnummer} type="text" placeholder='ABC123' />
         <Reactdatepicker 
-          sendDataToParent={(e, i) => handleDataFromChild(e, i)}
+          sendDataToParent={handleDataFromChild}
         />
-        {/* <Reactdatepicker /> */}
       </div>
       <div className="place-order-right">
         <div className="cart-total">

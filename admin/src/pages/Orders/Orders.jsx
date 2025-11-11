@@ -55,7 +55,6 @@ export const Orders = ({url}) => {
               <p className='order-item-phone'>{order.address.email}</p>
               <p className='order-item-phone'>{order.address.phone}</p>
               <p className='order-item-phone'>Datum:{order.address.bookDate}</p>
-              <p className='order-item-phone'>Tid:{order.address.bookTime}</p>
             </div>
             <p>Items: {order.items.length}</p>
             <select onChange={(e) => statusHandler(e, order._id)} value={order.status}>
