@@ -56,9 +56,11 @@ const PlaceOrder = () => {
     }
 
     const handleDataFromChild = (e) => {
-      let date = e.format('YYYY MM DD')
-      setDataFromChild((e) => ({...data, bookDate: date}))
-      console.log(date, data);
+      // // let date = e.format('YYYY MM DD')
+      console.log(e);
+      
+      setDataFromChild({...data, bookDate: e})
+      // console.log(data);
       
     }
 

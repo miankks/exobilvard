@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 // import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'
 import {Stack, TextField} from '@mui/material';
@@ -16,21 +16,52 @@ const Reactdatepicker = ({sendDataToParent}) => {
     const [selectedDate, setSelectedDate ] = useState(dayjs(date))
     const [selectedTime, setSelectedTime ] = useState(dayjs(date))
 
-    const handleDateChange = (data, check) => {
-      if (check === 'date') {
-        setSelectedDate(data)
-        sendDataToParent(selectedDate)
+    // const handleDateChange = (data, check) => {
+    //   if (check === 'date') {
+    //     setSelectedDate(data)
+    //     sendDataToParent(selectedDate)
         
-      } else {
-        setSelectedTime(data)
-        sendDataToParent(selectedTime)
-      }
+    //   } else {
+    //     setSelectedTime(data)
+    //     sendDataToParent(selectedTime)
+    //   }
+    // }
+     const handleDateChange = () => {
+        sendDataToParent(selectedDate, 'date')
     }
+
+    const handleTimeChange = () => {
+        sendDataToParent(selectedTime, 'time')
+    }
+
+    useEffect(() => {
+      handleDateChange();
+    },[selectedDate])
+
+     useEffect(() => {
+      handleTimeChange();
+    },[selectedTime])
+
     return (
       <div>
         <div className='datepicker'>
           <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="sv">
             <Stack spacing={4} sx={{width:'250px'}}>
+              <DatePicker
+                label="Välj datum"
+                // value={selectedDate}
+                onChange={(e) => setSelectedDate({selectedDate: e.format('YYYY MM DD')})}
+                renderInput= {(params) => <TextField {...params}/>}
+              />
+            </Stack>
+            <Stack spacing={4} sx={{width:'250px'}} className='timepicker'>
+              <TimePicker
+                label="Välj tid"
+                // value={selectedTime}
+                onChange={(e) => setSelectedTime({selectedTime: e.format('HH:mm')})}
+              />
+            </Stack>
+            {/* <Stack spacing={4} sx={{width:'250px'}}>
               <DatePicker
                 label="Välj datum"
                 value={selectedDate}
@@ -44,7 +75,7 @@ const Reactdatepicker = ({sendDataToParent}) => {
                 value={selectedTime}
                 onChange={(e) => handleDateChange(e, 'time')}
               />
-            </Stack>
+            </Stack> */}
           </LocalizationProvider>
         </div>
     </div>
