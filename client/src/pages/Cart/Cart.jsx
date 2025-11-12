@@ -5,7 +5,7 @@ import './Cart.css';
 
 const Cart = () => {
   const { cartItems, car_list, removeFromCart, url } = useContext(StoreContext);
-
+  
   const navigate = useNavigate();
   return (
     <div className='cart'>

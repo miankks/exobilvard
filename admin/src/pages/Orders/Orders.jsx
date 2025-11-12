@@ -45,17 +45,16 @@ export const Orders = ({url}) => {
                   if (index === order.items.length -1) {
                     return item.name + " x" + item.quantity
                   } else {
-                    return item.name + " x " +item.quantity + ", " 
+                    return (item.name + " x " +item.quantity + ",") 
                   }
                 })}
               </p>
               <p className='order-item-name'>
                 {order.address.fullName}
               </p>
-              <p className='order-item-phone'>{order.address.fullName}</p>
               <p className='order-item-phone'>{order.address.email}</p>
               <p className='order-item-phone'>{order.address.phone}</p>
-              <p className='order-item-phone'>Datum:{order.address.bookDate}</p>
+              <p className='order-item-phone'>Datum: {order.address.bookDate}</p>
             </div>
             <p>Items: {order.items.length}</p>
             <select onChange={(e) => statusHandler(e, order._id)} value={order.status}>
@@ -64,6 +63,7 @@ export const Orders = ({url}) => {
               <option value="Rejected">Rejected</option>
               <option value="Completed">Completed</option>
             </select>
+            <button type='submit' className='add-btn'>Skicka</button>
           </div>
         ))}
       </div>

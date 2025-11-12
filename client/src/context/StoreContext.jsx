@@ -21,41 +21,32 @@ const StoreContextProvider = (props) => {
             setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }))
         }
 
-        if (token) {
-            await axios.post(url+ "/api/cart/addcart", {itemId}, {headers:{token}})
-        }
+        await axios.post(url+ "/api/cart/addcart", {itemId})
+        // if (token) {
+            // await axios.post(url+ "/api/cart/addcart", {itemId}, {headers:{token}})
+        // }
     }
 
     const removeFromCart =async (itemId) => {
         setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }))
-
-        if (token) {
-            await axios.post(url+ "/api/cart/removecar", {itemId}, {headers:{token}})
-        }
+        await axios.post(url+ "/api/cart/removecar", {itemId})
+        // if (token) {
+        //     await axios.post(url+ "/api/cart/removecar", {itemId}, {headers:{token}})
+        // }
     }
 
-    const getTotalCartAmount = () => {
-        let totalAMount = 0;
-        for (const item in cartItems) {
-            if (cartItems[item] > 0) {
-                // check if item ID is matching with item, so item is available in cart
-                let itemInfo = car_list.find((product) => product._id === item);
-                totalAMount += itemInfo.price * cartItems[item];
-            }
-        }
-        return totalAMount;
-    }
-
+    
     const fetchCarList = async () => {
         const response = await axios.get(url+'/api/car/listcar');
         setCarList(response.data.data);
     }
-
+    
     const loadCartData = async (token) => {
+        // const response = await axios.post(url+"/api/cart/getcart", {});
         const response = await axios.post(url+"/api/cart/getcart", {}, {headers:{token}});
         setCartItems(response.data.cartData);
     }
-
+    
     // to keep the token available when page is refreshed
     useEffect(()=> {
         
@@ -67,7 +58,7 @@ const StoreContextProvider = (props) => {
         }}
         loadData();
     },[])
-
+    
     const contextValue = {
         car_list,
         cartItems,
@@ -77,9 +68,8 @@ const StoreContextProvider = (props) => {
         setCartItems,
         addToCart,
         removeFromCart,
-        getTotalCartAmount
     }
-
+    
     return (
         <StoreContext.Provider value={contextValue}>
             {props.children}
@@ -88,3 +78,16 @@ const StoreContextProvider = (props) => {
 }
 
 export default StoreContextProvider;
+
+// getTotalCartAmount
+// const getTotalCartAmount = () => {
+//     let totalAMount = 0;
+//     for (const item in cartItems) {
+//         if (cartItems[item] > 0) {
+//             // check if item ID is matching with item, so item is available in cart
+//             let itemInfo = car_list.find((product) => product._id === item);
+//             totalAMount += itemInfo.price * cartItems[item];
+//         }
+//     }
+//     return totalAMount;
+// }

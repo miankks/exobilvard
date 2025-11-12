@@ -45,9 +45,9 @@ const PlaceOrder = () => {
       
       // let response = await axios.post(url+'/api/order/place', orderData, {headers: {token}})
       let response = await axios.post(url+'/api/order/place', orderData)
-      if (response) {
+      // if (response) {
         navigate('/orderconfirmation')
-      }
+      // }
       // if (response.data.success) {
       // if (response.data.success) {
       //   const { session_url} = response.data;
