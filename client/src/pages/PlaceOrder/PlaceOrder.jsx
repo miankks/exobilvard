@@ -8,8 +8,6 @@ import Reactdatepicker from '../../components/Reactdatepicker/Reactdatepicker';
 
 const PlaceOrder = () => {
     const { token, car_list,removeFromCart, cartItems, url } = useContext(StoreContext);
-    const [dataFromChild, setDataFromChild ] = useState("");
-    const [dateortime, setDateortime] = useState('')
     const navigate = useNavigate();
 
     const [data, setData] = useState({
@@ -19,7 +17,7 @@ const PlaceOrder = () => {
       regnummer: '',
       bookDate:'',
     })
-
+    
     const onChangeHandler = (event) => {
       const name= event.target.name
       const value = event.target.value
@@ -43,6 +41,7 @@ const PlaceOrder = () => {
         address: data,
         items: orderItems,
       }
+      console.log(orderData);
       
       let response = await axios.post(url+'/api/order/place', orderData, {headers: {token}})
       if (response.data.success) {
@@ -55,10 +54,12 @@ const PlaceOrder = () => {
       }
     }
 
-    const handleDataFromChild = (data) => {
-      const bookingTime = data.combined.format('YYYY MM DD HH:mm')
+    const handleDataFromChild = (date) => {
+      const bookingTime = date.combined.format('YYYY MM DD - HH:mm')
       setData({...data, bookDate: bookingTime})
     }
+    console.log(data);
+    
 
     useEffect(() => {
       if (!token) {

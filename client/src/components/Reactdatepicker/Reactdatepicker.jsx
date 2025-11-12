@@ -72,11 +72,11 @@ const Reactdatepicker = ({sendDataToParent}) => {
             </Stack>
           </LocalizationProvider>
         </div>
-        <div>
+        {/* <div>
           <b>Selected</b>
           <p>Date: {formData.date.format('YYYY MM DD')}</p>
           <p>Time: {formData.time.format('HH:mm')}</p>
-        </div>
+        </div> */}
     </div>
   )
 }

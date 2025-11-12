@@ -52,6 +52,7 @@ export const Orders = ({url}) => {
               <p className='order-item-name'>
                 {order.address.fullName}
               </p>
+              <p className='order-item-phone'>{order.address.fullName}</p>
               <p className='order-item-phone'>{order.address.email}</p>
               <p className='order-item-phone'>{order.address.phone}</p>
               <p className='order-item-phone'>Datum:{order.address.bookDate}</p>
