@@ -15,12 +15,12 @@ const placeOrder = async (req, res) => {
             items: items,
             address: address
         })
-
+        
         // save new order in mongoDB
         await newOrder.save();
 
         // empty the user cart
-        await userModel.findByIdAndUpdate(userId, {cartData: {}});
+        // await userModel.findByIdAndUpdate(userId, {cartData: {}});
 
     } catch (error) {
         console.log(error);

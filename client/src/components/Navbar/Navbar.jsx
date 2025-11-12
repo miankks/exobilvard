@@ -33,7 +33,7 @@ const Navbar = ({ setShowLogin }) => {
                     </Link>
                     {/* <div className={getTotalCartAmount() === 0 ? '' : 'dot'}></div> */}
                 </div>
-                {!token ?<button onClick={() => setShowLogin(true)}>Sign In</button> : 
+                {/* {!token ?<button onClick={() => setShowLogin(true)}>Sign In</button> : 
                     <div className='navbar-profile'>
                         <img src={assets.profile_icon} alt="" />
                         <ul className='navbar-profile-dropdown'>
@@ -45,7 +45,7 @@ const Navbar = ({ setShowLogin }) => {
                                 <p>Logout</p>
                             </li>
                         </ul>
-                    </div>}
+                    </div>} */}
                 
             </div>
         </div>

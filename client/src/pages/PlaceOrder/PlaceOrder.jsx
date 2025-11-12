@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './PlaceOrder.css';
 import { StoreContext } from '../../context/StoreContext';
 import axios from 'axios';
-import {toast} from 'react-toastify'
+// import {toast} from 'react-toastify'
 import Reactdatepicker from '../../components/Reactdatepicker/Reactdatepicker';
 
 const PlaceOrder = () => {
@@ -43,15 +43,19 @@ const PlaceOrder = () => {
       }
       console.log(orderData);
       
-      let response = await axios.post(url+'/api/order/place', orderData, {headers: {token}})
-      if (response.data.success) {
-        const { session_url} = response.data;
-        // send user to session url
-        window.location.replace(session_url);
-        navigate('/myorders')
-      } else {
+      // let response = await axios.post(url+'/api/order/place', orderData, {headers: {token}})
+      let response = await axios.post(url+'/api/order/place', orderData)
+      if (response) {
         navigate('/orderconfirmation')
       }
+      // if (response.data.success) {
+      // if (response.data.success) {
+      //   const { session_url} = response.data;
+      //   // send user to session url
+      //   window.location.replace(session_url);
+      //   navigate('/myorders')
+      // } else {
+      // }
     }
 
     const handleDataFromChild = (date) => {
@@ -61,11 +65,11 @@ const PlaceOrder = () => {
     console.log(data);
     
 
-    useEffect(() => {
-      if (!token) {
-        navigate('/myorders')
-      } 
-    }, [token])
+    // useEffect(() => {
+    //   if (!token) {
+    //     navigate('/myorders')
+    //   } 
+    // }, [token])
 
 
 
