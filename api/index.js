@@ -10,6 +10,8 @@ import 'dotenv/config';
 import cartRouter from './routes/cart.route.js';
 import carRouter from './routes/car.route.js';
 import orderRouter from './routes/order.route.js';
+import emailRouter from './routes/email.route.js'
+import bodyParser from 'body-parser';
 
 dotenv.config();
 
@@ -21,32 +23,10 @@ const port = 3000;
 app.use(express.json());
 // can get access to backend from any frontend to backend
 app.use(cors());
+// app.use(bodyParser.json())
 
 // DB connect
 connectDB();
-
-// let isConnected = false
-// export const connectDB = async () => {
-//     try {
-//         await mongoose.connect(process.env.MONGO, {
-//             useNewUrlParser: true,
-//             useUnifiedTopology: true
-//         });
-//         isConnected = true;
-//         console.log("Connected to MongoDB");
-        
-//     } catch (error) {
-//         console.log(err, "there is an error connecting");
-//     }
-// }
-
-//add middleware
-// app.use((req, res, next) => {
-//     if (!isConnected) {
-//         connectDB();
-//     }
-//     next();
-// })
 
 // api endpoints
 app.use('/api/car', carRouter)
@@ -54,7 +34,7 @@ app.use('/images', express.static('uploads'));
 app.use("/api/user", userRouter)
 app.use('/api/cart', cartRouter)
 app.use("/api/order", orderRouter)
-
+app.use("/api/sendemail",bodyParser.json(), emailRouter)
 app.get("/", (req, res) => {
     res.send("API working")
 })

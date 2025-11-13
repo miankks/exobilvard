@@ -42,7 +42,7 @@ const PlaceOrder = () => {
         items: orderItems,
       }
           
-        const response = await axios.post(url+'/api/order/place', orderData)
+      await axios.post(url+'/api/order/place', orderData)
         
       // let response = await axios.post(url+'/api/order/place', orderData, {headers: {token}})
                       

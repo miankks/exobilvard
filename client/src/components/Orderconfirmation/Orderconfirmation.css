@@ -1,0 +1,22 @@
+.orderconfirmation-block{
+    margin-top: 50px;
+}
+
+.orderconfirmation-heading{
+    margin-bottom: 100px;
+}
+.orderconfirmation-items-title{
+    display: grid;
+    grid-template-columns: 1fr  1fr 1fr;
+    align-items: center;
+    color: gray;
+    font-size: max(1vw, 12px);
+}
+
+.orderconfirmation-items-title{
+    display: grid;
+    grid-template-columns: 1fr  1fr 1fr;
+    align-items: center;
+    color: gray;
+    font-size: max(1vw, 12px);
+}
