@@ -17,7 +17,12 @@ const placeOrder = async (req, res) => {
         })
         
         // save new order in mongoDB
-        await newOrder.save();
+        const savedOrder = await newOrder.save();
+        res.status(201).json({
+            success: true,
+            message: 'Order places successfully',
+            order: savedOrder
+        })
 
         // empty the user cart
         // await userModel.findByIdAndUpdate(userId, {cartData: {}});

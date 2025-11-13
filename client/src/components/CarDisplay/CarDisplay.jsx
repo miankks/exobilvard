@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import { useContext } from 'react'
 import './CarDisplay.css'
 import { StoreContext } from '../../context/StoreContext'
 // import CarItem from '../carItem/carItem';
@@ -15,7 +15,7 @@ const CarDisplay = ({ category }) => {
             {car_list.map((item, index) => {
               if (category === "All" || category === item.category) {
                 return <CarItem key={index} id={item._id} name={item.name} description={item.description}
-                    price={item.price ? item.price : 'Pris förslag hos Exobil'} image={item.image}/>
+                     image={item.image}/>
               }
             })}
         </div>
@@ -27,3 +27,7 @@ const CarDisplay = ({ category }) => {
 }
 
 export default CarDisplay
+
+
+// used if price is available for a service
+// price={item.price ? item.price : 'Pris förslag hos Exobil'}

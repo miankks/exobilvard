@@ -41,13 +41,12 @@ const PlaceOrder = () => {
         address: data,
         items: orderItems,
       }
-      console.log(orderData);
-      
+          
+        const response = await axios.post(url+'/api/order/place', orderData)
+        
       // let response = await axios.post(url+'/api/order/place', orderData, {headers: {token}})
-      let response = await axios.post(url+'/api/order/place', orderData)
-      // if (response) {
+                      
         navigate('/orderconfirmation')
-      // }
       // if (response.data.success) {
       // if (response.data.success) {
       //   const { session_url} = response.data;
@@ -62,8 +61,6 @@ const PlaceOrder = () => {
       const bookingTime = date.combined.format('YYYY MM DD - HH:mm')
       setData({...data, bookDate: bookingTime})
     }
-    console.log(data);
-    
 
     // useEffect(() => {
     //   if (!token) {
@@ -128,3 +125,4 @@ const PlaceOrder = () => {
 }
 
 export default PlaceOrder
+
