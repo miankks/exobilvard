@@ -24,6 +24,10 @@ const placeOrder = async (req, res) => {
             message: 'Order places successfully',
             order: savedOrder
         })
+
+        if (savedOrder) {
+            // await sendEmail(newOrder.address)
+        }
         
         // send email
         // await sendEmail(savedOrder)
