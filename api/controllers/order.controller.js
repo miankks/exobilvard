@@ -12,12 +12,13 @@ const placeOrder = async (req, res) => {
     const frontend_url = 'http://localhost:5173'
     try {
         // creating new order
-        const {userId, items, address, orderDate } = req.body;
+        const {userId, items, address, orderDate, orderTime } = req.body;
         const newOrder = new orderModel({
             userId: userId,
             items: items,
             address: address,
-            orderDate
+            orderDate,
+            orderTime
         })
         
         // save new order in mongoDB

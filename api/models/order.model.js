@@ -22,6 +22,9 @@ const orderSchema = new mongoose.Schema({
     },
     orderDate: {
         type: String
+    },
+    orderTime: {
+        type: String
     }
 })
 
