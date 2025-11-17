@@ -12,36 +12,50 @@ const StoreContextProvider = (props) => {
     const url = "http://localhost:3000";
     const [token, setToken] = useState("")
 
-    const addToCart = async (itemId) => {
-        // if user add item first time in the cart, this statement will be executed, key ID is itemId
-        // else if any item is already available and quantity is one, else statement will increase that
-        if (!cartItems[itemId]) {
-            setCartItems((prev => ({ ...prev, [itemId]: 1 })))
-        } else {
-            setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }))
-        }
-
-        await axios.post(url+ "/api/cart/addcart", {itemId})
-        // if (token) {
-            // await axios.post(url+ "/api/cart/addcart", {itemId}, {headers:{token}})
-        // }
+    const addToCart = (itemId) => {
+    // If item doesn't exist, set quantity = 1
+    if (!cartItems[itemId]) {
+        setCartItems(prev => ({ 
+            ...prev, 
+            [itemId]: 1 
+        }));
+    } 
+    // If item exists, increase quantity by 1
+    else {
+        setCartItems(prev => ({
+            ...prev,
+            [itemId]: prev[itemId] + 1
+        }));
     }
+};
 
-    const removeFromCart =async (itemId) => {
-        setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }))
-        await axios.post(url+ "/api/cart/removecar", {itemId})
-        // if (token) {
-        //     await axios.post(url+ "/api/cart/removecar", {itemId}, {headers:{token}})
-        // }
+    const removeFromCart = (itemId) => {
+    // Prevent negative values
+    if (!cartItems[itemId]) return;
+
+    // If quantity > 1, decrement
+    if (cartItems[itemId] > 1) {
+        setCartItems(prev => ({ 
+            ...prev, 
+            [itemId]: prev[itemId] - 1 
+        }));
+    } 
+    // If quantity becomes 0, remove from cart
+    else {
+        setCartItems(prev => {
+            const updatedCart = { ...prev };
+            delete updatedCart[itemId];
+            return updatedCart;
+        });
     }
-
-    
+};
+  
     const fetchCarList = async () => {
         const response = await axios.get(url+'/api/car/listcar');
         setCarList(response.data.data);
     }
     
-    const loadCartData = async (token) => {
+    const loadCartData = async () => {
         const response = await axios.post(url+"/api/cart/getcart", {});
         // const response = await axios.post(url+"/api/cart/getcart", {}, {headers:{token}});
         setCartItems(response.data.cartData);
@@ -91,3 +105,31 @@ export default StoreContextProvider;
 //     }
 //     return totalAMount;
 // }
+
+
+    // const addToCart =  (itemId) => {
+    //     // if user add item first time in the cart, this statement will be executed, key ID is itemId
+    //     // else if any item is already available and quantity is one, else statement will increase that
+    //     if (!cartItems[itemId]) {
+    //         setCartItems((prev => ({ ...prev, [itemId]: 1 })))
+    //     } else {
+    //         setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }))
+    //     }
+
+    //     // await axios.post(url+ "/api/cart/addcart", {itemId})
+    //     // if (token) {
+    //         // await axios.post(url+ "/api/cart/addcart", {itemId}, {headers:{token}})
+    //     // }
+    // }
+
+      // const removeFromCart = (itemId) => {
+    //     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }))
+    //     // const res = await axios.post(url+ "/api/cart/removecar", {itemId})
+    //     console.log(cartItems);
+        
+    //     // if (token) {
+    //     //     await axios.post(url+ "/api/cart/removecar", {itemId}, {headers:{token}})
+    //     // }
+    // }
+
+    

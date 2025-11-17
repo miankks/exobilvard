@@ -1,12 +1,17 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { StoreContext } from '../../context/StoreContext';
 import './Cart.css';
 
 const Cart = () => {
   const { cartItems, car_list, removeFromCart, url } = useContext(StoreContext);
+  const hasItems = Object.keys(cartItems).length > 0
   
   const navigate = useNavigate();
+
+  useEffect(()=> {
+
+  },[hasItems])
   return (
     <div className='cart'>
       <div className="cart-items">
@@ -30,6 +35,7 @@ const Cart = () => {
                   <p className='cross' onClick={() => removeFromCart(item._id)}>x</p>
                 </div>
                 <hr />
+                
               </div>
             )
           }
@@ -37,7 +43,8 @@ const Cart = () => {
       </div>
       <div className="cart-bottom">
         <div className="cart-total">
-          <button onClick={() => navigate('/order')}>Proceed to checkout</button>
+          <button disabled={!hasItems} onClick={() => navigate('/order')}>Proceed to checkout</button>
+          {!hasItems && <p>Korg är tom</p>}
         </div>
       </div>
     </div>
