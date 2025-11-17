@@ -44,7 +44,7 @@ const Cart = () => {
       <div className="cart-bottom">
         <div className="cart-total">
           <button disabled={!hasItems} onClick={() => navigate('/order')}>Proceed to checkout</button>
-          {!hasItems && <p>Korg är tom</p>}
+          {!hasItems && <p className='empty-cart'>Korg är tom</p>}
         </div>
       </div>
     </div>

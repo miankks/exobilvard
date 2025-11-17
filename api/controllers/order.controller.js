@@ -6,7 +6,6 @@ import { sendEmail } from "./email.controller.js";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 // placing user order from frontend
 const placeOrder = async (req, res) => {
-    console.log(req.body);
     
     // link for frontend url
     const frontend_url = 'http://localhost:5173'
