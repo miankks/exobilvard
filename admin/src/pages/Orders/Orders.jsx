@@ -6,6 +6,9 @@ import { assets } from '../../assets/assets';
 
 export const Orders = ({url}) => {
   const [orders, setOrders] = useState([]);
+  // console.log(orders);
+  
+   orders.map(order => console.log(order))
   
   const fetchAllOrders = async () => {
     const response = await axios.get(url+'/api/order/listcar');
@@ -55,6 +58,7 @@ export const Orders = ({url}) => {
               <p className='order-item-phone'>{order.address.email}</p>
               <p className='order-item-phone'>{order.address.phone}</p>
               <p className='order-item-phone'>Datum: {order.address.bookDate}</p>
+              <p className='order-item-phone'><b>Beställning Datum:</b> {order?.orderDate || 'Loading'}</p>
             </div>
             <p>Items: {order.items.length}</p>
             <select onChange={(e) => statusHandler(e, order._id)} value={order.status}>

@@ -6,15 +6,18 @@ import { sendEmail } from "./email.controller.js";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 // placing user order from frontend
 const placeOrder = async (req, res) => {
+    console.log(req.body);
+    
     // link for frontend url
     const frontend_url = 'http://localhost:5173'
     try {
         // creating new order
-        const {userId, items, address } = req.body;
+        const {userId, items, address, orderDate } = req.body;
         const newOrder = new orderModel({
             userId: userId,
             items: items,
-            address: address
+            address: address,
+            orderDate
         })
         
         // save new order in mongoDB

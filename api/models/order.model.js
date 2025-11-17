@@ -19,6 +19,9 @@ const orderSchema = new mongoose.Schema({
         address: {
         type: Object,
         required: true
+    },
+    orderDate: {
+        type: String
     }
 })
 

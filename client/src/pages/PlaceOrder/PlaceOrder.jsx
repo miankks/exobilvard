@@ -39,6 +39,7 @@ const PlaceOrder = () => {
       })
       let orderData = {
         address: data,
+        orderDate:  new Date().toLocaleString("sv-SE"),
         items: orderItems,
       }
           
