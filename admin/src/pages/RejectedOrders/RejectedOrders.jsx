@@ -88,7 +88,7 @@ const RejectedOrders = ({url}) => {
               </p>
               <p className='order-item-phone'>{order.address.email}</p>
               <p className='order-item-phone'>{order.address.phone}</p>
-              <p className='order-item-phone'>Datum: {order.address.bookDate}</p>
+              <p className='order-item-phone'>Service Datum: {order.address.bookDate}</p>
               <br /><br />
               <p className='order-item-phone'><b>Beställning Datum:</b> {order?.orderDate || 'Loading'}</p>
               <p className='order-item-phone'><b>Beställning Tid:</b> {order?.orderTime || 'Loading'}</p>
@@ -110,7 +110,7 @@ const RejectedOrders = ({url}) => {
               Skicka
             </button>
             <div className='delete-btn'>
-                <button type='submit' className='max-w-60 px-4 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600 cursor-pointer m-10'
+                <button type='submit' className='px-4 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600 cursor-pointer m-10'
                     onClick={() => setConfirmDeleteId(order._id)}
                   >
                   Delete

@@ -71,7 +71,7 @@ const AcceptedOrders = ({url}) => {
               </p>
               <p className='order-item-phone'>{order.address.email}</p>
               <p className='order-item-phone'>{order.address.phone}</p>
-              <p className='order-item-phone'>Datum: {order.address.bookDate}</p>
+              <p className='order-item-phone'>Service Datum: {order.address.bookDate}</p>
               <br /><br />
               <p className='order-item-phone'><b>Beställning Datum:</b> {order?.orderDate || 'Loading'}</p>
               <p className='order-item-phone'><b>Beställning Tid:</b> {order?.orderTime || 'Loading'}</p>
