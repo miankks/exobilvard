@@ -1,3 +1,4 @@
+
 .rejecteddorder-item{
     display: grid;
     grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr;
@@ -28,11 +29,19 @@
 }
 
 .delete-btn{
+    grid-column: 1 / -1;
     display: flex;
     justify-content: flex-end;
-    color: red;
-    margin-top: 20px;
 }
+
+/* .deleteadd-btn{
+    max-width: 120px;
+    border: none;
+    padding: 10px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+} */
 
 @media (max-width: 1000px) {
     .rejecteddorder-item{
