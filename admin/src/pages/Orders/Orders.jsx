@@ -7,7 +7,6 @@ import { assets } from '../../assets/assets';
 export const Orders = ({url}) => {
   const [orders, setOrders] = useState([]);
   const [selectedStatuses, setSelectedStatuses] = useState({});
-  // console.log(orders);
   
   const fetchAllOrders = async () => {
     const response = await axios.get(url+'/api/order/listcar');
@@ -19,13 +18,18 @@ export const Orders = ({url}) => {
     }
   }
 
+  const updateOrderStatusLocally = (id, newStatus) => {
+  setOrders(prev =>
+    prev.map(o =>
+      o._id === id ? { ...o, status: newStatus } : o
+    )
+  );
+};
   const handleSelectChange = (orderId, value) => {
     setSelectedStatuses((prev) => ({
       ...prev,
       [orderId]: value,
     }));
-    console.log(orderId, value);
-    
   };
 
   const statusHandler = async (status, orderId) => {
@@ -34,12 +38,6 @@ export const Orders = ({url}) => {
       status
     })
     
-    // const statusHandler = async (e, orderId) => {
-    // const response = await axios.post(url+"/api/order/status", {
-    //   orderId,
-    //   status: e.target.value
-    // })    
-
     if (response.data.success) {
       await fetchAllOrders();
     }
@@ -76,9 +74,11 @@ export const Orders = ({url}) => {
               <p className='order-item-phone'><b>Beställning Tid:</b> {order?.orderTime || 'Loading'}</p>
             </div>
             <p>Items: {order.items.length}</p>
-            {/* <select onChange={(e) => statusHandler(e, order._id)} value={order.status}> */}
-            {/* <select  value={order.status} onChange={(e) => handleSelectChange(order._id, e.target.value)}> */}
-            <select  value={order.status} onChange={(e) => handleSelectChange(order._id, e.target.value)}>
+            <select  value={order.status} onChange={(e) => 
+              {
+                const newStatus = e.target.value;
+                updateOrderStatusLocally(order._id, newStatus);
+                handleSelectChange(order._id, e.target.value)}}>
               <option value="Pending to accept">Pending to accept</option>
               <option value="Accepted">Accepted</option>
               <option value="Rejected">Rejected</option>
