@@ -7,6 +7,9 @@ import List from './pages/List/List';
 import { Orders } from './pages/Orders/Orders';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import CompletedOrders from './pages/CompletedOrders/CompletedOrders';
+import RejectedOrders from './pages/RejectedOrders/RejectedOrders';
+import AcceptedOrders from './pages/AcceptedOrders/AcceptedOrders';
 
 const App = () => {
   const url = 'http://localhost:3000';
@@ -21,6 +24,9 @@ const App = () => {
           <Route path='/addcar' element={<Add url={url}/>} />
           <Route path='/listcar' element={<List url={url}/>} /> 
           <Route path='/orders' element={<Orders url={url}/>} /> 
+          <Route path='/complatedorders' element={<CompletedOrders url={url}/>} /> 
+          <Route path='/acceptedorders' element={<AcceptedOrders url={url}/>} /> 
+          <Route path='/rejectedorders' element={<RejectedOrders url={url}/>} /> 
         </Routes >
       </div>
     </div>

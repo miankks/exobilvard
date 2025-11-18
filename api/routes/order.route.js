@@ -1,11 +1,14 @@
 import express from 'express';
-import { completedOrders, listOrders, placeOrder, updateStatus, userOrders } from '../controllers/order.controller.js';
+import { acceptedOrders, completedOrders, deleteOrders, listOrders, placeOrder, rejectedOrders, updateStatus, userOrders } from '../controllers/order.controller.js';
 
 const orderRouter = express.Router();
 
 orderRouter.post("/place", placeOrder);
 orderRouter.get("/listcar", listOrders);
 orderRouter.get("/completedorders", completedOrders);
+orderRouter.get("/acceptedorders", acceptedOrders);
+orderRouter.get("/rejectedorders", rejectedOrders);
+orderRouter.get("/deleteorders", deleteOrders);
 orderRouter.post("/status", updateStatus);
 
 export default orderRouter;

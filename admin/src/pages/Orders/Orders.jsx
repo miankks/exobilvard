@@ -83,6 +83,7 @@ export const Orders = ({url}) => {
               <option value="Accepted">Accepted</option>
               <option value="Rejected">Rejected</option>
               <option value="Completed">Completed</option>
+              <option value="delete">Delete</option>
             </select>
             <button type='submit' className='add-btn' onClick={() =>
               statusHandler(selectedStatuses[order._id] ?? order.status, order._id)

@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react'
-import './CompletedOrders.css'
+import './AcceptedOrders.css'
 import axios from 'axios';
 // import { toast } from 'react-toastify'
 import { assets } from '../../assets/assets';
 
-const CompletedOrders = ({url}) => {
+const AcceptedOrders = ({url}) => {
   const [orders, setOrders] = useState([]);
   const [selectedStatuses, setSelectedStatuses] = useState({});
   
   const fetchAllOrders = async () => {
-    const response = await axios.get(url+'/api/order/completedorders');
+    const response = await axios.get(url+'/api/order/acceptedorders');
     if (response.data.success) {
       setOrders(response.data.data);
       
@@ -97,4 +97,4 @@ const CompletedOrders = ({url}) => {
   )
 }
 
-export default CompletedOrders;
+export default AcceptedOrders;
