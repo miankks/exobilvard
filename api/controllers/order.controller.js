@@ -59,7 +59,8 @@ const userOrders = async (req, res) => {
 // Listing orders for admin panel
 const listOrders = async (req, res) => {
     try {
-        const orders = await orderModel.find({status: { $nin: ["Accepted", "Completed", "Rejected"] }});
+        const orders = await orderModel.find({});
+        // const orders = await orderModel.find({status: { $nin: ["Accepted", "Completed", "Rejected"] }});
         res.json({success: true, data: orders})
     } catch (error) {
         res.json({success: false, message: "list orders Error"})
@@ -69,8 +70,6 @@ const listOrders = async (req, res) => {
 // API for updating order status
 
 const updateStatus = async (req, res) => {
-    console.log(req.body);
-    
     try {
         await orderModel.findByIdAndUpdate(req.body.orderId, {status: req.body.status});
         res.json({success: true, message: "Status updated"})
@@ -118,14 +117,12 @@ const acceptedOrders = async (req, res) => {
 
 const deleteOrders = async (req, res) => {
     try {
-        // Get only orders with status = "Accepted"
-        const completedOrders = await orderModel.find({status: "Delete"});
-        res.json({success: true, data: completedOrders })
-    } catch (error) {
-        res.json({success: false,
-      message: "Completed orders error",
-      error: error.message})
-    }
+            await orderModel.findByIdAndDelete(req.body.orderId);
+            res.json({success: true, message: 'Task removed'})
+        } catch (error) {
+            console.log(error);
+            res.json({success: false, message: 'Task remove Error'})
+        }
 }
 
 export {placeOrder, userOrders, listOrders, updateStatus, completedOrders, acceptedOrders, rejectedOrders, deleteOrders}

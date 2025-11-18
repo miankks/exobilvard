@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import './AcceptedOrders.css'
 import axios from 'axios';
-// import { toast } from 'react-toastify'
+import { toast } from 'react-toastify'
 import { assets } from '../../assets/assets';
 
 const AcceptedOrders = ({url}) => {
@@ -14,7 +14,7 @@ const AcceptedOrders = ({url}) => {
       setOrders(response.data.data);
       
     } else {
-      // toast.error("Error")
+      toast.error("Error")
     }
   }
 
@@ -39,8 +39,11 @@ const AcceptedOrders = ({url}) => {
     })
     
     if (response.data.success) {
-      await fetchAllOrders();
-    }
+         toast.success(response.data.message)
+         await fetchAllOrders();
+       } else {
+         toast.error(response.data.message)
+       }
   }
   useEffect(() => {
     fetchAllOrders();
@@ -83,7 +86,6 @@ const AcceptedOrders = ({url}) => {
               <option value="Accepted">Accepted</option>
               <option value="Rejected">Rejected</option>
               <option value="Completed">Completed</option>
-              <option value="delete">Delete</option>
             </select>
             <button type='submit' className='add-btn' onClick={() =>
               statusHandler(selectedStatuses[order._id] ?? order.status, order._id)

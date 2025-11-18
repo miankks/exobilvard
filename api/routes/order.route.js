@@ -8,7 +8,7 @@ orderRouter.get("/listcar", listOrders);
 orderRouter.get("/completedorders", completedOrders);
 orderRouter.get("/acceptedorders", acceptedOrders);
 orderRouter.get("/rejectedorders", rejectedOrders);
-orderRouter.get("/deleteorders", deleteOrders);
+orderRouter.post("/deleteorders", deleteOrders);
 orderRouter.post("/status", updateStatus);
 
 export default orderRouter;
