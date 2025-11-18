@@ -62,7 +62,6 @@ const listOrders = async (req, res) => {
         const orders = await orderModel.find({});
         res.json({success: true, data: orders})
     } catch (error) {
-        console.log(error);
         res.json({success: false, message: "list orders Error"})
     }
 }
@@ -80,7 +79,22 @@ const updateStatus = async (req, res) => {
         res.json({success: false, message: "Status update Error"})
     }
 }
-export {placeOrder, userOrders, listOrders, updateStatus}
+
+const completedOrders = async (req, res) => {
+    console.log(req);
+    
+    try {
+        // Get only orders with status = "Accepted"
+        const completedOrders = await orderModel.find({status: "Accepted"});
+        res.json({success: true, data: completedOrders })
+    } catch (error) {
+        res.json({success: false,
+      message: "Completed orders error",
+      error: error.message})
+    }
+}
+
+export {placeOrder, userOrders, listOrders, updateStatus, completedOrders}
 
 
 // const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
