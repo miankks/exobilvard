@@ -46,9 +46,8 @@
 }
 
 @media (max-width:750px) {
-
     .header {
-        margin: 0px;
+        margin: 2px;
     }
     .header-contents{
         max-width: 65%;
