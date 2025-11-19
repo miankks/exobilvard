@@ -7,6 +7,7 @@ import {TimePicker} from '@mui/x-date-pickers/TimePicker';
 import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
 import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
+import minMax from "dayjs/plugin/minMax";
 import 'dayjs/locale/sv';
 import './Reactdatepicker.css';
 
@@ -16,16 +17,21 @@ const Reactdatepicker = ({sendDataToParent}) => {
       time: dayjs(),
       combined: dayjs()
     })
+    dayjs.extend(minMax);
 
     const isToday = formData.date.isSame(dayjs(), 'day');
     const now = dayjs();
     const normalizeMinTime = now.minute(Math.ceil(now.minute() / 5) * 5).second(0)
-    const minTime = isToday? normalizeMinTime : dayjs().startOf('day');
+    // const minTime = isToday? normalizeMinTime : dayjs().startOf('day');
     const minWorkTime = dayjs().hour(9).minute(0).second(0)
-    const maxWorkTime = dayjs().hour(16).minute(0).second(0)
+    const maxWorkTime = dayjs().hour(17).minute(0).second(0)
 
-    const saturdayMinTime = dayjs().hour(9).minute(0).second(0)
-    const saturdayMaxTime = dayjs().hour(14).minute(0).second(0)
+    const minTime = isToday
+                    ? dayjs.max(now, minWorkTime)   // pick whichever is later
+                      : minWorkTime;
+
+     const saturdayMinTime = dayjs().hour(9).minute(0).second(0)
+    const saturdayMaxTime = dayjs().hour(15).minute(0).second(0)
 
     // Dynamic time limits based on selected date
     const selectedDay = formData.date.day()
@@ -77,8 +83,8 @@ const Reactdatepicker = ({sendDataToParent}) => {
               <TimePicker
                 label="Välj tid"
                 value={formData.time}
-                minTime={minTimeForDay}
-                 maxTime={maxTimeForDay}
+                minTime={minTime}
+                maxTime={maxTimeForDay}
                 onChange={handleTimeChange}
                 ampm= {false}
                 renderInput= {(params) => <TextField {...params}/>}
@@ -86,14 +92,8 @@ const Reactdatepicker = ({sendDataToParent}) => {
             </Stack>
           </LocalizationProvider>
         </div>
-        {/* <div>
-          <b>Selected</b>
-          <p>Date: {formData.date.format('YYYY MM DD')}</p>
-          <p>Time: {formData.time.format('HH:mm')}</p>
-        </div> */}
     </div>
   )
 }
 
 export default Reactdatepicker
-
