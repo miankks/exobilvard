@@ -116,7 +116,7 @@ const CompletedOrders = ({url}) => {
         ))}
       </div>
       {confirmDeleteId && (
-          <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center animate-fadeIn">
+          <div className="fixed inset-0 bg-black/60 flex items-center justify-center animate-fadeIn">
             <div className="bg-white p-6 rounded-2xl shadow-2xl w-80 animate-slideUp">
               <h2 className="text-xl font-semibold text-gray-800 mb-3">
                 Delete Item?

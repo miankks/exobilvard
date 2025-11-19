@@ -120,7 +120,7 @@ const RejectedOrders = ({url}) => {
         ))}
       </div>
         {confirmDeleteId && (
-          <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center animate-fadeIn">
+          <div className="fixed inset-0 bg-black/60 flex items-center justify-center animate-fadeIn">
             <div className="bg-white p-6 rounded-2xl shadow-2xl w-80 animate-slideUp">
               <h2 className="text-xl font-semibold text-gray-800 mb-3">
                 Delete Item?
@@ -131,14 +131,14 @@ const RejectedOrders = ({url}) => {
 
               <div className="flex justify-end gap-3">
                 <button
-                  className="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300"
+                  className="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 cursor-pointer"
                   onClick={() => setConfirmDeleteId(null)}
                 >
                   Cancel
                 </button>
 
                 <button
-                  className="px-4 py-2 rounded-lg bg-red-500 text-white hover:bg-red-600"
+                  className="px-4 py-2 rounded-lg bg-red-500 text-white hover:bg-red-600 cursor-pointer"
                   onClick={() => {
                     deleteHandler(confirmDeleteId);
                     setConfirmDeleteId(null);
