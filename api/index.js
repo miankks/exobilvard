@@ -21,7 +21,10 @@ const port = 3000;
 
 // middleware, when request comes from frontend that will parse through json
 app.use(express.json());
+
+// It adds middleware that converts URL-encoded request bodies into a usable JavaScript object stored in req.body
 app.use(express.urlencoded({ extended: true }));
+
 // can get access to backend from any frontend to backend
 app.use(cors());
 // app.use(bodyParser.json())
