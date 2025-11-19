@@ -22,7 +22,17 @@ const Reactdatepicker = ({sendDataToParent}) => {
     const normalizeMinTime = now.minute(Math.ceil(now.minute() / 5) * 5).second(0)
     const minTime = isToday? normalizeMinTime : dayjs().startOf('day');
     const minWorkTime = dayjs().hour(9).minute(0).second(0)
-    const maxWorkTime = dayjs().hour(17).minute(0).second(0)
+    const maxWorkTime = dayjs().hour(16).minute(0).second(0)
+
+    const saturdayMinTime = dayjs().hour(9).minute(0).second(0)
+    const saturdayMaxTime = dayjs().hour(14).minute(0).second(0)
+
+    // Dynamic time limits based on selected date
+    const selectedDay = formData.date.day()
+    const isSaturday = selectedDay === 6
+
+    const minTimeForDay = isSaturday ? saturdayMinTime : minWorkTime
+    const maxTimeForDay = isSaturday ? saturdayMaxTime : maxWorkTime
 
     // helper to compute and push updated state instantly
     const updateFormData = (newDate, newTime) => {
@@ -67,8 +77,8 @@ const Reactdatepicker = ({sendDataToParent}) => {
               <TimePicker
                 label="Välj tid"
                 value={formData.time}
-                minTime={minWorkTime}
-                 maxTime={maxWorkTime}
+                minTime={minTimeForDay}
+                 maxTime={maxTimeForDay}
                 onChange={handleTimeChange}
                 ampm= {false}
                 renderInput= {(params) => <TextField {...params}/>}

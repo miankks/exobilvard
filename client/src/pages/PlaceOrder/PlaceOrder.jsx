@@ -44,15 +44,7 @@ const PlaceOrder = () => {
         orderTime: now.toLocaleTimeString("sv-SE", { hour: "2-digit", minute: "2-digit" }),
         items: orderItems,
       }
-        
-        //       // Separate date only
-        // const date = now.toLocaleDateString("sv-SE");
-        // console.log("Date:", date); 
-        // // Example output: "2025-11-17"
-
-        // // Separate time only (hours + minutes)
-        // const time = now.toLocaleTimeString("sv-SE", { hour: "2-digit", minute: "2-digit" });
-        // console.log("Time:", time); 
+       
       await axios.post(url+'/api/order/place', orderData)
         
       // let response = await axios.post(url+'/api/order/place', orderData, {headers: {token}})
@@ -72,14 +64,6 @@ const PlaceOrder = () => {
       const bookingTime = date.combined.format('YYYY MM DD - HH:mm')
       setData({...data, bookDate: bookingTime})
     }
-
-    // useEffect(() => {
-    //   if (!token) {
-    //     navigate('/myorders')
-    //   } 
-    // }, [token])
-
-
 
   return (
     <form onSubmit={placeOrder} className='place-order'>
@@ -136,4 +120,13 @@ const PlaceOrder = () => {
 }
 
 export default PlaceOrder
+
+
+    // useEffect(() => {
+    //   if (!token) {
+    //     navigate('/myorders')
+    //   } 
+    // }, [token])
+
+
 

@@ -1,10 +1,12 @@
-import { useState, useEffect } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import './RejectedOrders.css'
 import axios from 'axios';
 import { toast } from 'react-toastify'
 import { assets } from '../../assets/assets';
+import { StoreContext } from "../../context/StoreContext";
 
 const RejectedOrders = ({url}) => {
+  // const { handleOrders} = useContext(StoreContext);
   const [orders, setOrders] = useState([]);
   const [selectedStatuses, setSelectedStatuses] = useState({});
   const [confirmDeleteId, setConfirmDeleteId] = useState(null);
