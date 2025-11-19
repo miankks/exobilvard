@@ -6,7 +6,7 @@ import { assets } from '../../assets/assets';
 import { StoreContext } from "../../context/StoreContext";
 
 const RejectedOrders = ({url}) => {
-  // const { handleOrders} = useContext(StoreContext);
+  const { statusUpdateHandler } = useContext(StoreContext);
   const [orders, setOrders] = useState([]);
   const [selectedStatuses, setSelectedStatuses] = useState({});
   const [confirmDeleteId, setConfirmDeleteId] = useState(null);
@@ -107,7 +107,8 @@ const RejectedOrders = ({url}) => {
               <option value="Completed">Completed</option>
             </select>
             <button type='submit' className='add-btn' onClick={() =>
-              statusHandler(selectedStatuses[order._id] ?? order.status, order._id)
+              statusHandler(selectedStatuses[order._id] ?? order.status, order._id, url)
+              // statusUpdateHandler(selectedStatuses[order._id] ?? order.status, order._id, url)
             }>
               Uppdatera
             </button>

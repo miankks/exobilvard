@@ -6,14 +6,12 @@ import { toast } from 'react-toastify'
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
-    const [handleOrders, setOrders] = useState({});
+    
+    const [handleOrders, setHandleOrders] = useState({});
+    // const deleteOrder = (orderId) => {
+    // }
 
-    const deleteOrder = (orderId) => {
-
-
-    }
-
-    const statusHandler = async ({status, orderId, url}) => {
+    const statusUpdateHandler = async (status, orderId, url) => {
         const response = await axios.post(url+"/api/order/status", {
       orderId,
       status
@@ -21,11 +19,22 @@ const StoreContextProvider = (props) => {
     
     if (response.data.success) {
       toast.success(response.data.message)
-      await fetchAllOrders();
+    //   await fetchAllOrders();
     } else {
       toast.error(response.data.message)
     }
     }
+    const contextValue = {
+        handleOrders,
+        statusUpdateHandler
+    }
+     return (
+            <StoreContext.Provider value={contextValue}>
+                {props.children}
+            </StoreContext.Provider>
+        )
+        
 }
+
 
 export default StoreContextProvider;
