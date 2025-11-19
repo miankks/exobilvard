@@ -3,7 +3,6 @@
     margin: 30px auto;
     background: url('/header_img.png') no-repeat;
     background-size: 100% auto;
-    /* background-size: contain; */
     position: relative;
 }
 
@@ -47,6 +46,10 @@
 }
 
 @media (max-width:750px) {
+
+    .header {
+        margin: 0px;
+    }
     .header-contents{
         max-width: 65%;
     }
@@ -58,4 +61,12 @@
     .header-contents button{
         padding: 2vw 4vw;
     }
+
+    .header .header-contents h2 {
+    font-weight: 500;
+    color: white;
+    font-size: max(4.5vw, 19px);
 }
+}
+
+/* background-size: contain; */
