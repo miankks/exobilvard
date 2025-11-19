@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { StoreContext } from '../../context/StoreContext';
 import './Cart.css';
 
@@ -44,7 +44,9 @@ const Cart = () => {
       <div className="cart-bottom">
         <div className="cart-total">
           <button disabled={!hasItems} onClick={() => navigate('/order')}>Proceed to checkout</button>
-          {!hasItems && <p className='empty-cart'>Korg är tom</p>}
+          {!hasItems && <div><p className='empty-cart'>Korg är tom</p>
+            <Link to={'/'}><button>Tillbaka till Meny</button></Link>
+          </div>}
         </div>
       </div>
     </div>

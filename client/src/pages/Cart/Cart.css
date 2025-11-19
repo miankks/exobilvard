@@ -99,6 +99,7 @@
 
 .empty-cart {
     color: red;
+    padding-bottom: 10px;
 }
 
 @media (max-width:750px) {
