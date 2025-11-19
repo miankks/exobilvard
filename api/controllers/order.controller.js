@@ -59,8 +59,8 @@ const userOrders = async (req, res) => {
 // Listing orders for admin panel
 const listOrders = async (req, res) => {
     try {
-        const orders = await orderModel.find({});
-        // const orders = await orderModel.find({status: { $nin: ["Accepted", "Completed", "Rejected"] }});
+        // const orders = await orderModel.find({});
+        const orders = await orderModel.find({status: { $nin: ["Accepted", "Completed", "Rejected"] }});
         res.json({success: true, data: orders})
     } catch (error) {
         res.json({success: false, message: "list orders Error"})

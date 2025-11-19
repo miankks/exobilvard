@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './PlaceOrder.css';
 import { StoreContext } from '../../context/StoreContext';
 import axios from 'axios';
-// import {toast} from 'react-toastify'
+import {toast} from 'react-toastify'
 import Reactdatepicker from '../../components/Reactdatepicker/Reactdatepicker';
 
 const PlaceOrder = () => {
@@ -45,19 +45,16 @@ const PlaceOrder = () => {
         items: orderItems,
       }
        
-      await axios.post(url+'/api/order/place', orderData)
+      const res =  await axios.post(url+'/api/order/place', orderData)
         
-      // let response = await axios.post(url+'/api/order/place', orderData, {headers: {token}})
-                      
+      if (res.data.success) {
+        orderData = []
+        toast.success(res.data.message)
         navigate('/orderconfirmation')
-      // if (response.data.success) {
-      // if (response.data.success) {
-      //   const { session_url} = response.data;
-      //   // send user to session url
-      //   window.location.replace(session_url);
-      //   navigate('/myorders')
-      // } else {
-      // }
+      } else {
+        toast.error(res.data.message)
+        navigate('/cart')
+      }
     }
 
     const handleDataFromChild = (date) => {
@@ -128,5 +125,15 @@ export default PlaceOrder
     //   } 
     // }, [token])
 
+      // let response = await axios.post(url+'/api/order/place', orderData, {headers: {token}})
+                      
+      // if (response.data.success) {
+      // if (response.data.success) {
+      //   const { session_url} = response.data;
+      //   // send user to session url
+      //   window.location.replace(session_url);
+      //   navigate('/myorders')
+      // } else {
+      // }
 
 

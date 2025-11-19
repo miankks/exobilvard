@@ -4,7 +4,6 @@ import { StoreContext } from '../../context/StoreContext'
 
 const Orderconfirmation = () => {
   const {car_list, cartItems, url } = useContext(StoreContext);
-  console.log(car_list);
   
   return (
     <div className='orderconfirmation-block'>

@@ -21,8 +21,6 @@ const Reactdatepicker = ({sendDataToParent}) => {
 
     const isToday = formData.date.isSame(dayjs(), 'day');
     const now = dayjs();
-    const normalizeMinTime = now.minute(Math.ceil(now.minute() / 5) * 5).second(0)
-    // const minTime = isToday? normalizeMinTime : dayjs().startOf('day');
     const minWorkTime = dayjs().hour(9).minute(0).second(0)
     const maxWorkTime = dayjs().hour(17).minute(0).second(0)
 
@@ -30,7 +28,7 @@ const Reactdatepicker = ({sendDataToParent}) => {
                     ? dayjs.max(now, minWorkTime)   // pick whichever is later
                       : minWorkTime;
 
-     const saturdayMinTime = dayjs().hour(9).minute(0).second(0)
+    const saturdayMinTime = dayjs().hour(9).minute(0).second(0)
     const saturdayMaxTime = dayjs().hour(15).minute(0).second(0)
 
     // Dynamic time limits based on selected date

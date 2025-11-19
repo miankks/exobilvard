@@ -16,7 +16,6 @@ const RejectedOrders = ({url}) => {
     const response = await axios.get(url+'/api/order/rejectedorders');
     if (response.data.success) {
       setOrders(response.data.data);
-      
     } else {
       toast.error("Error")
     }
@@ -90,7 +89,7 @@ const RejectedOrders = ({url}) => {
               </p>
               <p className='order-item-phone'>{order.address.email}</p>
               <p className='order-item-phone'>{order.address.phone}</p>
-              <p className='order-item-phone'>Service Datum: {order.address.bookDate}</p>
+              <p className='order-item-phone'><b>Service Datum: {order.address.bookDate}</b></p>
               <br /><br />
               <p className='order-item-phone'><b>Beställning Datum:</b> {order?.orderDate || 'Loading'}</p>
               <p className='order-item-phone'><b>Beställning Tid:</b> {order?.orderTime || 'Loading'}</p>
