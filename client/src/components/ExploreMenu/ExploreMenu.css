@@ -16,7 +16,7 @@
 
 .explore-menu-list {
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
     align-items: center;
     gap: 30px;
     text-align: center;
