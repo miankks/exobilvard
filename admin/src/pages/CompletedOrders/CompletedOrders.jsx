@@ -46,6 +46,18 @@ const CompletedOrders = ({url}) => {
       toast.error(response.data.message)
     }
   }
+
+    const deleteHandler = async (orderId) => {
+    const response = await axios.post(url+"/api/order/deleteorders", {
+      orderId
+    })
+    
+    if (response.data.success) {
+      await fetchAllOrders();
+    } else {
+      toast.error(response.data.message)
+    }
+  }
   useEffect(() => {
     fetchAllOrders();
   },[])

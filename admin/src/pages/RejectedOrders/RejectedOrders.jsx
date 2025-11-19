@@ -50,8 +50,6 @@ const RejectedOrders = ({url}) => {
   }
 
     const deleteHandler = async (orderId) => {
-      console.log(orderId);
-      
     const response = await axios.post(url+"/api/order/deleteorders", {
       orderId
     })
