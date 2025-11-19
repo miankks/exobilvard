@@ -51,7 +51,7 @@ const AcceptedOrders = ({url}) => {
 
   return (
     <div className='order add'>
-      <h3>Order Page</h3>
+      <h3>Accepted Orders Page</h3>
       <div className="order-list">
         {orders.map((order, index) => (
           <div className='complatedorder-item' key={index}>
@@ -90,7 +90,7 @@ const AcceptedOrders = ({url}) => {
             <button type='submit' className='add-btn' onClick={() =>
               statusHandler(selectedStatuses[order._id] ?? order.status, order._id)
             }>
-              Skicka
+              Uppdatera
               </button>
           </div>
         ))}

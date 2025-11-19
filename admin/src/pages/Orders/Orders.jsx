@@ -90,7 +90,7 @@ export const Orders = ({url}) => {
             <button type='submit' className='add-btn' onClick={() =>
               statusHandler(selectedStatuses[order._id] ?? order.status, order._id)
             }>
-              Skicka
+              Uppdatera
               </button>
           </div>
         ))}

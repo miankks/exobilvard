@@ -68,7 +68,7 @@ const RejectedOrders = ({url}) => {
 
   return (
     <div className='order add'>
-      <h3>Order Page</h3>
+      <h3>Rejected orders Page</h3>
       <div className="order-list">
         {orders.map((order, index) => (
           <div className='rejecteddorder-item' key={index}>
@@ -107,7 +107,7 @@ const RejectedOrders = ({url}) => {
             <button type='submit' className='add-btn' onClick={() =>
               statusHandler(selectedStatuses[order._id] ?? order.status, order._id)
             }>
-              Skicka
+              Uppdatera
             </button>
             <div className='delete-btn'>
                 <button type='submit' className='px-4 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600 cursor-pointer m-10'
