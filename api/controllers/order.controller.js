@@ -1,7 +1,9 @@
 import orderModel from "../models/order.model.js";
 import userModel from "../models/user.model.js";
 import Stripe from "stripe";
-import { sendEmail } from "./email.controller.js";
+import { sendEmail } from "../emails/OrderConfirmationEmail.controller.js";
+import { rejectedOrderEmail} from '../emails/rejectedOrderEmail.js'
+import { acceptedOrderEmail } from '../emails/acceptedOrderEmail.js'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 // placing user order from frontend
@@ -70,36 +72,38 @@ const listOrders = async (req, res) => {
 // API for updating order status
 
 const updateStatus = async (req, res) => {
+    
+    
     try {
-        await orderModel.findByIdAndUpdate(req.body.orderId, {status: req.body.status});
+        const result = await orderModel.findByIdAndUpdate(req.body.orderId, {status: req.body.status}, { new: true });
+        if (result.status === "Rejected") {
+            // await rejectedOrderEmail(result)
+        } else if (result.status === "Accepted") {
+            // await acceptedOrderEmail();
+        }
         res.json({success: true, message: "Status updated"})
     } catch (error) {
-        console.log(error);
         res.json({success: false, message: "Status update Error"})
     }
 }
 
 const completedOrders = async (req, res) => {
     try {
-        // Get only orders with status = "Accepted"
+        // Get only orders with status = "Completed"
         const completedOrders = await orderModel.find({status: "Completed"});
         res.json({success: true, data: completedOrders })
     } catch (error) {
-        res.json({success: false,
-      message: "Completed orders error",
-      error: error.message})
+        res.json({success: false, message: "Completed orders error", error: error.message})
     }
 }
 
 const rejectedOrders = async (req, res) => {
     try {
-        // Get only orders with status = "Accepted"
+        // Get only orders with status = "Rejected"
         const completedOrders = await orderModel.find({status: "Rejected"});
         res.json({success: true, data: completedOrders })
     } catch (error) {
-        res.json({success: false,
-      message: "Completed orders error",
-      error: error.message})
+        res.json({success: false, message: "Completed orders error", error: error.message})
     }
 }
 
@@ -109,9 +113,7 @@ const acceptedOrders = async (req, res) => {
         const completedOrders = await orderModel.find({status: "Accepted"});
         res.json({success: true, data: completedOrders })
     } catch (error) {
-        res.json({success: false,
-      message: "Completed orders error",
-      error: error.message})
+        res.json({success: false, message: "Completed orders error",  error: error.message})
     }
 }
 
