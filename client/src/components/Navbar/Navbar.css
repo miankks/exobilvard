@@ -1,7 +1,6 @@
 .navbar {
     background-color: rgb(140 163 220 / var(--tw-bg-opacity, 1));
     background: rgb(140, 163, 223);
-    /* background-color: tomato; */
     padding: 20px 15px;
     display: flex;
     justify-content: space-between;

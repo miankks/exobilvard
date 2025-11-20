@@ -103,6 +103,13 @@
 }
 
 @media (max-width:750px) {
+    .cart{
+    margin: 20px;
+}
+
+/* .cart-items-title{
+    grid-template-columns: 1fr  1fr;
+} */
     .cart-bottom{
         flex-direction: column-reverse;
     }
