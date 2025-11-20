@@ -151,6 +151,10 @@
 
 @media (max-width:750px) {
    
+    .navbar {
+        height: 7.5vw; /* Add height */
+        min-height: 80px;
+    }
     .navbar-menu{
         display: none;
     }
