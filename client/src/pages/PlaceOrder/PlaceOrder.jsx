@@ -48,12 +48,11 @@ const PlaceOrder = () => {
       const res =  await axios.post(url+'/api/order/place', orderData)
         
       if (res.data.success) {
-        orderData = []
         toast.success(res.data.message)
         navigate('/orderconfirmation')
       } else {
         toast.error(res.data.message)
-        navigate('/cart')
+        navigate('/place')
       }
     }
 

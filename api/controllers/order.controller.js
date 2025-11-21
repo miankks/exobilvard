@@ -72,8 +72,6 @@ const listOrders = async (req, res) => {
 // API for updating order status
 
 const updateStatus = async (req, res) => {
-    
-    
     try {
         const result = await orderModel.findByIdAndUpdate(req.body.orderId, {status: req.body.status}, { new: true });
         if (result.status === "Rejected") {

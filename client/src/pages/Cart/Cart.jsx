@@ -12,6 +12,7 @@ const Cart = () => {
   useEffect(()=> {
 
   },[hasItems])
+  
   return (
     <div className='cart'>
       <div className="cart-items">

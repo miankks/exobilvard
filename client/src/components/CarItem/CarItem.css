@@ -1,11 +1,20 @@
-.car-item {
-    /* width: 100%; */
-    /* margin: auto; */
-    flex: 1 1 240px; /* matches your desired minimum card width */
+/* .car-item {
+    width: 100%;
+    margin: auto;
     border-radius: 15px;
     box-shadow: 0px 0px 10px #00000015;
     transition: 0.3s;
     animation: fadeIn 1s;
+} */
+
+.car-item {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px #00000015;
+    overflow: hidden; /* ensures image and corners are clipped */
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .car-item-image {

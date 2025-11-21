@@ -1,5 +1,6 @@
 .place-order{
     display: flex;
+    flex-wrap: wrap-reverse;
     align-items: start;
     justify-content: space-between;
     gap: 50px;
