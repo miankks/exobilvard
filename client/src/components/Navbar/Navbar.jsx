@@ -15,14 +15,23 @@ const Navbar = ({ setShowLogin }) => {
         setToken('');
         navigate('/')
     }
+
+    const goToMenu = () => {
+        navigate("/"); // go back to home
+        setTimeout(() => {
+        document.getElementById("menu")?.scrollIntoView({ behavior: "smooth" });
+        }, 100); // give home time to load
+    };
     return (
         <div className='navbar'>
             <Link to={'/'}><img src={assets.exobil_logo} alt="" className="logo" /></Link>
             <ul className="navbar-menu">
                 <Link to={'/'} onClick={() => setMenu("home")} className={menu === 'home' ? 'active' : ''}>Hem</Link>
-                <a href='#explore-menu' onClick={() => setMenu("menu")} className={menu === 'menu' ? 'active' : ''}>Meny</a>
+                <a href='#explore-menu' onClick={goToMenu} className={menu === 'menu' ? 'active' : ''}>Meny</a>
+                {/* <a href='#explore-menu' onClick={() => setMenu("menu")} className={menu === 'menu' ? 'active' : ''}>Meny</a> */}
                 {/* <a href='#app-download' onClick={() => setMenu("mobile-app")} className={menu === 'mobile-app' ? 'active' : ''}>Mobil app</a> */}
-                <a href='#footer' onClick={() => setMenu("contact-us")} className={menu === 'contact-us' ? 'active' : ''}>Kontakta oss</a>
+                <a href='#footer' onClick={goToMenu} className={menu === 'contact-us' ? 'active' : ''}>Kontakta oss</a>
+                {/* <a href='#footer' onClick={() => setMenu("contact-us")} className={menu === 'contact-us' ? 'active' : ''}>Kontakta oss</a> */}
             </ul>
             <div className="navbar-right">
                 {/* <img src={assets.search_icon} alt="" /> */}

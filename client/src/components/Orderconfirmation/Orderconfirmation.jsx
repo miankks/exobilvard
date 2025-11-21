@@ -1,9 +1,17 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import './Orderconfirmation.css'
 import { StoreContext } from '../../context/StoreContext'
 
 const Orderconfirmation = () => {
-  const {car_list, cartItems, url } = useContext(StoreContext);
+  const {car_list, cartItems, url, setCartItems } = useContext(StoreContext);
+  
+  // Empty cart when leaving the page
+  // useEffect(() => {
+  //   return () => {
+  //     setCartItems({});
+  //     localStorage.removeItem("cartItems");
+  //   };
+  // }, [])
   
   return (
       <div className="order-card">
