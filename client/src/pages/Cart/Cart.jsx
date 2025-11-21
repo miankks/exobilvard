@@ -9,7 +9,7 @@ const Cart = () => {
   
   const navigate = useNavigate();
 
-  useEffect(()=> {
+    useEffect(()=> {
 
   },[hasItems])
   

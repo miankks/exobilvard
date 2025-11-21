@@ -6,7 +6,10 @@ export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
 
-    const [cartItems, setCartItems] = useState({});
+    const [cartItems, setCartItems] = useState(() => {
+        const saved = localStorage.getItem("cartItems");
+        return saved ? JSON.parse(saved) : {};
+    });
     const [car_list, setCarList] = useState([]);
     
     const url = "http://localhost:3000";

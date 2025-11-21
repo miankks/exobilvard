@@ -8,6 +8,8 @@ import Reactdatepicker from '../../components/Reactdatepicker/Reactdatepicker';
 
 const PlaceOrder = () => {
     const { token, car_list,removeFromCart, cartItems, url } = useContext(StoreContext);
+    
+    
     const navigate = useNavigate();
 
     const [data, setData] = useState({
@@ -60,6 +62,11 @@ const PlaceOrder = () => {
       const bookingTime = date.combined.format('YYYY MM DD - HH:mm')
       setData({...data, bookDate: bookingTime})
     }
+
+    useEffect(() => {
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    }, [cartItems]);
+
 
   return (
     <form onSubmit={placeOrder} className='place-order'>
