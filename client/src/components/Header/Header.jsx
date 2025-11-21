@@ -7,7 +7,7 @@ const Header = () => {
             <h2 className='header-color'>Välkommen till <br />Exo Bilvårdcenter</h2>
             <p className='header-color'>Passion för bilar. Kvalitet i varje detalj.
             </p>
-            <button>View Menu</button>
+            {/* <button>View Menu</button> */}
         </div>
     </div>
   )

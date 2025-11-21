@@ -33,11 +33,6 @@ const placeOrder = async (req, res) => {
         if (savedOrder) {
             // await sendEmail(newOrder.address)
         }
-        
-        // send email
-        // await sendEmail(savedOrder)
-        // empty the user cart
-        // await userModel.findByIdAndUpdate(userId, {cartData: {}});
 
     } catch (error) {
         console.log(error);
