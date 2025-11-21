@@ -7,7 +7,7 @@ import {toast} from 'react-toastify'
 import Reactdatepicker from '../../components/Reactdatepicker/Reactdatepicker';
 
 const PlaceOrder = () => {
-    const { token, car_list,removeFromCart, cartItems, url } = useContext(StoreContext);
+    const { token, car_list,removeFromCart, cartItems, url, setCartItems } = useContext(StoreContext);
     
     
     const navigate = useNavigate();
@@ -48,10 +48,10 @@ const PlaceOrder = () => {
       }
        
       const res =  await axios.post(url+'/api/order/place', orderData)
-        
       if (res.data.success) {
         toast.success(res.data.message)
         navigate('/orderconfirmation')
+        // setCartItems({})
       } else {
         toast.error(res.data.message)
         navigate('/place')
