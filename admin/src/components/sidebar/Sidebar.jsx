@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom'
 const Sidebar = () => {
   return (
     <div className='sidebar'>
-        <div className="sidebar-options">
+        <div className="sidebar-group top-group">
             <NavLink to='/addcar' className="sidebar-option">
                 <img src={assets.add_icon} alt="" />
                 <p>Add Items</p>
@@ -15,6 +15,8 @@ const Sidebar = () => {
                 <img src={assets.order_icon} alt="" />
                 <p>List Items</p>
             </NavLink>
+        </div>
+        <div className="sidebar-group bottom-group">
             <NavLink to='/orders' className="sidebar-option">
                 <img src={assets.order_icon} alt="" />
                 <p>Orders</p>
@@ -23,7 +25,7 @@ const Sidebar = () => {
                 <img src={assets.order_icon} alt="" />
                 <p>Accepted Orders</p>
             </NavLink>
-            <NavLink to='/complatedorders' className="sidebar-option">
+            <NavLink to='/completedorders' className="sidebar-option">
                 <img src={assets.order_icon} alt="" />
                 <p>Completed Orders</p>
             </NavLink>

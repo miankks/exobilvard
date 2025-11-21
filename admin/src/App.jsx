@@ -24,7 +24,7 @@ const App = () => {
           <Route path='/addcar' element={<Add url={url}/>} />
           <Route path='/listcar' element={<List url={url}/>} /> 
           <Route path='/orders' element={<Orders url={url}/>} /> 
-          <Route path='/complatedorders' element={<CompletedOrders url={url}/>} /> 
+          <Route path='/completedorders' element={<CompletedOrders url={url}/>} /> 
           <Route path='/acceptedorders' element={<AcceptedOrders url={url}/>} /> 
           <Route path='/rejectedorders' element={<RejectedOrders url={url}/>} /> 
         </Routes >
