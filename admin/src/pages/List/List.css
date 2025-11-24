@@ -24,9 +24,19 @@
     border: none;
     padding: 12px 0px;
     border-radius: 4px;
-    background-color: #ffe1e1;
+    background-color: #eef6ff;
+    border: 1px solid #3b82f6;
     cursor: pointer;
     color: #454545;
+}
+
+.list-table-format .delete-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    
 }
 
 @media (max-width: 600px) {

@@ -42,7 +42,7 @@ const List = ({url}) => {
               <img src={`${url}/images/`+item.image} alt="" />
               <p>{item.name}</p>
               <p>{item.category}</p>
-              <p className='cursor' onClick={() => removeCar(item._id)}>x</p>
+              <button type='button' className='cursor delete-button' onClick={() => removeCar(item._id)}>x</button>
               <button>edit</button>
             </div>
           )
