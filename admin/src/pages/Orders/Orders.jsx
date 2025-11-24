@@ -7,7 +7,12 @@ import { assets } from '../../assets/assets';
 export const Orders = ({url}) => {
   const [orders, setOrders] = useState([]);
   const [selectedStatuses, setSelectedStatuses] = useState({});
-  
+  const [data, setData] = useState('');
+  const onChangeHandler = (e) => {
+    const value = e.target.value;
+    setData(...data, value)
+    
+  }
   const fetchAllOrders = async () => {
     const response = await axios.get(url+'/api/order/listcar');
     if (response.data.success) {
@@ -54,44 +59,80 @@ export const Orders = ({url}) => {
       <h3>Order Page</h3>
       <div className="order-list">
         {orders.map((order, index) => (
-          <div className='order-item' key={index}>
+          <div className="order-item" key={index}>
+            
+            {/* Column 1 */}
             <img src={assets.parcel_icon} alt="" />
-            <div>
-              <p className='order-item-car'>
-                {order.items.map((item, index) =>{
-                  if (index === order.items.length -1) {
-                    return item.name + " x" + item.quantity
-                  } else {
-                    return (item.name + " x " +item.quantity + ",") 
-                  }
-                })}
+
+            {/* Column 2 - User Info Section */}
+            <div className="order-info">
+              <p className="order-item-car">
+                {order.items.map((item, index) =>
+                  index === order.items.length - 1
+                    ? item.name + " x" + item.quantity
+                    : item.name + " x " + item.quantity + ", "
+                )}
               </p>
-              <p className='order-item-name'>
-                {order.address.fullName}
+
+              <p className="order-item-name">{order.address.fullName}</p>
+              <p className="order-item-phone">{order.address.email}</p>
+              <p className="order-item-phone">{order.address.phone}</p>
+
+              <p className="order-item-phone bold">
+                Service Datum: {order.address.bookDate}
               </p>
-              <p className='order-item-phone'>{order.address.email}</p>
-              <p className='order-item-phone'>{order.address.phone}</p>
-              <p className='order-item-phone'><b>Service Datum: {order.address.bookDate}</b></p>
-              <br /><br />
-              <p className='order-item-phone'><b>Beställning Datum:</b> {order?.orderDate || 'Loading'}</p>
-              <p className='order-item-phone'><b>Beställning Tid:</b> {order?.orderTime || 'Loading'}</p>
+
+              <p className="order-item-phone bold">
+                Beställning Datum: {order?.orderDate || "Loading"}
+              </p>
+
+              <p className="order-item-phone bold">
+                Beställning Tid: {order?.orderTime || "Loading"}
+              </p>
             </div>
+
+            {/* Column 3 */}
             <p>Items: {order.items.length}</p>
-            <select  value={order.status} onChange={(e) => 
-              {
+
+            {/* Column 4 */}
+            <select
+              value={order.status}
+              onChange={(e) => {
                 const newStatus = e.target.value;
                 updateOrderStatusLocally(order._id, newStatus);
-                handleSelectChange(order._id, e.target.value)}}>
+                handleSelectChange(order._id, e.target.value);
+              }}
+            >
               <option value="Pending to accept">Pending to accept</option>
               <option value="Accepted">Accepted</option>
               <option value="Rejected">Rejected</option>
               <option value="Completed">Completed</option>
             </select>
-            <button type='submit' className='add-btn' onClick={() =>
-              statusHandler(selectedStatuses[order._id] ?? order.status, order._id)
-            }>
+
+            {/* Column 5 */}
+            <button
+              type="submit"
+              className="add-btn"
+              onClick={() =>
+                statusHandler(selectedStatuses[order._id] ?? order.status, order._id)
+              }
+            >
               Uppdatera
-              </button>
+            </button>
+
+            {/* FULL ROW at Bottom */}
+            <div className="order-description">
+              <p>Comments for client</p>
+              <textarea
+                name="description"
+                rows="6"
+                placeholder="Write content here"
+                required
+                onChange={onChangeHandler}
+                value={data.description}
+              />
+            </div>
+
           </div>
         ))}
       </div>
