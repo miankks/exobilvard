@@ -122,7 +122,7 @@ export const Orders = ({url}) => {
             {/* FULL ROW at Bottom */}
              <div className="order-description">
               <p>Comments for client</p>
-              <p>{order.comment}</p>
+              <p>{order.comment || 'No comment provided'}</p>
             </div>
             <div className="order-description">
               <p>Comments for client</p>
@@ -135,7 +135,6 @@ export const Orders = ({url}) => {
                 value={comment}
               />
             </div>
-
           </div>
         ))}
       </div>

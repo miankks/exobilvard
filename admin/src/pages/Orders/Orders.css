@@ -48,6 +48,10 @@
   flex-direction: column;
   gap: 10px;
 }
+.order-description textarea {
+    border: 1px solid tomato;
+
+}
 
 @media (max-width: 1000px) {
     .order-item{

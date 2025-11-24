@@ -78,8 +78,11 @@ const updateStatus = async (req, res) => {
             { new: true });
         if (result.status === "Rejected") {
             // await rejectedOrderEmail(result)
+            console.log('Rejected');
         } else if (result.status === "Accepted") {
-            // await acceptedOrderEmail(result);
+            console.log('Accepted');
+            
+            await acceptedOrderEmail(result);
         }
         res.json({success: true, message: "Status updated", data: result})
     } catch (error) {
