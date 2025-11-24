@@ -3,6 +3,10 @@ import './Orders.css'
 import axios from 'axios';
 import { toast } from 'react-toastify'
 import { assets } from '../../assets/assets';
+import { MdOutlineMailOutline } from "react-icons/md";
+import { BsTelephoneForward } from "react-icons/bs";
+import { FaCarAlt } from "react-icons/fa";
+import { CiCalendarDate } from "react-icons/ci";
 
 export const Orders = ({url}) => {
   const [orders, setOrders] = useState([]);
@@ -74,14 +78,26 @@ export const Orders = ({url}) => {
               </p>
 
               <p className="order-item-name">{order.address.fullName}</p>
-              <p className="order-item-phone">{order.address.email}</p>
-              <p className="order-item-phone">{order.address.phone}</p>
+              <div className="email-row">
+                <MdOutlineMailOutline />
+                <p className="order-item-email">{order.address.email}</p>
+              </div>
+              <div className="email-row">
+              <BsTelephoneForward />
+              <p className="order-item-phone">{order.address.phone}</p> 
+              </div>
+              <div className="email-row">
+                <FaCarAlt />
+                <p className="order-item-regnummer">{order.address.regnummer}</p>
+              </div>
+              <div className="email-row">
+                  <CiCalendarDate />
+                <p className="order-item-phone bold">
+                  Service Datum: {order.address.bookDate}
+                </p>
+              </div>
 
-              <p className="order-item-phone bold">
-                Service Datum: {order.address.bookDate}
-              </p>
-
-              <p className="order-item-phone bold">
+              <p className="order-item-phone bold order-timestamp">
                 Beställning Datum: {order?.orderDate || "Loading"}
               </p>
 

@@ -28,6 +28,12 @@
     margin-bottom: 10px;
 }
 
+.email-row {
+  display: flex;
+  align-items: center;
+  gap: 6px; /* space between icon and text */
+}
+
 .order-item select{
     background-color: #eef6ff;
     border: 1px solid #3b82f6;
@@ -51,6 +57,10 @@
 .order-description textarea {
     border: 1px solid #3b82f6;
 
+}
+
+.order-timestamp{
+    padding-top: 50px;
 }
 
 @media (max-width: 1000px) {
