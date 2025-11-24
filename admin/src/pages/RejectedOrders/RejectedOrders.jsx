@@ -116,6 +116,10 @@ const RejectedOrders = ({url}) => {
                   Delete
                 </button>
             </div>
+             <div className="order-description">
+              <p>Comments for client</p>
+              <p>{order.comment || 'No comments provided'}</p>
+            </div>
           </div>
         ))}
       </div>

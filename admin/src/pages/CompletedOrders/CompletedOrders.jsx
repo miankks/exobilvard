@@ -112,6 +112,10 @@ const CompletedOrders = ({url}) => {
                   Delete
                 </button>
             </div>
+             <div className="order-description">
+              <p>Comments for client</p>
+              <p>{order.comment || 'No comments provided'}</p>
+            </div>
           </div>
         ))}
       </div>
@@ -143,6 +147,7 @@ const CompletedOrders = ({url}) => {
                   Delete
                 </button>
               </div>
+            
             </div>
           </div>
         )}

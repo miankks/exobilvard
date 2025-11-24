@@ -92,6 +92,10 @@ const AcceptedOrders = ({url}) => {
             }>
               Uppdatera
               </button>
+               <div className="order-description">
+              <p>Comments for client</p>
+              <p>{order.comment || 'No comments provided'}</p>
+            </div>
           </div>
         ))}
       </div>

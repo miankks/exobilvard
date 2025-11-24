@@ -2,13 +2,9 @@ import { Resend } from 'resend';
 
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-const acceptedOrderEmail = async (req, res) => {
-  //  console.log("🟡 sendEmail called");
-  console.log("🟡 body:", req);
+const acceptedOrderEmail = async (order) => {
   try {
-    const {fullName, email, regnummer, bookDate } = req.address
-    // console.log("🟡 Preparing to send email...");
-    
+    const { fullName, email, phone, regnummer, bookDate, comment } = order.address || {};
             const {data, error} = await resend.emails.send({
                     from: 'Exobil <onboarding@resend.dev>',
                     to: email,
@@ -20,6 +16,7 @@ const acceptedOrderEmail = async (req, res) => {
                         <blockquote>${'Din bilregistreringsnummer är: '+regnummer || 'Inget regnummer tillhandahålls'}</blockquote>
                         <p>Var vanlig boka en ny tid eller ring oss på 1234567 för mer information</p>
                         <p>Din bokning tid och datum var: ${bookDate}</p>
+                        <p>Komment från Exobil: ${comment || ''}</p>
                         <p>MVH</p>
                         <p>Exobil</p>
                         `,

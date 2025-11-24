@@ -13,6 +13,9 @@ const emailSchema = new mongoose.Schema({
     },
     regnumber: {
         type: String
+    },
+    comment: {
+        type: String
     }
 })
 

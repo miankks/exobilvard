@@ -25,6 +25,9 @@ const orderSchema = new mongoose.Schema({
     },
     orderTime: {
         type: String
+    },
+    comment: {
+        type: String
     }
 })
 

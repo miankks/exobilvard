@@ -7,17 +7,15 @@ import { assets } from '../../assets/assets';
 export const Orders = ({url}) => {
   const [orders, setOrders] = useState([]);
   const [selectedStatuses, setSelectedStatuses] = useState({});
-  const [data, setData] = useState('');
+  const [comment, setComment] = useState('');
   const onChangeHandler = (e) => {
     const value = e.target.value;
-    setData(...data, value)
-    
+    setComment(value)
   }
   const fetchAllOrders = async () => {
     const response = await axios.get(url+'/api/order/listcar');
     if (response.data.success) {
       setOrders(response.data.data);
-      
     } else {
       toast.error("Error")
     }
@@ -40,7 +38,8 @@ export const Orders = ({url}) => {
   const statusHandler = async (status, orderId) => {
     const response = await axios.post(url+"/api/order/status", {
       orderId,
-      status
+      status,
+      comment
     })
     
     if (response.data.success) {
@@ -121,6 +120,10 @@ export const Orders = ({url}) => {
             </button>
 
             {/* FULL ROW at Bottom */}
+             <div className="order-description">
+              <p>Comments for client</p>
+              <p>{order.comment}</p>
+            </div>
             <div className="order-description">
               <p>Comments for client</p>
               <textarea
@@ -129,7 +132,7 @@ export const Orders = ({url}) => {
                 placeholder="Write content here"
                 required
                 onChange={onChangeHandler}
-                value={data.description}
+                value={comment}
               />
             </div>
 

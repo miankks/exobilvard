@@ -67,14 +67,21 @@ const listOrders = async (req, res) => {
 // API for updating order status
 
 const updateStatus = async (req, res) => {
+    const {orderId, status, comment} = req.body;
+    const updates = {};
     try {
-        const result = await orderModel.findByIdAndUpdate(req.body.orderId, {status: req.body.status}, { new: true });
+        if (req.body.comment !== undefined) updates.comment = req.body.comment;
+        if (req.body.status !== undefined) updates.status = req.body.status;
+        const result = await orderModel.findByIdAndUpdate(
+            orderId,
+            {status: status, comment: comment}, 
+            { new: true });
         if (result.status === "Rejected") {
             // await rejectedOrderEmail(result)
         } else if (result.status === "Accepted") {
-            // await acceptedOrderEmail();
+            // await acceptedOrderEmail(result);
         }
-        res.json({success: true, message: "Status updated"})
+        res.json({success: true, message: "Status updated", data: result})
     } catch (error) {
         res.json({success: false, message: "Status update Error"})
     }
