@@ -31,6 +31,46 @@
     outline: none;
 }
 
+.search-input {
+  width: 100%;
+  max-width: 550px;
+  padding: 12px 18px;
+  font-size: 16px;
+  color: #333;
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  outline: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+}
+
+/* Hover effect */
+.search-input:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+/* Focus effect — beautiful glow */
+.search-input:focus {
+  border-color: #4f46e5; /* Indigo color */
+  box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.25);
+}
+
+/* Placeholder styling */
+.search-input::placeholder {
+  color: #94a3b8;
+  opacity: 0.7;
+  font-size: 15px;
+}
+
+/* Smooth input animation */
+.search-input:focus::placeholder {
+  opacity: 0.5;
+  transform: translateX(4px);
+}
+
+
 @media (max-width: 1000px) {
     .complatedorder-item{
         font-size: 12px;

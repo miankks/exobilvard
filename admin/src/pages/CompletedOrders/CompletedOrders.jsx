@@ -115,6 +115,7 @@ const CompletedOrders = ({url}) => {
     const email = order.address?.email?.toLowerCase() || "";
     const phone = order.address?.phone?.toLowerCase() || "";
     const regnummer = order.address?.regnummer?.toLowerCase() || "";
+    const bookDate = (order?.bookDate || "").toString().toLowerCase();
     const orderDate = (order?.orderDate || "").toString().toLowerCase();
     const orderTime = (order?.orderTime || "").toString().toLowerCase();
     const comment = (order?.comment || "").toString().toLowerCase();
@@ -131,6 +132,7 @@ const CompletedOrders = ({url}) => {
       phone.includes(term) ||
       regnummer.includes(term) ||
       itemNames.includes(term) ||
+      bookDate.includes(term) ||
       orderDate.includes(term) ||
       orderTime.includes(term) ||
       comment.includes(term)
