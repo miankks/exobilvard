@@ -94,10 +94,22 @@ const AcceptedOrders = ({url}) => {
                 <FaCarAlt />
                 <p className="order-item-regnummer">{order.address.regnummer}</p>
               </div>
-              <div className="email-row">
+               <div className="email-row">
                   <CiCalendarDate />
                 <p className="order-item-phone bold">
-                  Service Datum: {order.address.bookDate}
+                  Service Datum 1: {order.address.bookDate1}
+                </p>
+              </div>
+               <div className="email-row">
+                  <CiCalendarDate />
+                <p className="order-item-phone bold">
+                  Service Datum 2: {order.address.bookDate2}
+                </p>
+              </div>
+               <div className="email-row">
+                  <CiCalendarDate />
+                <p className="order-item-phone bold">
+                  Service Datum 3: {order.address.bookDate3}
                 </p>
               </div>
               <p className='order-item-phone order-timestamp'><b>Beställning Datum:</b> {order?.orderDate || 'Loading'}</p>

@@ -198,10 +198,22 @@ const CompletedOrders = ({url}) => {
                 </div>
                 <div className="email-row">
                   <CiCalendarDate />
-                  <p className="order-item-phone bold">
-                    Service Datum: {highlightMatch(order.address?.bookDate)}
-                  </p>
-                </div>
+                <p className="order-item-phone bold">
+                  Service Datum 1: {highlightMatch(order.address.bookDate1)}
+                </p>
+              </div>
+               <div className="email-row">
+                  <CiCalendarDate />
+                <p className="order-item-phone bold">
+                  Service Datum 2: {highlightMatch(order.address.bookDate2)}
+                </p>
+              </div>
+               <div className="email-row">
+                  <CiCalendarDate />
+                <p className="order-item-phone bold">
+                  Service Datum 3: {highlightMatch(order.address.bookDate3)}
+                </p>
+              </div>
                 <p className='order-item-phone order-timestamp'><b>Beställning Datum:</b> {order?.orderDate || 'Loading'}</p>
                 <p className='order-item-phone'><b>Beställning Tid:</b> {order?.orderTime || 'Loading'}</p>
               </div>
