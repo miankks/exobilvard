@@ -1,58 +1,89 @@
-/* .navbar{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 4%;
-}
-
-.navbar .logo{
-    width: max(5%, 80px);
-}
-
-.navbar .profile{
-    width: 40px;
-} */
-
+/* Navbar container */
 .navbar {
-  height: 60px;
-  background: #ffffff;
-  border-bottom: 1px solid #eee;
+  height: 70px;
+  background: #eef6ff; /* light blue background */
+  border-bottom: 1px solid #3b82f6; /* border in primary blue */
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 40px;
+  padding: 0 50px;
   position: sticky;
   top: 0;
   z-index: 10;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1); /* subtle shadow */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.navbar .profile{
-    width: 40px;
-} 
-
-.navbar .logo{
-    width: max(5%, 80px);
-}
-
-.logo {
+/* Logo */
+.navbar .logo {
+   width: max(5%, 80px);
+  cursor: pointer;
   font-size: 24px;
   font-weight: bold;
-  color: #333;
+  color: #1e3a8a; /* dark blue for contrast */
+  transition: transform 0.2s;
 }
 
+.navbar .logo:hover {
+  transform: scale(1.1);
+}
+
+/* Navigation links */
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 25px;
+  gap: 30px;
+  align-items: center; /* aligns everything vertically */
 }
+
 
 .nav-links a {
   text-decoration: none;
   font-size: 16px;
-  color: #333;
-  transition: 0.25s;
+  color: #1e3a8a; /* dark blue */
+  padding: 8px 15px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-weight: 500;
 }
 
 .nav-links a:hover {
-  color: #4a90e2;
+  color: #ffffff;
+  background: #3b82f6; /* primary blue on hover */
+  box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+}
+
+.nav-links li button.logout-btn {
+  font-size: 16px;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 8px;
+  background-color: #3b82f6;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+
+  display: inline-block;      /* important */
+  vertical-align: middle;     /* aligns with text links */
+  line-height: 1.5;           /* same as links */
+}
+
+.logout-btn:hover {
+  background-color: #2563eb; /* darker blue on hover */
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+}
+
+/* Profile image */
+.navbar .profile {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 2px solid #3b82f6;
+  transition: transform 0.2s;
+}
+
+.navbar .profile:hover {
+  transform: scale(1.1);
 }
