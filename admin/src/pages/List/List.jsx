@@ -7,12 +7,21 @@ const List = ({url}) => {
   const [list, setList] = useState([]);
 
   const fetchList = async () => {
-    const response = await axios.get(`${url}/api/car/listcar`)
-    
-    if (response.data.success) {
-      setList(response.data.data)
-    } else {
-      toast.error('Error')
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.get(`${url}/api/car/listcar`,{
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+      
+      if (response.data.success) {
+        setList(response.data.data)
+      } else {
+        toast.error('Error')
+      }
+    } catch (error) {
+      toast.error("Error fetching orders");
     }
   }
 

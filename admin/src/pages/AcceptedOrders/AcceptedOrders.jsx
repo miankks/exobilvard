@@ -13,12 +13,21 @@ const AcceptedOrders = ({url}) => {
   const [selectedStatuses, setSelectedStatuses] = useState({});
   
   const fetchAllOrders = async () => {
-    const response = await axios.get(url+'/api/order/acceptedorders');
-    if (response.data.success) {
-      setOrders(response.data.data);
-      
-    } else {
-      toast.error("Error")
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.get(url+'/api/order/acceptedorders',{
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+      if (response.data.success) {
+        setOrders(response.data.data);
+        
+      } else {
+        toast.error("Error")
+      }
+    } catch (error) {
+      toast.error("Error fetching orders");
     }
   }
 

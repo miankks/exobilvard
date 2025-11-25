@@ -5,10 +5,10 @@ import { protectAdmin } from "../middleware/auth.js";
 const orderRouter = express.Router();
 
 orderRouter.post("/place", placeOrder);
-orderRouter.get("/listcar", listOrders);
+orderRouter.get("/listcar",protectAdmin, listOrders);
 // orderRouter.get("/completedorders", completedOrders);
-orderRouter.get("/acceptedorders", acceptedOrders);
-orderRouter.get("/rejectedorders", rejectedOrders);
+orderRouter.get("/acceptedorders",protectAdmin, acceptedOrders);
+orderRouter.get("/rejectedorders", protectAdmin, rejectedOrders);
 orderRouter.post("/deleteorders", deleteOrders);
 orderRouter.post("/status", updateStatus);
 orderRouter.get("/completedorders", protectAdmin, completedOrders);

@@ -17,7 +17,12 @@ export const Orders = ({url}) => {
     setComment(value)
   }
   const fetchAllOrders = async () => {
-    const response = await axios.get(url+'/api/order/listcar');
+    const token = localStorage.getItem("token");
+    const response = await axios.get(url+'/api/order/listcar',{
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
     if (response.data.success) {
       setOrders(response.data.data);
     } else {

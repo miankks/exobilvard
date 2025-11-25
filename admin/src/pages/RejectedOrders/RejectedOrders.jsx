@@ -17,11 +17,20 @@ const RejectedOrders = ({url}) => {
 
   
   const fetchAllOrders = async () => {
-    const response = await axios.get(url+'/api/order/rejectedorders');
-    if (response.data.success) {
-      setOrders(response.data.data);
-    } else {
-      toast.error("Error")
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.get(url+'/api/order/rejectedorders',{
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+      if (response.data.success) {
+        setOrders(response.data.data);
+      } else {
+        toast.error("Error")
+      }
+    } catch (error) {
+      toast.error("Error fetching orders");
     }
   }
 
