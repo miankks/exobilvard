@@ -18,6 +18,9 @@ const PlaceOrder = () => {
       phone: '',
       regnummer: '',
       bookDate:'',
+      bookDate1:'',
+      bookDate2:'',
+      miltal: ''
     })
     
     const onChangeHandler = (event) => {
@@ -46,6 +49,7 @@ const PlaceOrder = () => {
         orderTime: now.toLocaleTimeString("sv-SE", { hour: "2-digit", minute: "2-digit" }),
         items: orderItems,
       }
+       console.log(orderData);
        
       const res =  await axios.post(url+'/api/order/place', orderData)
       if (res.data.success) {
@@ -57,9 +61,19 @@ const PlaceOrder = () => {
       }
     }
 
-    const handleDataFromChild = (date) => {
+    const handleDate = (date) => {
       const bookingTime = date.combined.format('YYYY MM DD - HH:mm')
       setData({...data, bookDate: bookingTime})
+    }
+
+     const handleDate1 = (date) => {
+      const bookingTime = date.combined.format('YYYY MM DD - HH:mm')
+      setData({...data, bookDate1: bookingTime})
+    }
+
+     const handleDate2 = (date) => {
+      const bookingTime = date.combined.format('YYYY MM DD - HH:mm')
+      setData({...data, bookDate2: bookingTime})
     }
 
     useEffect(() => {
@@ -77,10 +91,44 @@ const PlaceOrder = () => {
         <input  name='email' onChange={onChangeHandler} value={data.email}  type="email" placeholder='Email address' />
         <label>Telefonnummer</label>
         <input required name='phone' onChange={onChangeHandler} value={data.phone} type="text" placeholder='Phone' />
-        <label htmlFor="">Registreringsnummer</label>
-        <input required  name='regnummer' onChange={onChangeHandler} value={data.regnummer} type="text" placeholder='ABC123' />
+        <div className="regandmileage">
+            <div className="input-group">
+              <label htmlFor="regnummer">Registreringsnummer</label>
+              <input
+                required
+                name="regnummer"
+                onChange={onChangeHandler}
+                value={data.regnummer}
+                type="text"
+                placeholder="ABC123"
+              />
+            </div>
+
+            <div className="input-group">
+              <label htmlFor="miltal">Miltal</label>
+              <input
+                required
+                name="miltal"
+                onChange={onChangeHandler}
+                value={data.miltal}
+                type="text"
+                placeholder="miltal"
+              />
+            </div>
+          </div>
+
+        <h6>Välj tre tider</h6>
         <Reactdatepicker 
-          sendDataToParent={handleDataFromChild}
+          sendDataToParent={handleDate}
+          selectime={'Första Tid'}
+        />
+        <Reactdatepicker 
+          sendDataToParent={handleDate1}
+          selectime={'Andra Tid'}
+        />
+        <Reactdatepicker 
+          sendDataToParent={handleDate2}
+          selectime={'Tredje Tid'}
         />
       </div>
       <div className="place-order-right">

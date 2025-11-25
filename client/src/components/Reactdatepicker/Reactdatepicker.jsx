@@ -11,7 +11,7 @@ import minMax from "dayjs/plugin/minMax";
 import 'dayjs/locale/sv';
 import './Reactdatepicker.css';
 
-const Reactdatepicker = ({sendDataToParent}) => {
+const Reactdatepicker = ({sendDataToParent, selectime}) => {
     const [formData, setFormData] = useState({
       date: dayjs(),
       time: dayjs(),
@@ -69,7 +69,7 @@ const Reactdatepicker = ({sendDataToParent}) => {
           <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="sv">
             <Stack spacing={4} sx={{width:'250px'}}>
               <DatePicker
-                label="Välj datum"
+                label={selectime}
                 value={formData.date}
                 minDate={dayjs()}
                 onChange={handleDateChange}

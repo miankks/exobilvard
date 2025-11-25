@@ -26,7 +26,22 @@ const orderSchema = new mongoose.Schema({
     orderTime: {
         type: String
     },
+    orderDate1: {
+        type: String
+    },
+    orderTime1: {
+        type: String
+    },
+    orderDate2: {
+        type: String
+    },
+    orderTime2: {
+        type: String
+    },
     comment: {
+        type: String
+    },
+    miltal: {
         type: String
     }
 })
