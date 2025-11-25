@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-const authMiddleware = async (req, res, next) => {
+export const authMiddleware = async (req, res, next) => {
     const {token} = req.headers;
     if (!token) {
         return res.json({success: false, message: 'Not authorised, login again'})
@@ -17,17 +17,24 @@ const authMiddleware = async (req, res, next) => {
 }
 
 export const protectAdmin = (req, res, next) => {
-    const token = req.headers.authorization?.split(" ")[1]; // Bearer token
-    if (!token) return res.status(401).json({ success: false, message: "Not authorized" });
-
+    const header = req.headers.authorization;
+    
+    if (!header) {
+        return res.status(401).json({ success: false, message: "Not authorized" });
+    }
+    
+    const token = header.split(" ")[1];
+  
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        if (decoded.role !== "admin") return res.status(403).json({ success: false, message: "Admin access only" });
+        if (decoded.role !== "admin") {
+            return res.status(403).json({ success: false, message: "Admin access only" });
+        }
         req.admin = decoded;
         next();
-    } catch (err) {
+    } catch (error) {
         res.status(401).json({ success: false, message: "Invalid token" });
     }
 };
 
-export default {authMiddleware, protectAdmin};
+// export default {authMiddleware, protectAdmin};

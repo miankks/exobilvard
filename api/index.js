@@ -12,7 +12,7 @@ import carRouter from './routes/car.route.js';
 import orderRouter from './routes/order.route.js';
 import emailRouter from './routes/email.route.js'
 import bodyParser from 'body-parser';
-import { protectAdmin } from "../middleware/auth.js";
+import adminRouter from './routes/admin.route.js';
 
 dotenv.config();
 
@@ -40,8 +40,7 @@ app.use("/api/user", userRouter)
 app.use('/api/cart', cartRouter)
 app.use("/api/order", orderRouter)
 app.use("/api/sendemail",bodyParser.json(), emailRouter)
-// Only admin can fetch completed orders
-orderRouter.get("/completedorders", protectAdmin, getCompletedOrders);
+app.use("/api/admin", adminRouter)
 app.get("/", (req, res) => {
     res.send("API working")
 })

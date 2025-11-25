@@ -197,7 +197,7 @@ const CompletedOrders = ({url}) => {
                     Service Datum: {highlightMatch(order.address?.bookDate)}
                   </p>
                 </div>
-                <p className='order-item-phone'><b>Beställning Datum:</b> {order?.orderDate || 'Loading'}</p>
+                <p className='order-item-phone order-timestamp'><b>Beställning Datum:</b> {order?.orderDate || 'Loading'}</p>
                 <p className='order-item-phone'><b>Beställning Tid:</b> {order?.orderTime || 'Loading'}</p>
               </div>
 
