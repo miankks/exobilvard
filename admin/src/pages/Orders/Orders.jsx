@@ -14,6 +14,7 @@ const Orders = ({url}) => {
   const [orders, setOrders] = useState([]);
   const [selectedStatuses, setSelectedStatuses] = useState({});
   const [comment, setComment] = useState('');
+  const value = Object.values(selectedStatuses)[0];
 
    const [data, setData] = useState({
         fullName: '',
@@ -173,12 +174,14 @@ const Orders = ({url}) => {
             >
               Uppdatera
             </button>
-              {/* <div>
-              <h6>Välj en ny tid</h6>
-              <Reactdatepicker 
-                sendDataToParent={handleDate1}
-              />
-            </div> */}
+            { value === "Rejected" && 
+              <div className='order-date'>
+                <h6>Välj en ny tid</h6>
+                <Reactdatepicker 
+                  sendDataToParent={handleDate1}
+                />
+              </div>
+            }
             {/* FULL ROW at Bottom */}
              <div className="order-description">
               <p>Comments for client</p>
