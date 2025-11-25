@@ -1,8 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
 import "./AdminLogin.css";
+import {useNavigate } from "react-router-dom";
+
 
 const AdminLogin = ({url}) => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -20,6 +23,7 @@ const AdminLogin = ({url}) => {
       localStorage.setItem("token", res.data.token);
 
       setFormData({ email: "", password: "" });
+      navigate('/orders')
     } catch (err) {
       setMessage(err.response?.data?.message || "Login failed.");
     }
