@@ -1,6 +1,7 @@
 import express from 'express'
 import { addCar, listCar, removeCar } from '../controllers/car.controller.js';
 import multer from 'multer';
+import { protectAdmin } from '../middleware/auth.js';
 
 const carRouter = express.Router();
 
@@ -15,8 +16,8 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage:storage})
 
-carRouter.post('/addcar',upload.single("image"), addCar);
-carRouter.get("/listcar", listCar)
+carRouter.post('/addcar',upload.single("image"),protectAdmin, addCar);
+carRouter.get("/listcar",protectAdmin, listCar)
 carRouter.post("/removecar", removeCar)
 
 export default carRouter;

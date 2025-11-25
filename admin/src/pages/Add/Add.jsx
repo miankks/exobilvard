@@ -12,6 +12,7 @@ const Add = ({url}) => {
     category: 'Sommardäck & Vinterdäck'
   });
 
+  const token = localStorage.getItem("token");
 
   const onChangeHandler = (e) => {
     const name = e.target.name;
@@ -27,22 +28,33 @@ const Add = ({url}) => {
     formData.append('description', data.description);
     formData.append('category', data.category);
     formData.append('image', image);
-    const response = await axios.post(`${url}/api/car/addcar`, formData);
-    if (response.data.success) {
-      setData({
-    name: '',
-    description: '',
-    category: 'Sommardäck & Vinterdäck'
-  })
-    setImage(false);
-    toast.success(response.data.message)
-    } else {
-      toast.error(response.data.message)
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.post(`${url}/api/car/addcar`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      if (response.data.success) {
+        setData({
+      name: '',
+      description: '',
+      category: 'Sommardäck & Vinterdäck'
+    })
+      setImage(false);
+      toast.success(response.data.message)
+      } else {
+        toast.error(response.data.message)
+      }
+      
+    } catch (error) {
+      
     }
   }
 
   return (
     <div className='add'>
+      {token &&
       <form className='flex-col' onSubmit={onSubmitHandler}>
         <div className="add-img-upload flex-col">
           <p>Upload Image</p>
@@ -75,6 +87,8 @@ const Add = ({url}) => {
         </div>
         <button type='submit' className='add-btn'>Add</button>
       </form>
+      }
+      {!token && <div>You are not logged in</div>}
     </div>
   )
 }
