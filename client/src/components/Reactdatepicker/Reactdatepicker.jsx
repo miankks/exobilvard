@@ -21,15 +21,15 @@ const Reactdatepicker = ({sendDataToParent, selectime}) => {
 
     const isToday = formData.date.isSame(dayjs(), 'day');
     const now = dayjs();
-    const minWorkTime = dayjs().hour(9).minute(0).second(0)
-    const maxWorkTime = dayjs().hour(17).minute(0).second(0)
+    const minWorkTime = dayjs().hour(8).minute(0).second(0)
+    const maxWorkTime = dayjs().hour(16).minute(0).second(0)
 
     const minTime = isToday
                     ? dayjs.max(now, minWorkTime)   // pick whichever is later
                       : minWorkTime;
 
-    const saturdayMinTime = dayjs().hour(9).minute(0).second(0)
-    const saturdayMaxTime = dayjs().hour(15).minute(0).second(0)
+    const saturdayMinTime = dayjs().hour(10).minute(0).second(0)
+    const saturdayMaxTime = dayjs().hour(14).minute(0).second(0)
 
     // Dynamic time limits based on selected date
     const selectedDay = formData.date.day()

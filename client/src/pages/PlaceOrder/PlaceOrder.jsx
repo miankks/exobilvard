@@ -17,9 +17,9 @@ const PlaceOrder = () => {
       email: '',
       phone: '',
       regnummer: '',
-      bookDate:'',
       bookDate1:'',
       bookDate2:'',
+      bookDate3:'',
       miltal: ''
     })
     
@@ -61,12 +61,7 @@ const PlaceOrder = () => {
       }
     }
 
-    const handleDate = (date) => {
-      const bookingTime = date.combined.format('YYYY MM DD - HH:mm')
-      setData({...data, bookDate: bookingTime})
-    }
-
-     const handleDate1 = (date) => {
+    const handleDate1 = (date) => {
       const bookingTime = date.combined.format('YYYY MM DD - HH:mm')
       setData({...data, bookDate1: bookingTime})
     }
@@ -74,6 +69,11 @@ const PlaceOrder = () => {
      const handleDate2 = (date) => {
       const bookingTime = date.combined.format('YYYY MM DD - HH:mm')
       setData({...data, bookDate2: bookingTime})
+    }
+
+     const handleDate3 = (date) => {
+      const bookingTime = date.combined.format('YYYY MM DD - HH:mm')
+      setData({...data, bookDate3: bookingTime})
     }
 
     useEffect(() => {
@@ -119,15 +119,15 @@ const PlaceOrder = () => {
 
         <h6>Välj tre tider</h6>
         <Reactdatepicker 
-          sendDataToParent={handleDate}
+          sendDataToParent={handleDate1}
           selectime={'Första Tid'}
         />
         <Reactdatepicker 
-          sendDataToParent={handleDate1}
+          sendDataToParent={handleDate2}
           selectime={'Andra Tid'}
         />
         <Reactdatepicker 
-          sendDataToParent={handleDate2}
+          sendDataToParent={handleDate3}
           selectime={'Tredje Tid'}
         />
       </div>

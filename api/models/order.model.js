@@ -20,12 +20,6 @@ const orderSchema = new mongoose.Schema({
         type: Object,
         required: true
     },
-    orderDate: {
-        type: String
-    },
-    orderTime: {
-        type: String
-    },
     orderDate1: {
         type: String
     },
@@ -36,6 +30,12 @@ const orderSchema = new mongoose.Schema({
         type: String
     },
     orderTime2: {
+        type: String
+    },
+    orderDate3: {
+        type: String
+    },
+    orderTime3: {
         type: String
     },
     comment: {

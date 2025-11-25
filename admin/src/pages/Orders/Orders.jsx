@@ -98,19 +98,19 @@ export const Orders = ({url}) => {
               <div className="email-row">
                   <CiCalendarDate />
                 <p className="order-item-phone bold">
-                  Service Datum 1: {order.address.bookDate}
+                  Service Datum 1: {order.address.bookDate1}
                 </p>
               </div>
                <div className="email-row">
                   <CiCalendarDate />
                 <p className="order-item-phone bold">
-                  Service Datum 2: {order.address.bookDate1}
+                  Service Datum 2: {order.address.bookDate2}
                 </p>
               </div>
                <div className="email-row">
                   <CiCalendarDate />
                 <p className="order-item-phone bold">
-                  Service Datum 3: {order.address.bookDate1}
+                  Service Datum 3: {order.address.bookDate3}
                 </p>
               </div>
 
