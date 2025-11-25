@@ -7,15 +7,31 @@ import { MdOutlineMailOutline } from "react-icons/md";
 import { BsTelephoneForward } from "react-icons/bs";
 import { FaCarAlt } from "react-icons/fa";
 import { CiCalendarDate } from "react-icons/ci";
+import Reactdatepicker from '../../components/Reactdatepicker/Reactdatepicker';
 
-export const Orders = ({url}) => {
+
+const Orders = ({url}) => {
   const [orders, setOrders] = useState([]);
   const [selectedStatuses, setSelectedStatuses] = useState({});
   const [comment, setComment] = useState('');
+
+   const [data, setData] = useState({
+        fullName: '',
+        email: '',
+        phone: '',
+        regnummer: '',
+        bookDate1:'',
+        bookDate2:'',
+        bookDate3:'',
+        miltal: ''
+      })
+
   const onChangeHandler = (e) => {
     const value = e.target.value;
     setComment(value)
   }
+
+
   const fetchAllOrders = async () => {
     const token = localStorage.getItem("token");
     const response = await axios.get(url+'/api/order/listcar',{
@@ -58,6 +74,12 @@ export const Orders = ({url}) => {
       toast.error(response.data.message)
     }
   }
+
+     const handleDate1 = (date) => {
+      const bookingTime = date.combined.format('YYYY MM DD - HH:mm')
+      setData({...data, bookDate1: bookingTime})
+    }
+
   useEffect(() => {
     fetchAllOrders();
   },[])
@@ -151,7 +173,12 @@ export const Orders = ({url}) => {
             >
               Uppdatera
             </button>
-
+              {/* <div>
+              <h6>Välj en ny tid</h6>
+              <Reactdatepicker 
+                sendDataToParent={handleDate1}
+              />
+            </div> */}
             {/* FULL ROW at Bottom */}
              <div className="order-description">
               <p>Comments for client</p>
@@ -168,9 +195,12 @@ export const Orders = ({url}) => {
                 value={comment}
               />
             </div>
+             
           </div>
         ))}
       </div>
     </div>
   )
 }
+
+export default Orders;

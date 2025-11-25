@@ -4,17 +4,32 @@ import Sidebar from './components/sidebar/Sidebar'
 import { Routes, Route } from 'react-router-dom';
 import Add from './pages/Add/Add';
 import List from './pages/List/List';
-import { Orders } from './pages/Orders/Orders';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import Orders from './pages/Orders/Orders';
 import CompletedOrders from './pages/CompletedOrders/CompletedOrders';
 import RejectedOrders from './pages/RejectedOrders/RejectedOrders';
 import AcceptedOrders from './pages/AcceptedOrders/AcceptedOrders';
 import AdminSignup from './pages/AdminSignup/AdminSignup';
 import AdminLogin from './pages/AdminLogin/AdminLogin';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   const url = 'http://localhost:3000';
+  const token = localStorage.getItem("token");
+
+    // If user is NOT logged in
+  // if (!token) {
+  //   return (
+  //     <div>
+  //       <ToastContainer />
+  //       <Navbar />
+  //       <div style={{ textAlign: 'center', marginTop: '50px', fontSize: '20px' }}>
+  //         You are not logged in
+  //       </div>
+  //       <AdminLogin />
+  //     </div>
+  //   );
+  // }
   return (
     <div>
       <ToastContainer />
