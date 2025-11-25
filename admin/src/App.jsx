@@ -10,6 +10,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import CompletedOrders from './pages/CompletedOrders/CompletedOrders';
 import RejectedOrders from './pages/RejectedOrders/RejectedOrders';
 import AcceptedOrders from './pages/AcceptedOrders/AcceptedOrders';
+import AdminSignup from './pages/AdminSignup/AdminSignup';
+import AdminLogin from './pages/AdminLogin/AdminLogin';
 
 const App = () => {
   const url = 'http://localhost:3000';
@@ -27,6 +29,8 @@ const App = () => {
           <Route path='/completedorders' element={<CompletedOrders url={url}/>} /> 
           <Route path='/acceptedorders' element={<AcceptedOrders url={url}/>} /> 
           <Route path='/rejectedorders' element={<RejectedOrders url={url}/>} /> 
+          <Route path='/signup' element={<AdminSignup url={url}/>} /> 
+          <Route path='/login' element={<AdminLogin url={url}/>} /> 
         </Routes >
       </div>
     </div>

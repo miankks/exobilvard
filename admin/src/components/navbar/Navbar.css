@@ -1,4 +1,4 @@
-.navbar{
+/* .navbar{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -11,4 +11,48 @@
 
 .navbar .profile{
     width: 40px;
+} */
+
+.navbar {
+  height: 60px;
+  background: #ffffff;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.navbar .profile{
+    width: 40px;
+} 
+
+.navbar .logo{
+    width: max(5%, 80px);
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-size: 16px;
+  color: #333;
+  transition: 0.25s;
+}
+
+.nav-links a:hover {
+  color: #4a90e2;
 }

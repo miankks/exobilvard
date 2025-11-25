@@ -16,7 +16,12 @@ const CompletedOrders = ({url}) => {
 
   const fetchAllOrders = async () => {
     try {
-      const response = await axios.get(url + '/api/order/completedorders');
+      const token = localStorage.getItem("token");
+      const response = await axios.get(url + '/api/order/completedorders', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       if (response.data.success) {
         setOrders(response.data.data);
       } else {
