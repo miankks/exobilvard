@@ -15,6 +15,10 @@ const Orders = ({url}) => {
   const [orders, setOrders] = useState([]);
   const [selectedStatuses, setSelectedStatuses] = useState({});
   const [comment, setComment] = useState('');
+  const [acceptedData, setAcceptedDate] = useState('');
+  const [selectedServiceDate, setSelectedServiceDate] = useState({});
+  console.log(selectedServiceDate);
+  
   
    const [data, setData] = useState({
         fullName: '',
@@ -32,6 +36,9 @@ const Orders = ({url}) => {
     setComment(value)
   }
 
+  const updateDate = (e) => {
+    setAcceptedDate(e);
+  }
 
   const fetchAllOrders = async () => {
     const token = localStorage.getItem("token");
@@ -89,7 +96,9 @@ const Orders = ({url}) => {
     <div className='order add'>
       <h3>Order Page</h3>
       <div className="order-list">
-        {orders.map((order, index) => (
+        {orders.map((order, index) => {
+          const selected = selectedServiceDate[order._id];
+          return (
           <div className="order-item" key={index}>
             
             {/* Column 1 */}
@@ -122,34 +131,66 @@ const Orders = ({url}) => {
                 <FaTachometerAlt />
                 <p className="order-item-regnummer">{order.address.miltal}</p>
               </div>
+              {!selected || selected === "date1" ? (
               <div className="email-row">
                   <CiCalendarDate />
                 <p className="order-item-phone bold">
                   Service Datum 1: {order.address.bookDate1}
                 </p>
                 <span className='accept-button-span'>
-                  <button type='button' className='cursor accept-button'><FaCheck /></button>
+                  <button type='button' 
+                        className='cursor accept-button' 
+                        onClick={() => {
+                          updateDate(order.address.bookDate1)
+                          setSelectedServiceDate(prev => ({
+                            ...prev,
+                            [order._id]: "date1"
+                          }))}}>
+                    <FaCheck />
+                  </button>
                 </span>
               </div>
+              ): null}
+              {!selected || selected === "date2" ? (
                <div className="email-row">
                   <CiCalendarDate />
                 <p className="order-item-phone bold">
                   Service Datum 2: {order.address.bookDate2}
                 </p>
                 <span className='accept-button-span'>
-                  <button type='button' className='cursor accept-button'><FaCheck /></button>
+                  <button type='button' 
+                        className='cursor accept-button'
+                        onClick={() => {
+                          updateDate(order.address.bookDate2)
+                          setSelectedServiceDate(prev => ({
+                              ...prev,
+                              [order._id]: "date2"
+                            }))}}>
+                    <FaCheck />
+                  </button>
                 </span>
               </div>
+              ): null}
+              {!selected || selected === "date3" ? (
                <div className="bookdate-row">
                   <span><CiCalendarDate /></span>
                 <p className="order-item-phone bold">
                   Service Datum 3: {order.address.bookDate3}
                 </p>
                 <span className='accept-button-span'>
-                  <button type='button' className='cursor accept-button'><FaCheck /></button>
+                  <button type='button' 
+                        className='cursor accept-button'
+                        onClick={() => {
+                          updateDate(order.address.bookDate3)
+                          setSelectedServiceDate(prev => ({
+                            ...prev,
+                            [order._id]: "date3"
+                          }))}}>
+                    <FaCheck />
+                  </button>
                 </span>
               </div>
-
+              ): null}
               <p className="order-item-phone bold order-timestamp">
                 Beställning Datum: {order?.orderDate || "Loading"}
               </p>
@@ -213,7 +254,7 @@ const Orders = ({url}) => {
             </div>
              
           </div>
-        ))}
+        )})}
       </div>
     </div>
   )
