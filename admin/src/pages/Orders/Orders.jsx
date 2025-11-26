@@ -8,6 +8,7 @@ import { BsTelephoneForward } from "react-icons/bs";
 import { FaCarAlt } from "react-icons/fa";
 import { CiCalendarDate } from "react-icons/ci";
 import Reactdatepicker from '../../components/Reactdatepicker/Reactdatepicker';
+import { FaCheck, FaTachometerAlt } from "react-icons/fa";
 
 
 const Orders = ({url}) => {
@@ -117,23 +118,36 @@ const Orders = ({url}) => {
                 <FaCarAlt />
                 <p className="order-item-regnummer">{order.address.regnummer}</p>
               </div>
+               <div className="email-row">
+                <FaTachometerAlt />
+                <p className="order-item-regnummer">{order.address.miltal}</p>
+              </div>
               <div className="email-row">
                   <CiCalendarDate />
                 <p className="order-item-phone bold">
                   Service Datum 1: {order.address.bookDate1}
                 </p>
+                <span className='accept-button-span'>
+                  <button type='button' className='cursor accept-button'><FaCheck /></button>
+                </span>
               </div>
                <div className="email-row">
                   <CiCalendarDate />
                 <p className="order-item-phone bold">
                   Service Datum 2: {order.address.bookDate2}
                 </p>
+                <span className='accept-button-span'>
+                  <button type='button' className='cursor accept-button'><FaCheck /></button>
+                </span>
               </div>
-               <div className="email-row">
-                  <CiCalendarDate />
+               <div className="bookdate-row">
+                  <span><CiCalendarDate /></span>
                 <p className="order-item-phone bold">
                   Service Datum 3: {order.address.bookDate3}
                 </p>
+                <span className='accept-button-span'>
+                  <button type='button' className='cursor accept-button'><FaCheck /></button>
+                </span>
               </div>
 
               <p className="order-item-phone bold order-timestamp">
@@ -181,14 +195,6 @@ const Orders = ({url}) => {
                 />
               </div>
             }
-            {/* { value === "Rejected" && orderIdButton === id &&
-              <div className='order-date'>
-                <h6>Välj en ny tid</h6>
-                <Reactdatepicker 
-                  sendDataToParent={handleDate1}
-                />
-              </div>
-            } */}
             {/* FULL ROW at Bottom */}
              <div className="order-description">
               <p>Comments for client</p>
