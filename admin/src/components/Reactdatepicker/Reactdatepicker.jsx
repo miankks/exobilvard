@@ -80,7 +80,7 @@ const Reactdatepicker = ({sendDataToParent}) => {
               <TimePicker
                 label="Välj tid"
                 value={formData.time}
-                minTime={minTime}
+                minTime={minTimeForDay}
                 maxTime={maxTimeForDay}
                 onChange={handleTimeChange}
                 ampm= {false}

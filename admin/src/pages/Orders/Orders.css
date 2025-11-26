@@ -24,10 +24,6 @@
     margin-bottom: 5px;
 }
 
-.order-item-address{
-    margin-bottom: 10px;
-}
-
 .email-row {
   display: flex;
   align-items: center;
@@ -71,12 +67,6 @@
     flex-direction: column;
     align-items: start;
     gap: 10px;
-}
-
-.regandmileage .input-group {
-  flex: 1; /* each input takes equal width */
-  display: flex;
-  flex-direction: column; /* label on top */
 }
 
 .bookdate-row {
