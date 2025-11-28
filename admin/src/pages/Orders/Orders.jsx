@@ -18,18 +18,6 @@ const Orders = ({url}) => {
   const [comment, setComment] = useState('');
   const [acceptedDate, setAcceptedDate] = useState('');
   const [selectedServiceDate, setSelectedServiceDate] = useState({});
-  
-   const [data, setData] = useState({
-        fullName: '',
-        email: '',
-        phone: '',
-        regnummer: '',
-        bookDate:'',
-        bookDate1:'',
-        bookDate2:'',
-        bookDate3:'',
-        miltal: ''
-      })
 
   const onChangeHandler = (e) => {
     const value = e.target.value;
@@ -81,8 +69,8 @@ const Orders = ({url}) => {
   }
 
      const handleDate1 = (date) => {
-      const bookingTime = date.combined.format('YYYY MM DD - HH:mm')
-      setData({...data, bookDate: bookingTime})
+      const dateAccepted = date.combined.format('YYYY MM DD - HH:mm')
+      setAcceptedDate(dateAccepted)
     }
 
   useEffect(() => {
@@ -190,7 +178,7 @@ const Orders = ({url}) => {
               </div>
               ): null}
               <p className="order-item-phone bold order-timestamp">
-                Beställning Datum: {order?.orderDate || "Loading"}
+                Beställning Datum: {order?.date || "Loading"}
               </p>
 
               <p className="order-item-phone bold">
