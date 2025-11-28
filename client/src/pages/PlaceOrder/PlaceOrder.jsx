@@ -46,11 +46,10 @@ const PlaceOrder = () => {
       let now = new Date();
       let orderData = {
         address: data,
-        orderDate:  now.toLocaleDateString("sv-SE"),
-        orderTime: now.toLocaleTimeString("sv-SE", { hour: "2-digit", minute: "2-digit" }),
+        orderDate:  now.toLocaleString("sv-SE"),
+        // orderTime: now.toLocaleTimeString("sv-SE", { hour: "2-digit", minute: "2-digit" }),
         items: orderItems,
       }
-       console.log(orderData);
        
       const res =  await axios.post(url+'/api/order/place', orderData)
       if (res.data.success) {
@@ -162,15 +161,19 @@ const PlaceOrder = () => {
           }
         })}
       </div>
-          </div>
+      </div>
+        <div className='comment-section'>
+            <label htmlFor="userComment">Kommentar till Eobilvårdscenter</label>
            <textarea
                 name="userComment"
                 rows="6"
+                className='comment-area'
                 placeholder="Om du vill beskriva något?"
                 required
                 onChange={onChangeHandler}
                 value={data.userComment}
               />
+          </div>
           <button type='submit' >Complete Booking</button>
         </div>
       </div>

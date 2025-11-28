@@ -1,3 +1,12 @@
+.comment-section{
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-area{
+    padding: 10px 5px;
+}
+
 .place-order{
     display: flex;
     flex-wrap: wrap-reverse;
