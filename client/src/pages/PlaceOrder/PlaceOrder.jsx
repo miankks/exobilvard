@@ -20,7 +20,8 @@ const PlaceOrder = () => {
       bookDate1:'',
       bookDate2:'',
       bookDate3:'',
-      miltal: ''
+      miltal: '',
+      userComment: ''
     })
     
     const onChangeHandler = (event) => {
@@ -162,6 +163,14 @@ const PlaceOrder = () => {
         })}
       </div>
           </div>
+           <textarea
+                name="userComment"
+                rows="6"
+                placeholder="Om du vill beskriva något?"
+                required
+                onChange={onChangeHandler}
+                value={data.userComment}
+              />
           <button type='submit' >Complete Booking</button>
         </div>
       </div>

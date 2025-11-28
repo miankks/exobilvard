@@ -1,19 +1,20 @@
 import orderModel from "../models/order.model.js";
-import userModel from "../models/user.model.js";
-import Stripe from "stripe";
+// import userModel from "../models/user.model.js";
+// import Stripe from "stripe";
 import { sendEmail } from "../emails/OrderConfirmationEmail.controller.js";
 import { rejectedOrderEmail} from '../emails/rejectedOrderEmail.js'
 import { acceptedOrderEmail } from '../emails/acceptedOrderEmail.js'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
+// const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 // placing user order from frontend
 const placeOrder = async (req, res) => {
+    console.log(req.body);
     
     // link for frontend url
     const frontend_url = 'http://localhost:5173'
     try {
         // creating new order
-        const {userId, items, address, orderDate, orderTime, orderDate1, orderTime1, orderDate2, orderTime2, orderDate3, orderTime3, miltal } = req.body;
+        const {userId, items, address, orderDate, orderTime, orderDate1, orderTime1, orderDate2, orderTime2, orderDate3, orderTime3, miltal, userComment } = req.body;
         const newOrder = new orderModel({
             userId: userId,
             items: items,
@@ -26,7 +27,8 @@ const placeOrder = async (req, res) => {
             orderTime2,
             orderDate3,
             orderTime3,
-            miltal
+            miltal,
+            userComment
         })
         
         // save new order in mongoDB

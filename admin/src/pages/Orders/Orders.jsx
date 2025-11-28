@@ -116,6 +116,9 @@ const Orders = ({url}) => {
                 <FaTachometerAlt />
                 <p className="order-item-regnummer">{order.address.miltal}</p>
               </div>
+              <div className="email-row">
+                <p className="order-item-regnummer">User comments: {order.address.userComment}</p>
+              </div>
               {!selected || selected === "date1" ? (
               <div className="email-row">
                   <CiCalendarDate />

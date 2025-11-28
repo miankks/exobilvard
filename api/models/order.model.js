@@ -16,7 +16,7 @@ const orderSchema = new mongoose.Schema({
         type: Date,
         default: Date.now()
     },
-        address: {
+    address: {
         type: Object,
         required: true
     },
