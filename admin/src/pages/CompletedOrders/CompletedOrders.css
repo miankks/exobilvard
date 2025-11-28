@@ -1,6 +1,6 @@
 .complatedorder-item{
     display: grid;
-    grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr;
+    grid-template-columns: 0.5fr 3fr 0.5fr 1fr 1fr;
     align-items: start;
     gap: 30px;
     border: 1px solid #3b82f6;
@@ -69,7 +69,6 @@
   opacity: 0.5;
   transform: translateX(4px);
 }
-
 
 @media (max-width: 1000px) {
     .complatedorder-item{

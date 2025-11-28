@@ -31,6 +31,8 @@ const CompletedOrders = ({url}) => {
       toast.error("Error fetching orders");
     }
   }
+  console.log(orders);
+  
 
   const updateOrderStatusLocally = (id, newStatus) => {
     setOrders(prev =>
@@ -166,7 +168,9 @@ const CompletedOrders = ({url}) => {
             No results found.
           </div>
         ) : (
-          filteredOrders.map((order, index) => (
+          filteredOrders.map((order, index) => {
+            const formattedDate = new Date(order.date).toLocaleString("sv-SE");
+            return (
             <div className='complatedorder-item' key={order._id || index}>
               <img src={assets.parcel_icon} alt="" />
               <div>
@@ -198,6 +202,14 @@ const CompletedOrders = ({url}) => {
                 </div>
                 <div className="email-row">
                   <CiCalendarDate />
+                  <p>Service datum: {order.acceptedDate}</p>
+                </div>
+                <div className="email-row">
+                  <CiCalendarDate />
+                  <p>Service beställ datum: {formattedDate}</p>
+                </div>
+                {/* <div className="email-row">
+                  <CiCalendarDate />
                 <p className="order-item-phone bold">
                   Service Datum 1: {highlightMatch(order.address.bookDate1)}
                 </p>
@@ -213,9 +225,9 @@ const CompletedOrders = ({url}) => {
                 <p className="order-item-phone bold">
                   Service Datum 3: {highlightMatch(order.address.bookDate3)}
                 </p>
-              </div>
-                <p className='order-item-phone order-timestamp'><b>Beställning Datum:</b> {order?.orderDate || 'Loading'}</p>
-                <p className='order-item-phone'><b>Beställning Tid:</b> {order?.orderTime || 'Loading'}</p>
+              </div> */}
+                {/* <p className='order-item-phone order-timestamp'><b>Beställning Datum:</b> {order?.orderDate || 'Loading'}</p>
+                <p className='order-item-phone'><b>Beställning Tid:</b> {order?.orderTime || 'Loading'}</p> */}
               </div>
 
               <p>Items: {order.items.length}</p>
@@ -253,13 +265,12 @@ const CompletedOrders = ({url}) => {
                   Delete
                 </button>
               </div>
-
               <div className="order-description">
                 <p>Comments for client</p>
                 <p>{order.comment || 'No comments provided'}</p>
               </div>
             </div>
-          ))
+          )})
         )}
       </div>
 

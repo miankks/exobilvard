@@ -13,11 +13,13 @@ const placeOrder = async (req, res) => {
     const frontend_url = 'http://localhost:5173'
     try {
         // creating new order
-        const {userId, items, address, orderDate1, orderTime1, orderDate2, orderTime2, orderDate3, orderTime3, miltal } = req.body;
+        const {userId, items, address, orderDate, orderTime, orderDate1, orderTime1, orderDate2, orderTime2, orderDate3, orderTime3, miltal } = req.body;
         const newOrder = new orderModel({
             userId: userId,
             items: items,
             address: address,
+            orderDate,
+            orderTime,
             orderDate1,
             orderTime1,
             orderDate2,
@@ -72,14 +74,15 @@ const listOrders = async (req, res) => {
 // API for updating order status
 
 const updateStatus = async (req, res) => {
-    const {orderId, status, comment} = req.body;
+    const {orderId, status, comment, acceptedDate} = req.body;
     const updates = {};
     try {
         if (req.body.comment !== undefined) updates.comment = req.body.comment;
         if (req.body.status !== undefined) updates.status = req.body.status;
+        if (req.body.acceptedDate !== undefined) updates.acceptedDate = req.body.acceptedDate;
         const result = await orderModel.findByIdAndUpdate(
             orderId,
-            {status: status, comment: comment}, 
+            {status: status, comment: comment, acceptedDate: acceptedDate}, 
             { new: true });
         if (result.status === "Rejected") {
             // await rejectedOrderEmail(result)

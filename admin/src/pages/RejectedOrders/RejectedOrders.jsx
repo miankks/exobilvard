@@ -82,7 +82,9 @@ const RejectedOrders = ({url}) => {
     <div className='order add'>
       <h3>Rejected orders Page</h3>
       <div className="order-list">
-        {orders.map((order, index) => (
+        {orders.map((order, index) => {
+          const formattedDate = new Date(order.date).toLocaleString("sv-SE");
+          return (
           <div className='rejecteddorder-item' key={index}>
             <img src={assets.parcel_icon} alt="" />
             <div>
@@ -99,34 +101,24 @@ const RejectedOrders = ({url}) => {
                 {order.address.fullName}
               </p>
              <div className="email-row">
-                             <MdOutlineMailOutline />
-                             <p className="order-item-email">{order.address.email}</p>
-                           </div>
-                           <div className="email-row">
-                           <BsTelephoneForward />
-                           <p className="order-item-phone">{order.address.phone}</p> 
-                           </div>
-                           <div className="email-row">
-                             <FaCarAlt />
-                             <p className="order-item-regnummer">{order.address.regnummer}</p>
-                           </div>
+                <MdOutlineMailOutline />
+                <p className="order-item-email">{order.address.email}</p>
+              </div>
               <div className="email-row">
-                  <CiCalendarDate />
-                <p className="order-item-phone bold">
-                  Service Datum 1: {order.address.bookDate1}
-                </p>
+              <BsTelephoneForward />
+              <p className="order-item-phone">{order.address.phone}</p> 
               </div>
-               <div className="email-row">
-                  <CiCalendarDate />
-                <p className="order-item-phone bold">
-                  Service Datum 2: {order.address.bookDate2}
-                </p>
+              <div className="email-row">
+                <FaCarAlt />
+                <p className="order-item-regnummer">{order.address.regnummer}</p>
               </div>
-               <div className="email-row">
-                  <CiCalendarDate />
-                <p className="order-item-phone bold">
-                  Service Datum 3: {order.address.bookDate3}
-                </p>
+              <div className="email-row">
+                <CiCalendarDate />
+                <p>Service datum: {order.acceptedDate}</p>
+                </div>
+              <div className="email-row">
+                <CiCalendarDate />
+                <p>Service beställ datum: {formattedDate}</p>
               </div>
               <p className='order-item-phone order-timestamp'><b>Beställning Datum:</b> {order?.orderDate || 'Loading'}</p>
               <p className='order-item-phone'><b>Beställning Tid:</b> {order?.orderTime || 'Loading'}</p>
@@ -160,7 +152,7 @@ const RejectedOrders = ({url}) => {
               <p>{order.comment || 'No comments provided'}</p>
             </div>
           </div>
-        ))}
+        )})}
       </div>
         {confirmDeleteId && (
           <div className="fixed inset-0 bg-black/60 flex items-center justify-center animate-fadeIn">

@@ -20,6 +20,12 @@ const orderSchema = new mongoose.Schema({
         type: Object,
         required: true
     },
+     orderDate: {
+        type: String
+    },
+    orderTime: {
+        type: String
+    },
     orderDate1: {
         type: String
     },
@@ -42,6 +48,9 @@ const orderSchema = new mongoose.Schema({
         type: String
     },
     miltal: {
+        type: String
+    },
+    acceptedDate : {
         type: String
     }
 })
