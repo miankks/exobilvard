@@ -103,6 +103,11 @@ const PlaceOrder = () => {
                 onChange={onChangeHandler}
                 value={data.miltal}
                 type="text"
+                onBeforeInput={(e) => {
+                      if (!/^\d$/.test(e.data)) {
+                        e.preventDefault();
+                      }
+                    }}
                 placeholder="miltal"
               />
             </div>
