@@ -266,6 +266,9 @@ const CompletedOrders = ({url}) => {
                   Delete
                 </button>
               </div>
+               <div className="order-description">
+                <p className="order-item-regnummer"><b>User comments:</b> {order.comment || 'No comments provided'}</p>
+                </div>
               <div className="order-description">
                 <p>Comments for client</p>
                 <p>{order.comment || 'No comments provided'}</p>

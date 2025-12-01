@@ -1,8 +1,4 @@
-
-import { useState, useEffect } from 'react'
 import './Orders.css'
-import axios from 'axios';
-import { toast } from 'react-toastify'
 import { assets } from '../../assets/assets';
 import { MdEmail } from "react-icons/md";
 import { BsTelephoneForward } from "react-icons/bs";
@@ -11,88 +7,12 @@ import { CiCalendarDate } from "react-icons/ci";
 import Reactdatepicker from '../../components/Reactdatepicker/Reactdatepicker';
 import { FaCheck, FaTachometerAlt } from "react-icons/fa";
 import { formattedDate } from '../../customHooks/formattedDate';
-import OrderDateRender from './OrderDateRender';
 
-
-const Orders = ({url}) => {
-  const [orders, setOrders] = useState([]);
-  const [selectedStatuses, setSelectedStatuses] = useState({});
-  const [comment, setComment] = useState('');
-  const [acceptedDate, setAcceptedDate] = useState('');
-  const [selectedServiceDate, setSelectedServiceDate] = useState({});
-
-  const onChangeHandler = (e) => {
-    const value = e.target.value;
-    setComment(value)
-  }
-
-  const fetchAllOrders = async () => {
-    const token = localStorage.getItem("token");
-    const response = await axios.get(url+'/api/order/listcar',{
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-    if (response.data.success) {
-      setOrders(response.data.data);
-    } else {
-      toast.error("Error")
-    }
-  }
-
-  const updateOrderStatusLocally = (id, newStatus) => {
-  setOrders(prev =>
-    prev.map(o =>
-      o._id === id ? { ...o, status: newStatus } : o
-    )
-  );
-};
-  const handleSelectChange = (orderId, value) => {
-    setSelectedStatuses((prev) => ({
-      ...prev,
-      [orderId]: value,
-    }));
-  };
-
-  const statusHandler = async (status, orderId) => {
-    const response = await axios.post(url+"/api/order/status", {
-      orderId,
-      status,
-      comment,
-      acceptedDate
-    })
+const OrderDateRender = (order, selected) => {
     
-    if (response.data.success) {
-      toast.success(response.data.message)
-      await fetchAllOrders();
-    } else {
-      toast.error(response.data.message)
-    }
-  }
-
-     const handleDate = (date) => {
-      const dateAccepted = formattedDate(date);
-      setAcceptedDate(dateAccepted);
-    }
-
-  useEffect(() => {
-    fetchAllOrders();
-  },[])
-
+    const orderedDated = formattedDate(order?.date);
   return (
-    <div className='order add'>
-      <h3>Beställnings sida</h3>
-      <div className="order-list">
-        {orders.map((order, index) => {
-          const selected = selectedServiceDate[order._id];
-          const orderedDate = formattedDate(order?.date);
-          // return (
-          // <div key={index}>
-          //   <OrderDateRender order={order} selected={selected}/>
-
-          // </div>
-          return (
-          <div className="order-item" key={index}>
+          <div className="order-item">
             
             {/* Column 1 */}
             <img src={assets.parcel_icon} alt="" />
@@ -189,7 +109,7 @@ const Orders = ({url}) => {
                 <p className="order-item-regnummer">User comments: {order.comment}</p>
               </div>
               <p className="order-item-phone bold order-timestamp">
-                Beställning Datum: {orderedDate || "Loading"}
+                Beställning Datum: {orderedDated || "Loading"}
               </p>
             </div>
 
@@ -231,12 +151,12 @@ const Orders = ({url}) => {
             }
             {/* FULL ROW at Bottom */}
              <div className="order-description">
-              <b>Comments from client</b>
+              <p>Comments for client</p>
               <p>{order.comment || 'No comment provided'}</p>
               <p>{order.acceptedDate || 'No accepted date provided'}</p>
             </div>
             <div className="order-description">
-              <b>Comments for client</b>
+              <p>Comments for client</p>
               <textarea
                 name="description"
                 rows="6"
@@ -249,10 +169,6 @@ const Orders = ({url}) => {
              
           </div>
         )
-        })}
-      </div>
-    </div>
-  )
 }
 
-export default Orders;
+export default OrderDateRender

@@ -100,11 +100,10 @@ const AcceptedOrders = ({url}) => {
                <div className="email-row">
                   <CiCalendarDate />
                 <p className="order-item-phone bold">
-                  Service Datum: {formatedDate}
+                  Service Datum: {order.acceptedDate}
                 </p>
               </div>
-              <p className='order-item-phone order-timestamp'><b>Beställning Datum:</b> {order?.orderDate || 'Loading'}</p>
-              <p className='order-item-phone'><b>Beställning Tid:</b> {order?.orderTime || 'Loading'}</p>
+              <p className='order-item-phone order-timestamp'><b>Beställning Datum:</b> {formatedDate || 'Loading'}</p>
             </div>
             <p>Items: {order.items.length}</p>
             <select  value={order.status} onChange={(e) => 
@@ -122,6 +121,9 @@ const AcceptedOrders = ({url}) => {
             }>
               Uppdatera
               </button>
+              <div className="order-description">
+                <p className="order-item-regnummer">User comments: {order.comment || 'No comments provided'}</p>
+              </div>
                <div className="order-description">
               <p>Comments for client</p>
               <p>{order.comment || 'No comments provided'}</p>
