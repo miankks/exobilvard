@@ -4,7 +4,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify'
 import { assets } from '../../assets/assets';
 import { MdEmail } from "react-icons/md";
-import { BsTelephoneForward } from "react-icons/bs";
+import { BsTelephoneForwardFill } from "react-icons/bs";
 import { FaCarAlt } from "react-icons/fa";
 import { CiCalendarDate } from "react-icons/ci";
 import { formattedDate } from '../../customHooks/formattedDate';
@@ -90,7 +90,7 @@ const AcceptedOrders = ({url}) => {
                 <p className="order-item-email">{order.address.email}</p>
               </div>
               <div className="email-row">
-              <BsTelephoneForward />
+              <BsTelephoneForwardFill />
               <p className="order-item-phone">{order.address.phone}</p> 
               </div>
               <div className="email-row">

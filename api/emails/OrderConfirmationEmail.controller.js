@@ -4,7 +4,6 @@ import { Resend } from 'resend';
 const resend = new Resend(process.env.RESEND_API_KEY);
 const sendEmail = async (req, res) => {
   //  console.log("🟡 sendEmail called");
-  console.log("🟡 body:", req);
   try {
     const {fullName, email, phone, subject, regnummer, bookDate } = req
     // console.log("🟡 Preparing to send email...");

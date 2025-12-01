@@ -8,8 +8,10 @@ import Reactdatepicker from '../../components/Reactdatepicker/Reactdatepicker';
 
 const PlaceOrder = () => {
     const { token, car_list,removeFromCart, cartItems, url, setCartItems } = useContext(StoreContext);
-    const itemsInCart = car_list.filter(item => cartItems[item._id] > 0);
+    
+    
     const navigate = useNavigate();
+
     const [data, setData] = useState({
       fullName: '',
       email: '',
@@ -33,21 +35,19 @@ const PlaceOrder = () => {
       e.preventDefault();
 
       // before calling api structure data
-      // let orderItems = [];
-      const orderItems = car_list
-                          .filter(item => cartItems[item._id] > 0)
-                          .map(item => ({...item, quantity: cartItems[item._id]}))
-      // car_list.map((item)=> {
-      //   if (cartItems[item._id] > 0) {
-      //     let itemInfo = item;
-      //     itemInfo['quantity'] = cartItems[item._id];
-      //     orderItems.push(itemInfo)
-      //   }
-      // })
+      let orderItems = [];
+      car_list.map((item)=> {
+        if (cartItems[item._id] > 0) {
+          let itemInfo = item;
+          itemInfo['quantity'] = cartItems[item._id];
+          orderItems.push(itemInfo)
+        }
+      })
       let now = new Date();
       let orderData = {
         address: data,
         orderDate:  now.toLocaleString("sv-SE"),
+        // orderTime: now.toLocaleTimeString("sv-SE", { hour: "2-digit", minute: "2-digit" }),
         items: orderItems,
       }
        
@@ -125,8 +125,7 @@ const PlaceOrder = () => {
         </div>
         <br />
         <hr />
-        {
-        itemsInCart.map((item, index) => {
+        {car_list.map((item, index) => {
           if (cartItems[item._id] > 0) {
             return (
               <div key={index}>
@@ -164,3 +163,50 @@ const PlaceOrder = () => {
 }
 
 export default PlaceOrder
+
+
+    // useEffect(() => {
+    //   if (!token) {
+    //     navigate('/myorders')
+    //   } 
+    // }, [token])
+
+      // let response = await axios.post(url+'/api/order/place', orderData, {headers: {token}})
+                      
+      // if (response.data.success) {
+      // if (response.data.success) {
+      //   const { session_url} = response.data;
+      //   // send user to session url
+      //   window.location.replace(session_url);
+      //   navigate('/myorders')
+      // } else {
+      // }
+
+        {/* <Reactdatepicker 
+          sendDataToParent={handleDate1}
+          selectime={'Första Tid'}
+        />
+        <Reactdatepicker 
+          sendDataToParent={handleDate2}
+          selectime={'Andra Tid'}
+        />
+        <Reactdatepicker 
+          sendDataToParent={handleDate3}
+          selectime={'Tredje Tid'}
+        /> */}
+
+
+// const handleDate1 = (date) => {
+    //   const bookingTime = date.combined.format('YYYY MM DD - HH:mm')
+    //   setData({...data, bookDate1: bookingTime})
+    // }
+
+    //  const handleDate2 = (date) => {
+    //   const bookingTime = date.combined.format('YYYY MM DD - HH:mm')
+    //   setData({...data, bookDate2: bookingTime})
+    // }
+
+    //  const handleDate3 = (date) => {
+    //   const bookingTime = date.combined.format('YYYY MM DD - HH:mm')
+    //   setData({...data, bookDate3: bookingTime})
+    // }

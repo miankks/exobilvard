@@ -5,7 +5,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify'
 import { assets } from '../../assets/assets';
 import { MdEmail } from "react-icons/md";
-import { BsTelephoneForward } from "react-icons/bs";
+import { BsTelephoneForwardFill } from "react-icons/bs";
 import { FaCarAlt } from "react-icons/fa";
 import { CiCalendarDate } from "react-icons/ci";
 import Reactdatepicker from '../../components/Reactdatepicker/Reactdatepicker';
@@ -84,14 +84,11 @@ const Orders = ({url}) => {
       <h3>Beställnings sida</h3>
       <div className="order-list">
         {orders.map((order, index) => {
-          console.log(order);
-          
           const selected = selectedServiceDate[order._id];
           const orderedDate = formattedDate(order?.date);
           // return (
           // <div key={index}>
           //   <OrderDateRender order={order} selected={selected}/>
-
           // </div>
           return (
           <div className="order-item" key={index}>
@@ -115,7 +112,7 @@ const Orders = ({url}) => {
                 <p className="order-item-email">{order.address.email}</p>
               </div>
               <div className="email-row">
-              <BsTelephoneForward />
+              <BsTelephoneForwardFill />
               <p className="order-item-phone">{order.address.phone}</p> 
               </div>
               <div className="email-row">
@@ -129,8 +126,8 @@ const Orders = ({url}) => {
               {!selected || selected === "date1" ? (
               <div className="email-row">
                   <CiCalendarDate />
-                <p className="order-item-phone bold">
-                  Service Datum 1: {order.address.bookDate1}
+                <p className="order-item-phone">
+                  <b>Service Datum 1:</b> {order.address.bookDate1}
                 </p>
                 <span className='accept-button-span'>
                   <button type='button' 
@@ -150,8 +147,8 @@ const Orders = ({url}) => {
               {!selected || selected === "date2" ? (
                <div className="email-row">
                   <CiCalendarDate />
-                <p className="order-item-phone bold">
-                  Service Datum 2: {order.address.bookDate2}
+                <p className="order-item-phone">
+                  <b>Service Datum 2:</b> {order.address.bookDate2}
                 </p>
                 <span className='accept-button-span'>
                   <button type='button' 
@@ -170,8 +167,8 @@ const Orders = ({url}) => {
               {!selected || selected === "date3" ? (
                <div className="bookdate-row">
                   <span><CiCalendarDate /></span>
-                <p className="order-item-phone bold">
-                  Service Datum 3: {order.address.bookDate3}
+                <p className="order-item-phone">
+                  <b>Service Datum 3:</b> {order.address.bookDate3}
                 </p>
                 <span className='accept-button-span'>
                   <button type='button' 
