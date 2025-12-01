@@ -3,7 +3,7 @@ import './AcceptedOrders.css'
 import axios from 'axios';
 import { toast } from 'react-toastify'
 import { assets } from '../../assets/assets';
-import { MdOutlineMailOutline } from "react-icons/md";
+import { MdEmail } from "react-icons/md";
 import { BsTelephoneForward } from "react-icons/bs";
 import { FaCarAlt } from "react-icons/fa";
 import { CiCalendarDate } from "react-icons/ci";
@@ -86,7 +86,7 @@ const AcceptedOrders = ({url}) => {
                 {order.address.fullName}
               </p>
                <div className="email-row">
-                <MdOutlineMailOutline />
+                <MdEmail />
                 <p className="order-item-email">{order.address.email}</p>
               </div>
               <div className="email-row">
@@ -122,7 +122,7 @@ const AcceptedOrders = ({url}) => {
               Uppdatera
               </button>
               <div className="order-description">
-                <p className="order-item-regnummer">User comments: {order.comment || 'No comments provided'}</p>
+                <p className="order-item-regnummer">User comments: {order.address.userComment || 'No comment provided'}</p>
               </div>
                <div className="order-description">
               <p>Comments for client</p>

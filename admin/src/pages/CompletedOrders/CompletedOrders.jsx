@@ -3,7 +3,7 @@ import './CompletedOrders.css'
 import axios from 'axios';
 import { toast } from 'react-toastify'
 import { assets } from '../../assets/assets';
-import { MdOutlineMailOutline } from "react-icons/md";
+import { MdEmail } from "react-icons/md";
 import { BsTelephoneForward } from "react-icons/bs";
 import { FaCarAlt } from "react-icons/fa";
 import { CiCalendarDate } from "react-icons/ci";
@@ -32,8 +32,6 @@ const CompletedOrders = ({url}) => {
       toast.error("Error fetching orders");
     }
   }
-  console.log(orders);
-  
 
   const updateOrderStatusLocally = (id, newStatus) => {
     setOrders(prev =>
@@ -190,7 +188,7 @@ const CompletedOrders = ({url}) => {
                   {highlightMatch(order.address?.fullName)}
                 </p>
                 <div className="email-row">
-                  <MdOutlineMailOutline />
+                  <MdEmail />
                   <p className="order-item-email">{highlightMatch(order.address?.email)}</p>
                 </div>
                 <div className="email-row">
@@ -207,7 +205,7 @@ const CompletedOrders = ({url}) => {
                 </div>
                 <div className="email-row">
                   <CiCalendarDate />
-                  <p>Service beställ datum: {formatedDate}</p>
+                  <p>Beställ datum: {formatedDate}</p>
                 </div>
                 {/* <div className="email-row">
                   <CiCalendarDate />
@@ -267,7 +265,7 @@ const CompletedOrders = ({url}) => {
                 </button>
               </div>
                <div className="order-description">
-                <p className="order-item-regnummer"><b>User comments:</b> {order.comment || 'No comments provided'}</p>
+                <p className="order-item-regnummer">User comments: {order.address.userComment || 'No comment provided'}</p>
                 </div>
               <div className="order-description">
                 <p>Comments for client</p>

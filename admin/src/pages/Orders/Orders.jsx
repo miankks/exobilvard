@@ -84,6 +84,8 @@ const Orders = ({url}) => {
       <h3>Beställnings sida</h3>
       <div className="order-list">
         {orders.map((order, index) => {
+          console.log(order);
+          
           const selected = selectedServiceDate[order._id];
           const orderedDate = formattedDate(order?.date);
           // return (
@@ -185,9 +187,7 @@ const Orders = ({url}) => {
                 </span>
               </div>
               ): null}
-              <div className="email-row">
-                <p className="order-item-regnummer">User comments: {order.comment}</p>
-              </div>
+              
               <p className="order-item-phone bold order-timestamp">
                 Beställning Datum: {orderedDate || "Loading"}
               </p>
@@ -232,8 +232,8 @@ const Orders = ({url}) => {
             {/* FULL ROW at Bottom */}
              <div className="order-description">
               <b>Comments from client</b>
-              <p>{order.comment || 'No comment provided'}</p>
-              <p>{order.acceptedDate || 'No accepted date provided'}</p>
+                <p className="order-item-regnummer">User comments: {order.address.userComment || 'No comment provided'}</p>
+              {/* <p>{order.acceptedDate || 'No accepted date provided'}</p> */}
             </div>
             <div className="order-description">
               <b>Comments for client</b>
