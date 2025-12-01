@@ -7,6 +7,7 @@ import { MdOutlineMailOutline } from "react-icons/md";
 import { BsTelephoneForward } from "react-icons/bs";
 import { FaCarAlt } from "react-icons/fa";
 import { CiCalendarDate } from "react-icons/ci";
+import { formattedDate } from '../../customHooks/formattedDate';
 
 const CompletedOrders = ({url}) => {
   const [orders, setOrders] = useState([]);
@@ -169,7 +170,7 @@ const CompletedOrders = ({url}) => {
           </div>
         ) : (
           filteredOrders.map((order, index) => {
-            const formattedDate = new Date(order.date).toLocaleString("sv-SE");
+            const formatedDate = formattedDate(order?.date);
             return (
             <div className='complatedorder-item' key={order._id || index}>
               <img src={assets.parcel_icon} alt="" />
@@ -206,7 +207,7 @@ const CompletedOrders = ({url}) => {
                 </div>
                 <div className="email-row">
                   <CiCalendarDate />
-                  <p>Service beställ datum: {formattedDate}</p>
+                  <p>Service beställ datum: {formatedDate}</p>
                 </div>
                 {/* <div className="email-row">
                   <CiCalendarDate />

@@ -7,6 +7,7 @@ import { MdOutlineMailOutline } from "react-icons/md";
 import { BsTelephoneForward } from "react-icons/bs";
 import { FaCarAlt } from "react-icons/fa";
 import { CiCalendarDate } from "react-icons/ci";
+import { formattedDate } from '../../customHooks/formattedDate';
 
 const AcceptedOrders = ({url}) => {
   const [orders, setOrders] = useState([]);
@@ -66,7 +67,9 @@ const AcceptedOrders = ({url}) => {
     <div className='order add'>
       <h3>Accepted Orders Page</h3>
       <div className="order-list">
-        {orders.map((order, index) => (
+        {orders.map((order, index) => {
+          const formatedDate = formattedDate(order?.date);
+          return(
           <div className='complatedorder-item' key={index}>
             <img src={assets.parcel_icon} alt="" />
             <div>
@@ -97,19 +100,7 @@ const AcceptedOrders = ({url}) => {
                <div className="email-row">
                   <CiCalendarDate />
                 <p className="order-item-phone bold">
-                  Service Datum 1: {order.address.bookDate1}
-                </p>
-              </div>
-               <div className="email-row">
-                  <CiCalendarDate />
-                <p className="order-item-phone bold">
-                  Service Datum 2: {order.address.bookDate2}
-                </p>
-              </div>
-               <div className="email-row">
-                  <CiCalendarDate />
-                <p className="order-item-phone bold">
-                  Service Datum 3: {order.address.bookDate3}
+                  Service Datum: {formatedDate}
                 </p>
               </div>
               <p className='order-item-phone order-timestamp'><b>Beställning Datum:</b> {order?.orderDate || 'Loading'}</p>
@@ -136,7 +127,7 @@ const AcceptedOrders = ({url}) => {
               <p>{order.comment || 'No comments provided'}</p>
             </div>
           </div>
-        ))}
+        )})}
       </div>
     </div>
   )

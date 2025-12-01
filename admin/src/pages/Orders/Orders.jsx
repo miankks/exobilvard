@@ -10,6 +10,7 @@ import { FaCarAlt } from "react-icons/fa";
 import { CiCalendarDate } from "react-icons/ci";
 import Reactdatepicker from '../../components/Reactdatepicker/Reactdatepicker';
 import { FaCheck, FaTachometerAlt } from "react-icons/fa";
+import { formattedDate } from '../../customHooks/formattedDate';
 
 
 const Orders = ({url}) => {
@@ -23,7 +24,6 @@ const Orders = ({url}) => {
     const value = e.target.value;
     setComment(value)
   }
-console.log(orders);
 
   const fetchAllOrders = async () => {
     const token = localStorage.getItem("token");
@@ -69,9 +69,9 @@ console.log(orders);
     }
   }
 
-     const handleDate1 = (date) => {
-      const dateAccepted = date.combined.format('YYYY MM DD - HH:mm')
-      setAcceptedDate(dateAccepted)
+     const handleDate = (date) => {
+      const dateAccepted = formattedDate(date);
+      setAcceptedDate(dateAccepted);
     }
 
   useEffect(() => {
@@ -84,6 +84,7 @@ console.log(orders);
       <div className="order-list">
         {orders.map((order, index) => {
           const selected = selectedServiceDate[order._id];
+          const orderedDate = formattedDate(order?.date);
           return (
           <div className="order-item" key={index}>
             
@@ -182,11 +183,7 @@ console.log(orders);
                 <p className="order-item-regnummer">User comments: {order.comment}</p>
               </div>
               <p className="order-item-phone bold order-timestamp">
-                Beställning Datum: {order?.date || "Loading"}
-              </p>
-
-              <p className="order-item-phone bold">
-                Beställning Tid: {order?.orderTime || "Loading"}
+                Beställning Datum: {orderedDate || "Loading"}
               </p>
             </div>
 
@@ -222,7 +219,7 @@ console.log(orders);
                <div className='order-date'>
                 <h6>Välj en ny tid</h6>
                 <Reactdatepicker 
-                  sendDataToParent={handleDate1}
+                  sendDataToParent={handleDate}
                 />
               </div>
             }

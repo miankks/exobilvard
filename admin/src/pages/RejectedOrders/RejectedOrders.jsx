@@ -8,6 +8,7 @@ import { MdOutlineMailOutline } from "react-icons/md";
 import { BsTelephoneForward } from "react-icons/bs";
 import { FaCarAlt } from "react-icons/fa";
 import { CiCalendarDate } from "react-icons/ci";
+import { formattedDate } from '../../customHooks/formattedDate';
 
 const RejectedOrders = ({url}) => {
   const { statusUpdateHandler } = useContext(StoreContext);
@@ -83,7 +84,7 @@ const RejectedOrders = ({url}) => {
       <h3>Rejected orders Page</h3>
       <div className="order-list">
         {orders.map((order, index) => {
-          const formattedDate = new Date(order.date).toLocaleString("sv-SE");
+          const formatedDate = formattedDate(order?.date);
           return (
           <div className='rejecteddorder-item' key={index}>
             <img src={assets.parcel_icon} alt="" />
@@ -118,10 +119,8 @@ const RejectedOrders = ({url}) => {
                 </div>
               <div className="email-row">
                 <CiCalendarDate />
-                <p>Service beställ datum: {formattedDate}</p>
+                <p>Service beställ datum: {formatedDate}</p>
               </div>
-              <p className='order-item-phone order-timestamp'><b>Beställning Datum:</b> {order?.orderDate || 'Loading'}</p>
-              <p className='order-item-phone'><b>Beställning Tid:</b> {order?.orderTime || 'Loading'}</p>
             </div>
             <p>Items: {order.items.length}</p>
             <select className='rejecteddorder-item-select'  value={order.status} onChange={(e) => 
