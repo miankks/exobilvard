@@ -33,17 +33,9 @@ const PlaceOrder = () => {
       e.preventDefault();
 
       // before calling api structure data
-      // let orderItems = [];
       const orderItems = car_list
                           .filter(item => cartItems[item._id] > 0)
                           .map(item => ({...item, quantity: cartItems[item._id]}))
-      // car_list.map((item)=> {
-      //   if (cartItems[item._id] > 0) {
-      //     let itemInfo = item;
-      //     itemInfo['quantity'] = cartItems[item._id];
-      //     orderItems.push(itemInfo)
-      //   }
-      // })
       let now = new Date();
       let orderData = {
         address: data,
@@ -51,13 +43,22 @@ const PlaceOrder = () => {
         items: orderItems,
       }
        
-      const res =  await axios.post(url+'/api/order/place', orderData)
-      if (res.data.success) {
-        toast.success(res.data.message)
-        navigate('/orderconfirmation')
-      } else {
-        toast.error(res.data.message)
-        navigate('/place')
+      try {
+        // Validate date selections
+        if (!data.bookDate1 || !data.bookDate2 || !data.bookDate3) {
+          toast.error("Du måste välja alla tre tider innan du bokar.");
+          return; // stop submission
+        }
+        const res =  await axios.post(url+'/api/order/place', orderData)
+        if (res.data.success) {
+          toast.success(res.data.message)
+          navigate('/orderconfirmation')
+        } else {
+          toast.error(res.data.message)
+        }
+      } catch (error) {
+        console.error(error);
+        toast.error("Something went wrong. Please try again.");
       }
     }
 
@@ -126,9 +127,7 @@ const PlaceOrder = () => {
         <br />
         <hr />
         {
-        itemsInCart.map((item, index) => {
-          if (cartItems[item._id] > 0) {
-            return (
+        itemsInCart.map((item, index) => (
               <div key={index}>
                 <div className="cart-items-title cart-items-item">
                   <img src={url+'/images/'+item.image} alt="" />
@@ -139,9 +138,7 @@ const PlaceOrder = () => {
                 </div>
                 <hr />
               </div>
-            )
-          }
-        })}
+            ))}
       </div>
       </div>
         <div className='comment-section'>
