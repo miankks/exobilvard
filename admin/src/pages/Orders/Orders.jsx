@@ -4,7 +4,7 @@ import './Orders.css'
 import axios from 'axios';
 import { toast } from 'react-toastify'
 import { assets } from '../../assets/assets';
-import { MdOutlineMailOutline } from "react-icons/md";
+import { MdEmail } from "react-icons/md";
 import { BsTelephoneForward } from "react-icons/bs";
 import { FaCarAlt } from "react-icons/fa";
 import { CiCalendarDate } from "react-icons/ci";
@@ -23,6 +23,7 @@ const Orders = ({url}) => {
     const value = e.target.value;
     setComment(value)
   }
+console.log(orders);
 
   const fetchAllOrders = async () => {
     const token = localStorage.getItem("token");
@@ -79,7 +80,7 @@ const Orders = ({url}) => {
 
   return (
     <div className='order add'>
-      <h3>Order Page</h3>
+      <h3>Beställnings sida</h3>
       <div className="order-list">
         {orders.map((order, index) => {
           const selected = selectedServiceDate[order._id];
@@ -101,7 +102,7 @@ const Orders = ({url}) => {
 
               <p className="order-item-name">{order.address.fullName}</p>
               <div className="email-row">
-                <MdOutlineMailOutline />
+                <MdEmail />
                 <p className="order-item-email">{order.address.email}</p>
               </div>
               <div className="email-row">
@@ -115,9 +116,6 @@ const Orders = ({url}) => {
                <div className="email-row">
                 <FaTachometerAlt />
                 <p className="order-item-regnummer">{order.address.miltal}</p>
-              </div>
-              <div className="email-row">
-                <p className="order-item-regnummer">User comments: {order.address.userComment}</p>
               </div>
               {!selected || selected === "date1" ? (
               <div className="email-row">
@@ -180,6 +178,9 @@ const Orders = ({url}) => {
                 </span>
               </div>
               ): null}
+              <div className="email-row">
+                <p className="order-item-regnummer">User comments: {order.comment}</p>
+              </div>
               <p className="order-item-phone bold order-timestamp">
                 Beställning Datum: {order?.date || "Loading"}
               </p>
