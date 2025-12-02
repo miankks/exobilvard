@@ -1,42 +1,43 @@
- .order-item {
-  display: grid;
-  grid-template-columns: 0.5fr 3fr 0.5fr 1fr 1fr;
-  align-items: start;
-  gap: 25px;
-  border: 1px solid #3b82f6;
+/* Make last div stretch across whole grid */
+.order-description {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  /* REMOVE align-items so text stays left */
+  gap: 12px;
+
   padding: 20px;
-  margin: 30px 0;
-  font-size: 14px;
-  color: #505050;
   border-radius: 14px;
   border: 1px solid #e0e0e0;
   background: linear-gradient(145deg, #ffffff, #f5f5f5);
 
-  /* Soft shadow */
   box-shadow: 
       0 4px 10px rgba(0, 0, 0, 0.06),
       0 1px 2px rgba(0, 0, 0, 0.04);
 
-  /* Smooth interactions */
   transition: 
       transform 0.25s ease,
       box-shadow 0.25s ease;
-
-
 }
 
-/* Space between lines inside the info section */
-.order-info p {
-  margin: 4px 0;
+/* Hover effect */
+.order-description:hover {
+  transform: translateY(-4px);
+  box-shadow: 
+      0 10px 20px rgba(0, 0, 0, 0.12),
+      0 4px 6px rgba(0, 0, 0, 0.08);
 }
 
-.order-item-car, .order-item-name{
-    font-weight: 600;
-}
-
-.order-item-name{
-    margin-top: 30px;
-    margin-bottom: 5px;
+.order-description button {
+  align-self: flex-end;   /* <-- ONLY button moves right */
+  background: #4a90e2;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: 0.25s;
+  padding: 6px 14px;
+  font-size: 14px;
+  border-radius: 6px;
 }
 
 .email-row {
@@ -45,94 +46,6 @@
   gap: 6px; /* space between icon and text */
   margin-bottom: 10px;
 }
-
-.order-item select{
-    background-color: #eef6ff;
-    border: 1px solid #3b82f6;
-    width: max(13vw, 120px);
-    padding: 10px;
-    outline: none;
-}
-
-.bold {
-  font-weight: 600;
-}
-
-/* Make last div stretch across whole grid */
-.order-description {
-  grid-column: 1 / -1;
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  /* Aesthetic styling */
-  padding: 20px;
-  border-radius: 14px;
-  border: 1px solid #e0e0e0;
-  background: linear-gradient(145deg, #ffffff, #f5f5f5);
-
-  /* Soft shadow */
-  box-shadow: 
-      0 4px 10px rgba(0, 0, 0, 0.06),
-      0 1px 2px rgba(0, 0, 0, 0.04);
-
-  /* Smooth interactions */
-  transition: 
-      transform 0.25s ease,
-      box-shadow 0.25s ease;
-
-  }
-  /* Hover effect */
-.order-description:hover {
-  transform: translateY(-4px);
-  box-shadow: 
-      0 10px 20px rgba(0, 0, 0, 0.12),
-      0 4px 6px rgba(0, 0, 0, 0.08);
-      }
-      
-.order-description textarea {
-    border: 1px solid #3b82f6;
-
-}
-
-.order-timestamp{
-    padding-top: 50px;
-}
-
-.order-date{
-    grid-column: 1 / -1;
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    gap: 10px;
-}
-
-.bookdate-row {
-  flex: 1;
-  display: flex;
-  flex-direction: row !important;
-  align-items: center;
-  gap: 10px;
-  width: 100%; 
-  min-width: 0;
-}
-
-.accept-button-span {
-  margin-left: auto;
-}
-
-.accept-button {
-  width: 30px;
-  height: 30px;
-  border: 1px solid lightblue;
-  color: green;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-
 
 @media (max-width: 1000px) {
     .order-item{
