@@ -17,7 +17,7 @@ const Sidebar = () => {
             </NavLink>
         </div>
         <div className="sidebar-group bottom-group">
-            <NavLink to='/bookingssummary' className="sidebar-option">
+            <NavLink to='/orders' className="sidebar-option">
                 <img src={assets.order_icon} alt="" />
                 <p>Booking Summary</p>
             </NavLink>

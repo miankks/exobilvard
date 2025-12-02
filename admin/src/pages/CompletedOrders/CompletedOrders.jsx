@@ -2,18 +2,14 @@ import { useState, useEffect } from 'react'
 import './CompletedOrders.css'
 import axios from 'axios';
 import { toast } from 'react-toastify'
-import { assets } from '../../assets/assets';
-import { MdEmail } from "react-icons/md";
-import { BsTelephoneForwardFill } from "react-icons/bs";
-import { FaCarAlt } from "react-icons/fa";
-import { CiCalendarDate } from "react-icons/ci";
-import { formattedDate } from '../../customHooks/formattedDate';
+import { useNavigate } from 'react-router-dom';
 
 const CompletedOrders = ({url}) => {
   const [orders, setOrders] = useState([]);
   const [selectedStatuses, setSelectedStatuses] = useState({});
   const [confirmDeleteId, setConfirmDeleteId] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
 
   const fetchAllOrders = async () => {
     try {
@@ -33,58 +29,12 @@ const CompletedOrders = ({url}) => {
     }
   }
 
-  const updateOrderStatusLocally = (id, newStatus) => {
-    setOrders(prev =>
-      prev.map(o =>
-        o._id === id ? { ...o, status: newStatus } : o
-      )
-    );
-  };
-
-  const handleSelectChange = (orderId, value) => {
-    setSelectedStatuses((prev) => ({
-      ...prev,
-      [orderId]: value,
-    }));
-  };
-
-  const statusHandler = async (status, orderId) => {
-    try {
-      const response = await axios.post(url + "/api/order/status", {
-        orderId,
-        status
-      });
-
-      if (response.data.success) {
-        toast.success(response.data.message);
-        await fetchAllOrders();
-      } else {
-        toast.error(response.data.message);
-      }
-    } catch (err) {
-      toast.error("Error updating status");
-    }
-  }
-
-  const deleteHandler = async (orderId) => {
-    try {
-      const response = await axios.post(url + "/api/order/deleteorders", {
-        orderId
-      });
-
-      if (response.data.success) {
-        await fetchAllOrders();
-      } else {
-        toast.error(response.data.message);
-      }
-    } catch (err) {
-      toast.error("Error deleting order");
-    }
+  const handleOrder = (orderID) => {
+    navigate(`/completedorders/${orderID}`)
   }
 
   useEffect(() => {
     fetchAllOrders();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
   // escape regex special characters to avoid crashes when user types symbols
@@ -147,7 +97,7 @@ const CompletedOrders = ({url}) => {
 
   return (
     <div className='order add'>
-      <h3>Completed Orders Page</h3>
+      <h3>Completed Orders Summary</h3>
 
       {/* SEARCH BAR */}
       <div style={{ margin: "10px 0" }}>
@@ -161,153 +111,31 @@ const CompletedOrders = ({url}) => {
         />
       </div>
 
-      <div className="order-list">
+      <div>
         {filteredOrders.length === 0 ? (
           <div className="no-results" style={{ padding: 20 }}>
             No results found.
           </div>
         ) : (
           filteredOrders.map((order, index) => {
-            const formatedDate = formattedDate(order?.date);
             return (
-            <div className='complatedorder-item' key={order._id || index}>
-              <img src={assets.parcel_icon} alt="" />
+            <div className='completeorder-description' key={order._id || index}>
               <div>
-                <p className='order-item-car'>
-                  {order.items.map((item, idx) => {
-                    const formatted = `${item.name} x${item.quantity}`;
-                    return (
-                      <span key={idx}>
-                        {highlightMatch(formatted)}
-                        {idx < order.items.length - 1 ? ", " : ""}
-                      </span>
-                    );
-                  })}
-                </p>
                 <p className='order-item-name'>
                   {highlightMatch(order.address?.fullName)}
                 </p>
                 <div className="email-row">
-                  <MdEmail />
                   <p className="order-item-email">{highlightMatch(order.address?.email)}</p>
                 </div>
                 <div className="email-row">
-                  <BsTelephoneForwardFill />
                   <p className="order-item-phone">{highlightMatch(order.address?.phone)}</p>
                 </div>
-                <div className="email-row">
-                  <FaCarAlt />
-                  <p className="order-item-regnummer">{highlightMatch(order.address?.regnummer)}</p>
-                </div>
-                <div className="email-row">
-                  <CiCalendarDate />
-                  <p>Service datum: {order.acceptedDate}</p>
-                </div>
-                <div className="email-row">
-                  <CiCalendarDate />
-                  <p>Beställ datum: {formatedDate}</p>
-                </div>
-                {/* <div className="email-row">
-                  <CiCalendarDate />
-                <p className="order-item-phone bold">
-                  Service Datum 1: {highlightMatch(order.address.bookDate1)}
-                </p>
               </div>
-               <div className="email-row">
-                  <CiCalendarDate />
-                <p className="order-item-phone bold">
-                  Service Datum 2: {highlightMatch(order.address.bookDate2)}
-                </p>
-              </div>
-               <div className="email-row">
-                  <CiCalendarDate />
-                <p className="order-item-phone bold">
-                  Service Datum 3: {highlightMatch(order.address.bookDate3)}
-                </p>
-              </div> */}
-                {/* <p className='order-item-phone order-timestamp'><b>Beställning Datum:</b> {order?.orderDate || 'Loading'}</p>
-                <p className='order-item-phone'><b>Beställning Tid:</b> {order?.orderTime || 'Loading'}</p> */}
-              </div>
-
-              <p>Items: {order.items.length}</p>
-
-              <select
-                value={selectedStatuses[order._id] ?? order.status}
-                onChange={(e) => {
-                  const newStatus = e.target.value;
-                  updateOrderStatusLocally(order._id, newStatus);
-                  handleSelectChange(order._id, e.target.value);
-                }}
-              >
-                <option value="Pending to accept">Pending to accept</option>
-                <option value="Accepted">Accepted</option>
-                <option value="Rejected">Rejected</option>
-                <option value="Completed">Completed</option>
-              </select>
-
-              <button
-                type='submit'
-                className='add-btn'
-                onClick={() =>
-                  statusHandler(selectedStatuses[order._id] ?? order.status, order._id)
-                }
-              >
-                Uppdatera
-              </button>
-
-              <div className='delete-btn'>
-                <button
-                  type='submit'
-                  className='px-4 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600 cursor-pointer m-10'
-                  onClick={() => setConfirmDeleteId(order._id)}
-                >
-                  Delete
-                </button>
-              </div>
-               <div className="order-description">
-                <p className="order-item-regnummer">User comments: {order.address.userComment || 'No comment provided'}</p>
-                </div>
-              <div className="order-description">
-                <p>Comments for client</p>
-                <p>{order.comment || 'No comments provided'}</p>
-              </div>
+               <button type='button' onClick={() => handleOrder(order._id)}>Details</button>
             </div>
           )})
         )}
       </div>
-
-      {confirmDeleteId && (
-        <div className="fixed inset-0 bg-black/60 flex items-center justify-center animate-fadeIn">
-          <div className="bg-white p-6 rounded-2xl shadow-2xl w-80 animate-slideUp">
-            <h2 className="text-xl font-semibold text-gray-800 mb-3">
-              Delete Item?
-            </h2>
-            <p className="text-gray-600 mb-6">
-              Are you sure you want to delete this item? This action cannot be undone.
-            </p>
-
-            <div className="flex justify-end gap-3">
-              <button
-                className="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300"
-                onClick={() => setConfirmDeleteId(null)}
-              >
-                Cancel
-              </button>
-
-              <button
-                className="px-4 py-2 rounded-lg bg-red-500 text-white hover:bg-red-600"
-                onClick={() => {
-                  deleteHandler(confirmDeleteId);
-                  setConfirmDeleteId(null);
-                }}
-              >
-                Delete
-              </button>
-            </div>
-
-          </div>
-        </div>
-      )}
     </div>
   )
 }
