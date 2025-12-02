@@ -22,9 +22,17 @@ const CarDisplay = ({ category }) => {
               }
             })}
         </div>
-          <Link to={'/cart'} >
-          <button>Proceed to cart</button>
-          </Link> 
+          <div className='comment-section'>
+            <Link to={'/cart'} >
+            <button>Proceed to cart</button>
+            </Link>
+          </div>
+        <div className='comment-section'>
+            <Link to={'/usercomments'}>
+              <p>Skriv en kommentar till Exobilvårdscenter</p>
+              <button>till komment</button>
+            </Link>
+        </div> 
     </div>
   )
 }

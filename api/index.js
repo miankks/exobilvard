@@ -13,6 +13,7 @@ import orderRouter from './routes/order.route.js';
 import emailRouter from './routes/email.route.js'
 import bodyParser from 'body-parser';
 import adminRouter from './routes/admin.route.js';
+import commentsRouter from './routes/comments.route.js';
 
 dotenv.config();
 
@@ -41,6 +42,7 @@ app.use('/api/cart', cartRouter)
 app.use("/api/order", orderRouter)
 app.use("/api/sendemail",bodyParser.json(), emailRouter)
 app.use("/api/admin", adminRouter)
+app.use("/api/comment", commentsRouter)
 app.get("/", (req, res) => {
     res.send("API working")
 })

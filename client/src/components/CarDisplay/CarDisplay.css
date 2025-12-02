@@ -22,7 +22,7 @@
     row-gap: 50px;
 } */
 
-.car-display button{
+.cart-btn button{
     margin-top: 85px;
     border: none;
     padding: 12px 10px;
@@ -31,6 +31,51 @@
     cursor: pointer;
     color: #454545;
 }
+
+.comment-section {
+    padding-top: 60px;
+}
+
+.comment-section p{
+    padding: 10px 0px;
+}
+
+/* Submit button — colorful, glowing, modern */
+.comment-section button {
+    max-width: 150px;
+    padding: 12px;
+    border: none;
+    cursor: pointer;
+
+    background: linear-gradient(135deg, #6a5af9, #00c4ff);
+    color: white;
+    font-weight: 600;
+    font-size: 15px;
+
+    border-radius: 12px;
+
+    box-shadow: 
+        0 6px 14px rgba(0, 0, 0, 0.15),
+        0 2px 4px rgba(0, 0, 0, 0.05);
+
+    transition: transform 0.25s, box-shadow 0.25s ease;
+}
+
+/* Button hover */
+.comment-section button:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 10px 18px rgba(0, 0, 0, 0.18),
+        0 4px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* Button active */
+.comment-section button:active {
+    transform: translateY(0);
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.12);
+}
+
 
 @media (min-width: 1200px) {
     .car-item {

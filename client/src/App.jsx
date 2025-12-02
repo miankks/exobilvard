@@ -11,6 +11,7 @@ import MyOrders from './pages/MyOrders/MyOrders';
 import Orderconfirmation from './components/Orderconfirmation/Orderconfirmation';
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import UserComments from './components/UserComments/UserComments';
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -27,6 +28,7 @@ const App = () => {
         <Route path='/verify' element={<Verify />}/>
         <Route path='/myorders' element={<MyOrders />}/>
         <Route path='/orderconfirmation' element={<Orderconfirmation />}/>
+        <Route path='/usercomments' element={<UserComments />}/>
 
       </Routes>
     </div>
