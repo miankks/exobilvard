@@ -1,4 +1,3 @@
-import React from 'react'
 import './Navbar.css'
 import { assets } from '../../assets/assets'
 import { Link, useNavigate } from "react-router-dom";
@@ -16,7 +15,7 @@ const Navbar = () => {
     <div className='navbar'>
         <img src={assets.logo} alt="" className='logo'/>
          <ul className="nav-links">
-          <li><Link to="/">Home</Link></li>
+          <li><Link to="/orders">Home</Link></li>
           {/* Show Signup & Login only if NOT logged in */}
           {!token &&<li><Link to="/signup">Sign Up</Link></li>}
           {!token && <li><Link to="/login">Login</Link></li>}

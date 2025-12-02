@@ -92,7 +92,7 @@ const Orders = ({url}) => {
 
   return (
     <div className='order add'>
-      <h3>Beställnings sida</h3>
+      <h3>Beställning</h3>
       <div className="order-list">
         {filteredOrders.map((order, index) => {
           const selected = selectedServiceDate[order._id];
