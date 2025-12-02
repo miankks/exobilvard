@@ -12,6 +12,7 @@ import AdminSignup from './pages/AdminSignup/AdminSignup';
 import AdminLogin from './pages/AdminLogin/AdminLogin';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import BookingsSummary from './pages/BookingsSummary/BookingsSummary';
 
 const App = () => {
   const url = 'http://localhost:3000';
@@ -40,7 +41,9 @@ const App = () => {
         <Routes>
           <Route path='/addcar' element={<Add url={url}/>} />
           <Route path='/listcar' element={<List url={url}/>} /> 
-          <Route path='/orders' element={<Orders url={url}/>} /> 
+          <Route path='/orders/' element={<Orders url={url}/>} /> 
+          <Route path='/orders/:id' element={<Orders url={url}/>} /> 
+          <Route path='/bookingssummary' element={<BookingsSummary url={url}/>} /> 
           <Route path='/completedorders' element={<CompletedOrders url={url}/>} /> 
           <Route path='/acceptedorders' element={<AcceptedOrders url={url}/>} /> 
           <Route path='/rejectedorders' element={<RejectedOrders url={url}/>} /> 

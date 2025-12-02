@@ -17,10 +17,14 @@ const Sidebar = () => {
             </NavLink>
         </div>
         <div className="sidebar-group bottom-group">
-            <NavLink to='/orders' className="sidebar-option">
+            <NavLink to='/bookingssummary' className="sidebar-option">
+                <img src={assets.order_icon} alt="" />
+                <p>Booking Summary</p>
+            </NavLink>
+            {/* <NavLink to='/orders' className="sidebar-option">
                 <img src={assets.order_icon} alt="" />
                 <p>Orders</p>
-            </NavLink>
+            </NavLink> */}
             <NavLink to='/acceptedorders' className="sidebar-option">
                 <img src={assets.order_icon} alt="" />
                 <p>Accepted Orders</p>

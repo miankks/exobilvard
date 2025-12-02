@@ -94,9 +94,13 @@ const Orders = ({url}) => {
     <div className='order add'>
       <h3>Beställnings sida</h3>
       <div className="order-list">
-        {filteredOrders.map((order, index) => {
+        {orders.map((order, index) => {
           const selected = selectedServiceDate[order._id];
           const orderedDate = formattedDate(order?.date);
+          // return (
+          // <div key={index}>
+          //   <OrderDateRender order={order} selected={selected}/>
+          // </div>
           return (
           <div className="order-item" key={index}>
             

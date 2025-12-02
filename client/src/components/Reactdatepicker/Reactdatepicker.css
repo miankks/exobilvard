@@ -15,7 +15,15 @@
     justify-content: center;  
     gap: 20px;  
 }
+
 .datepicker button {
     margin-top: 0px;
     background-color: lightblue;
+}
+
+@media (max-width: 900px) {
+    .datepicker {
+    width: 100%;
+    flex-direction: column;
+    }
 }
