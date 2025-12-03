@@ -34,6 +34,7 @@
 
 .comment-section {
     padding-top: 60px;
+    padding-bottom: 30px;
 }
 
 .comment-section p{
@@ -60,6 +61,9 @@
 
     transition: transform 0.25s, box-shadow 0.25s ease;
 }
+.comment-section a {
+    display: inline-block; /* prevent stretching */
+}
 
 /* Button hover */
 .comment-section button:hover {
@@ -75,6 +79,43 @@
     box-shadow:
         0 4px 10px rgba(0, 0, 0, 0.12);
 }
+.marquee-container {
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid #ddd;
+  background: #f0f0f0;
+  padding: 10px 20px;
+  position: relative;
+}
+
+.marquee {
+  display: flex;
+  flex-direction: row;
+  gap: 20px; /* space between cards */
+  animation: slideLeft 30s linear infinite; /* continuous animation */
+}
+
+.card {
+  background: linear-gradient(135deg, #6b73ff, #000dff);
+  color: white;
+  padding: 15px 25px;
+  border-radius: 12px;
+  min-width: 200px;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+  flex-shrink: 0;
+  text-align: center;
+}
+
+/* Keyframes: move the entire marquee left */
+@keyframes slideLeft {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
 
 
 @media (min-width: 1200px) {

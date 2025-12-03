@@ -4,13 +4,14 @@ import { StoreContext } from '../../context/StoreContext'
 // import CarItem from '../carItem/carItem';
 import CarItem from '../CarItem/CarItem'
 import { Link } from 'react-router-dom'
-import { useObjectEnabled } from '../../Customhooks/useObjectEnabled'
+// import { useObjectEnabled } from '../../Customhooks/useObjectEnabled'
 
 const CarDisplay = ({ category }) => {
-    const { car_list, cartItems } = useContext(StoreContext);
-    // const { isEmpty, isEnabled } = useObjectEnabled(cartItems);
-    // console.log(isEmpty);
-    
+    const { car_list, userComments, fetchAllComments } = useContext(StoreContext);
+  
+    useEffect(() => {
+      fetchAllComments();
+    }, [userComments])
   return ( 
     <div className='car-display' id='car-display'>
         <h2>Våra tjänster</h2>
@@ -28,11 +29,21 @@ const CarDisplay = ({ category }) => {
             </Link>
           </div>
         <div className='comment-section'>
-            <Link to={'/usercomments'}>
               <p>Skriv en kommentar till Exobilvårdscenter</p>
-              <button>till komment</button>
-            </Link>
-        </div> 
+              <Link to={'/usercomments'}>
+                <button>till komment</button>
+              </Link>
+        </div>
+        <div className="marquee-container">
+          <div className="marquee">
+              {userComments.map((comment, index) => (
+                  <div className="card" key={index}>
+                    <h4>{comment.name}</h4>
+                    <p>{comment.comments}</p>
+                  </div>
+                ))}
+          </div>
+        </div>
     </div>
   )
 }

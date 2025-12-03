@@ -11,6 +11,7 @@ const StoreContextProvider = (props) => {
         return saved ? JSON.parse(saved) : {};
     });
     const [car_list, setCarList] = useState([]);
+    const [userComments, setUserComments] = useState([]);
     
     const url = "http://localhost:3000";
     const [token, setToken] = useState("")
@@ -63,6 +64,11 @@ const StoreContextProvider = (props) => {
         // const response = await axios.post(url+"/api/cart/getcart", {}, {headers:{token}});
         setCartItems(response.data.cartData);
     }
+
+    const fetchAllComments = async () => {
+        const response = await axios.get(url+"/api/comment/getallcomments");
+        setUserComments(response.data.comments)
+    }
     
     // to keep the token available when page is refreshed
     useEffect(()=> {
@@ -81,10 +87,12 @@ const StoreContextProvider = (props) => {
         cartItems,
         url,
         token,
+        userComments,
         setToken,
         setCartItems,
         addToCart,
         removeFromCart,
+        fetchAllComments
     }
     
     return (

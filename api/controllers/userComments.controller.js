@@ -1,8 +1,6 @@
 import userCommentsModel from "../models/userComments.model.js";
 
 export const sendComments = async (req, res) => {
-    console.log(req.body);
-    
     try {
          // creating new comment
         const { name, email, comments } = req.body;
@@ -25,4 +23,15 @@ export const sendComments = async (req, res) => {
         res.json({success: false, message: "Add comment Error"})
         
     }
+}
+
+// all comments list
+export const getAllComments = async (req, res) => {
+        try {
+            const comments = await userCommentsModel.find({});
+            res.json({success: true, comments})
+        } catch (error) {
+            console.log(error);
+            res.json({success: false, message: "List car Error"})
+        }
 }
