@@ -12,7 +12,6 @@ import Reactdatepicker from '../Reactdatepicker/Reactdatepicker';
 import { FaCheck, FaTachometerAlt } from "react-icons/fa";
 import { formattedDate } from '../../customHooks/formattedDate';
 import { useParams } from "react-router-dom";
-import OrderDateRender from './OrderDateRender';
 
 
 const Orders = ({url}) => {

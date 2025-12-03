@@ -49,10 +49,10 @@ app.get("/", (req, res) => {
 
 // export default app
 
-app.listen(port, () => {
-    console.log(`Server started on http://localhost:${port}`);
+// app.listen(port, () => {
+//     console.log(`Server started on http://localhost:${port}`);
     
-})
-
+// })
+export default app;
 
 // retryWrites=true&w=majority&appName=Cluster0
