@@ -32,7 +32,12 @@ app.use(cors());
 // app.use(bodyParser.json())
 
 // DB connect
-connectDB();
+// connectDB();
+app.use(async (req, res, next) => {
+  await connectDB(); // ensures DB is connected before handling request
+  next();
+});
+
 
 // api endpoints
 app.use('/api/car', carRouter)
