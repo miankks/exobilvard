@@ -4,22 +4,33 @@ import axios from "axios";
 import {useNavigate } from "react-router-dom";
 import {toast} from 'react-toastify'
 import './UserComments.css'
+import { FaRegStar, FaStar } from "react-icons/fa";
 
 const UserComments = () => {
   const { url } = useContext(StoreContext);
   const [userComments, setUserComments] = useState({
     name: '',
     email: '',
-    comments: ''
+    comments: '',
+    rating: 0
   })
+  const stars = [1,2,3,4,5]
   const navigate = useNavigate()
 
   const handleChange = (e) => {
+    const {name, value} = e.target;
     setUserComments({
       ...userComments,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
   };
+
+  const handleRatingChange = (value) => {
+    setUserComments((prev) => ({
+      ...prev,
+      rating: value
+    }))
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -53,6 +64,25 @@ const UserComments = () => {
         value={userComments.comments}
         required
         onChange={handleChange}></textarea>
+        <label>Rating</label>
+        <div className="star-rating">
+          {
+            stars.map((star) => (
+              <span
+                key={star}
+                style={{
+                  color: star <= userComments.rating ? 'gold' : 'gray'
+                }}
+                onClick={() => handleRatingChange(star)}
+              >
+                 {star <= userComments.rating ? (
+                    <FaStar color="gold" /> // filled star
+                  ) : (
+                    <FaRegStar color="gray" /> // empty star
+                  )}
+              </span>
+            ))}
+        </div>
         <button type='submit'>Skicka</button>
       </form>
     </div>
