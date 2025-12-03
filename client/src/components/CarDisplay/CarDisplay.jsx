@@ -39,16 +39,17 @@ const CarDisplay = ({ category }) => {
             })}
         </div>
           <div className='comment-section'>
-            <Link to={'/cart'} >
-            <button>Proceed to cart</button>
+            <Link to='/cart' className='btn'>
+              Proceed to cart
             </Link>
           </div>
-        <div className='comment-section'>
-              <p>Skriv en kommentar till Exobilvårdscenter</p>
-              <Link to={'/usercomments'}>
-                <button>till komment</button>
-              </Link>
-        </div>
+
+          <div className='comment-section'>
+            <p>Skriv en kommentar till Exobilvårdscenter</p>
+            <Link to='/usercomments' className='btn'>
+              till komment
+            </Link>
+          </div>
         { userComments &&
           <div className="marquee-container">
             <div className="marquee">
@@ -56,7 +57,7 @@ const CarDisplay = ({ category }) => {
                     <div className="card" key={index}>
                       <h4>"{comment.name}"</h4>
                       <p>{comment.comments}</p>
-                      <div className="star-rating">
+                      <div className="stars">
                         {handleStars(comment.rating)}
                       </div>
                     </div>

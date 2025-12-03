@@ -146,7 +146,7 @@ const PlaceOrder = () => {
             ))}
       </div>
       </div>
-        <div className='comment-section'>
+        <div className='placeorder-comment-section'>
             <label htmlFor="userComment">Kommentar till Eobilvårdscenter</label>
            <textarea
                 name="userComment"
