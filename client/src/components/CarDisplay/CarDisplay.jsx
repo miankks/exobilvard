@@ -45,7 +45,7 @@ const CarDisplay = ({ category }) => {
           </div>
 
           <div className='comment-section'>
-            <p>Skriv en kommentar till Exobilvårdscenter</p>
+            <p>Lämna in en kommentar till Exobilvårdscenter</p>
             <Link to='/usercomments' className='btn'>
               till komment
             </Link>

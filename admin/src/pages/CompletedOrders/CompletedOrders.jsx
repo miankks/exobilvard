@@ -6,8 +6,6 @@ import { useNavigate } from 'react-router-dom';
 
 const CompletedOrders = ({url}) => {
   const [orders, setOrders] = useState([]);
-  const [selectedStatuses, setSelectedStatuses] = useState({});
-  const [confirmDeleteId, setConfirmDeleteId] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
 
