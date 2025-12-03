@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { assets } from '../../assets/assets'
 import axios from "axios";
 import { toast } from "react-toastify";
 import "./AdminSignup.css";
 
 const AdminSignup = ({ url }) => {
+  const [image, setImage] = useState(false);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -45,6 +47,11 @@ const AdminSignup = ({ url }) => {
         <h2 className="signup-title">Admin Sign Up</h2>
 
         <div className="input-group">
+                    <p>Upload Image</p>
+                    <label htmlFor="image">
+                      <img src={image? URL.createObjectURL(image): assets.upload_area} alt="" />
+                    </label>
+                    <input type="file" id='image' hidden required onChange={(e) => setImage(e.target.files[0])}/>
           <label>Name</label>
           <input
             type="text"

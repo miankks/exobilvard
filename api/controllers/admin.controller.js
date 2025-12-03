@@ -4,6 +4,8 @@ import jwt from "jsonwebtoken";
 
 // ADMIN SIGNUP
 export const registerAdmin = async (req, res) => {
+    let image_filename = `${req.file.filename}`
+
     try {
         const { name, email, password } = req.body;
 
@@ -12,7 +14,7 @@ export const registerAdmin = async (req, res) => {
             return res.json({ success: false, message: "Admin already exists" });
         }
 
-        const admin = await adminModel.create({ name, email, password });
+        const admin = await adminModel.create({ name, email, password, image_filename });
 
         res.json({
             success: true,

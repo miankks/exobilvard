@@ -27,21 +27,23 @@ app.use(express.json());
 // It adds middleware that converts URL-encoded request bodies into a usable JavaScript object stored in req.body
 app.use(express.urlencoded({ extended: true }));
 
+// configure cors
+// const corsOptions ={
+//     origin: process.env.FRONTEND_URL, // Allow all origins
+//     methods: ["GET", "POST", "PUT", "DELETE"], // ALlor methods
+//     allowedHeaders: ["Content-type", "Authorization"] // Allowed header
+// }
 // can get access to backend from any frontend to backend
 app.use(cors());
 // app.use(bodyParser.json())
 
 // DB connect
-// connectDB();
-app.use(async (req, res, next) => {
-  await connectDB(); // ensures DB is connected before handling request
-  next();
-});
-
+connectDB();
 
 // api endpoints
 app.use('/api/car', carRouter)
 app.use('/images', express.static('uploads'));
+app.use('/adminimage', express.static('uploads/admin'));
 app.use("/api/user", userRouter)
 app.use('/api/cart', cartRouter)
 app.use("/api/order", orderRouter)
@@ -54,10 +56,10 @@ app.get("/", (req, res) => {
 
 // export default app
 
-// app.listen(port, () => {
-//     console.log(`Server started on http://localhost:${port}`);
+app.listen(port, () => {
+    console.log(`Server started on http://localhost:${port}`);
     
-// })
-export default app;
+})
+
 
 // retryWrites=true&w=majority&appName=Cluster0
