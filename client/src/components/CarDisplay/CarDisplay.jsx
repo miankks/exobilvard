@@ -4,14 +4,29 @@ import { StoreContext } from '../../context/StoreContext'
 // import CarItem from '../carItem/carItem';
 import CarItem from '../CarItem/CarItem'
 import { Link } from 'react-router-dom'
+import { FaStar, FaRegStar  } from "react-icons/fa";
+
 // import { useObjectEnabled } from '../../Customhooks/useObjectEnabled'
 
 const CarDisplay = ({ category }) => {
     const { car_list, userComments, fetchAllComments } = useContext(StoreContext);
-  
+    const totalStars = 5;
+
+    const handleStars = (rating) => {
+  return Array.from({ length: totalStars }, (_, i) => {
+    const starNumber = i + 1;
+    return starNumber <= rating ? (
+      <FaStar key={i} color="gold" />
+        ) : (
+      <FaRegStar key={i} color="gray" />
+        );
+      });
+    };
+
     useEffect(() => {
       fetchAllComments();
     }, [userComments])
+
   return ( 
     <div className='car-display' id='car-display'>
         <h2>Våra tjänster</h2>
@@ -40,6 +55,8 @@ const CarDisplay = ({ category }) => {
                   <div className="card" key={index}>
                     <h4>{comment.name}</h4>
                     <p>{comment.comments}</p>
+                    {handleStars(comment.rating)}
+                    {}
                   </div>
                 ))}
           </div>

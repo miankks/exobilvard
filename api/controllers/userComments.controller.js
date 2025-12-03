@@ -3,11 +3,12 @@ import userCommentsModel from "../models/userComments.model.js";
 export const sendComments = async (req, res) => {
     try {
          // creating new comment
-        const { name, email, comments } = req.body;
+        const { name, email, comments, rating } = req.body;
         const newComment = new userCommentsModel({
             name,
             email,
-            comments
+            comments,
+            rating
         })        
         
         // save new comment in mongoDB

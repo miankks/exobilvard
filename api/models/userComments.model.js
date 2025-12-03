@@ -10,6 +10,9 @@ const commentsSchema = new mongoose.Schema({
     comments: {
         type: String,
         required: true
+    },
+    rating: {
+        type: Number
     }
 })
 
