@@ -54,9 +54,11 @@ const CarDisplay = ({ category }) => {
             <div className="marquee">
                 {userComments.map((comment, index) => (
                     <div className="card" key={index}>
-                      <h4>{comment.name}</h4>
+                      <h4>"{comment.name}"</h4>
                       <p>{comment.comments}</p>
-                      {handleStars(comment.rating)}
+                      <div className="star-rating">
+                        {handleStars(comment.rating)}
+                      </div>
                     </div>
                   ))}
             </div>

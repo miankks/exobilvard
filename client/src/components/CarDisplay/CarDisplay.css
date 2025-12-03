@@ -79,32 +79,72 @@
     box-shadow:
         0 4px 10px rgba(0, 0, 0, 0.12);
 }
+
 .marquee-container {
   width: 100%;
   overflow: hidden;
-  border: 1px solid #ddd;
-  background: #f0f0f0;
   padding: 10px 20px;
-  position: relative;
+  background: #f5f7fa;
+  border: 1px solid #ddd;
 }
 
 .marquee {
   display: flex;
-  flex-direction: row;
+  flex-wrap: nowrap;
   gap: 20px; /* space between cards */
-  animation: slideLeft 30s linear infinite; /* continuous animation */
+  animation: slideLeft 20s linear infinite; /* continuous animation */
+}
+
+.marquee:hover {
+  animation-play-state: paused;
 }
 
 .card {
-  background: linear-gradient(135deg, #6b73ff, #000dff);
-  color: white;
-  padding: 15px 25px;
-  border-radius: 12px;
-  min-width: 200px;
-  box-shadow: 0 8px 15px rgba(0,0,0,0.2);
   flex-shrink: 0;
-  text-align: center;
+  min-width: 180px;
+  max-width: 200px;
+  padding: 15px;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: left;
+  transition: all 0.3s ease;
+  overflow: hidden;          /* hide extra text */
+  max-height: 120px;          /* normal card height */
 }
+
+.card h4 {
+  margin: 0 0 5px 0;
+  font-size: 1rem;
+  color: #333333;
+  font-weight: 600;
+}
+
+.card p {
+  margin: 0;
+  font-size: 0.65rem;
+  color: #555555;
+  line-height: 1.3rem;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  max-height: 300px;           /* expand height on hover */
+}
+
+.stars {
+  display: flex;          /* horizontal row */
+  gap: 3px;               /* spacing between stars */
+  margin-top: 5px;        /* spacing from text */
+}
+
 
 /* Keyframes: move the entire marquee left */
 @keyframes slideLeft {
@@ -115,6 +155,7 @@
     transform: translateX(-100%);
   }
 }
+
 
 
 
