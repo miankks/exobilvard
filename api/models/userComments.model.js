@@ -7,7 +7,7 @@ const commentsSchema = new mongoose.Schema({
     email: {
         type: String,
     },
-    comment: {
+    comments: {
         type: String,
         required: true
     }
