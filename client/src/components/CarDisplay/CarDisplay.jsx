@@ -13,12 +13,12 @@ const CarDisplay = ({ category }) => {
     const totalStars = 5;
 
     const handleStars = (rating) => {
-  return Array.from({ length: totalStars }, (_, i) => {
-    const starNumber = i + 1;
-    return starNumber <= rating ? (
-      <FaStar key={i} color="gold" />
-        ) : (
-      <FaRegStar key={i} color="gray" />
+      return Array.from({ length: totalStars }, (_, i) => {
+        const starNumber = i + 1;
+        return starNumber <= rating ? (
+          <FaStar key={i} color="gold" />
+          ) : (
+          <FaRegStar key={i} color="gray" />
         );
       });
     };
@@ -49,18 +49,19 @@ const CarDisplay = ({ category }) => {
                 <button>till komment</button>
               </Link>
         </div>
-        <div className="marquee-container">
-          <div className="marquee">
-              {userComments.map((comment, index) => (
-                  <div className="card" key={index}>
-                    <h4>{comment.name}</h4>
-                    <p>{comment.comments}</p>
-                    {handleStars(comment.rating)}
-                    {}
-                  </div>
-                ))}
+        { userComments &&
+          <div className="marquee-container">
+            <div className="marquee">
+                {userComments.map((comment, index) => (
+                    <div className="card" key={index}>
+                      <h4>{comment.name}</h4>
+                      <p>{comment.comments}</p>
+                      {handleStars(comment.rating)}
+                    </div>
+                  ))}
+            </div>
           </div>
-        </div>
+        }
     </div>
   )
 }
