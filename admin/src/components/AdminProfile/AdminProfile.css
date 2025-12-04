@@ -2,24 +2,28 @@
 .profile-page {
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(135deg, #55556a, #5a4b87); /* Optional gradient background */
+  background: linear-gradient(135deg, #55556a, #5a4b87);
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: Arial, sans-serif;
 }
 
 /* Profile card */
 .profile-container {
   width: 100%;
-  max-width: 500px; /* Limits the card width on large screens */
+  max-width: 500px;
   background-color: #fff;
   border-radius: 15px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   padding: 40px 30px;
   text-align: center;
-  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+/* Profile Picture */
 .profile-picture {
   width: 140px;
   height: 140px;
@@ -29,6 +33,7 @@
   margin-bottom: 20px;
 }
 
+/* Name & Email */
 .profile-name {
   font-size: 28px;
   font-weight: bold;
@@ -43,6 +48,7 @@
   font-size: 16px;
 }
 
+/* Buttons */
 .profile-button {
   padding: 12px 30px;
   background-color: #6366f1;
@@ -56,6 +62,53 @@
 
 .profile-button:hover {
   background-color: #4f46e5;
+}
+
+.profile-button.cancel {
+  background-color: #aaa;
+}
+
+.profile-button.cancel:hover {
+  background-color: #888;
+}
+
+/* Form styling */
+.profile-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* spacing between fields */
+  margin-top: 10px;
+  text-align: left;
+}
+
+.profile-form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+  color: #333;
+}
+
+.profile-form input {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+.profile-form input:focus {
+  border-color: #6366f1;
+  outline: none;
+}
+
+/* Form buttons layout */
+.profile-form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
 }
 
 /* Responsive tweaks */
