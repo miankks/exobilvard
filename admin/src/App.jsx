@@ -16,33 +16,36 @@ import BookingsSummary from './pages/BookingsSummary/BookingsSummary';
 import CompletedOrdersDetails from './components/completedOrdersDetails/CompletedOrdersDetails';
 import RejectedOrdersDetails from './components/RejectedOrdersDetails/RejectedOrdersDetails';
 import AcceptedOrdersDetails from './components/AcceptedOrdersDetails/AcceptedOrdersDetails';
+import AdminProfile from './components/AdminProfile/AdminProfile';
+import { StoreProvider } from "./context/StoreContext";
 
 const App = () => {
   const url = 'http://localhost:3000';
-  const token = localStorage.getItem("token");
 
   return (
     <div>
-      <ToastContainer />
-      <Navbar url={url}/>
-      <hr />
-      <div className="app-content">
-        <Sidebar />
-        <Routes>
-          <Route path='/addcar' element={<Add url={url}/>} />
-          <Route path='/listcar' element={<List url={url}/>} /> 
-          <Route path='/orders/' element={<BookingsSummary url={url}/>} /> 
-          <Route path='/orders/:id' element={<Orders url={url}/>} /> 
-          <Route path='/completedorders' element={<CompletedOrders url={url}/>} /> 
-          <Route path='/completedorders/:id' element={<CompletedOrdersDetails url={url}/>} /> 
-          <Route path='/acceptedorders' element={<AcceptedOrders url={url}/>} /> 
-          <Route path='/acceptedorders/:id' element={<AcceptedOrdersDetails url={url}/>} /> 
-          <Route path='/rejectedorders' element={<RejectedOrders url={url}/>} /> 
-          <Route path='/rejectedorders/:id' element={<RejectedOrdersDetails url={url}/>} /> 
-          <Route path='/signup' element={<AdminSignup url={url}/>} /> 
-          <Route path='/login' element={<AdminLogin url={url}/>} /> 
-        </Routes >
-      </div>
+      <StoreProvider url={url}>
+        <ToastContainer />
+        <Navbar url={url}/>
+        <div className="app-content">
+          <Sidebar />
+          <Routes>
+            <Route path='/addcar' element={<Add url={url}/>} />
+            <Route path='/adminprofile' element={<AdminProfile url={url}/>} />
+            <Route path='/listcar' element={<List url={url}/>} /> 
+            <Route path='/orders/' element={<BookingsSummary url={url}/>} /> 
+            <Route path='/orders/:id' element={<Orders url={url}/>} /> 
+            <Route path='/completedorders' element={<CompletedOrders url={url}/>} /> 
+            <Route path='/completedorders/:id' element={<CompletedOrdersDetails url={url}/>} /> 
+            <Route path='/acceptedorders' element={<AcceptedOrders url={url}/>} /> 
+            <Route path='/acceptedorders/:id' element={<AcceptedOrdersDetails url={url}/>} /> 
+            <Route path='/rejectedorders' element={<RejectedOrders url={url}/>} /> 
+            <Route path='/rejectedorders/:id' element={<RejectedOrdersDetails url={url}/>} /> 
+            <Route path='/signup' element={<AdminSignup url={url}/>} /> 
+            <Route path='/login' element={<AdminLogin url={url}/>} /> 
+          </Routes >
+          </div>
+        </StoreProvider>
     </div>
   )
 }

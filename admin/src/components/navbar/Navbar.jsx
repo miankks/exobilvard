@@ -49,8 +49,8 @@ const Navbar = ({url}) => {
           {token && <li><button onClick={handleLogout} className="logout-btn">Logout</button></li>}
         </ul>
             <span>{token && admin &&(admin.image ?
-              <img src={`${url}/adminimage/${admin.image}`} alt="" className='profile'/>
-            : <img src={assets.profile_icon} alt="" className='profile'/>)}
+              <Link to={'/adminprofile'}><img src={`${url}/adminimage/${admin.image}`} alt="" className='profile'/></Link>
+            : <Link to={'/adminprofile'}><img src={assets.profile_icon} alt="" className='profile'/></Link>)}
             </span>
     </div>
   )

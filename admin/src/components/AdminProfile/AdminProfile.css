@@ -1,0 +1,75 @@
+/* Full page layout */
+.profile-page {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #55556a, #5a4b87); /* Optional gradient background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Profile card */
+.profile-container {
+  width: 100%;
+  max-width: 500px; /* Limits the card width on large screens */
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  padding: 40px 30px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.profile-picture {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid #6366f1;
+  margin-bottom: 20px;
+}
+
+.profile-name {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  margin: 10px 0;
+}
+
+.profile-title {
+  color: #6366f1;
+  font-weight: 500;
+  margin-bottom: 25px;
+  font-size: 16px;
+}
+
+.profile-button {
+  padding: 12px 30px;
+  background-color: #6366f1;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.profile-button:hover {
+  background-color: #4f46e5;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .profile-container {
+    padding: 30px 20px;
+  }
+
+  .profile-picture {
+    width: 120px;
+    height: 120px;
+  }
+
+  .profile-name {
+    font-size: 24px;
+  }
+}

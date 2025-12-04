@@ -2,9 +2,11 @@ import { useState } from "react";
 import axios from "axios";
 import "./AdminLogin.css";
 import {useNavigate } from "react-router-dom";
+import { useStore } from "../../context/StoreContext";
 
 
 const AdminLogin = ({url}) => {
+  const { login } = useStore(); // get login function from context
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
@@ -20,7 +22,8 @@ const AdminLogin = ({url}) => {
       const res = await axios.post(url +"/api/admin/login", formData);
 
       setMessage("Login Successful.");
-      localStorage.setItem("token", res.data.token);
+      // Use context login function
+      login(res.data.token);
 
       setFormData({ email: "", password: "" });
       navigate('/orders')

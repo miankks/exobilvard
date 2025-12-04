@@ -1,40 +1,53 @@
-import axios from 'axios';
-import { createContext, useEffect, useState } from 'react';
-import { toast } from 'react-toastify'
+import { createContext, useContext, useState, useEffect } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
 
+const StoreContext = createContext();
 
-export const StoreContext = createContext(null);
+export const StoreProvider = ({ children, url }) => {
+  const [token, setToken] = useState(localStorage.getItem("token") || null);
+  const [admin, setAdmin] = useState(null);
 
-const StoreContextProvider = (props) => {
-    
-    const [handleOrders, setHandleOrders] = useState({});
-    // const deleteOrder = (orderId) => {
-    // }
+  // Fetch admin if token exists
+  const fetchAdmin = async () => {
+    if (!token) return;
 
-    const statusUpdateHandler = async (status, orderId, url) => {
-        const response = await axios.post(url+"/api/order/status", {
-      orderId,
-      status
-    })
-    
-    if (response.data.success) {
-      toast.success(response.data.message)
-    //   await fetchAllOrders();
-    } else {
-      toast.error(response.data.message)
+    try {
+      const response = await axios.get(`${url}/api/admin/getadmin`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (response.data.success) {
+        setAdmin(response.data.data);
+      } else {
+        toast.error("Failed to fetch admin");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Error fetching admin");
     }
-    }
-    const contextValue = {
-        handleOrders,
-        statusUpdateHandler
-    }
-     return (
-            <StoreContext.Provider value={contextValue}>
-                {props.children}
-            </StoreContext.Provider>
-        )
-        
-}
+  };
 
+  useEffect(() => {
+    fetchAdmin();
+  }, [token]); // refetch if token changes
 
-export default StoreContextProvider;
+  const login = (token) => {
+    localStorage.setItem("token", token);
+    setToken(token);
+    fetchAdmin(); // fetch admin after login/signup
+  };
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    setToken(null);
+    setAdmin(null);
+  };
+  
+  return (
+    <StoreContext.Provider value={{ token, admin, login, logout, url }}>
+      {children}
+    </StoreContext.Provider>
+  );
+};
+
+export const useStore = () => useContext(StoreContext);

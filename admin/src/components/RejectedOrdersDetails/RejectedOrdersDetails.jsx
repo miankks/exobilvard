@@ -3,7 +3,6 @@ import './RejectedOrdersDetails.css'
 import axios from 'axios';
 import { toast } from 'react-toastify'
 import { assets } from '../../assets/assets';
-import { StoreContext } from "../../context/StoreContext";
 import { MdEmail } from "react-icons/md";
 import { BsTelephoneForwardFill } from "react-icons/bs";
 import { FaCarAlt } from "react-icons/fa";
@@ -11,7 +10,6 @@ import { CiCalendarDate } from "react-icons/ci";
 import { formattedDate } from '../../customHooks/formattedDate';
 
 const RejectedOrdersDetails = ({url}) => {
-  const { statusUpdateHandler } = useContext(StoreContext);
   const [orders, setOrders] = useState([]);
   const [selectedStatuses, setSelectedStatuses] = useState({});
   const [confirmDeleteId, setConfirmDeleteId] = useState(null);
