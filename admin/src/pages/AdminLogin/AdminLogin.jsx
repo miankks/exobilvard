@@ -15,20 +15,15 @@ const AdminLogin = ({url}) => {
 
   const [message, setMessage] = useState("");
 
-  async function handleSubmit(e) {
+   async function handleSubmit(e) {
     e.preventDefault();
 
-    try {
-      const res = await axios.post(url +"/api/admin/login", formData);
+    const result = await login(formData);   // <-- store handles API + token
 
-      setMessage("Login Successful.");
-      // Use context login function
-      login(res.data.token);
-
-      setFormData({ email: "", password: "" });
-      navigate('/orders')
-    } catch (err) {
-      setMessage(err.response?.data?.message || "Login failed.");
+    if (result.success) {
+      navigate("/orders");
+    } else {
+      setMessage(result.message);
     }
   }
 

@@ -4,8 +4,10 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "./AdminSignup.css";
 import { useNavigate } from "react-router-dom";
+import { useStore } from "../../context/StoreContext";
 
 const AdminSignup = ({ url }) => {
+  const { signup } = useStore();
   const navigate = useNavigate();
   const [image, setImage] = useState(false);
   const [form, setForm] = useState({
@@ -39,21 +41,21 @@ const AdminSignup = ({ url }) => {
     }
 
     try {
-      const res = await axios.post(`${url}/api/admin/register`, formData, {
-         headers: {
-        "Content-Type": "multipart/form-data",
-        },
-      });
+      // ✅ call the store signup function
+      const result = await signup(formData);
+      // const res = await axios.post(`${url}/api/admin/register`, formData, {
+      //    headers: {
+      //   "Content-Type": "multipart/form-data",
+      //   },
+      // });
 
-      if (res.data.success) {
+      if (result.success) {
         toast.success("Admin Registered Successfully!");
-        // Save token to localStorage
-        localStorage.setItem("token", res.data.token);
         setForm({ name: "", email: "", password: "", image: "" });
         setImage(false);
         navigate('/orders');
       } else {
-        toast.error(res.data.message);
+        toast.error(result.message);
       }
     } catch (error) {
       toast.error("Signup failed");

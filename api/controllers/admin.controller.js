@@ -30,6 +30,7 @@ export const registerAdmin = async (req, res) => {
         res.json({
             success: true,
             message: "Admin registered successfully",
+            token,
             adminId: admin._id
         });
 

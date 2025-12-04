@@ -8,33 +8,72 @@ export const StoreProvider = ({ children, url }) => {
   const [token, setToken] = useState(localStorage.getItem("token") || null);
   const [admin, setAdmin] = useState(null);
 
-  // Fetch admin if token exists
-  const fetchAdmin = async () => {
-    if (!token) return;
+  // Fetch admin
+ // LOGIN + fetch admin combined
+const login = async (formData) => {
+  try {
+    // 1️⃣ Call login API
+    const response = await axios.post(`${url}/api/admin/login`, formData);
 
+    if (!response.data.success) {
+      return { success: false, message: response.data.message };
+    }
+
+    const newToken = response.data.token;
+
+    // 2️⃣ Save token
+    localStorage.setItem("token", newToken);
+    setToken(newToken);
+
+    // 3️⃣ Fetch admin immediately after login
     try {
-      const response = await axios.get(`${url}/api/admin/getadmin`, {
-        headers: { Authorization: `Bearer ${token}` },
+      const adminResponse = await axios.get(`${url}/api/admin/getadmin`, {
+        headers: { Authorization: `Bearer ${newToken}` },
       });
-      if (response.data.success) {
-        setAdmin(response.data.data);
+
+      if (adminResponse.data.success) {
+        setAdmin(adminResponse.data.data);
       } else {
         toast.error("Failed to fetch admin");
       }
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.log(err);
       toast.error("Error fetching admin");
     }
-  };
 
-  useEffect(() => {
-    fetchAdmin();
-  }, [token]); // refetch if token changes
+    return { success: true };
+  } catch (error) {
+    return {
+      success: false,
+      message: error.response?.data?.message || "Login failed",
+    };
+  }
+};
 
-  const login = (token) => {
-    localStorage.setItem("token", token);
-    setToken(token);
-    fetchAdmin(); // fetch admin after login/signup
+  // SIGNUP
+  const signup = async (formData) => {
+    try {
+      const response = await axios.post(`${url}/api/admin/register`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+
+      if (response.data.success) {
+        // Backend does NOT return token → we MUST request login manually
+        const loginResult = await login({
+          email: formData.get("email"),
+          password: formData.get("password"),
+        });
+
+        return loginResult; // returns {success:true}
+      }
+
+      return { success: false, message: response.data.message };
+    } catch (error) {
+      return {
+        success: false,
+        message: error.response?.data?.message || "Signup failed",
+      };
+    }
   };
 
   const logout = () => {
@@ -42,9 +81,11 @@ export const StoreProvider = ({ children, url }) => {
     setToken(null);
     setAdmin(null);
   };
-  
+
   return (
-    <StoreContext.Provider value={{ token, admin, login, logout, url }}>
+    <StoreContext.Provider
+      value={{ token, admin, login, signup, logout, url }}
+    >
       {children}
     </StoreContext.Provider>
   );

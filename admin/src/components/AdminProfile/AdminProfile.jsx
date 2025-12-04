@@ -27,7 +27,7 @@ const AdminProfile = () => {
                 <p className="profile-title">{admin.email}</p>
 
                 {/* Action Button */}
-                <button className="profile-button">Contact Me</button>
+                <button className="profile-button">Edit</button>
             </div>
         </div>
     );
