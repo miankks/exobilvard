@@ -43,12 +43,12 @@ connectDB();
 // api endpoints
 app.use('/api/car', carRouter)
 app.use('/images', express.static('uploads'));
-app.use('/adminimage', express.static('uploads/admin'));
+app.use('/adminimage', express.static('uploads/adminimage'));
+app.use("/api/admin", adminRouter)
 app.use("/api/user", userRouter)
 app.use('/api/cart', cartRouter)
 app.use("/api/order", orderRouter)
 app.use("/api/sendemail",bodyParser.json(), emailRouter)
-app.use("/api/admin", adminRouter)
 app.use("/api/comment", commentsRouter)
 app.get("/", (req, res) => {
     res.send("API working")

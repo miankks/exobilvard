@@ -28,8 +28,11 @@ const BookingsSummary = ({url}) => {
   }
 
   useEffect(() => {
+  const token = localStorage.getItem("token");
+  if (token) {
     fetchAllOrders();
-  },[])
+  }
+}, [])
 
   return (
     <div className='order booking-container'>

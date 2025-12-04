@@ -1,28 +1,57 @@
 import './Navbar.css'
 import { assets } from '../../assets/assets'
 import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { toast} from 'react-toastify'
+import axios from 'axios';
 
-const Navbar = () => {
+
+const Navbar = ({url}) => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token")
-
+  const [admin, setAdmin] = useState(null);
+  
    const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/login"); // redirect to login after logout
   };
 
+    const fetchAdmin = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.get(`${url}/api/admin/getadmin`,{
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+      
+      if (response.data.success) {
+        setAdmin(response.data.data)
+      } else {
+        toast.error('Admin Error')
+      }
+    } catch (error) {
+      toast.error("Error fetching admin");
+    }
+  }
+  useEffect(() => {
+     if(token) fetchAdmin();
+    }, [token])
   return (
     <div className='navbar'>
         <img src={assets.logo} alt="" className='logo'/>
          <ul className="nav-links">
-          <li><Link to="/orders">Home</Link></li>
+          <li><Link to="/">Home</Link></li>
           {/* Show Signup & Login only if NOT logged in */}
           {!token &&<li><Link to="/signup">Sign Up</Link></li>}
           {!token && <li><Link to="/login">Login</Link></li>}
           {/* Show Logout if logged in */}
           {token && <li><button onClick={handleLogout} className="logout-btn">Logout</button></li>}
         </ul>
-        <img src={assets.profile_image} alt="" className='profile'/>
+            <span>{token && admin &&(admin.image ?
+              <img src={`${url}/adminimage/${admin.image}`} alt="" className='profile'/>
+            : <img src={assets.profile_icon} alt="" className='profile'/>)}
+            </span>
     </div>
   )
 }

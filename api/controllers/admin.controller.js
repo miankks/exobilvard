@@ -1,20 +1,31 @@
 import adminModel from "../models/admin.model.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import fs from 'fs';
 
 // ADMIN SIGNUP
 export const registerAdmin = async (req, res) => {
-    let image_filename = `${req.file.filename}`
-
     try {
         const { name, email, password } = req.body;
-
+        
         const existed = await adminModel.findOne({ email });
         if (existed) {
             return res.json({ success: false, message: "Admin already exists" });
         }
+        const image_filename = req.file ? req.file.filename : null;
 
-        const admin = await adminModel.create({ name, email, password, image_filename });
+        const admin = await adminModel.create({ 
+            name,
+            email,
+            password,
+            image: image_filename });
+
+            // Generate token
+        const token = jwt.sign(
+            { id: admin._id, role: "admin" },
+            process.env.JWT_SECRET,
+            { expiresIn: "1d" }
+        );
 
         res.json({
             success: true,
@@ -56,5 +67,20 @@ export const loginAdmin = async (req, res) => {
 
     } catch (error) {
         res.status(500).json({ success: false, message: error.message });
+    }
+};
+
+// admin list
+
+export const getAdmin = async (req,res) => {
+    try {
+        const admin = await adminModel.findById(req.admin.id); // use req.admin
+        if (!admin) {
+            return res.status(404).json({ success: false, message: "Admin not found" });
+        }
+        res.json({ success: true, data: admin });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ success: false, message: "Admin fetch error" });
     }
 };

@@ -24,7 +24,7 @@ const App = () => {
   return (
     <div>
       <ToastContainer />
-      <Navbar />
+      <Navbar url={url}/>
       <hr />
       <div className="app-content">
         <Sidebar />
