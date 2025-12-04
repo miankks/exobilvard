@@ -1,31 +1,24 @@
 import { useState } from "react";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 import "./AdminLogin.css";
-import {useNavigate } from "react-router-dom";
-import { useStore } from "../../context/StoreContext";
 
-
-const AdminLogin = ({url}) => {
-  const { login } = useStore(); // get login function from context
+const AdminLogin = () => {
+  const { login } = useAuth();
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
-
+  const [formData, setFormData] = useState({ email: "", password: "" });
   const [message, setMessage] = useState("");
 
-   async function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const result = await login(formData);   // <-- store handles API + token
+    const result = await login(formData);
 
     if (result.success) {
       navigate("/orders");
     } else {
       setMessage(result.message);
     }
-  }
+  };
 
   return (
     <div className="signin-container">
@@ -49,11 +42,10 @@ const AdminLogin = ({url}) => {
         />
 
         <button type="submit">Sign In</button>
-
         {message && <p className="message">{message}</p>}
       </form>
     </div>
   );
-}
+};
 
 export default AdminLogin;
