@@ -19,7 +19,12 @@ dotenv.config();
 
 // app config
 const app = express();
-const port = 3000;
+const port = process.env.RENDER_EXTERNAL_URL || 3000;
+
+// Determine base URL
+const isProduction = process.env.NODE_ENV === "production";
+
+const BASE_URL = isProduction? process.env.RENDER_EXTERNAL_URL : `http://localhost:${port}`
 
 // middleware, when request comes from frontend that will parse through json
 app.use(express.json());
@@ -27,15 +32,8 @@ app.use(express.json());
 // It adds middleware that converts URL-encoded request bodies into a usable JavaScript object stored in req.body
 app.use(express.urlencoded({ extended: true }));
 
-// configure cors
-// const corsOptions ={
-//     origin: process.env.FRONTEND_URL, // Allow all origins
-//     methods: ["GET", "POST", "PUT", "DELETE"], // ALlor methods
-//     allowedHeaders: ["Content-type", "Authorization"] // Allowed header
-// }
 // can get access to backend from any frontend to backend
 app.use(cors());
-// app.use(bodyParser.json())
 
 // DB connect
 connectDB();
@@ -56,10 +54,10 @@ app.get("/", (req, res) => {
 
 // export default app
 
+app.get("/", (req, res) => {
+    res.send(`server is running at: ${BASE_URL}`)
+})
 app.listen(port, () => {
-    console.log(`Server started on http://localhost:${port}`);
-    
+    console.log(`Server started on: ${BASE_URL}`);
 })
 
-
-// retryWrites=true&w=majority&appName=Cluster0

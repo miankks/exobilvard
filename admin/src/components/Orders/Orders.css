@@ -148,3 +148,18 @@
         width: 40px;
     }
 }
+
+@media (max-width: 700px) {
+  .order-item {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .order-item img {
+    width: 50px;
+  }
+
+  .order-item select {
+    width: 100%;
+  }
+}
