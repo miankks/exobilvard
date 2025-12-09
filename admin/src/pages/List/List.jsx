@@ -30,7 +30,12 @@ const List = ({url}) => {
   }, [])
 
   const removeCar = async (carId) => {
-    const response = await axios.post(`${url}/api/car/removecar`, {id: carId})
+    const token = localStorage.getItem("token");
+    const response = await axios.post(`${url}/api/car/removecar`, {id: carId}, {
+       headers: {
+          Authorization: `Bearer ${token}`
+        }
+    })
     await fetchList();
     response.data.success ? toast.success(response.data.message) : toast.error('Error')
   }
