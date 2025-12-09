@@ -87,3 +87,12 @@
 .navbar .profile:hover {
   transform: scale(1.1);
 }
+
+@media (max-width: 700px) {
+  .nav-links{
+      gap: 10px;
+  }  
+  .navbar {
+    padding: 0 10px;
+}
+}

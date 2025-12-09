@@ -27,7 +27,7 @@
 }
 
 /* Make last div stretch across whole grid */
-.order-description {
+.booking-summary-description {
   margin-top: 20px;
   display: flex;
   flex-direction: column;
@@ -49,14 +49,14 @@
 }
 
 /* Hover effect */
-.order-description:hover {
+.booking-summary-description:hover {
   transform: translateY(-4px);
   box-shadow: 
       0 10px 20px rgba(0, 0, 0, 0.12),
       0 4px 6px rgba(0, 0, 0, 0.08);
 }
 
-.order-description button {
+.booking-summary-description button {
   align-self: flex-end;   /* <-- ONLY button moves right */
   background: #4a90e2;
   color: white;
@@ -68,7 +68,7 @@
   border-radius: 6px;
 }
 
-.email-row {
+.booking-summary-email-row {
   display: flex;
   align-items: center;
   gap: 6px; /* space between icon and text */
@@ -76,16 +76,16 @@
 }
 
 @media (max-width: 1000px) {
-    .order-item{
+    .booking-summary-item{
         font-size: 12px;
         grid-template-columns: 0.5fr 2fr 1fr 1fr;
         padding: 15px 8px;
     }
-    .order-item select{
+    .booking-summary-item select{
         padding: 5px;
         font-size: 12px;
     }
-    .order-item img{
+    .booking-summary-item img{
         width: 40px;
     }
 }

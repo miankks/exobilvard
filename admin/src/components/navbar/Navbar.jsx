@@ -48,7 +48,7 @@ const Navbar = ({url}) => {
           {/* Show Logout if logged in */}
           {token && <li><button onClick={handleLogout} className="logout-btn">Logout</button></li>}
         </ul>
-            <span>{token && admin &&(admin.image ?
+            <span className='profile-img'>{token && admin &&(admin.image ?
               <Link to={'/adminprofile'}><img src={`${url}/adminimage/${admin.image}`} alt="" className='profile'/></Link>
             : <Link to={'/adminprofile'}><img src={assets.profile_icon} alt="" className='profile'/></Link>)}
             </span>
