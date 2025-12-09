@@ -24,7 +24,7 @@ const port = process.env.PORT || 3000;
 // Determine base URL
 const isProduction = process.env.NODE_ENV === "production";
 
-const BASE_URL = isProduction? process.env.RENDER_EXTERNAL_URL : `http://localhost:${port}`
+const BASE_URL = isProduction? process.env.RENDER_EXTERNAL_URL || `https://exobilvard-1.onrender.com` : `http://localhost:${port}`
 
 // middleware, when request comes from frontend that will parse through json
 app.use(express.json());
