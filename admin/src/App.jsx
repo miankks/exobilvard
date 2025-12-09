@@ -25,6 +25,12 @@ import { AdminProvider } from './context/AdminContext';
 const App = () => {
   const url = 'http://localhost:3000';
 
+  const API_URL = import.meta.env.VITE_API_URL;
+  fetch(`${API_URL}/api/comment/getallcomments`)
+      .then(res => res.json())
+      .then(console.log("success")
+      )
+
   return (
     <div>
       <AuthProvider url={url}>
