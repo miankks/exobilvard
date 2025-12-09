@@ -17,7 +17,7 @@ const storage = multer.diskStorage({
 const upload = multer({storage:storage})
 
 carRouter.post('/addcar',upload.single("image"),protectAdmin, addCar);
-carRouter.get("/listcar", protectAdmin,listCar)
+carRouter.get("/listcar",listCar)
 carRouter.post("/removecar", protectAdmin,removeCar)
 
 export default carRouter;
