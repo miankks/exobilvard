@@ -9,7 +9,3 @@ export default defineConfig({
     historyApiFallback: true
   }
 })
-
-// resolve: {
-//     mainFields: [],
-//   },
