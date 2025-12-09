@@ -67,6 +67,6 @@ app.get("/", (req, res) => {
     res.send(`server is running at: ${BASE_URL}`)
 })
 app.listen(port, () => {
-    console.log(`Server started on: ${PORT}`);
+    console.log(`Server started on: ${port}`);
 })
 
