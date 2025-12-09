@@ -19,7 +19,7 @@ dotenv.config();
 
 // app config
 const app = express();
-const port = process.env.RENDER_EXTERNAL_URL || 3000;
+const port = process.env.PORT || 3000;
 
 // Determine base URL
 const isProduction = process.env.NODE_ENV === "production";
@@ -67,6 +67,6 @@ app.get("/", (req, res) => {
     res.send(`server is running at: ${BASE_URL}`)
 })
 app.listen(port, () => {
-    console.log(`Server started on: ${BASE_URL}`);
+    console.log(`Server started on: ${PORT}`);
 })
 
