@@ -13,8 +13,8 @@ const StoreContextProvider = (props) => {
     const [car_list, setCarList] = useState([]);
     const [userComments, setUserComments] = useState([]);
     
-    const url = import.meta.env.VITE_API_URL;
-    
+    const url = import.meta.env.VITE_API_URL || "http://localhost:3000";
+
     const [token, setToken] = useState("")
 
     const addToCart = (itemId) => {
