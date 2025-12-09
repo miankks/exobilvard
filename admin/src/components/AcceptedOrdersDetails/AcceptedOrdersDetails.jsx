@@ -122,7 +122,8 @@ const AcceptedOrdersDetails = ({url}) => {
               Uppdatera
               </button>
               <div className="order-description">
-                <p className="order-item-regnummer">User comments: {order.address.userComment || 'No comment provided'}</p>
+                <p className="order-item-regnummer">User comments:</p>
+                <p>{order.address.userComment || 'No comment provided'}</p>
               </div>
                <div className="order-description">
               <p>Comments for client</p>

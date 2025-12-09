@@ -13,7 +13,8 @@ const StoreContextProvider = (props) => {
     const [car_list, setCarList] = useState([]);
     const [userComments, setUserComments] = useState([]);
     
-    const url = import.meta.env.VITE_API_URL;;
+    const url = import.meta.env.VITE_API_URL;
+    
     const [token, setToken] = useState("")
 
     const addToCart = (itemId) => {
@@ -103,44 +104,3 @@ const StoreContextProvider = (props) => {
 }
 
 export default StoreContextProvider;
-
-// getTotalCartAmount
-// const getTotalCartAmount = () => {
-//     let totalAMount = 0;
-//     for (const item in cartItems) {
-//         if (cartItems[item] > 0) {
-//             // check if item ID is matching with item, so item is available in cart
-//             let itemInfo = car_list.find((product) => product._id === item);
-//             totalAMount += itemInfo.price * cartItems[item];
-//         }
-//     }
-//     return totalAMount;
-// }
-
-
-    // const addToCart =  (itemId) => {
-    //     // if user add item first time in the cart, this statement will be executed, key ID is itemId
-    //     // else if any item is already available and quantity is one, else statement will increase that
-    //     if (!cartItems[itemId]) {
-    //         setCartItems((prev => ({ ...prev, [itemId]: 1 })))
-    //     } else {
-    //         setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }))
-    //     }
-
-    //     // await axios.post(url+ "/api/cart/addcart", {itemId})
-    //     // if (token) {
-    //         // await axios.post(url+ "/api/cart/addcart", {itemId}, {headers:{token}})
-    //     // }
-    // }
-
-      // const removeFromCart = (itemId) => {
-    //     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }))
-    //     // const res = await axios.post(url+ "/api/cart/removecar", {itemId})
-    //     console.log(cartItems);
-        
-    //     // if (token) {
-    //     //     await axios.post(url+ "/api/cart/removecar", {itemId}, {headers:{token}})
-    //     // }
-    // }
-
-    
