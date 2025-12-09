@@ -36,8 +36,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors(
     {
     origin: [
-        "https://exobilvard-1.onrender.com",
-        "http://localhost:5000"
+        "http://localhost:5000",
+        "https://exobilvard-mje6-git-main-bilal-jans-projects.vercel.app",
     ],
     credentials: true
 }

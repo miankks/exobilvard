@@ -26,33 +26,33 @@ const App = () => {
   const url = 'http://localhost:3000';
 
   const API_URL = import.meta.env.VITE_API_URL;
-  fetch(`${API_URL}/api/comment/getallcomments`)
-      .then(res => res.json())
-      .then(console.log("success")
-      )
+  // fetch(`${API_URL}/api/comment/getallcomments`)
+  //     .then(res => res.json())
+  //     .then(console.log("success")
+  //     )
 
   return (
     <div>
-      <AuthProvider url={url}>
-        <AdminProvider url={url}>
+      <AuthProvider url={API_URL}>
+        <AdminProvider url={API_URL}>
           <ToastContainer />
-          <Navbar url={url}/>
+          <Navbar url={API_URL}/>
           <div className="app-content">
             <Sidebar />
             <Routes>
-              <Route path='/addcar' element={<Add url={url}/>} />
-              <Route path='/adminprofile' element={<AdminProfile url={url}/>} />
-              <Route path='/listcar' element={<List url={url}/>} /> 
-              <Route path='/orders/' element={<BookingsSummary url={url}/>} /> 
-              <Route path='/orders/:id' element={<Orders url={url}/>} /> 
-              <Route path='/completedorders' element={<CompletedOrders url={url}/>} /> 
-              <Route path='/completedorders/:id' element={<CompletedOrdersDetails url={url}/>} /> 
-              <Route path='/acceptedorders' element={<AcceptedOrders url={url}/>} /> 
-              <Route path='/acceptedorders/:id' element={<AcceptedOrdersDetails url={url}/>} /> 
-              <Route path='/rejectedorders' element={<RejectedOrders url={url}/>} /> 
-              <Route path='/rejectedorders/:id' element={<RejectedOrdersDetails url={url}/>} /> 
-              <Route path='/signup' element={<AdminSignup url={url}/>} /> 
-              <Route path='/login' element={<AdminLogin url={url}/>} /> 
+              <Route path='/addcar' element={<Add url={API_URL}/>} />
+              <Route path='/adminprofile' element={<AdminProfile url={API_URL}/>} />
+              <Route path='/listcar' element={<List url={API_URL}/>} /> 
+              <Route path='/orders/' element={<BookingsSummary url={API_URL}/>} /> 
+              <Route path='/orders/:id' element={<Orders url={API_URL}/>} /> 
+              <Route path='/completedorders' element={<CompletedOrders url={API_URL}/>} /> 
+              <Route path='/completedorders/:id' element={<CompletedOrdersDetails url={API_URL}/>} /> 
+              <Route path='/acceptedorders' element={<AcceptedOrders url={API_URL}/>} /> 
+              <Route path='/acceptedorders/:id' element={<AcceptedOrdersDetails url={API_URL}/>} /> 
+              <Route path='/rejectedorders' element={<RejectedOrders url={API_URL}/>} /> 
+              <Route path='/rejectedorders/:id' element={<RejectedOrdersDetails url={API_URL}/>} /> 
+              <Route path='/signup' element={<AdminSignup url={API_URL}/>} /> 
+              <Route path='/login' element={<AdminLogin url={API_URL}/>} /> 
             </Routes >
             </div>
           </AdminProvider>
