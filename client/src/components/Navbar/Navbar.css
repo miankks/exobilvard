@@ -1,10 +1,12 @@
 .navbar {
-    background-color: rgb(140 163 220 / var(--tw-bg-opacity, 1));
-    background: rgb(140, 163, 223);
+    background-color: rgb(140, 163, 223);
+    background: linear-gradient(90deg, rgb(140, 163, 223), rgb(115, 145, 210));
     padding: 20px 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-radius: 10px; /* soft corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* subtle shadow */
     /* position: fixed;
     top: 0; */
 }
@@ -102,6 +104,84 @@
     color: tomato;
 }
 
+/* ----------------------------- */
+/* MOBILE BURGER ICON */
+/* ----------------------------- */
+.burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+.burger div {
+    width: 28px;
+    height: 3px;
+    background-color: #495573;
+    border-radius: 2px;
+}
+
+/* ----------------------------- */
+/* FULLSCREEN MOBILE MENU */
+/* ----------------------------- */
+.mobile-menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(2px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    animation: fadeIn 0.3s ease;
+}
+
+.mobile-menu {
+    background: white;
+    width: 100%;
+    height: 100%;
+    padding-top: 120px;
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    align-items: center;
+    font-size: 26px;
+    animation: slideDown 0.35s ease;
+}
+
+.close-btn {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    font-size: 45px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #333;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Show burger only on mobile */
+@media (max-width: 750px) {
+    .burger {
+        display: flex;
+    }
+
+    .navbar-menu {
+        display: none;
+    }
+}
+
+
 @media (max-width:1050px) {
     .navbar .logo{
         width: 140px;
@@ -158,4 +238,50 @@
     }
 
     
+}
+
+/* CONTACT DROPDOWN */
+.contact-dropdown {
+    width: 100%;
+    background: white;
+    color: black;
+    padding: 0;
+    height: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    align-items: center;
+    transition: height 0.35s ease, padding 0.3s ease;
+}
+
+.contact-dropdown.show {
+    height: 70px;
+    padding: 15px 0;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+}
+
+.contact-item img {
+    width: 22px;
+    height: 22px;
+}
+
+/* Burger only visible on mobile */
+@media (max-width: 750px) {
+    .contact-dropdown {
+        flex-direction: column;
+        gap: 15px;
+        height: 0;
+    }
+
+    .contact-dropdown.show {
+        height: auto;
+        padding: 20px 0;
+    }
 }

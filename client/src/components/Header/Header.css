@@ -1,6 +1,6 @@
 .header {
     height: 30vw;
-    margin: 30px auto;
+    margin: auto auto;
     background: url('/header_img.png') no-repeat;
     background-size: 100% auto;
     position: relative;
@@ -26,10 +26,11 @@
 }
 
 .header .header-contents p {
-    color: black;
+    color: white;
     /* color: rgb(140 163 220); */
     font-size: 1vw;
 }
+
 
 .header .header-contents button {
     border: none;

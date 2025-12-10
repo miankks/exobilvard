@@ -1,65 +1,142 @@
-import React, { useContext, useState } from 'react'
-import './Navbar.css'
-import { assets } from '../../assets/assets'
-import { Link, useNavigate } from 'react-router-dom'
-import { StoreContext } from '../../context/StoreContext'
-
+import React, { useContext, useState } from "react";
+import "./Navbar.css";
+import { assets } from "../../assets/assets";
+import { Link, useNavigate } from "react-router-dom";
+import { StoreContext } from "../../context/StoreContext";
 
 const Navbar = ({ setShowLogin }) => {
-    const [menu, setMenu] = useState('home');
-    const { token, setToken } = useContext(StoreContext);
-    const navigate = useNavigate();
-    
-    const logout = () => {
-        localStorage.removeItem('token');
-        setToken('');
-        navigate('/')
-    }
+  const [menu, setMenu] = useState("home");
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false);
 
-    const goToMenu = () => {
-        navigate("/"); // go back to home
-        setTimeout(() => {
-        document.getElementById("menu")?.scrollIntoView({ behavior: "smooth" });
-        }, 100); // give home time to load
-    };
-    return (
-        <div className='navbar'>
-            <Link to={'/'}><img src={assets.exobil_logo} alt="" className="logo" /></Link>
-            <ul className="navbar-menu">
-                <Link to={'/'} onClick={() => setMenu("home")} className={menu === 'home' ? 'active' : ''}>Hem</Link>
-                <a href='#explore-menu' onClick={goToMenu} className={menu === 'menu' ? 'active' : ''}>Meny</a>
-                {/* <a href='#explore-menu' onClick={() => setMenu("menu")} className={menu === 'menu' ? 'active' : ''}>Meny</a> */}
-                {/* <a href='#app-download' onClick={() => setMenu("mobile-app")} className={menu === 'mobile-app' ? 'active' : ''}>Mobil app</a> */}
-                <a href='#footer' onClick={goToMenu} className={menu === 'contact-us' ? 'active' : ''}>Kontakta oss</a>
-                {/* <a href='#footer' onClick={() => setMenu("contact-us")} className={menu === 'contact-us' ? 'active' : ''}>Kontakta oss</a> */}
-            </ul>
-            <div className="navbar-right">
-                {/* <img src={assets.search_icon} alt="" /> */}
-                <div className="navbar-search-icon">
-                    <Link to={'/cart'}>
-                        <img src={assets.basket_icon} alt="" />
-                    </Link>
-                </div>
-            </div>
+  const { token, setToken } = useContext(StoreContext);
+  const navigate = useNavigate();
+
+  const goToMenu = () => {
+    navigate("/");
+    setTimeout(() => {
+      document
+        .getElementById("menu")
+        ?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
+  };
+
+  const toggleContact = () => {
+    setContactOpen((prev) => !prev);
+    setMenu("contact-us");
+  };
+
+  return (
+    <>
+      <div className="navbar">
+        <Link to={"/"}>
+          <img src={assets.exobil_logo} alt="" className="logo" />
+        </Link>
+
+        {/* Desktop Menu */}
+        <ul className="navbar-menu">
+          <Link
+            to={"/"}
+            onClick={() => {
+              setMenu("home");
+              setContactOpen(false);
+            }}
+            className={menu === "home" ? "active" : ""}
+          >
+            Hem
+          </Link>
+
+          <a
+            onClick={() => {
+              goToMenu();
+              setContactOpen(false);
+              setMenu("menu");
+            }}
+            className={menu === "menu" ? "active" : ""}
+          >
+            Meny
+          </a>
+
+          <a
+            onClick={toggleContact}
+            className={menu === "contact-us" ? "active" : ""}
+          >
+            Kontakta oss
+          </a>
+        </ul>
+
+        <div className="navbar-right">
+          <Link to={"/cart"}>
+            <img src={assets.basket_icon} alt="" />
+          </Link>
+
+          {/* Burger Icon */}
+          <div className="burger" onClick={() => setMobileOpen(true)}>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
         </div>
-    )
-}
+      </div>
 
-export default Navbar
+      {/* Contact Info Dropdown */}
+      <div className={`contact-dropdown ${contactOpen ? "show" : ""}`}>
+        <div className="contact-item">
+          <img src={assets.phone_icon} alt="" />
+          <span>076 140 40 40</span>
+        </div>
 
-// const { getTotalCartAmount, token, setToken } = useContext(StoreContext);
-        {/* <div className={getTotalCartAmount() === 0 ? '' : 'dot'}></div> */}
-                {/* {!token ?<button onClick={() => setShowLogin(true)}>Sign In</button> : 
-                    <div className='navbar-profile'>
-                        <img src={assets.profile_icon} alt="" />
-                        <ul className='navbar-profile-dropdown'>
-                            <li onClick={() => navigate('/myorders')}><img src={assets.bag_icon} alt="" />
-                                <p>Orders</p>
-                            </li>
-                            <hr />
-                            <li onClick={logout}><img src={assets.logout_icon} alt="" />
-                                <p>Logout</p>
-                            </li>
-                        </ul>
-                    </div>} */}
-                
+        <div className="contact-item">
+          <img src={assets.clock_icon} alt="" />
+          <span>Mån–Fre: 08.00 - 17.00</span>
+          <span>Lör: 10.00 - 15.00</span>
+          <span>Sön: Stängt</span>
+        </div>
+      </div>
+
+      {/* Mobile Overlay */}
+      {mobileOpen && (
+        <div className="mobile-menu-overlay">
+          <div className="mobile-menu">
+            <button
+              className="close-btn"
+              onClick={() => setMobileOpen(false)}
+            >
+              ×
+            </button>
+
+            <Link
+              to={"/"}
+              onClick={() => {
+                setMenu("home");
+                setMobileOpen(false);
+              }}
+            >
+              Hem
+            </Link>
+
+            <a
+              onClick={() => {
+                goToMenu();
+                setMobileOpen(false);
+              }}
+            >
+              Meny
+            </a>
+
+            <a
+              onClick={() => {
+                toggleContact();
+                setMobileOpen(false);
+              }}
+            >
+              Kontakta oss
+            </a>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
+export default Navbar;

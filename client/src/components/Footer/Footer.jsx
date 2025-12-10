@@ -3,6 +3,8 @@ import './Footer.css'
 import { assets } from '../../assets/assets'
 import { NavLink } from 'react-router-dom'
 import { FaInstagram } from "react-icons/fa";
+import { MdLocationOn, MdEmail } from "react-icons/md";
+import { BsTelephoneForwardFill } from "react-icons/bs";
 
 const Footer = () => {
   return (
@@ -40,10 +42,13 @@ const Footer = () => {
             <div className="footer-content-right">
                 <h2>Kontaktinfo</h2>
                 <ul>
-                    <li>076-028 34 40</li>
-                    <li>info@exobilvardscenter.se</li>
-                    <li>Söderbyvägen 14, 195 60 Arlandastad</li>
+                    <li><BsTelephoneForwardFill /> 076-028 34 40</li>
+                    <li><MdEmail /> info@exobilvardscenter.se</li>
+                    <li><MdLocationOn /> Söderbyvägen 14195 60 Arlandastad</li>
                 </ul>
+                <span>Mån–Fre: 08.00 - 17.00</span>
+          <span>Lör: 10.00 - 15.00</span>
+          <span>Sön: Stängt</span>
             </div>
         </div>
         <hr />
