@@ -30,6 +30,7 @@
     position: relative;
     transition: 0.3s ease;
     font-size: 1rem;
+    cursor: pointer;
 }
 
 .navbar-menu a.active::after,
@@ -51,6 +52,12 @@
     gap: 20px;
 }
 
+.basket-icon {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1);
+}
+
 /* Burger menu for mobile */
 .burger {
     display: none;
@@ -67,36 +74,56 @@
 }
 
 /* Contact Dropdown */
+/* Contact Dropdown (hidden by default) */
 .contact-dropdown {
     position: absolute;
-    right: 30px;
-    top: 70px;
+    /* right: 150px; */
+    /* top: 84px; */
     background: #fff;
     padding: 15px 20px;
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    display: none;
-    flex-direction: column;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* spread evenly */
+    align-items: center;
     gap: 15px;
     min-width: 250px;
-    transition: 0.3s ease;
+    left: 25%;
+
+    /* Hidden state */
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+
+    transition: opacity .3s ease, transform .3s ease;
     color: #333;
+
+    z-index: 2000; /* <<< FIX */
 }
 
+/* Visible state */
 .contact-dropdown.show {
-    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
 }
+
 
 .contact-item {
-    display: flex;
+    display: flex !important;
     align-items: center;
     gap: 10px;
     font-weight: 500;
     font-size: 0.95rem;
 }
 
+
+
 .contact-item svg {
-    color: #6a11cb;
+    color: red;
+    /* color: #6a11cb; */
     font-size: 1.2rem;
 }
 

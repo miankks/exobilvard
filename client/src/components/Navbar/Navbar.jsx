@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import "./Navbar.css";
 import { assets } from "../../assets/assets";
 import { Link, useNavigate } from "react-router-dom";
-import { StoreContext } from "../../context/StoreContext";
 import { MdLocationOn, MdOutlineMailOutline  } from "react-icons/md";
 import { FaMobileAlt } from "react-icons/fa";
 
@@ -43,9 +42,8 @@ const Navbar = () => {
               setMenu("home");
               setContactOpen(false);
             }}
-            className={menu === "home" ? "active" : ""}
-          >
-            Hem
+            className={menu === "home" ? "active" : ""}>
+                Hem
           </Link>
 
           <a
@@ -69,7 +67,7 @@ const Navbar = () => {
 
         <div className="navbar-right">
           <Link to={"/cart"}>
-            <img src={assets.basket_icon} alt="" />
+            <img src={assets.basket_icon} alt="" className="basket-icon"/>
           </Link>
 
           {/* Burger Icon */}

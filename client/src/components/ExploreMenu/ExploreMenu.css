@@ -88,15 +88,21 @@
     width: 120px;         /* same width */
     height: 120px;        /* same height */
     object-fit: cover;    /* crop instead of stretch */
+    border-radius: 50%;       /* make it circular */
     border-radius: 12px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 3px solid transparent; /* default no border */
 }
-
 
 .explore-menu-list-item:hover img,
 .explore-menu-list-item img.active {
     transform: scale(1.05);
     box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+/* Active border */
+.explore-menu-list-item img.active {
+    border: 3px solid #6a11cb; /* colored circle for active */
 }
 
 
