@@ -3,13 +3,15 @@ import "./Navbar.css";
 import { assets } from "../../assets/assets";
 import { Link, useNavigate } from "react-router-dom";
 import { StoreContext } from "../../context/StoreContext";
+import { MdLocationOn, MdOutlineMailOutline  } from "react-icons/md";
+import { FaMobileAlt } from "react-icons/fa";
 
-const Navbar = ({ setShowLogin }) => {
+
+const Navbar = () => {
   const [menu, setMenu] = useState("home");
   const [mobileOpen, setMobileOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
 
-  const { token, setToken } = useContext(StoreContext);
   const navigate = useNavigate();
 
   const goToMenu = () => {
@@ -82,15 +84,17 @@ const Navbar = ({ setShowLogin }) => {
       {/* Contact Info Dropdown */}
       <div className={`contact-dropdown ${contactOpen ? "show" : ""}`}>
         <div className="contact-item">
-          <img src={assets.phone_icon} alt="" />
+          <FaMobileAlt className="phone-icon"/>
           <span>076 140 40 40</span>
         </div>
 
         <div className="contact-item">
-          <img src={assets.clock_icon} alt="" />
-          <span>Mån–Fre: 08.00 - 17.00</span>
-          <span>Lör: 10.00 - 15.00</span>
-          <span>Sön: Stängt</span>
+          <MdOutlineMailOutline className="email-icon"/>
+          <span>info@exobilvardscenter.se</span>
+        </div>
+         <div className="contact-item">
+          <MdLocationOn className="location-icon"/>
+          <span>Söderbyvägen 14195 60 Arlandastad</span>
         </div>
       </div>
 
