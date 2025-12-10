@@ -39,7 +39,7 @@ app.use(cors(
         "http://localhost:5000",    // admin
         "http://localhost:5173",    // client
         "https://exobilvard-mje6-git-main-bilal-jans-projects.vercel.app", // admin
-        "exobilvard-uup4-4k610ruyy-bilal-jans-projects.vercel.app",  // client
+        "https://exobilvard-client-git-main-bilal-jans-projects.vercel.app",  // client
     ],
     credentials: true
 }
