@@ -1,0 +1,161 @@
+.car-display {
+    margin-top: 30px;
+}
+
+.car-display h2 {
+    font-size: max(2vw, 24px);
+    font-weight: 600;
+}
+
+.car-display-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* smaller cards */
+    gap: 20px 30px;  /* row-gap and column-gap */
+    margin-top: 30px;
+}
+
+/* .car-display-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    margin-top: 30px;
+    gap: 30px;
+    row-gap: 50px;
+} */
+
+.cart-btn button{
+    margin-top: 85px;
+    border: none;
+    padding: 12px 10px;
+    border-radius: 4px;
+    background-color: #ffe1e1;
+    cursor: pointer;
+    color: #454545;
+}
+
+.comment-section {
+    padding-top: 60px;
+    padding-bottom: 30px;
+}
+
+.comment-section p{
+    padding: 10px 0px;
+}
+
+.comment-section a {
+    display: inline-block; /* ensures link wraps tightly around button */
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #6a5af9, #00c4ff);
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.15), 0 2px 4px rgba(0,0,0,0.05);
+  transition: transform 0.25s, box-shadow 0.25s ease;
+}
+
+
+/* Button hover */
+.comment-section .btn:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 10px 18px rgba(0, 0, 0, 0.18),
+        0 4px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* Button active */
+.comment-section .btn:active {
+    transform: translateY(0);
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.12);
+}
+
+.marquee-container {
+  width: 100%;
+  overflow: hidden;
+  padding: 10px 20px;
+  background: #f5f7fa;
+  border: 1px solid #ddd;
+}
+
+.marquee {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px; /* space between cards */
+  animation: slideLeft 20s linear infinite; /* continuous animation */
+}
+
+.marquee:hover {
+  animation-play-state: paused;
+}
+
+.card {
+  flex-shrink: 0;
+  min-width: 180px;
+  max-width: 200px;
+  padding: 15px;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: left;
+  transition: all 0.3s ease;
+  overflow: hidden;          /* hide extra text */
+  max-height: 120px;          /* normal card height */
+}
+
+.card h4 {
+  margin: 0 0 5px 0;
+  font-size: 1rem;
+  color: #333333;
+  font-weight: 600;
+}
+
+.card p {
+  margin: 0;
+  font-size: 0.65rem;
+  color: #555555;
+  line-height: 1.3rem;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  max-height: 300px;           /* expand height on hover */
+}
+
+.stars {
+  display: flex;          /* horizontal row */
+  gap: 3px;               /* spacing between stars */
+  margin-top: 5px;        /* spacing from text */
+}
+
+
+/* Keyframes: move the entire marquee left */
+@keyframes slideLeft {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+
+
+
+@media (min-width: 1200px) {
+    .car-item {
+        min-height: 200px; /* slightly taller cards */
+    }
+}
