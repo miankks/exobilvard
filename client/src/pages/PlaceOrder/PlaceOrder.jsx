@@ -77,11 +77,30 @@ const PlaceOrder = () => {
       <div className="place-order-left">
         <p className="title">Fill in the information for Booking</p>
         <label>Fullständigt namn</label>
-          <input required  name='fullName' onChange={onChangeHandler} value={data.fullName} type="text" placeholder='Full Name' />
+          <input required  
+                  name='fullName' 
+                  onChange={onChangeHandler} 
+                  onInvalid={(e) => e.target.setCustomValidity("Fyll i ditt fullständiga namn")}
+                  onInput={(e) => e.target.setCustomValidity("")}
+                  value={data.fullName} type="text" placeholder='Full Name' />
         <label>E-postadress</label>
-        <input  name='email' onChange={onChangeHandler} value={data.email}  type="email" placeholder='Email address' />
+        <input required  
+                name='email' 
+                onChange={onChangeHandler} 
+                onInvalid={(e) => e.target.setCustomValidity("Fyll i ditt fullständig email")}
+                onInput={(e) => e.target.setCustomValidity("")}
+                value={data.email}  
+                type="email" 
+                placeholder='Email address' />
         <label>Telefonnummer</label>
-        <input required name='phone' onChange={onChangeHandler} value={data.phone} type="text" placeholder='Phone' />
+        <input required 
+                name='phone' 
+                onChange={onChangeHandler} 
+                onInvalid={(e) => e.target.setCustomValidity("Fyll i ditt telefonnummer")}
+                onInput={(e) => e.target.setCustomValidity("")}
+                value={data.phone} 
+                type="text" 
+                placeholder='Phone' />
         <div className="regandmileage">
             <div className="input-group">
               <label htmlFor="regnummer">Registreringsnummer</label>
@@ -89,6 +108,8 @@ const PlaceOrder = () => {
                 required
                 name="regnummer"
                 onChange={onChangeHandler}
+                onInvalid={(e) => e.target.setCustomValidity("Fyll i ditt bil regnummer")}
+                onInput={(e) => e.target.setCustomValidity("")}
                 value={data.regnummer}
                 type="text"
                 placeholder="ABC123"
@@ -101,6 +122,8 @@ const PlaceOrder = () => {
                 required
                 name="miltal"
                 onChange={onChangeHandler}
+                onInvalid={(e) => e.target.setCustomValidity("Fyll i bil miltal")}
+                onInput={(e) => e.target.setCustomValidity("")}
                 value={data.miltal}
                 type="text"
                 onBeforeInput={(e) => {
@@ -147,7 +170,7 @@ const PlaceOrder = () => {
       </div>
       </div>
         <div className='placeorder-comment-section'>
-            <label htmlFor="userComment">Kommentar till Eobilvårdscenter</label>
+            <label htmlFor="userComment">Kommentar till Eobilvårdscenter (krävs inte)</label>
            <textarea
                 name="userComment"
                 rows="6"

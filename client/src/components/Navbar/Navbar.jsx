@@ -1,10 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import "./Navbar.css";
 import { assets } from "../../assets/assets";
 import { Link, useNavigate } from "react-router-dom";
-import { MdLocationOn, MdOutlineMailOutline  } from "react-icons/md";
+import { MdLocationOn, MdOutlineMailOutline } from "react-icons/md";
 import { FaMobileAlt } from "react-icons/fa";
-
 
 const Navbar = () => {
   const [menu, setMenu] = useState("home");
@@ -30,23 +29,25 @@ const Navbar = () => {
   return (
     <>
       <div className="navbar">
-        <Link to={"/"}>
-          <img src={assets.exobil_logo} alt="" className="logo" />
+        <Link to="/">
+          <img src={assets.exobil_logo} alt="EXO Bilvårdscenter" className="logo" />
         </Link>
 
         {/* Desktop Menu */}
         <ul className="navbar-menu">
           <Link
-            to={"/"}
+            to="/"
             onClick={() => {
               setMenu("home");
               setContactOpen(false);
             }}
-            className={menu === "home" ? "active" : ""}>
-                Hem
+            className={menu === "home" ? "active" : ""}
+          >
+            Hem
           </Link>
 
-          <a
+          <Link
+            to="/"
             onClick={() => {
               goToMenu();
               setContactOpen(false);
@@ -55,19 +56,27 @@ const Navbar = () => {
             className={menu === "menu" ? "active" : ""}
           >
             Meny
-          </a>
+          </Link>
 
           <a
             onClick={toggleContact}
-            className={menu === "contact-us" ? "active" : ""}
+            className={`contact-btn ${menu === "contact-us" ? "active" : ""}`}
           >
             Kontakta oss
           </a>
+
+          <Link
+            to="/aboutus"
+            onClick={() => setMenu("about-us")}
+            className={menu === "about-us" ? "active" : ""}
+          >
+            Om oss
+          </Link>
         </ul>
 
         <div className="navbar-right">
-          <Link to={"/cart"}>
-            <img src={assets.basket_icon} alt="" className="basket-icon"/>
+          <Link to="/cart">
+            <img src={assets.basket_icon} alt="Cart" className="basket-icon" />
           </Link>
 
           {/* Burger Icon */}
@@ -82,16 +91,17 @@ const Navbar = () => {
       {/* Contact Info Dropdown */}
       <div className={`contact-dropdown ${contactOpen ? "show" : ""}`}>
         <div className="contact-item">
-          <FaMobileAlt className="phone-icon"/>
+          <FaMobileAlt className="phone-icon" />
           <span>076 140 40 40</span>
         </div>
 
         <div className="contact-item">
-          <MdOutlineMailOutline className="email-icon"/>
+          <MdOutlineMailOutline className="email-icon" />
           <span>info@exobilvardscenter.se</span>
         </div>
-         <div className="contact-item">
-          <MdLocationOn className="location-icon"/>
+
+        <div className="contact-item">
+          <MdLocationOn className="location-icon" />
           <span>Söderbyvägen 14195 60 Arlandastad</span>
         </div>
       </div>
@@ -108,7 +118,7 @@ const Navbar = () => {
             </button>
 
             <Link
-              to={"/"}
+              to="/"
               onClick={() => {
                 setMenu("home");
                 setMobileOpen(false);
@@ -117,23 +127,31 @@ const Navbar = () => {
               Hem
             </Link>
 
-            <a
+            <Link
+              to="/"
               onClick={() => {
                 goToMenu();
                 setMobileOpen(false);
               }}
             >
               Meny
-            </a>
+            </Link>
 
-            <a
+            <button
               onClick={() => {
                 toggleContact();
                 setMobileOpen(false);
               }}
             >
               Kontakta oss
-            </a>
+            </button>
+
+            <Link
+              to="/aboutus"
+              onClick={() => setMenu("about-us")}
+            >
+              Om oss
+            </Link>
           </div>
         </div>
       )}
