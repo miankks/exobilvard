@@ -8,7 +8,6 @@ const SUPER_ADMIN_EMAIL = process.env.SUPER_ADMIN_EMAIL;
 export const registerAdmin = async (req, res) => {
     try {
         const { name, email, password } = req.body;
-        console.log(name, email, password);
         
         // check if logged in user is super admin
         if (req.admin.role !== "superadmin") {

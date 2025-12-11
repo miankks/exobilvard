@@ -11,7 +11,6 @@ export const authMiddleware = async (req, res, next) => {
         req.body.userId = token_decode.id;
         next()
     } catch (error) {
-        console.log(error);
         res.json({success:false, message: 'Error'})
     }
 }
@@ -24,8 +23,6 @@ export const protectAdmin = (req, res, next) => {
     }
     
     const token = header.split(" ")[1];
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    console.log("Decoded JWT:", decoded);
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         if (decoded.role !== "admin" && decoded.role !== "superadmin") {
