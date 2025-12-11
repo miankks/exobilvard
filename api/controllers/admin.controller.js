@@ -8,7 +8,6 @@ const SUPER_ADMIN_EMAIL = process.env.SUPER_ADMIN_EMAIL;
 export const registerAdmin = async (req, res) => {
     try {
         const { name, email, password } = req.body;
-        console.log(name, email, password);
         
         // check if logged in user is super admin
         if (req.admin.role !== "superadmin") {
@@ -97,7 +96,7 @@ export const loginAdmin = async (req, res) => {
 
 export const getAdmin = async (req,res) => {
     try {
-        const admin = await adminModel.findById(req.admin.id).pupulate("createdBy", "name email"); // use req.admin
+        const admin = await adminModel.findById(req.admin.id); // use req.admin
         if (!admin) {
             return res.status(404).json({ success: false, message: "Admin not found" });
         }
