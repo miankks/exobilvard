@@ -14,9 +14,19 @@ const storage = multer.diskStorage({
         return cb(null, `${Date.now()}${file.originalname}`)
     }
 })
-const upload = multer({storage:storage})
+const upload = multer({
+    storage:storage,
+    limits: {fileSize: 5*1024*1024},
+    fileFilter: (req, file, cb) => {
+        if (file.mimetype === "image/jpeg" || file.mimetype === "image/png" || file.mimetype === "image/jpg") {
+            cb(null, true)
+        } else {
+            cb(new Error("Only jpeg png and jpg images allowed"))
+        }
+    }
+})
 
-adminRouter.post("/register", upload.single("image"), registerAdmin);
+adminRouter.post("/register", upload.single("image"),protectAdmin, registerAdmin);
 adminRouter.get("/getadmin", protectAdmin, getAdmin);
 adminRouter.post("/login", loginAdmin);
 

@@ -28,8 +28,13 @@ export const AuthProvider = ({children, url}) => {
 
     const signup = async (formData) => {
         try {
+            const token = localStorage.getItem("token"); // super-admin token
+            console.log(token);
+            
             const response = await axios.post(`${url}/api/admin/register`, formData, {
-                headers: {"Content-Type": "multipart/form-data"}
+                headers: {"Content-Type": "multipart/form-data",
+                    Authorization: `Bearer ${token}`
+                },
             })
             if (response.data.success) {
                 return await login({

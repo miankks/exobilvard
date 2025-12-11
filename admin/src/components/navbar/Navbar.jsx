@@ -43,7 +43,7 @@ const Navbar = ({url}) => {
          <ul className="nav-links">
           <li><Link to="/">Home</Link></li>
           {/* Show Signup & Login only if NOT logged in */}
-          {!token &&<li><Link to="/signup">Sign Up</Link></li>}
+          {token &&<li><Link to="/signup">Add new admin</Link></li>}
           {!token && <li><Link to="/login">Login</Link></li>}
           {/* Show Logout if logged in */}
           {token && <li><button onClick={handleLogout} className="logout-btn">Logout</button></li>}

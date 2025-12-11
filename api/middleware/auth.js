@@ -24,10 +24,11 @@ export const protectAdmin = (req, res, next) => {
     }
     
     const token = header.split(" ")[1];
-  
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    console.log("Decoded JWT:", decoded);
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        if (decoded.role !== "admin") {
+        if (decoded.role !== "admin" && decoded.role !== "superadmin") {
             return res.status(403).json({ success: false, message: "Admin access only" });
         }
         req.admin = decoded;

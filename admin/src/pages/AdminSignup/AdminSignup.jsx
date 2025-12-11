@@ -32,7 +32,7 @@ const AdminSignup = () => {
       toast.success("Admin Registered Successfully!");
       setForm({ name: "", email: "", password: "" });
       setImage(null);
-      navigate("/orders");
+      // navigate("/orders");
     } else {
       toast.error(result.message);
     }

@@ -4,25 +4,48 @@ import jwt from "jsonwebtoken";
 import fs from 'fs';
 
 // ADMIN SIGNUP
+const SUPER_ADMIN_EMAIL = process.env.SUPER_ADMIN_EMAIL;
 export const registerAdmin = async (req, res) => {
     try {
         const { name, email, password } = req.body;
+        console.log(name, email, password);
         
+        // check if logged in user is super admin
+        if (req.admin.role !== "superadmin") {
+            return res.status(403).json({
+                success: false,
+                message: "Only super-admin can create new admins"
+            });
+        }
+
+        // validate pasword length
+        if (!password ||password.length < 8) {
+            return res.status(400).json({
+                success: false,
+                message: "Password must be atleast 8 characters"
+            })
+        }
+        
+        // check if admin already exists
         const existed = await adminModel.findOne({ email });
         if (existed) {
             return res.json({ success: false, message: "Admin already exists" });
         }
         const image_filename = req.file ? req.file.filename : null;
 
+        // create admin
         const admin = await adminModel.create({ 
             name,
             email,
             password,
-            image: image_filename });
+            image: image_filename,
+            createdBy: req.admin.id,
+            role: "admin"
+         });
 
             // Generate token
         const token = jwt.sign(
-            { id: admin._id, role: "admin" },
+            { id: admin._id, role: admin.role },
             process.env.JWT_SECRET,
             { expiresIn: "1d" }
         );
@@ -30,7 +53,6 @@ export const registerAdmin = async (req, res) => {
         res.json({
             success: true,
             message: "Admin registered successfully",
-            token,
             adminId: admin._id
         });
 
@@ -55,7 +77,7 @@ export const loginAdmin = async (req, res) => {
         }
 
         const token = jwt.sign(
-            { id: admin._id, role: "admin" },
+            { id: admin._id, role: admin.role },
             process.env.JWT_SECRET,
             { expiresIn: "1d" }
         );
@@ -75,7 +97,7 @@ export const loginAdmin = async (req, res) => {
 
 export const getAdmin = async (req,res) => {
     try {
-        const admin = await adminModel.findById(req.admin.id); // use req.admin
+        const admin = await adminModel.findById(req.admin.id).pupulate("createdBy", "name email"); // use req.admin
         if (!admin) {
             return res.status(404).json({ success: false, message: "Admin not found" });
         }
