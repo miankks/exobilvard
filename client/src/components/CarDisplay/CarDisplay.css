@@ -19,8 +19,14 @@
 }
 
 /* Buttons */
+
+.cart-button-section{
+    text-align: left;
+    margin: 40px 0;
+}
+
 .comment-section {
-    text-align: center;
+    text-align: left;
     margin: 40px 0;
 }
 

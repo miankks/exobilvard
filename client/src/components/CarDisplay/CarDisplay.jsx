@@ -38,7 +38,7 @@ const CarDisplay = ({ category }) => {
               }
             })}
         </div>
-          <div className='comment-section'>
+          <div className='cart-button-section'>
             <Link to='/cart' className='btn'>
               Proceed to cart
             </Link>
