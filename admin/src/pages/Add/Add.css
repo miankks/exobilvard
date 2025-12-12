@@ -100,8 +100,8 @@
 
 /* Submit button — colorful, glowing, modern */
 .add-btn {
-    max-width: 150px;
-    padding: 12px;
+    max-width: 120px;
+    padding: 8px 12px;
     border: none;
     cursor: pointer;
 

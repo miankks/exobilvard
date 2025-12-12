@@ -1,6 +1,21 @@
 /* =========================
    Base Order Item (Desktop)
 ============================= */
+/* Container for all orders */
+.order-list {
+  display: flex;         /* Use flex for stacking items */
+  flex-direction: column; /* Stack vertically by default */
+  gap: 20px;             /* Space between each order-item */
+  margin-top: 20px;
+  padding: 0;
+}
+
+/* Optional: add scroll for long lists */
+.order-list.scrollable {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
 .order-item {
   display: grid;
   grid-template-columns: 50px 1fr 50px 100px 100px; /* fixed px for stable desktop layout */
@@ -115,6 +130,7 @@
    Tablet Layout (medium screens)
 ============================= */
 @media (max-width: 1000px) {
+
   .order-item {
     grid-template-columns: 60px 1fr 1fr; /* collapse to 3 columns */
     gap: 15px;
@@ -127,12 +143,15 @@
   }
 
   .order-item select {
-    width: 100px;
-    padding: 5px;
+    /* width: 150px; */
   }
 
-  .bookdate-row {
-    flex-wrap: wrap; /* allow items to stack */
+  .order-info p {
+    font-size: 10px;
+  }
+
+  .add-btn {
+    /* margin: 0px 150px; */
   }
 }
 
@@ -140,26 +159,55 @@
    Mobile Layout (small screens)
 ============================= */
 @media (max-width: 700px) {
+  .order-list {
+    gap: 12px;   /* smaller gap on mobile */
+    padding: 5px;
+  }
   .order-item {
     display: flex;
     flex-direction: column; /* stack vertically */
-    gap: 12px;
-    padding: 10px;
-    font-size: 8px;
+    gap: 10px;
+    padding: 12px;
+    font-size: 12px; /* more readable */
   }
 
   .order-item img {
     width: 50px;
+    height: auto;
     margin-bottom: 10px;
   }
 
   .order-item select {
     width: 100%; /* full width */
+    padding: 8px;
+  }
+
+  /* Make description and date full width */
+  .order-description,
+  .order-date {
+    grid-column: auto;
+    width: 100%;
+    margin-top: 10px;
   }
 
   .bookdate-row {
     flex-direction: column;
-    align-items: start;
+    align-items: stretch; /* stretch to full width */
     gap: 8px;
+    width: 100%;
+  }
+
+  .accept-button-span {
+    margin-left: 0; /* reset auto margin */
+  }
+
+  .accept-button {
+    width: 100%; /* better tap area on mobile */
+    max-width: 120px; /* optional limit */
+  }
+
+  /* Optional: adjust padding inside description */
+  .order-description {
+    padding: 12px;
   }
 }

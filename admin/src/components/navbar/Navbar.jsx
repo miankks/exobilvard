@@ -10,6 +10,7 @@ const Navbar = ({url}) => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token")
   const [admin, setAdmin] = useState(null);
+  const [loading, setLoading] = useState(true);
   
    const handleLogout = () => {
     localStorage.removeItem("token");
@@ -19,7 +20,10 @@ const Navbar = ({url}) => {
     const fetchAdmin = async () => {
     try {
       const token = localStorage.getItem("token");
-      
+      if (!token) {
+        setLoading(false);
+        return;
+      }
       const response = await axios.get(`${url}/api/admin/getadmin`,{
         headers: {
           Authorization: `Bearer ${token}`
@@ -33,6 +37,8 @@ const Navbar = ({url}) => {
       }
     } catch (error) {
       toast.error("Error fetching admin");
+    } finally {
+      setLoading(false); // Done loading whether success or error
     }
   }
   useEffect(() => {
@@ -44,7 +50,7 @@ const Navbar = ({url}) => {
          <ul className="nav-links">
           <li><Link to="/">Home</Link></li>
           {/* Show Signup & Login only if NOT logged in */}
-          {token && admin.role === "superadmin" && <li><Link to="/signup">Add new admin</Link></li>}
+          {token && admin && admin.role === "superadmin" && <li><Link to="/signup">Add new admin</Link></li>}
           {!token && <li><Link to="/login">Login</Link></li>}
           {/* Show Logout if logged in */}
           {token && <li><button onClick={handleLogout} className="logout-btn">Logout</button></li>}
