@@ -5,7 +5,8 @@ import { toast } from "react-toastify";
 const AuthContext = createContext();
 
 export const AuthProvider = ({children, url}) => {
-    const [token, setToken] = useState(localStorage.getItem("token" || null));
+    // const [token, setToken] = useState(localStorage.getItem("token" || null));
+    const [token, setToken] = useState(() => localStorage.getItem("token"));
     
     const login = async (formData) => {
         try {
