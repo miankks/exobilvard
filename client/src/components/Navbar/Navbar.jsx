@@ -148,7 +148,10 @@ const Navbar = () => {
 
             <Link
               to="/aboutus"
-              onClick={() => setMenu("about-us")}
+              onClick={() => {
+                setMenu("about-us");
+                setMobileOpen(false);
+              }}
             >
               Om oss
             </Link>
