@@ -59,29 +59,6 @@ app.use('/api/cart', cartRouter)
 app.use("/api/order", orderRouter)
 app.use("/api/sendemail",bodyParser.json(), emailRouter)
 app.use("/api/comment", commentsRouter)
-app.get("/", (req, res) => {
-    res.send("API working")
-})
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-// =========================
-// SERVE CLIENT FRONTEND
-// =========================
-app.use("/", express.static(path.join(__dirname, "../client/dist")));
-
-app.get(/^\/(?!api|admin).*/, (req, res) => {
-    res.sendFile(path.join(__dirname, "../client/dist/index.html"));
-});
-
-// =========================
-// SERVE ADMIN FRONTEND
-// =========================
-app.use("/admin", express.static(path.join(__dirname, "../admin/dist")));
-
-app.get("/admin/*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../admin/dist/index.html"));
-});
 
 // export default app
 
