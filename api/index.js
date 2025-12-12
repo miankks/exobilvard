@@ -61,11 +61,27 @@ app.use("/api/sendemail",bodyParser.json(), emailRouter)
 app.use("/api/comment", commentsRouter)
 
 // export default app
+// Serve static frontend files
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
+app.use("/", express.static(path.join(__dirname, "../client/dist")));
+
+// API routes should be above the wildcard
+app.use("/api/admin", adminRouter);
+// ... other API routes
+
+// Wildcard fallback for client-side routing
+app.get(/^\/(?!api|admin).*/, (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
+});
+
+// Optional root route for testing server
 app.get("/", (req, res) => {
-    res.send(`server is running at: ${BASE_URL}`)
-})
+  res.send(`Server is running at: ${BASE_URL}`);
+});
+
 app.listen(port, () => {
-    console.log(`Server started on: ${port}`);
-})
+  console.log(`Server started on: ${port}`);
+});
 
