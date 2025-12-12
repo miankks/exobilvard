@@ -4,7 +4,6 @@ import jwt from "jsonwebtoken";
 import fs from 'fs';
 
 // ADMIN SIGNUP
-const SUPER_ADMIN_EMAIL = process.env.SUPER_ADMIN_EMAIL;
 export const registerAdmin = async (req, res) => {
     try {
         const { name, email, password } = req.body;
