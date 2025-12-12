@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import path from 'path';
+import { fileURLToPath } from "url";
 import { connectDB } from './config/db.js';
 import userRouter from './routes/user.route.js';
 import 'dotenv/config';
@@ -61,6 +62,26 @@ app.use("/api/comment", commentsRouter)
 app.get("/", (req, res) => {
     res.send("API working")
 })
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+// =========================
+// SERVE CLIENT FRONTEND
+// =========================
+app.use("/", express.static(path.join(__dirname, "../client/dist")));
+
+app.get(/^\/(?!api|admin).*/, (req, res) => {
+    res.sendFile(path.join(__dirname, "../client/dist/index.html"));
+});
+
+// =========================
+// SERVE ADMIN FRONTEND
+// =========================
+app.use("/admin", express.static(path.join(__dirname, "../admin/dist")));
+
+app.get("/admin/*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../admin/dist/index.html"));
+});
 
 // export default app
 
