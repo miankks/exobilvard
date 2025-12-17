@@ -100,7 +100,15 @@ const Navbar = () => {
           <span>info@exobilvardscenter.se</span>
         </div>
 
-        <div className="contact-item">
+        <div className="contact-item"
+           onClick={() => {
+            window.open(
+              "https://www.google.com/maps/search/?api=1&query=59.61360353804017, 17.881595455641644",
+              "_blank"
+            );
+           }}
+            style={{ cursor: "pointer" }}
+          >
           <MdLocationOn className="location-icon" />
           <span>Söderbyvägen 14195 60 Arlandastad</span>
         </div>
