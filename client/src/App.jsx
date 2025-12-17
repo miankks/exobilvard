@@ -14,13 +14,24 @@ import UserComments from './components/UserComments/UserComments';
 import AboutUs from './components/OurServices/AboutUs';
 
 const App = () => {
-  const [showLogin, setShowLogin] = useState(false);
+  // const [showLogin, setShowLogin] = useState(false);
   return (
     <>
-    {showLogin ? <LoginPopup setShowLogin={setShowLogin}/> : <></>}
+    {/* {showLogin ? <LoginPopup setShowLogin={setShowLogin}/> : <></>} */}
     <div className='app'>
-       <ToastContainer />
-      <Navbar setShowLogin={setShowLogin} />
+       <ToastContainer 
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+       />
+      <Navbar/>
+      {/* <Navbar setShowLogin={setShowLogin} /> */}
       <Routes>
         <Route path='/' element={<Home />}/>
         <Route path='/cart' element={<Cart />}/>

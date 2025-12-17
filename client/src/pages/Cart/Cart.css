@@ -45,6 +45,15 @@
     gap: 20px;
 }
 
+.cart-total button:disabled {
+  background-color: #ccc; /* gray background */
+  color: #666;            /* darker text color */
+  cursor: not-allowed;    /* shows “no-entry” cursor */
+  opacity: 0.6;           /* slightly transparent */
+  pointer-events: none;   /* prevent clicks */
+  transition: all 0.3s ease;
+}
+
 .cart-total-details{
     display: flex;
     justify-content: space-between;

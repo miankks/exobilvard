@@ -11,6 +11,8 @@ const PlaceOrder = () => {
     const { cartItems, removeFromCart } = useContext(CartContext);
     const {car_list, url} = useContext(CarContext)
     const itemsInCart = car_list.filter(item => cartItems[item._id] > 0);
+    console.log(itemsInCart.length);
+    
     const navigate = useNavigate();
     const [data, setData] = useState({
       fullName: '',
@@ -139,38 +141,40 @@ const PlaceOrder = () => {
           </div>
 
         <h6>Välj tre tider</h6>
-        <Reactdatepicker sendDataToParent={handleDate('bookDate1')} selectime={'Första tid'}/> 
-        <Reactdatepicker sendDataToParent={handleDate('bookDate2')} selectime={'Andra tid'}/> 
-        <Reactdatepicker sendDataToParent={handleDate('bookDate3')} selectime={'Tredje tid'}/> 
+        <Reactdatepicker sendDataToParent={handleDate('bookDate1')} selectDate={'Första tid'} selectime={'Första datum'}/> 
+        <Reactdatepicker sendDataToParent={handleDate('bookDate2')} selectDate={'Andra tid'} selectime={'Andra datum'}/> 
+        <Reactdatepicker sendDataToParent={handleDate('bookDate3')} selectDate={'Tredje tid'} selectime={'Tredje datum'}/> 
       </div>
       <div className="place-order-right">
         <div className="cart-total">
           <h2>Väljat services</h2>
           <div>
+            {itemsInCart.length === 0 ? <p>Din varukorg är tom</p>:
             <div className="cart-items">
-        <div className="cart-items-title">
-          <p>Artiklar</p>
-          <p>Titel</p>
-          <p>Qvantitet</p>
-          <p>Ta bort</p>
+            <div className="cart-items-title">
+              <p>Artiklar</p>
+              <p>Titel</p>
+              <p>Qvantitet</p>
+              <p>Ta bort</p>
+            </div>
+            <br />
+            <hr />
+            {
+            itemsInCart.map((item, index) => (
+                  <div key={index}>
+                    <div className="cart-items-title cart-items-item">
+                      <img src={url+'/images/'+item.image} alt="" />
+                      <p>{item.name}</p>
+                      {/* will show quantity of each product */}
+                      <p>{cartItems[item._id]}</p>
+                      <p className='cross' onClick={() => removeFromCart(item._id)}>x</p>
+                    </div>
+                    <hr />
+                  </div>
+                ))}
+          </div>
+          }
         </div>
-        <br />
-        <hr />
-        {
-        itemsInCart.map((item, index) => (
-              <div key={index}>
-                <div className="cart-items-title cart-items-item">
-                  <img src={url+'/images/'+item.image} alt="" />
-                  <p>{item.name}</p>
-                  {/* will show quantity of each product */}
-                  <p>{cartItems[item._id]}</p>
-                  <p className='cross' onClick={() => removeFromCart(item._id)}>x</p>
-                </div>
-                <hr />
-              </div>
-            ))}
-      </div>
-      </div>
         <div className='placeorder-comment-section'>
             <label htmlFor="userComment">Kommentar till Eobilvårdscenter (krävs inte)</label>
            <textarea
@@ -182,7 +186,7 @@ const PlaceOrder = () => {
                 value={data.userComment}
               />
           </div>
-          <button type='submit' >Complete Booking</button>
+            <button disabled={itemsInCart.length === 0} type='submit' >Complete Booking</button>
         </div>
       </div>
     </form>

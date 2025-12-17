@@ -11,7 +11,7 @@ import minMax from "dayjs/plugin/minMax";
 import 'dayjs/locale/sv';
 import './Reactdatepicker.css';
 
-const Reactdatepicker = ({sendDataToParent, selectime}) => {
+const Reactdatepicker = ({sendDataToParent, selectime, selectDate}) => {
     const [formData, setFormData] = useState({
       date: dayjs(),
       time: dayjs(),
@@ -77,7 +77,7 @@ const Reactdatepicker = ({sendDataToParent, selectime}) => {
             </Stack>
             <Stack spacing={4} sx={{width:'250px'}} className='timepicker'>
               <TimePicker
-                label="Välj tid"
+                label={selectDate}
                 value={formData.time}
                 minTime={isToday? minTime : minTimeForDay}
                 maxTime={maxTimeForDay}
