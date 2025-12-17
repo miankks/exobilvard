@@ -1,13 +1,13 @@
 import { useContext, useState } from 'react';
-import { StoreContext } from '../../context/StoreContext';
 import axios from "axios";
 import {useNavigate } from "react-router-dom";
 import {toast} from 'react-toastify'
 import './UserComments.css'
 import { FaRegStar, FaStar } from "react-icons/fa";
+import { CarContext } from '../../context/CarContext';
 
 const UserComments = () => {
-  const { url } = useContext(StoreContext);
+  const { url } = useContext(CarContext);
   const [userComments, setUserComments] = useState({
     name: '',
     email: '',

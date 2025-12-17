@@ -1,10 +1,12 @@
 import { useContext, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-import { StoreContext } from '../../context/StoreContext';
 import './Cart.css';
+import { CarContext } from '../../context/CarContext';
+import { CartContext } from '../../context/CartContext';
 
 const Cart = () => {
-  const { cartItems, car_list, removeFromCart, url } = useContext(StoreContext);
+  const { cartItems, removeFromCart } = useContext(CartContext);
+  const {car_list, url} = useContext(CarContext)
   const hasItems = Object.keys(cartItems).length > 0
   
   const navigate = useNavigate();

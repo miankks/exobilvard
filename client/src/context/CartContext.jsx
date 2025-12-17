@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { createContext, useEffect, useReducer } from 'react';
 
 export const CartContext = createContext(null);
@@ -47,9 +46,9 @@ useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
 }, [cartItems])
 
-const addToCart = (id) => dispatch({type: "ADD", id});
-const removeFromCart = (id) => dispatch({type: "REMOVE", id});
-const setCart = (data) => dispatch({type: "SET",payload: data});
+const addToCart = (id) => setCartItems({type: "ADD", id});
+const removeFromCart = (id) => setCartItems({type: "REMOVE", id});
+const setCart = (data) => setCartItems({type: "SET",payload: data});
 
 return (
     <CartContext.Provider value={{cartItems, addToCart, removeFromCart, setCart}}>

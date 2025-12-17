@@ -1,13 +1,15 @@
 import { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import './PlaceOrder.css';
-import { StoreContext } from '../../context/StoreContext';
 import axios from 'axios';
 import {toast} from 'react-toastify'
 import Reactdatepicker from '../../components/Reactdatepicker/Reactdatepicker';
+import { CarContext } from '../../context/CarContext';
+import { CartContext } from '../../context/CartContext';
 
 const PlaceOrder = () => {
-    const { token, car_list,removeFromCart, cartItems, url, setCartItems } = useContext(StoreContext);
+    const { cartItems, removeFromCart } = useContext(CartContext);
+    const {car_list, url} = useContext(CarContext)
     const itemsInCart = car_list.filter(item => cartItems[item._id] > 0);
     const navigate = useNavigate();
     const [data, setData] = useState({

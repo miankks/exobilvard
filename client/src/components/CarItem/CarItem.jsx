@@ -7,9 +7,6 @@ import { CarContext } from '../../context/CarContext';
 const CarItem = React.memo(({ id, name, description, image}) => {
   const {cartItems, addToCart, removeFromCart} = useContext(CartContext)
   const {url} = useContext(CarContext)
-  useEffect(() => {
-  console.log("cartItems changed:", cartItems);
-}, [cartItems]);
   
   return (
     <div className='car-item'>
