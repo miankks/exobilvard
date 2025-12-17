@@ -178,7 +178,6 @@ const PlaceOrder = () => {
                 rows="6"
                 className='comment-area'
                 placeholder="Om du vill beskriva något?"
-                required
                 onChange={onChangeHandler}
                 value={data.userComment}
               />
