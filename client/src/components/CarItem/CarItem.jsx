@@ -1,11 +1,16 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import './CarItem.css'
 import { assets } from '../../assets/assets'
-import { StoreContext } from '../../context/StoreContext';
+import { CartContext } from '../../context/CartContext';
+import { CarContext } from '../../context/CarContext';
 
-const CarItem = ({ id, name, description, image}) => {
-
-  const {cartItems, addToCart, removeFromCart, url} = useContext(StoreContext)
+const CarItem = React.memo(({ id, name, description, image}) => {
+  const {cartItems, addToCart, removeFromCart} = useContext(CartContext)
+  const {url} = useContext(CarContext)
+  useEffect(() => {
+  console.log("cartItems changed:", cartItems);
+}, [cartItems]);
+  
   return (
     <div className='car-item'>
         <div className="car-item-img-container">
@@ -28,6 +33,6 @@ const CarItem = ({ id, name, description, image}) => {
         </div>
     </div>
   )
-}
+})
 
 export default CarItem

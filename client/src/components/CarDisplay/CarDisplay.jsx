@@ -1,15 +1,18 @@
 import { useContext, useEffect } from 'react'
 import './CarDisplay.css'
-import { StoreContext } from '../../context/StoreContext'
-// import CarItem from '../carItem/carItem';
 import CarItem from '../CarItem/CarItem'
 import { Link } from 'react-router-dom'
 import { FaStar, FaRegStar  } from "react-icons/fa";
+import { CommentContext } from '../../context/CommentContext'
+import { CarContext } from '../../context/CarContext';
+
+
 
 // import { useObjectEnabled } from '../../Customhooks/useObjectEnabled'
 
 const CarDisplay = ({ category }) => {
-    const { car_list, userComments, fetchAllComments } = useContext(StoreContext);
+    const { userComments } = useContext(CommentContext);
+    const { car_list} = useContext(CarContext);
     const totalStars = 5;
 
     const handleStars = (rating) => {
@@ -23,9 +26,9 @@ const CarDisplay = ({ category }) => {
       });
     };
 
-    useEffect(() => {
-      fetchAllComments();
-    }, [userComments])
+    // useEffect(() => {
+    //   fetchAllComments();
+    // }, [userComments])
 
   return ( 
     <div className='car-display' id='car-display'>
@@ -70,7 +73,3 @@ const CarDisplay = ({ category }) => {
 }
 
 export default CarDisplay
-
-
-// used if price is available for a service
-// price={item.price ? item.price : 'Pris förslag hos Exobil'}
