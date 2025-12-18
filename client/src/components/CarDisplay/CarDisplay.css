@@ -139,12 +139,10 @@
 
 /* Responsive adjustments */
 @media (max-width: 701px) {
-  .car-display {
-    display: none;
-  }
   .car-display-list {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 15px;
+    display: none;
   }
 
   .card {

@@ -43,7 +43,6 @@ const CarDisplay = ({ category }) => {
   return (
     <div className="car-display" id="car-display">
       <h2>Våra tjänster</h2>
-      <MobileOnlyText category={category} />
       <div className="car-display-list">
         {car_list.map((item, index) => {
           if (category === "All" || category === item.category) {
