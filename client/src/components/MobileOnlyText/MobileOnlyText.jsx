@@ -2,31 +2,23 @@ import React, { useContext, useState } from 'react';
 import './MobileOnlyText.css';
 import { menu_list } from '../../assets/assets'
 import { CarContext } from '../../context/CarContext';
+import { CartContext } from '../../context/CartContext';
+import { FcApproval } from "react-icons/fc";
 
-const services = [
-  'Avgaser',
-  'Batterier',
-  'Bromsar',
-  'Kamrem & kamkedja',
-  'Stötdämpare & fjädring',
-  'Motorarbete',
-  'Tillbehör & extrautrustning'
-];
-
-const MobileOnlyText = ({ selectedService, setSelectedService, category  }) => {
+const MobileOnlyText = React.memo(({ id, name, selectedService, setSelectedService, category  }) => {
+  const {cartItems, addToCart, removeFromCart} = useContext(CartContext)
+  const {url} = useContext(CarContext)
   const [expandedIndex, setExpandedIndex] = useState(null);
   const { car_list } = useContext(CarContext);
+  const [categoryCheck, setCategoryCheck] = useState(false)
 
   const handleToggle = (index) => {
     setExpandedIndex(prev => (prev === index ? null : index));
   };
-  
-  console.log(car_list);
-  
-  const handleSelect = (service) => {
-    setCategory(service); // Update selected service
-    setExpanded(null);   // Close accordion after selection
-  };
+
+  const handleCheck = () => {
+    setCategoryCheck(!categoryCheck)
+  }
 
 
    return (
@@ -40,25 +32,26 @@ const MobileOnlyText = ({ selectedService, setSelectedService, category  }) => {
                         <span className="accordion-toggle">{expandedIndex === index ? '-' : '+'}</span>
                     </div>
                     {expandedIndex === index && (
-                    <div className="accordion-body">
+                    <div className="accordion-body" onClick={handleCheck}>
                         {car_list.map((service, idx) => {
                              if (item.menu_name === service.category) {
                                 return (
                                     <p
                                         key={idx}
                                         className="accordion-item"
-                                        onClick={() => handleSelect(service)}
+                                        onClick={() => addToCart(id)}
                                     >
-                                        {service.name} <span>+</span>
+                                        {service.name} 
+                                        {categoryCheck ? <FcApproval />: <span>+</span>}
                                     </p>
                                 )}
-                    })}
+                        })}
                     </div>
                     )}
                 </div>
             ))}
     </div>
   );
-};
+});
 
 export default MobileOnlyText;

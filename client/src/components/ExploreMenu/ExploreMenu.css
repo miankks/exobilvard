@@ -156,8 +156,8 @@
     transform: translateY(40);
 }
 
-@media (max-width: 700px) {
+/* @media (max-width: 700px) {
     .explore-menu-list {
         display: none;
     }
-}
+} */
