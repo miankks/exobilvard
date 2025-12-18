@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import './MobileCategories.css';
-import { menu_list } from '../../assets/assets';
+import React, { useState } from "react";
+import "./MobileCategories.css";
+import { menu_list } from "../../assets/assets";
 
 const MobileCategories = ({ category, setCategory }) => {
   const [expandedIndex, setExpandedIndex] = useState(null); // track expanded item
@@ -8,7 +8,7 @@ const MobileCategories = ({ category, setCategory }) => {
   const handleToggle = (index, menuName) => {
     if (expandedIndex === index) {
       setExpandedIndex(null); // collapse if clicked again
-      setCategory('All');
+      setCategory("All");
     } else {
       setExpandedIndex(index); // expand this item
       setCategory(menuName);
@@ -21,12 +21,16 @@ const MobileCategories = ({ category, setCategory }) => {
         {menu_list.map((item, index) => (
           <div
             key={index}
-            className={`explore-menu-list-item ${expandedIndex === index ? 'expanded' : ''}`}
+            className={`explore-menu-list-item ${
+              expandedIndex === index ? "expanded" : ""
+            }`}
             onClick={() => handleToggle(index, item.menu_name)}
           >
             <div className="menu-header">
               <p>{item.menu_name}</p>
-              <span className="plus-sign">{expandedIndex === index ? '-' : '+'}</span>
+              <span className="plus-sign">
+                {expandedIndex === index ? "-" : "+"}
+              </span>
             </div>
 
             {/* Expanded content */}

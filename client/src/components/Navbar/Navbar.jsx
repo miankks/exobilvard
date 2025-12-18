@@ -15,9 +15,7 @@ const Navbar = () => {
   const goToMenu = () => {
     navigate("/");
     setTimeout(() => {
-      document
-        .getElementById("menu")
-        ?.scrollIntoView({ behavior: "smooth" });
+      document.getElementById("menu")?.scrollIntoView({ behavior: "smooth" });
     }, 100);
   };
 
@@ -30,7 +28,11 @@ const Navbar = () => {
     <>
       <div className="navbar">
         <Link to="/">
-          <img src={assets.exobil_logo} alt="EXO Bilvårdscenter" className="logo" />
+          <img
+            src={assets.exobil_logo}
+            alt="EXO Bilvårdscenter"
+            className="logo"
+          />
         </Link>
 
         {/* Desktop Menu */}
@@ -86,42 +88,39 @@ const Navbar = () => {
             <div></div>
           </div>
         </div>
-      {/* Contact Info Dropdown */}
-      <div className={`contact-dropdown ${contactOpen ? "show" : ""}`}>
-        <div className="contact-item">
-          <FaMobileAlt className="phone-icon" />
-          <span>076 140 40 40</span>
-        </div>
+        {/* Contact Info Dropdown */}
+        <div className={`contact-dropdown ${contactOpen ? "show" : ""}`}>
+          <div className="contact-item">
+            <FaMobileAlt className="phone-icon" />
+            <span>076 140 40 40</span>
+          </div>
 
-        <div className="contact-item">
-          <MdOutlineMailOutline className="email-icon" />
-          <span>info@exobilvardscenter.se</span>
-        </div>
+          <div className="contact-item">
+            <MdOutlineMailOutline className="email-icon" />
+            <span>info@exobilvardscenter.se</span>
+          </div>
 
-        <div className="contact-item"
-           onClick={() => {
-            window.open(
-              "https://www.google.com/maps/search/?api=1&query=59.61360353804017, 17.881595455641644",
-              "_blank"
-            );
-           }}
+          <div
+            className="contact-item"
+            onClick={() => {
+              window.open(
+                "https://www.google.com/maps/search/?api=1&query=59.61360353804017, 17.881595455641644",
+                "_blank"
+              );
+            }}
             style={{ cursor: "pointer" }}
           >
-          <MdLocationOn className="location-icon" />
-          <span>Söderbyvägen 14195 60 Arlandastad</span>
+            <MdLocationOn className="location-icon" />
+            <span>Söderbyvägen 14195 60 Arlandastad</span>
+          </div>
         </div>
       </div>
-      </div>
-
 
       {/* Mobile Overlay */}
       {mobileOpen && (
         <div className="mobile-menu-overlay">
           <div className="mobile-menu">
-            <button
-              className="close-btn"
-              onClick={() => setMobileOpen(false)}
-            >
+            <button className="close-btn" onClick={() => setMobileOpen(false)}>
               ×
             </button>
 

@@ -1,137 +1,136 @@
 .car-item {
-    display: flex;
-    flex-direction: column;
-    background: #ffffff;
-    border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
 .car-item:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
 }
 
 .car-item-img-container {
-    position: relative;
-    width: 100%;
-    padding-top: 70%; /* maintain aspect ratio */
-    overflow: hidden;
-    border-radius: 20px 20px 0 0;
+  position: relative;
+  width: 100%;
+  padding-top: 70%; /* maintain aspect ratio */
+  overflow: hidden;
+  border-radius: 20px 20px 0 0;
 }
 
-
 .car-item-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    /* border-radius: 20px 20px 0 0; */
-    transition: transform 0.3s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* border-radius: 20px 20px 0 0; */
+  transition: transform 0.3s ease;
 }
 
 .car-item:hover .car-item-image {
-    transform: scale(1.07); /* slightly more zoom on hover */
+  transform: scale(1.07); /* slightly more zoom on hover */
 }
 
 .car-item-info {
-    padding: 15px 18px 20px 18px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  padding: 15px 18px 20px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .car-item-name-rating {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .car-item-name-rating p {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #1f2937;
-    margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
 }
 
 .car-item-description {
-    color: #4b5563;
-    font-size: 0.85rem;
-    line-height: 1.4rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-height: 2.8rem;
+  color: #4b5563;
+  font-size: 0.85rem;
+  line-height: 1.4rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 2.8rem;
 }
 
 .car-item-price {
-    color: #ef4444;
-    font-size: 1.2rem;
-    font-weight: 600;
+  color: #ef4444;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
 /* Add to cart button */
 .car-item-img-container .add {
-    width: 40px;
-    height: 40px;
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
-    cursor: pointer;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #6a5af9, #00c4ff);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  cursor: pointer;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6a5af9, #00c4ff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .car-item-img-container .add:hover {
-    transform: scale(1.1);
-    box-shadow: 0 8px 18px rgba(0,0,0,0.18);
+  transform: scale(1.1);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
 }
 
 /* Counter for cart items */
 .car-item-counter {
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 12px;
-    border-radius: 50px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    font-weight: 600;
-    color: #111827;
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 50px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  font-weight: 600;
+  color: #111827;
 }
 
 .car-item-counter img {
-    width: 28px;
-    cursor: pointer;
-    transition: transform 0.2s ease;
+  width: 28px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
 .car-item-counter img:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .car-item-name-rating p {
-        font-size: 1rem;
-    }
+  .car-item-name-rating p {
+    font-size: 1rem;
+  }
 
-    .car-item-description {
-        font-size: 0.8rem;
-    }
+  .car-item-description {
+    font-size: 0.8rem;
+  }
 
-    .car-item-price {
-        font-size: 1rem;
-    }
+  .car-item-price {
+    font-size: 1rem;
+  }
 }

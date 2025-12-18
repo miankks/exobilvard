@@ -58,9 +58,9 @@ const AboutUs = () => {
         <h1>Om EXO Bilvårdscenter</h1>
         <p>
           Sedan 2020 har vi servat och reparerat bilar med kvalitet och omtanke.
-          EXO Bilvårdscenter startades 2020 och har sedan dess utvecklats till en
-          uppskattad bilverkstad med fokus på noggrannhet, tydlig kommunikation
-          och kundens trygghet.
+          EXO Bilvårdscenter startades 2020 och har sedan dess utvecklats till
+          en uppskattad bilverkstad med fokus på noggrannhet, tydlig
+          kommunikation och kundens trygghet.
         </p>
         <h2>Vår vision</h2>
         <p>
@@ -81,7 +81,10 @@ const AboutUs = () => {
         </div>
       </section>
 
-      <section className="expertise" ref={(el) => (sectionsRef.current[2] = el)}>
+      <section
+        className="expertise"
+        ref={(el) => (sectionsRef.current[2] = el)}
+      >
         <h2>Expertis inom:</h2>
         <ul>
           {expertise.map((item, index) => (

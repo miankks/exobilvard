@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import './MobileFriendlyList.css';
-import { menu_list } from '../../assets/assets';
+import React, { useState } from "react";
+import "./MobileFriendlyList.css";
+import { menu_list } from "../../assets/assets";
 
 const MobileFriendlyList = ({ category, setCategory }) => {
   const [expandedIndex, setExpandedIndex] = useState(null);
@@ -8,7 +8,7 @@ const MobileFriendlyList = ({ category, setCategory }) => {
   const handleToggle = (index, menuName) => {
     if (expandedIndex === index) {
       setExpandedIndex(null);
-      setCategory('All');
+      setCategory("All");
     } else {
       setExpandedIndex(index);
       setCategory(menuName);
@@ -20,17 +20,19 @@ const MobileFriendlyList = ({ category, setCategory }) => {
       {menu_list.map((item, index) => (
         <div
           key={index}
-          className={`menu-card ${expandedIndex === index ? 'expanded' : ''}`}
+          className={`menu-card ${expandedIndex === index ? "expanded" : ""}`}
           onClick={() => handleToggle(index, item.menu_name)}
         >
           <div className="menu-header">
             <p>{item.menu_name}</p>
-            <span className="toggle-icon">{expandedIndex === index ? '-' : '+'}</span>
+            <span className="toggle-icon">
+              {expandedIndex === index ? "-" : "+"}
+            </span>
           </div>
 
           {expandedIndex === index && (
             <div className="menu-body">
-              <p>{item.description || 'Details about this service...'}</p>
+              <p>{item.description || "Details about this service..."}</p>
               <img src={item.menu_image} alt={item.menu_name} />
             </div>
           )}
