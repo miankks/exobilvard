@@ -1,5 +1,8 @@
-import express from 'express';
-import { getAllComments, sendComments } from '../controllers/userComments.controller.js'
+import express from "express";
+import {
+  getAllComments,
+  sendComments,
+} from "../controllers/userComments.controller.js";
 
 const commentRouter = express.Router();
 

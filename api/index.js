@@ -1,20 +1,20 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-import cors from 'cors';
-import cookieParser from 'cookie-parser';
-import path from 'path';
+import express from "express";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import cors from "cors";
+import cookieParser from "cookie-parser";
+import path from "path";
 import { fileURLToPath } from "url";
-import { connectDB } from './config/db.js';
-import userRouter from './routes/user.route.js';
-import 'dotenv/config';
-import cartRouter from './routes/cart.route.js';
-import carRouter from './routes/car.route.js';
-import orderRouter from './routes/order.route.js';
-import emailRouter from './routes/email.route.js'
-import bodyParser from 'body-parser';
-import adminRouter from './routes/admin.route.js';
-import commentsRouter from './routes/comments.route.js';
+import { connectDB } from "./config/db.js";
+import userRouter from "./routes/user.route.js";
+import "dotenv/config";
+import cartRouter from "./routes/cart.route.js";
+import carRouter from "./routes/car.route.js";
+import orderRouter from "./routes/order.route.js";
+import emailRouter from "./routes/email.route.js";
+import bodyParser from "body-parser";
+import adminRouter from "./routes/admin.route.js";
+import commentsRouter from "./routes/comments.route.js";
 
 dotenv.config();
 
@@ -25,7 +25,9 @@ const port = process.env.PORT || 3000;
 // Determine base URL
 const isProduction = process.env.NODE_ENV === "production";
 
-const BASE_URL = isProduction? process.env.RENDER_EXTERNAL_URL || `https://exobilvard-1.onrender.com` : `http://localhost:${port}`
+const BASE_URL = isProduction
+  ? process.env.RENDER_EXTERNAL_URL || `https://exobilvard-1.onrender.com`
+  : `http://localhost:${port}`;
 
 // middleware, when request comes from frontend that will parse through json
 app.use(express.json());
@@ -34,34 +36,33 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // can get access to backend from any frontend to backend
-app.use(cors(
-    {
+app.use(
+  cors({
     origin: [
-        "http://localhost:5000",    // admin
-        "http://localhost:5173",    // client
-        "https://exobilvard-admin-git-main-bilal-jans-projects.vercel.app", // admin
-        "https://exobilvard-client-git-main-bilal-jans-projects.vercel.app",  // client
+      "http://localhost:5000", // admin
+      "http://localhost:5173", // client
+      "https://exobilvard-admin-git-main-bilal-jans-projects.vercel.app", // admin
+      "https://exobilvard-client-git-main-bilal-jans-projects.vercel.app", // client
     ],
-    credentials: true
-}
-));
+    credentials: true,
+  })
+);
 
 // DB connect
 connectDB();
 
 // api endpoints
-app.use('/api/car', carRouter)
-app.use('/images', express.static('uploads'));
-app.use('/adminimage', express.static('uploads/adminimage'));
-app.use("/api/admin", adminRouter)
-app.use("/api/user", userRouter)
-app.use('/api/cart', cartRouter)
-app.use("/api/order", orderRouter)
-app.use("/api/sendemail",bodyParser.json(), emailRouter)
-app.use("/api/comment", commentsRouter)
+app.use("/api/car", carRouter);
+app.use("/images", express.static("uploads"));
+app.use("/adminimage", express.static("uploads/adminimage"));
+app.use("/api/admin", adminRouter);
+app.use("/api/user", userRouter);
+app.use("/api/cart", cartRouter);
+app.use("/api/order", orderRouter);
+app.use("/api/sendemail", bodyParser.json(), emailRouter);
+app.use("/api/comment", commentsRouter);
 
 // export default app
-
 
 // app.get("/", (req, res) => {
 //     res.send(`server is running at: ${BASE_URL}`)
@@ -83,8 +84,6 @@ app.get(/^(?!\/api).*/, (req, res) => {
   res.sendFile(path.join(__dirname, "../client/dist/index.html"));
 });
 
-
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
-
