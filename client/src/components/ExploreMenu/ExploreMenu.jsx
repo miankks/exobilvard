@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import './ExploreMenu.css'
 import { menu_list } from '../../assets/assets'
 import MobileOnlyText from '../MobileOnlyText/MobileOnlyText'

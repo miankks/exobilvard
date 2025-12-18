@@ -42,9 +42,18 @@
 }
 
 .accordion-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.accordion-item {
   margin: 6px 0;
   cursor: pointer;
   color: #333;
+  border: 2px solid black;
+  padding: 20px;
 }
 
 .accordion-item:hover {
@@ -55,4 +64,10 @@
 @keyframes slideDown {
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@media (min-width: 701px) {
+    .mobile-text-accordion {
+        display: none;
+    }
 }

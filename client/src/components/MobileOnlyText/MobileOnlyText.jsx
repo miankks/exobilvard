@@ -39,7 +39,7 @@ const MobileOnlyText = ({ selectedService, setSelectedService  }) => {
                 className="accordion-item"
                 onClick={() => handleSelect(service)}
               >
-                • {service}
+                {service} <span>+</span>
               </p>
             ))}
           </div>
