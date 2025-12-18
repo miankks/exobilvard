@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import './ExploreMenu.css'
 import { menu_list } from '../../assets/assets'
+import MobileOnlyText from '../MobileOnlyText/MobileOnlyText'
 
 const ExploreMenu = ({ category, setCategory }) => {
 
@@ -80,6 +81,7 @@ const ExploreMenu = ({ category, setCategory }) => {
       </div>
 
       <hr />
+      <MobileOnlyText />
     </div>
   )
 }

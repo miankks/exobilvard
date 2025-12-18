@@ -181,4 +181,8 @@
     .burger {
         display: flex;
     }
+
+    .contact-dropdown {
+        display: none;
+    }
 }
