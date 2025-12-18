@@ -6,7 +6,7 @@
     padding: 15px 30px;
     background: linear-gradient(135deg, #6a11cb, #2575fc); /* modern gradient */
     box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    position: relative;
+    position: sticky;
     top: 0;
     z-index: 1000;
 }
@@ -81,6 +81,7 @@
     /* top: 84px; */
     background: #fff;
     padding: 15px 20px;
+    margin-top: 130px;
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 

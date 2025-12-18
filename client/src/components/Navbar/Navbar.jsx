@@ -86,8 +86,6 @@ const Navbar = () => {
             <div></div>
           </div>
         </div>
-      </div>
-
       {/* Contact Info Dropdown */}
       <div className={`contact-dropdown ${contactOpen ? "show" : ""}`}>
         <div className="contact-item">
@@ -113,6 +111,8 @@ const Navbar = () => {
           <span>Söderbyvägen 14195 60 Arlandastad</span>
         </div>
       </div>
+      </div>
+
 
       {/* Mobile Overlay */}
       {mobileOpen && (
