@@ -29,13 +29,13 @@ const Sidebar = () => {
           <img src={assets.order_icon} alt="" />
           <p>Accepted Orders</p>
         </NavLink>
-        <NavLink to="/completedorders" className="sidebar-option">
-          <img src={assets.order_icon} alt="" />
-          <p>Completed Orders</p>
-        </NavLink>
         <NavLink to="/rejectedorders" className="sidebar-option">
           <img src={assets.order_icon} alt="" />
           <p>Rejected Orders</p>
+        </NavLink>
+        <NavLink to="/completedorders" className="sidebar-option">
+          <img src={assets.order_icon} alt="" />
+          <p>Completed Orders</p>
         </NavLink>
       </div>
     </div>
