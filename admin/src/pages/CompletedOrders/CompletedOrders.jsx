@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react'
-import './CompletedOrders.css'
-import axios from 'axios';
-import { toast } from 'react-toastify'
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import "./CompletedOrders.css";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
-const CompletedOrders = ({url}) => {
+const CompletedOrders = ({ url }) => {
   const [orders, setOrders] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
@@ -12,10 +12,10 @@ const CompletedOrders = ({url}) => {
   const fetchAllOrders = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get(url + '/api/order/completedorders', {
+      const response = await axios.get(url + "/api/order/completedorders", {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       });
       if (response.data.success) {
         setOrders(response.data.data);
@@ -25,19 +25,19 @@ const CompletedOrders = ({url}) => {
     } catch (err) {
       toast.error("Error fetching orders");
     }
-  }
+  };
 
   const handleOrder = (orderID) => {
-    navigate(`/completedorders/${orderID}`)
-  }
+    navigate(`/completedorders/${orderID}`);
+  };
 
   useEffect(() => {
     fetchAllOrders();
-  },[])
+  }, []);
 
   // escape regex special characters to avoid crashes when user types symbols
   const escapeRegExp = (string = "") => {
-    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   };
 
   // highlight matched parts (safe: uses escaped regex)
@@ -53,7 +53,9 @@ const CompletedOrders = ({url}) => {
 
     return parts.map((part, i) =>
       part.toLowerCase() === term.toLowerCase() ? (
-        <span key={i} className="bg-yellow-300 font-bold">{part}</span>
+        <span key={i} className="bg-yellow-300 font-bold">
+          {part}
+        </span>
       ) : (
         part
       )
@@ -61,7 +63,7 @@ const CompletedOrders = ({url}) => {
   };
 
   // computed filteredOrders - only these will be shown
-  const filteredOrders = orders.filter(order => {
+  const filteredOrders = orders.filter((order) => {
     if (!searchTerm || !searchTerm.trim()) return true; // no filter when empty
     const term = searchTerm.trim().toLowerCase();
 
@@ -75,7 +77,7 @@ const CompletedOrders = ({url}) => {
     const comment = (order?.comment || "").toString().toLowerCase();
 
     const itemNames = (order.items || [])
-      .map(i => `${i.name} x${i.quantity}`)
+      .map((i) => `${i.name} x${i.quantity}`)
       .join(" ")
       .toLowerCase();
 
@@ -94,7 +96,7 @@ const CompletedOrders = ({url}) => {
   });
 
   return (
-    <div className='order add'>
+    <div className="order add">
       <h3>Completed Orders Summary</h3>
 
       {/* SEARCH BAR */}
@@ -117,25 +119,35 @@ const CompletedOrders = ({url}) => {
         ) : (
           filteredOrders.map((order, index) => {
             return (
-            <div className='completeorder-description' key={order._id || index}>
-              <div>
-                <p className='order-item-name'>
-                  {highlightMatch(order.address?.fullName)}
-                </p>
-                <div className="email-row">
-                  <p className="order-item-email">{highlightMatch(order.address?.email)}</p>
+              <div
+                className="completeorder-description"
+                key={order._id || index}
+              >
+                <div>
+                  <p className="order-item-name">
+                    {highlightMatch(order.address?.fullName)}
+                  </p>
+                  <div className="email-row">
+                    <p className="order-item-email">
+                      {highlightMatch(order.address?.email)}
+                    </p>
+                  </div>
+                  <div className="email-row">
+                    <p className="order-item-phone">
+                      {highlightMatch(order.address?.phone)}
+                    </p>
+                  </div>
                 </div>
-                <div className="email-row">
-                  <p className="order-item-phone">{highlightMatch(order.address?.phone)}</p>
-                </div>
+                <button type="button" onClick={() => handleOrder(order._id)}>
+                  Details
+                </button>
               </div>
-               <button type='button' onClick={() => handleOrder(order._id)}>Details</button>
-            </div>
-          )})
+            );
+          })
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default CompletedOrders;

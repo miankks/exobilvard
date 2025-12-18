@@ -11,12 +11,12 @@
   top: 0;
   z-index: 10;
   box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1); /* subtle shadow */
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Logo */
 .navbar .logo {
-   width: max(5%, 80px);
+  width: max(5%, 80px);
   cursor: pointer;
   font-size: 24px;
   font-weight: bold;
@@ -35,7 +35,6 @@
   gap: 30px;
   align-items: center; /* aligns everything vertically */
 }
-
 
 .nav-links a {
   text-decoration: none;
@@ -64,9 +63,9 @@
   transition: all 0.3s ease;
   font-weight: 500;
 
-  display: inline-block;      /* important */
-  vertical-align: middle;     /* aligns with text links */
-  line-height: 1.5;           /* same as links */
+  display: inline-block; /* important */
+  vertical-align: middle; /* aligns with text links */
+  line-height: 1.5; /* same as links */
 }
 
 .logout-btn:hover {
@@ -89,10 +88,10 @@
 }
 
 @media (max-width: 700px) {
-  .nav-links{
-      gap: 10px;
-  }  
+  .nav-links {
+    gap: 10px;
+  }
   .navbar {
     padding: 0 10px;
-}
+  }
 }

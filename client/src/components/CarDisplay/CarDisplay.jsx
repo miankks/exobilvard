@@ -27,40 +27,39 @@ const CarDisplay = ({ category }) => {
   };
 
   useEffect(() => {
-    const HandleResize = () => {
-      setIsMobile(window.innerWidth < 701);
+    const mediaQuery = window.matchMedia("(max-width: 700px)");
+
+    const handleChange = (e) => {
+      setIsMobile(e.matches);
     };
-    HandleResize();
-    window.addEventListener("resize", HandleResize);
-    return () => window.removeEventListener("resize", HandleResize);
+
+    // set initial value
+    setIsMobile(mediaQuery.matches);
+
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
 
   return (
     <div className="car-display" id="car-display">
       <h2>Våra tjänster</h2>
-      {/* mobile view */}
-      {isMobile && <MobileOnlyText category={category} />}
-
-      {/* desktop view */}
-      {/* DESKTOP VIEW */}
-      {!isMobile && (
-        <div className="car-display-list">
-          {car_list.map((item, index) => {
-            if (category === "All" || category === item.category) {
-              return (
-                <CarItem
-                  key={index}
-                  id={item._id}
-                  name={item.name}
-                  description={item.description}
-                  image={item.image}
-                />
-              );
-            }
-            return null;
-          })}
-        </div>
-      )}
+      <MobileOnlyText category={category} />
+      <div className="car-display-list">
+        {car_list.map((item, index) => {
+          if (category === "All" || category === item.category) {
+            return (
+              <CarItem
+                key={index}
+                id={item._id}
+                name={item.name}
+                description={item.description}
+                image={item.image}
+              />
+            );
+          }
+          return null;
+        })}
+      </div>
       <div className="cart-button-section">
         <Link to="/cart" className="btn">
           Proceed to cart

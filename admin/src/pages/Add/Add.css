@@ -1,56 +1,60 @@
 /* Main container */
 .add {
-    width: 70%;
-    margin-left: max(5vw, 25px);
-    margin-top: 50px;
-    padding-bottom: 20px;
+  width: 70%;
+  margin-left: max(5vw, 25px);
+  margin-top: 50px;
+  padding-bottom: 20px;
 
-    /* Vibrant modern look */
-    background: linear-gradient(135deg, #fdfbfb, #ebedee);
-    padding: 40px;
-    border-radius: 20px;
+  /* Vibrant modern look */
+  background: linear-gradient(135deg, #fdfbfb, #ebedee);
+  padding: 40px;
+  border-radius: 20px;
 
-    color: #4e4e4e;
-    font-size: 16px;
+  color: #4e4e4e;
+  font-size: 16px;
 
-    box-shadow: 
-        0 8px 20px rgba(0, 0, 0, 0.08),
-        0 4px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08), 0 4px 8px rgba(0, 0, 0, 0.05);
 
-    animation: fadeIn 0.6s ease;
+  animation: fadeIn 0.6s ease;
 }
 
 /* Nice fade-in animation */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Form styling */
 .add form {
-    gap: 20px;
-    display: flex;
-    flex-direction: column;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Utility for flex column */
 .flex-col {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 /* Image preview card */
 .add-img-upload img {
-    width: 120px;
-    border-radius: 14px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  width: 120px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Input wrappers */
 .add-product-name,
 .add-product-description {
-    width: max(40%, 280px);
+  width: max(40%, 280px);
 }
 
 /* Input fields */
@@ -58,20 +62,18 @@
 .add-product-description textarea,
 .add-category-price select,
 .add-category-price input {
-    padding: 12px 14px;
+  padding: 12px 14px;
 
-    border-radius: 12px;
-    border: 1px solid #dcdcdc;
+  border-radius: 12px;
+  border: 1px solid #dcdcdc;
 
-    background: linear-gradient(145deg, #ffffff, #f6f6f6);
-    color: #333;
-    font-size: 15px;
+  background: linear-gradient(145deg, #ffffff, #f6f6f6);
+  color: #333;
+  font-size: 15px;
 
-    box-shadow:
-        inset 2px 2px 5px #d4d4d4,
-        inset -2px -2px 5px #ffffff;
+  box-shadow: inset 2px 2px 5px #d4d4d4, inset -2px -2px 5px #ffffff;
 
-    transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 /* Inputs hover & focus */
@@ -79,57 +81,51 @@
 .add-product-description textarea:hover,
 .add-category-price select:hover,
 .add-category-price input:hover {
-    border-color: #8bb9ff;
+  border-color: #8bb9ff;
 }
 
 .add-product-name input:focus,
 .add-product-description textarea:focus,
 .add-category-price select:focus,
 .add-category-price input:focus {
-    outline: none;
-    border-color: #6fa8ff;
-    box-shadow:
-        0 0 8px rgba(111, 168, 255, 0.5);
+  outline: none;
+  border-color: #6fa8ff;
+  box-shadow: 0 0 8px rgba(111, 168, 255, 0.5);
 }
 
 /* Category and price row */
 .add-category-price {
-    display: flex;
-    gap: 30px;
+  display: flex;
+  gap: 30px;
 }
 
 /* Submit button — colorful, glowing, modern */
 .add-btn {
-    max-width: 120px;
-    padding: 8px 12px;
-    border: none;
-    cursor: pointer;
+  max-width: 120px;
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
 
-    background: linear-gradient(135deg, #6a5af9, #00c4ff);
-    color: white;
-    font-weight: 600;
-    font-size: 15px;
+  background: linear-gradient(135deg, #6a5af9, #00c4ff);
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
 
-    border-radius: 12px;
+  border-radius: 12px;
 
-    box-shadow: 
-        0 6px 14px rgba(0, 0, 0, 0.15),
-        0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.05);
 
-    transition: transform 0.25s, box-shadow 0.25s ease;
+  transition: transform 0.25s, box-shadow 0.25s ease;
 }
 
 /* Button hover */
 .add-btn:hover {
-    transform: translateY(-3px);
-    box-shadow:
-        0 10px 18px rgba(0, 0, 0, 0.18),
-        0 4px 6px rgba(0, 0, 0, 0.08);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.18), 0 4px 6px rgba(0, 0, 0, 0.08);
 }
 
 /* Button active */
 .add-btn:active {
-    transform: translateY(0);
-    box-shadow:
-        0 4px 10px rgba(0, 0, 0, 0.12);
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
 }

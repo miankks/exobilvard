@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth } from "../../context/AuthContext";
-import { assets } from '../../assets/assets';
+import { assets } from "../../assets/assets";
 import "./AdminSignup.css";
 
 const AdminSignup = () => {
@@ -46,24 +46,52 @@ const AdminSignup = () => {
         <div className="input-group">
           <p>Upload Image</p>
           <label htmlFor="image">
-            <img src={image ? URL.createObjectURL(image) : assets.upload_area} alt="" />
+            <img
+              src={image ? URL.createObjectURL(image) : assets.upload_area}
+              alt=""
+            />
           </label>
-          <input type="file" id="image" hidden onChange={(e) => setImage(e.target.files[0])} />
+          <input
+            type="file"
+            id="image"
+            hidden
+            onChange={(e) => setImage(e.target.files[0])}
+          />
           <label>Name</label>
-          <input type="text" name="name" value={form.name} onChange={onChange} placeholder="Enter your name" />
+          <input
+            type="text"
+            name="name"
+            value={form.name}
+            onChange={onChange}
+            placeholder="Enter your name"
+          />
         </div>
 
         <div className="input-group">
           <label>Email</label>
-          <input type="email" name="email" value={form.email} onChange={onChange} placeholder="Enter email" />
+          <input
+            type="email"
+            name="email"
+            value={form.email}
+            onChange={onChange}
+            placeholder="Enter email"
+          />
         </div>
 
         <div className="input-group">
           <label>Password</label>
-          <input type="password" name="password" value={form.password} onChange={onChange} placeholder="Enter password" />
+          <input
+            type="password"
+            name="password"
+            value={form.password}
+            onChange={onChange}
+            placeholder="Enter password"
+          />
         </div>
 
-        <button className="signup-btn" type="submit">Create Account</button>
+        <button className="signup-btn" type="submit">
+          Create Account
+        </button>
       </form>
     </div>
   );

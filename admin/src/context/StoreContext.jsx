@@ -9,46 +9,46 @@ export const StoreProvider = ({ children, url }) => {
   const [admin, setAdmin] = useState(null);
 
   // Fetch admin
- // LOGIN + fetch admin combined
-const login = async (formData) => {
-  try {
-    // 1️⃣ Call login API
-    const response = await axios.post(`${url}/api/admin/login`, formData);
-
-    if (!response.data.success) {
-      return { success: false, message: response.data.message };
-    }
-
-    const newToken = response.data.token;
-
-    // 2️⃣ Save token
-    localStorage.setItem("token", newToken);
-    setToken(newToken);
-
-    // 3️⃣ Fetch admin immediately after login
+  // LOGIN + fetch admin combined
+  const login = async (formData) => {
     try {
-      const adminResponse = await axios.get(`${url}/api/admin/getadmin`, {
-        headers: { Authorization: `Bearer ${newToken}` },
-      });
+      // 1️⃣ Call login API
+      const response = await axios.post(`${url}/api/admin/login`, formData);
 
-      if (adminResponse.data.success) {
-        setAdmin(adminResponse.data.data);
-      } else {
-        toast.error("Failed to fetch admin");
+      if (!response.data.success) {
+        return { success: false, message: response.data.message };
       }
-    } catch (err) {
-      console.log(err);
-      toast.error("Error fetching admin");
-    }
 
-    return { success: true };
-  } catch (error) {
-    return {
-      success: false,
-      message: error.response?.data?.message || "Login failed",
-    };
-  }
-};
+      const newToken = response.data.token;
+
+      // 2️⃣ Save token
+      localStorage.setItem("token", newToken);
+      setToken(newToken);
+
+      // 3️⃣ Fetch admin immediately after login
+      try {
+        const adminResponse = await axios.get(`${url}/api/admin/getadmin`, {
+          headers: { Authorization: `Bearer ${newToken}` },
+        });
+
+        if (adminResponse.data.success) {
+          setAdmin(adminResponse.data.data);
+        } else {
+          toast.error("Failed to fetch admin");
+        }
+      } catch (err) {
+        console.log(err);
+        toast.error("Error fetching admin");
+      }
+
+      return { success: true };
+    } catch (error) {
+      return {
+        success: false,
+        message: error.response?.data?.message || "Login failed",
+      };
+    }
+  };
 
   // SIGNUP
   const signup = async (formData) => {
@@ -83,9 +83,7 @@ const login = async (formData) => {
   };
 
   return (
-    <StoreContext.Provider
-      value={{ token, admin, login, signup, logout, url }}
-    >
+    <StoreContext.Provider value={{ token, admin, login, signup, logout, url }}>
       {children}
     </StoreContext.Provider>
   );
