@@ -7,19 +7,18 @@ import { FcApproval } from "react-icons/fc";
 
 const MobileOnlyText = React.memo(() => {
   const { cartItems, addToCart, removeFromCart } = useContext(CartContext);
-  const [expandedIndex, setExpandedIndex] = useState(null);
   const { car_list } = useContext(CarContext);
-  const [selectedServiceId, setSelectedServiceId] = useState(null);
+
+  const [expandedIndex, setExpandedIndex] = useState(null);
 
   const handleSelectService = (serviceId) => {
     if (cartItems[serviceId]) {
       removeFromCart(serviceId);
-      setSelectedServiceId(null);
     } else {
       addToCart(serviceId);
-      setSelectedServiceId(serviceId);
     }
   };
+
   const handleToggle = (index) => {
     setExpandedIndex((prev) => (prev === index ? null : index));
   };
@@ -41,13 +40,14 @@ const MobileOnlyText = React.memo(() => {
           </div>
           {expandedIndex === index && (
             <div className="accordion-body">
-              {car_list.map((service, idx) => {
+              {car_list.map((service) => {
                 if (item.menu_name === service.category) {
+                  const isSelected = !!cartItems[service._id]; // check directly from cart
                   return (
                     <p
                       key={service._id}
                       className={`accordion-item ${
-                        selectedServiceId === service._id ? "selected" : ""
+                        isSelected ? "selected" : ""
                       }`}
                       onClick={(e) => {
                         e.stopPropagation();
@@ -55,14 +55,11 @@ const MobileOnlyText = React.memo(() => {
                       }}
                     >
                       {service.name}
-                      {selectedServiceId === service._id ? (
-                        <FcApproval />
-                      ) : (
-                        <span>+</span>
-                      )}
+                      {isSelected ? <FcApproval /> : <span>+</span>}
                     </p>
                   );
                 }
+                return null;
               })}
             </div>
           )}
