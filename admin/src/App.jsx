@@ -20,6 +20,7 @@ import AdminProfile from "./components/AdminProfile/AdminProfile";
 import { StoreProvider } from "./context/StoreContext";
 import { AuthProvider } from "./context/AuthContext";
 import { AdminProvider } from "./context/AdminContext";
+import HomePage from "./pages/HomePage/HomePage";
 
 const App = () => {
   const API_URL = import.meta.env.VITE_API_URL;
@@ -33,6 +34,7 @@ const App = () => {
           <div className="app-content">
             <Sidebar />
             <Routes>
+              <Route path="/" element={<HomePage url={API_URL} />} />
               <Route path="/addcar" element={<Add url={API_URL} />} />
               <Route
                 path="/adminprofile"
