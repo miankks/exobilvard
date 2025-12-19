@@ -172,7 +172,7 @@ const Orders = ({ url }) => {
                   </div>
                 ) : null}
                 {!selected || selected === "date3" ? (
-                  <div className="bookdate-row">
+                  <div className="email-row">
                     <span>
                       <CiCalendarDate />
                     </span>
@@ -205,40 +205,43 @@ const Orders = ({ url }) => {
               {/* Column 3 */}
               <p>Items: {order.items.length}</p>
 
-              {/* Column 4 */}
-              <select
-                value={order.status}
-                onChange={(e) => {
-                  const newStatus = e.target.value;
-                  updateOrderStatusLocally(order._id, newStatus);
-                  handleSelectChange(order._id, e.target.value);
-                }}
-              >
-                <option value="Pending to accept">Pending to accept</option>
-                <option value="Accepted">Accepted</option>
-                <option value="Rejected">Rejected</option>
-                <option value="Completed">Completed</option>
-              </select>
-
               {/* Column 5 */}
-              <button
-                type="submit"
-                className="add-btn"
-                onClick={() =>
-                  statusHandler(
-                    selectedStatuses[order._id] ?? order.status,
-                    order._id
-                  )
-                }
-              >
-                Uppdatera
-              </button>
               {(selectedStatuses[order._id] ?? order.status) === "Rejected" && (
                 <div className="order-date">
                   <h6>Välj en ny tid</h6>
                   <Reactdatepicker sendDataToParent={handleDate} />
                 </div>
               )}
+              {/* Column 4 */}
+              <div className="select-update-btn">
+                <select
+                  value={order.status}
+                  onChange={(e) => {
+                    const newStatus = e.target.value;
+                    updateOrderStatusLocally(order._id, newStatus);
+                    handleSelectChange(order._id, e.target.value);
+                  }}
+                >
+                  <option value="Pending to accept">Pending to accept</option>
+                  <option value="Accepted">Accepted</option>
+                  <option value="Rejected">Rejected</option>
+                  <option value="Completed">Completed</option>
+                </select>
+
+                <button
+                  type="submit"
+                  className="orders-add-btn"
+                  onClick={() =>
+                    statusHandler(
+                      selectedStatuses[order._id] ?? order.status,
+                      order._id
+                    )
+                  }
+                >
+                  Uppdatera
+                </button>
+              </div>
+
               {/* FULL ROW at Bottom */}
               <div className="order-description">
                 <b>Comments from client</b>
@@ -246,20 +249,20 @@ const Orders = ({ url }) => {
                   {order.address.userComment || "No comment provided"}
                 </p>
               </div>
-              <div className="order-description">
-                <b>Comments for client</b>
-                <textarea
-                  name="description"
-                  rows="6"
-                  placeholder="Write content here"
-                  required
-                  onChange={onChangeHandler}
-                  value={comment}
-                />
-              </div>
             </div>
           );
         })}
+        <div className="order-description">
+          <b>Comments for client</b>
+          <textarea
+            name="description"
+            rows="6"
+            placeholder="Write content here"
+            required
+            onChange={onChangeHandler}
+            value={comment}
+          />
+        </div>
       </div>
     </div>
   );

@@ -104,31 +104,33 @@ const AcceptedOrdersDetails = ({ url }) => {
                 </p>
               </div>
               <p>Items: {order.items.length}</p>
-              <select
-                value={order.status}
-                onChange={(e) => {
-                  const newStatus = e.target.value;
-                  updateOrderStatusLocally(order._id, newStatus);
-                  handleSelectChange(order._id, e.target.value);
-                }}
-              >
-                <option value="Pending to accept">Pending to accept</option>
-                <option value="Accepted">Accepted</option>
-                <option value="Rejected">Rejected</option>
-                <option value="Completed">Completed</option>
-              </select>
-              <button
-                type="submit"
-                className="add-btn"
-                onClick={() =>
-                  statusHandler(
-                    selectedStatuses[order._id] ?? order.status,
-                    order._id
-                  )
-                }
-              >
-                Uppdatera
-              </button>
+              <div className="select-update-btn">
+                <select
+                  value={order.status}
+                  onChange={(e) => {
+                    const newStatus = e.target.value;
+                    updateOrderStatusLocally(order._id, newStatus);
+                    handleSelectChange(order._id, e.target.value);
+                  }}
+                >
+                  <option value="Pending to accept">Pending to accept</option>
+                  <option value="Accepted">Accepted</option>
+                  <option value="Rejected">Rejected</option>
+                  <option value="Completed">Completed</option>
+                </select>
+                <button
+                  type="submit"
+                  className="orders-add-btn"
+                  onClick={() =>
+                    statusHandler(
+                      selectedStatuses[order._id] ?? order.status,
+                      order._id
+                    )
+                  }
+                >
+                  Uppdatera
+                </button>
+              </div>
               <div className="order-description">
                 <p className="order-item-regnummer">User comments:</p>
                 <p>{order.address.userComment || "No comment provided"}</p>

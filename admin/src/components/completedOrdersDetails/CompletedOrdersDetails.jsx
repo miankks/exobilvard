@@ -224,33 +224,34 @@ const CompletedOrdersDetails = ({ url }) => {
                   </div>
                 </div>
                 <p>Items: {order.items.length}</p>
+                <div className="select-update-btn">
+                  <select
+                    value={selectedStatuses[order._id] ?? order.status}
+                    onChange={(e) => {
+                      const newStatus = e.target.value;
+                      updateOrderStatusLocally(order._id, newStatus);
+                      handleSelectChange(order._id, e.target.value);
+                    }}
+                  >
+                    <option value="Pending to accept">Pending to accept</option>
+                    <option value="Accepted">Accepted</option>
+                    <option value="Rejected">Rejected</option>
+                    <option value="Completed">Completed</option>
+                  </select>
 
-                <select
-                  value={selectedStatuses[order._id] ?? order.status}
-                  onChange={(e) => {
-                    const newStatus = e.target.value;
-                    updateOrderStatusLocally(order._id, newStatus);
-                    handleSelectChange(order._id, e.target.value);
-                  }}
-                >
-                  <option value="Pending to accept">Pending to accept</option>
-                  <option value="Accepted">Accepted</option>
-                  <option value="Rejected">Rejected</option>
-                  <option value="Completed">Completed</option>
-                </select>
-
-                <button
-                  type="submit"
-                  className="add-btn"
-                  onClick={() =>
-                    statusHandler(
-                      selectedStatuses[order._id] ?? order.status,
-                      order._id
-                    )
-                  }
-                >
-                  Uppdatera
-                </button>
+                  <button
+                    type="submit"
+                    className="orders-add-btn"
+                    onClick={() =>
+                      statusHandler(
+                        selectedStatuses[order._id] ?? order.status,
+                        order._id
+                      )
+                    }
+                  >
+                    Uppdatera
+                  </button>
+                </div>
 
                 <div className="delete-btn">
                   <button
