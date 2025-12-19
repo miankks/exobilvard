@@ -207,7 +207,8 @@ hr {
 /* Main container */
 .orders-add {
   width: 100%;
-  margin-left: max(5vw, 25px);
+  margin-left: max(2vw, 25px);
+  margin-right: max(2vw, 25px);
   margin-top: 50px;
   padding-bottom: 20px;
 
