@@ -85,7 +85,7 @@ const Orders = ({ url }) => {
   }, [orders, id]);
 
   return (
-    <div className="order add">
+    <div className="order orders-add">
       <h3>Beställning</h3>
       <div className="order-list">
         {filteredOrders.map((order, index) => {

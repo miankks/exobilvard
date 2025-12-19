@@ -35,7 +35,7 @@ const AcceptedOrders = ({ url }) => {
   }, []);
 
   return (
-    <div className="order add">
+    <div className="order orders-add">
       <h3>Accepted Orders Summary</h3>
       <div className="order-list">
         {orders.map((order, index) => {

@@ -155,7 +155,7 @@ const CompletedOrdersDetails = ({ url }) => {
     });
 
   return (
-    <div className="order add">
+    <div className="order orders-add">
       <h3>Completed Orders Page</h3>
 
       {/* SEARCH BAR */}

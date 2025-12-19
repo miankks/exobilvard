@@ -75,7 +75,7 @@ const RejectedOrdersDetails = ({ url }) => {
   }, []);
 
   return (
-    <div className="order add">
+    <div className="order orders-add">
       <h3>Rejected orders Page</h3>
       <div className="order-list">
         {orders.map((order, index) => {
