@@ -66,13 +66,6 @@
   border-radius: 6px;
 }
 
-.booking-summary-email-row {
-  display: flex;
-  align-items: center;
-  gap: 6px; /* space between icon and text */
-  margin-bottom: 10px;
-}
-
 @media (max-width: 1000px) {
   .booking-summary-item {
     font-size: 12px;

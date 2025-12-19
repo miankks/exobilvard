@@ -42,14 +42,11 @@ const BookingsSummary = ({ url }) => {
             <div className="booking-summary-description" key={index}>
               <div className="booking-summary-info">
                 <p className="booking-item-name">{order.address.fullName}</p>
-                {/* <p className="booking-item-name"><b>Namn:</b> {order.address.fullName}</p> */}
-                <div className="booking-summary-email-row">
+                <div className="email-row">
                   <p className="">{order.address.email}</p>
-                  {/* <p className=""><b>emejl:</b> {order.address.email}</p> */}
                 </div>
-                <div className="booking-summary-email-row">
+                <div className="email-row">
                   <p className="">{order.address.phone}</p>
-                  {/* <p className=""><b>Mobil:</b> {order.address.phone}</p>  */}
                 </div>
               </div>
               <button type="button" onClick={() => handleOrder(order._id)}>

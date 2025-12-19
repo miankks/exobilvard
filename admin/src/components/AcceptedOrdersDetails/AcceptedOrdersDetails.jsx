@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import "./AcceptedOrdersDetails.css";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { assets } from "../../assets/assets";
@@ -67,7 +66,7 @@ const AcceptedOrdersDetails = ({ url }) => {
         {orders.map((order, index) => {
           const formatedDate = formattedDate(order?.date);
           return (
-            <div className="complatedorder-item" key={index}>
+            <div className="order-item" key={index}>
               <img src={assets.parcel_icon} alt="" />
               <div>
                 <p className="order-item-car">

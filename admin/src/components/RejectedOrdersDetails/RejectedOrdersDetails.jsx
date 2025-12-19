@@ -81,10 +81,10 @@ const RejectedOrdersDetails = ({ url }) => {
         {orders.map((order, index) => {
           const formatedDate = formattedDate(order?.date);
           return (
-            <div className="rejecteddorder-item" key={index}>
+            <div className="order-item" key={index}>
               <img src={assets.parcel_icon} alt="" />
               <div>
-                <p className="rejecteddorder-item-car">
+                <p className="order-item-car">
                   {order.items.map((item, index) => {
                     if (index === order.items.length - 1) {
                       return item.name + " x" + item.quantity;
@@ -93,9 +93,7 @@ const RejectedOrdersDetails = ({ url }) => {
                     }
                   })}
                 </p>
-                <p className="rejecteddorder-item-name">
-                  {order.address.fullName}
-                </p>
+                <p className="order-item-name">{order.address.fullName}</p>
                 <div className="email-row">
                   <MdEmail />
                   <p className="order-item-email">{order.address.email}</p>
@@ -121,7 +119,7 @@ const RejectedOrdersDetails = ({ url }) => {
               </div>
               <p>Items: {order.items.length}</p>
               <select
-                className="rejecteddorder-item-select"
+                className="order-item-select"
                 value={order.status}
                 onChange={(e) => {
                   const newStatus = e.target.value;
@@ -137,14 +135,12 @@ const RejectedOrdersDetails = ({ url }) => {
               <button
                 type="submit"
                 className="add-btn"
-                onClick={
-                  () =>
-                    statusHandler(
-                      selectedStatuses[order._id] ?? order.status,
-                      order._id,
-                      url
-                    )
-                  // statusUpdateHandler(selectedStatuses[order._id] ?? order.status, order._id, url)
+                onClick={() =>
+                  statusHandler(
+                    selectedStatuses[order._id] ?? order.status,
+                    order._id,
+                    url
+                  )
                 }
               >
                 Uppdatera

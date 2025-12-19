@@ -179,9 +179,9 @@ const CompletedOrdersDetails = ({ url }) => {
           filteredOrders.map((order, index) => {
             const formatedDate = formattedDate(order?.date);
             return (
-              <div className="complatedorder-item" key={order._id || index}>
+              <div className="order-item" key={order._id || index}>
                 <img src={assets.parcel_icon} alt="" />
-                <div>
+                <div className="order-info">
                   <p className="order-item-car">
                     {order.items.map((item, idx) => {
                       const formatted = `${item.name} x${item.quantity}`;
