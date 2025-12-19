@@ -21,6 +21,7 @@ import { StoreProvider } from "./context/StoreContext";
 import { AuthProvider } from "./context/AuthContext";
 import { AdminProvider } from "./context/AdminContext";
 import HomePage from "./pages/HomePage/HomePage";
+import EditList from "./components/EditList/EditList";
 
 const App = () => {
   const API_URL = import.meta.env.VITE_API_URL;
@@ -70,6 +71,7 @@ const App = () => {
                 path="/rejectedorders/:id"
                 element={<RejectedOrdersDetails url={API_URL} />}
               />
+              <Route path="/editlist" element={<EditList url={API_URL} />} />
               <Route path="/signup" element={<AdminSignup url={API_URL} />} />
               <Route path="/login" element={<AdminLogin url={API_URL} />} />
             </Routes>

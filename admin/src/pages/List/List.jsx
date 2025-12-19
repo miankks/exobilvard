@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import "./List.css";
 
 const List = ({ url }) => {
   const [list, setList] = useState([]);
-
+  const navigate = useNavigate();
   const fetchList = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -23,6 +24,12 @@ const List = ({ url }) => {
     } catch (error) {
       toast.error("Error fetching orders");
     }
+  };
+
+  const handleListEdit = () => {
+    console.log("handlelist");
+
+    navigate("/editlist");
   };
 
   useEffect(() => {
@@ -69,7 +76,14 @@ const List = ({ url }) => {
               >
                 x
               </button>
-              <button>edit</button>
+
+              <button
+                onClick={() => {
+                  handleListEdit;
+                }}
+              >
+                edit
+              </button>
             </div>
           );
         })}
