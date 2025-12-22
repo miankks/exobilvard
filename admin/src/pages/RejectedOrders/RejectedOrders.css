@@ -5,7 +5,6 @@
   flex-direction: column;
   /* REMOVE align-items so text stays left */
   gap: 12px;
-
   padding: 20px;
   border-radius: 14px;
   border: 1px solid #e0e0e0;

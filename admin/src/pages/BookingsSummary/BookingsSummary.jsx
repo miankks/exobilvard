@@ -34,7 +34,7 @@ const BookingsSummary = ({ url }) => {
   }, []);
 
   return (
-    <div className="booking-summary booking-container">
+    <div className="order add">
       <h3>Beställnings sida</h3>
       <div className="booking-summary-list">
         {orders.map((order, index) => {

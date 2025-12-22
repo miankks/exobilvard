@@ -22,6 +22,7 @@ import { AuthProvider } from "./context/AuthContext";
 import { AdminProvider } from "./context/AdminContext";
 import HomePage from "./pages/HomePage/HomePage";
 import EditList from "./components/EditList/EditList";
+import { ListCarProvider } from "./context/ListCarContext";
 
 const App = () => {
   const API_URL = import.meta.env.VITE_API_URL;

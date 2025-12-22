@@ -26,9 +26,7 @@ const List = ({ url }) => {
     }
   };
 
-  const handleListEdit = () => {
-    console.log("handlelist");
-
+  const handleListEdit = (listItem) => {
     navigate("/editlist");
   };
 
@@ -53,7 +51,7 @@ const List = ({ url }) => {
       : toast.error("Error");
   };
   return (
-    <div className="list add flex-col">
+    <div className="list">
       <p>All Car list</p>
       <div className="list-table">
         <div className="list-table-format title">
@@ -79,7 +77,7 @@ const List = ({ url }) => {
 
               <button
                 onClick={() => {
-                  handleListEdit;
+                  handleListEdit(item._id);
                 }}
               >
                 edit
