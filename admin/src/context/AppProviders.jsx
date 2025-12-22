@@ -7,11 +7,9 @@ const AppProviders = ({ children, url }) => {
   return (
     <OrdersProvider url={url}>
       <ListCarProvider url={url}>
-        {/* <AdminProvider> */}
-        {/* <AuthProvider> */}
-        {children}
-        {/* </AuthProvider> */}
-        {/* </AdminProvider> */}
+        <AuthProvider url={url}>
+          <AdminProvider url={url}>{children}</AdminProvider>
+        </AuthProvider>
       </ListCarProvider>
     </OrdersProvider>
   );

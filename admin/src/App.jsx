@@ -22,63 +22,59 @@ import { AuthProvider } from "./context/AuthContext";
 import { AdminProvider } from "./context/AdminContext";
 import HomePage from "./pages/HomePage/HomePage";
 import EditList from "./components/EditList/EditList";
-import { ListCarProvider } from "./context/ListCarContext";
 
 const App = () => {
   const API_URL = import.meta.env.VITE_API_URL;
 
   return (
     <div>
-      <AuthProvider url={API_URL}>
-        <AdminProvider url={API_URL}>
-          <ToastContainer />
-          <Navbar url={API_URL} />
-          <div className="app-content">
-            <Sidebar />
-            <Routes>
-              <Route path="/" element={<HomePage url={API_URL} />} />
-              <Route path="/addcar" element={<Add url={API_URL} />} />
-              <Route
-                path="/adminprofile"
-                element={<AdminProfile url={API_URL} />}
-              />
-              <Route path="/listcar" element={<List url={API_URL} />} />
-              <Route
-                path="/orders/"
-                element={<BookingsSummary url={API_URL} />}
-              />
-              <Route path="/orders/:id" element={<Orders url={API_URL} />} />
-              <Route
-                path="/completedorders"
-                element={<CompletedOrders url={API_URL} />}
-              />
-              <Route
-                path="/completedorders/:id"
-                element={<CompletedOrdersDetails url={API_URL} />}
-              />
-              <Route
-                path="/acceptedorders"
-                element={<AcceptedOrders url={API_URL} />}
-              />
-              <Route
-                path="/acceptedorders/:id"
-                element={<AcceptedOrdersDetails url={API_URL} />}
-              />
-              <Route
-                path="/rejectedorders"
-                element={<RejectedOrders url={API_URL} />}
-              />
-              <Route
-                path="/rejectedorders/:id"
-                element={<RejectedOrdersDetails url={API_URL} />}
-              />
-              <Route path="/editlist" element={<EditList url={API_URL} />} />
-              <Route path="/signup" element={<AdminSignup url={API_URL} />} />
-              <Route path="/login" element={<AdminLogin url={API_URL} />} />
-            </Routes>
-          </div>
-        </AdminProvider>
-      </AuthProvider>
+      {/* <AuthProvider url={API_URL}> */}
+      {/* <AdminProvider url={API_URL}> */}
+      <ToastContainer />
+      <Navbar url={API_URL} />
+      <div className="app-content">
+        <Sidebar />
+        <Routes>
+          <Route path="/" element={<HomePage url={API_URL} />} />
+          <Route path="/addcar" element={<Add url={API_URL} />} />
+          <Route
+            path="/adminprofile"
+            element={<AdminProfile url={API_URL} />}
+          />
+          <Route path="/listcar" element={<List url={API_URL} />} />
+          <Route path="/orders/" element={<BookingsSummary url={API_URL} />} />
+          <Route path="/orders/:id" element={<Orders url={API_URL} />} />
+          <Route
+            path="/completedorders"
+            element={<CompletedOrders url={API_URL} />}
+          />
+          <Route
+            path="/completedorders/:id"
+            element={<CompletedOrdersDetails url={API_URL} />}
+          />
+          <Route
+            path="/acceptedorders"
+            element={<AcceptedOrders url={API_URL} />}
+          />
+          <Route
+            path="/acceptedorders/:id"
+            element={<AcceptedOrdersDetails url={API_URL} />}
+          />
+          <Route
+            path="/rejectedorders"
+            element={<RejectedOrders url={API_URL} />}
+          />
+          <Route
+            path="/rejectedorders/:id"
+            element={<RejectedOrdersDetails url={API_URL} />}
+          />
+          <Route path="/editlist" element={<EditList url={API_URL} />} />
+          <Route path="/signup" element={<AdminSignup url={API_URL} />} />
+          <Route path="/login" element={<AdminLogin url={API_URL} />} />
+        </Routes>
+      </div>
+      {/* </AdminProvider> */}
+      {/* </AuthProvider> */}
     </div>
   );
 };

@@ -29,7 +29,9 @@ export const AdminProvider = ({ children, url }) => {
   };
 
   useEffect(() => {
-    fetchAdmin();
+    if (token) {
+      fetchAdmin();
+    }
   }, [token]);
 
   return (

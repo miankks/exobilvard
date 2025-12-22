@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 
 const ListCarContext = createContext();
 
-export const ListCarProvider = ({ chilren, url }) => {
+export const ListCarProvider = ({ children, url }) => {
   const [carList, setCarList] = useState([]);
   const fetchList = async () => {
     try {
@@ -61,7 +61,7 @@ export const ListCarProvider = ({ chilren, url }) => {
         removeCar,
       }}
     >
-      {chilren}
+      {children}
     </ListCarContext.Provider>
   );
 };
