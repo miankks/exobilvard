@@ -3,7 +3,9 @@ import { Doughnut } from "react-chartjs-2";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const DashboardDoughnut = ({ stats }) => {
+const DashboardDoughnut = ({ stats, orders }) => {
+  console.log(orders.length);
+
   const data = {
     labels: stats.map((item) => item.label),
     datasets: [

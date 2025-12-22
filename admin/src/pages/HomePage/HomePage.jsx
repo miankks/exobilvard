@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import "./HomePage.css";
 import DashboardChart from "../../components/BarChart/DashboardChart/DashboardChart";
+import { useOrders } from "../../context/OrdersContext";
 
 const HomePage = () => {
+  const { orders } = useOrders();
   const cards = [
     { title: "Add Car", path: "/addcar" },
     { title: "List Cars", path: "/listcar" },
@@ -40,7 +42,7 @@ const HomePage = () => {
         <div className="chart-section">
           <h2>Overview</h2>
           <div className="chart-wrapper">
-            <DashboardChart stats={cardStats} />
+            <DashboardChart stats={cardStats} orders={orders} />
           </div>
         </div>
       </div>
