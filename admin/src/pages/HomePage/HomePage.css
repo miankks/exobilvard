@@ -1,5 +1,6 @@
 /* Main container */
 .home-container {
+  width: 70%;
   padding: 30px;
   background-color: #f5f7fa;
   min-height: 100vh;
