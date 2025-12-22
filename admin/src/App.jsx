@@ -68,7 +68,7 @@ const App = () => {
             path="/rejectedorders/:id"
             element={<RejectedOrdersDetails url={API_URL} />}
           />
-          <Route path="/editlist" element={<EditList url={API_URL} />} />
+          <Route path="/editlist/:id" element={<EditList url={API_URL} />} />
           <Route path="/signup" element={<AdminSignup url={API_URL} />} />
           <Route path="/login" element={<AdminLogin url={API_URL} />} />
         </Routes>

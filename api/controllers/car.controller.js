@@ -48,4 +48,33 @@ const removeCar = async (req, res) => {
   }
 };
 
-export { addCar, listCar, removeCar };
+const editCar = async (req, res) => {
+  try {
+    const car = await carModel.findById(req.params.id);
+    if (!car)
+      return res.status(404).json({ success: false, message: "Car not found" });
+
+    // update fields
+    car.name = req.body.name || car.name;
+    car.description = req.body.description || car.description;
+    car.category = req.body.category || car.category;
+
+    if (req.file) {
+      // Delete old image
+      if (car.image) {
+        fs.unlink(`uploads/${car.image}`, (err) => {
+          if (err) console.log("Error deleting old image", err);
+        });
+      }
+      car.image = req.file.filename;
+    }
+
+    await car.save();
+    res.json({ success: true, message: "Car updated successfully" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: " Error updating car" });
+  }
+};
+
+export { addCar, listCar, removeCar, editCar };
