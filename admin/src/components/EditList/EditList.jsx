@@ -77,7 +77,6 @@ const EditList = ({ url }) => {
 
   return (
     <div className="add">
-      {!carData ? <div>Loading...</div> : ""}
       <h2>Edit Car</h2>
       <form className="flex-col" onSubmit={handleSubmit}>
         <div className="add-img-upload flex-col">
