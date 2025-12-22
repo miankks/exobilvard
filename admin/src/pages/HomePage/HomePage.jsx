@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "./HomePage.css";
+import DashboardChart from "../../components/BarChart/DashboardChart/DashboardChart";
 
 const HomePage = () => {
   const cards = [
@@ -12,16 +13,36 @@ const HomePage = () => {
     { title: "Rejected Orders", path: "/rejectedorders" },
   ];
 
+  const cardStats = [
+    { label: "Cars", count: 12 },
+    { label: "Orders", count: 30 },
+    { label: "Accepted", count: 18 },
+    { label: "Completed", count: 10 },
+    { label: "Rejected", count: 2 },
+  ];
+
   return (
     <div className="home-container">
       <h1>Admin Dashboard</h1>
 
-      <div className="card-grid">
-        {cards.map((card) => (
-          <Link to={card.path} key={card.path} className="card">
-            <h3>{card.title}</h3>
-          </Link>
-        ))}
+      {/* 🔹 NEW LAYOUT WRAPPER */}
+      <div className="dashboard-layout">
+        {/* LEFT SIDE → CARDS */}
+        <div className="card-grid">
+          {cards.map((card) => (
+            <Link to={card.path} key={card.path} className="card">
+              <h3>{card.title}</h3>
+            </Link>
+          ))}
+        </div>
+
+        {/* RIGHT SIDE → CHART */}
+        <div className="chart-section">
+          <h2>Overview</h2>
+          <div className="chart-wrapper">
+            <DashboardChart stats={cardStats} />
+          </div>
+        </div>
       </div>
     </div>
   );
