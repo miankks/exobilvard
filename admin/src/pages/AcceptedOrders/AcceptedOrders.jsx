@@ -1,13 +1,13 @@
-import { useState, useEffect } from "react";
 import "./AcceptedOrders.css";
-import axios from "axios";
-import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useOrders } from "../../context/OrdersContext";
+import { useParams } from "react-router-dom";
 
 const AcceptedOrders = ({ url }) => {
   const navigate = useNavigate();
   const { orders } = useOrders();
+  const { orderId } = useParams();
+  const order = orders.find((o) => o._id === orderId);
 
   const acceptedOrders = orders.filter((o) => o.status === "Accepted");
 
