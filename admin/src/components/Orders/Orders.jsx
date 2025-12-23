@@ -10,33 +10,23 @@ import Reactdatepicker from "../Reactdatepicker/Reactdatepicker";
 import { FaCheck, FaTachometerAlt } from "react-icons/fa";
 import { formattedDate } from "../../customHooks/formattedDate";
 import { useParams } from "react-router-dom";
+import { useOrders } from "../../context/OrdersContext";
 
 const Orders = ({ url }) => {
   const { id } = useParams();
-  const [orders, setOrders] = useState([]);
   const [selectedStatuses, setSelectedStatuses] = useState({});
   const [comment, setComment] = useState("");
   const [acceptedDate, setAcceptedDate] = useState("");
   const [selectedServiceDate, setSelectedServiceDate] = useState({});
   const [filteredOrders, setFilteredOrders] = useState([]);
 
+  const { orders } = useOrders();
+
+  const pendingOrders = orders.filter((o) => o.status === "Pending to accept");
+
   const onChangeHandler = (e) => {
     const value = e.target.value;
     setComment(value);
-  };
-
-  const fetchAllOrders = async () => {
-    const token = localStorage.getItem("token");
-    const response = await axios.get(url + "/api/order/listcar", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    if (response.data.success) {
-      setOrders(response.data.data);
-    } else {
-      toast.error("Error");
-    }
   };
 
   const updateOrderStatusLocally = (id, newStatus) => {
@@ -71,10 +61,6 @@ const Orders = ({ url }) => {
     const dateAccepted = formattedDate(date);
     setAcceptedDate(dateAccepted);
   };
-
-  useEffect(() => {
-    fetchAllOrders();
-  }, []);
 
   useEffect(() => {
     if (id) {

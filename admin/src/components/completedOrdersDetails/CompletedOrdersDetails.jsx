@@ -4,6 +4,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { assets } from "../../assets/assets";
 import { useParams } from "react-router-dom";
+import { useOrders } from "../../context/OrdersContext";
 
 import { MdEmail } from "react-icons/md";
 import { BsTelephoneForwardFill } from "react-icons/bs";
@@ -13,35 +14,11 @@ import { formattedDate } from "../../customHooks/formattedDate";
 
 const CompletedOrdersDetails = ({ url }) => {
   const { id } = useParams();
-  const [orders, setOrders] = useState([]);
+  const { orders, setOrders, updateOrderStatusLocally } = useOrders();
   const [selectedStatuses, setSelectedStatuses] = useState({});
   const [confirmDeleteId, setConfirmDeleteId] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredOrder, setFilteredOrder] = useState([]);
-
-  const fetchAllOrders = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const response = await axios.get(url + "/api/order/completedorders", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      if (response.data.success) {
-        setOrders(response.data.data);
-      } else {
-        toast.error("Error fetching orders");
-      }
-    } catch (err) {
-      toast.error("Error fetching orders");
-    }
-  };
-
-  const updateOrderStatusLocally = (id, newStatus) => {
-    setOrders((prev) =>
-      prev.map((o) => (o._id === id ? { ...o, status: newStatus } : o))
-    );
-  };
 
   const handleSelectChange = (orderId, value) => {
     setSelectedStatuses((prev) => ({
@@ -83,10 +60,6 @@ const CompletedOrdersDetails = ({ url }) => {
       toast.error("Error deleting order");
     }
   };
-
-  useEffect(() => {
-    fetchAllOrders();
-  }, []);
 
   // escape regex special characters to avoid crashes when user types symbols
   const escapeRegExp = (string = "") => {

@@ -17,9 +17,6 @@ import CompletedOrdersDetails from "./components/completedOrdersDetails/Complete
 import RejectedOrdersDetails from "./components/RejectedOrdersDetails/RejectedOrdersDetails";
 import AcceptedOrdersDetails from "./components/AcceptedOrdersDetails/AcceptedOrdersDetails";
 import AdminProfile from "./components/AdminProfile/AdminProfile";
-import { StoreProvider } from "./context/StoreContext";
-import { AuthProvider } from "./context/AuthContext";
-import { AdminProvider } from "./context/AdminContext";
 import HomePage from "./pages/HomePage/HomePage";
 import EditList from "./components/EditList/EditList";
 
@@ -28,8 +25,6 @@ const App = () => {
 
   return (
     <div>
-      {/* <AuthProvider url={API_URL}> */}
-      {/* <AdminProvider url={API_URL}> */}
       <ToastContainer />
       <Navbar url={API_URL} />
       <div className="app-content">
@@ -73,8 +68,6 @@ const App = () => {
           <Route path="/login" element={<AdminLogin url={API_URL} />} />
         </Routes>
       </div>
-      {/* </AdminProvider> */}
-      {/* </AuthProvider> */}
     </div>
   );
 };

@@ -3,42 +3,23 @@ import "./AcceptedOrders.css";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { useOrders } from "../../context/OrdersContext";
 
 const AcceptedOrders = ({ url }) => {
-  const [orders, setOrders] = useState([]);
   const navigate = useNavigate();
+  const { orders } = useOrders();
 
-  const fetchAllOrders = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const response = await axios.get(url + "/api/order/acceptedorders", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      if (response.data.success) {
-        setOrders(response.data.data);
-      } else {
-        toast.error("Error");
-      }
-    } catch (error) {
-      toast.error("Error fetching orders");
-    }
-  };
+  const acceptedOrders = orders.filter((o) => o.status === "Accepted");
 
   const handleOrder = (orderID) => {
     navigate(`/acceptedorders/${orderID}`);
   };
 
-  useEffect(() => {
-    fetchAllOrders();
-  }, []);
-
   return (
     <div className="order add">
       <h3>Accepted Orders Summary</h3>
       <div className="order-list">
-        {orders.map((order, index) => {
+        {acceptedOrders.map((order, index) => {
           return (
             <div className="acceptedorders-description" key={index}>
               <div>

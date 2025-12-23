@@ -14,7 +14,7 @@ const AdminLogin = () => {
     const result = await login(formData);
 
     if (result.success) {
-      navigate("/orders");
+      navigate("/");
     } else {
       setMessage(result.message);
     }

@@ -1,39 +1,18 @@
 import { useState, useEffect } from "react";
 import "./CompletedOrders.css";
-import axios from "axios";
-import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { useOrders } from "../../context/OrdersContext";
 
 const CompletedOrders = ({ url }) => {
-  const [orders, setOrders] = useState([]);
+  const { orders } = useOrders();
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
 
-  const fetchAllOrders = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const response = await axios.get(url + "/api/order/completedorders", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      if (response.data.success) {
-        setOrders(response.data.data);
-      } else {
-        toast.error("Error fetching orders");
-      }
-    } catch (err) {
-      toast.error("Error fetching orders");
-    }
-  };
+  const completedOrders = orders.filter((o) => o.status === "Completed");
 
   const handleOrder = (orderID) => {
     navigate(`/completedorders/${orderID}`);
   };
-
-  useEffect(() => {
-    fetchAllOrders();
-  }, []);
 
   // escape regex special characters to avoid crashes when user types symbols
   const escapeRegExp = (string = "") => {
@@ -63,7 +42,7 @@ const CompletedOrders = ({ url }) => {
   };
 
   // computed filteredOrders - only these will be shown
-  const filteredOrders = orders.filter((order) => {
+  const filteredOrders = completedOrders.filter((order) => {
     if (!searchTerm || !searchTerm.trim()) return true; // no filter when empty
     const term = searchTerm.trim().toLowerCase();
 

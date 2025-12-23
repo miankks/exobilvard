@@ -7,20 +7,19 @@ import { BsTelephoneForwardFill } from "react-icons/bs";
 import { FaCarAlt } from "react-icons/fa";
 import { CiCalendarDate } from "react-icons/ci";
 import { formattedDate } from "../../customHooks/formattedDate";
-import { useListCar } from "../../context/ListCarContext";
 import { useOrders } from "../../context/OrdersContext";
 
 const AcceptedOrdersDetails = ({ url }) => {
-  const { fetchAcceptedOrders, updateOrderStatusLocally, acceptedList } =
-    useListCar();
+  const {
+    orders,
+    statusHandler,
+    updateOrderStatusLocally,
+    selectedStatuses,
+    setSelectedStatuses,
+  } = useOrders();
 
-  const [selectedStatuses, setSelectedStatuses] = useState({});
+  const acceptedOrders = orders.filter((o) => o.status === "Accepted");
 
-  // const updateOrderStatusLocally = (id, newStatus) => {
-  //   setOrders((prev) =>
-  //     prev.map((o) => (o._id === id ? { ...o, status: newStatus } : o))
-  //   );
-  // };
   const handleSelectChange = (orderId, value) => {
     setSelectedStatuses((prev) => ({
       ...prev,
@@ -28,28 +27,11 @@ const AcceptedOrdersDetails = ({ url }) => {
     }));
   };
 
-  const statusHandler = async (status, orderId) => {
-    const response = await axios.post(url + "/api/order/status", {
-      orderId,
-      status,
-    });
-
-    if (response.data.success) {
-      toast.success(response.data.message);
-      await fetchAcceptedOrders();
-    } else {
-      toast.error(response.data.message);
-    }
-  };
-  useEffect(() => {
-    fetchAcceptedOrders();
-  }, []);
-
   return (
     <div className="order orders-add">
       <h3>Accepted Orders Page</h3>
       <div className="order-list">
-        {acceptedList.map((order, index) => {
+        {acceptedOrders.map((order, index) => {
           const formatedDate = formattedDate(order?.date);
 
           return (
@@ -58,8 +40,6 @@ const AcceptedOrdersDetails = ({ url }) => {
               <div>
                 <p className="order-item-car">
                   {order.items.map((item, index) => {
-                    console.log(item);
-
                     if (index === order.items.length - 1) {
                       return item.name + " x" + item.quantity;
                     } else {

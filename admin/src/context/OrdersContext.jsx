@@ -1,53 +1,48 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { formattedDate } from "../customHooks/formattedDate";
 
 const OrdersContext = createContext();
 
 export const OrdersProvider = ({ children, url }) => {
-  const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState([]); // all orders
   const [selectedStatuses, setSelectedStatuses] = useState({});
   const [comment, setComment] = useState("");
   const [acceptedDate, setAcceptedDate] = useState("");
 
-  const fetchAllOrders = async () => {
+  // Fetch all orders
+  const fetchOrders = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get(url + "/api/order/listcar", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+      const response = await axios.get(`${url}/api/order/allorders`, {
+        headers: { Authorization: `Bearer ${token}` },
       });
-
-      if (response.data.success) {
-        setOrders(response.data.data);
-      } else {
-        toast.error("Error fetching orders");
-      }
+      if (response.data.success) setOrders(response.data.data);
+      else toast.error("Error fetching orders");
     } catch (err) {
       toast.error("Server error");
     }
   };
 
-  const updateOrderStatusLocally = (id, newStatus) => {
+  // Update order status locally (optimistic UI)
+  const updateOrderStatusLocally = (orderId, newStatus) => {
     setOrders((prev) =>
-      prev.map((o) => (o._id === id ? { ...o, status: newStatus } : o))
+      prev.map((o) => (o._id === orderId ? { ...o, status: newStatus } : o))
     );
   };
 
-  const statusHandler = async (status, orderId) => {
+  // Update status via API and refresh orders
+  const statusHandler = async (orderId, newStatus) => {
     try {
-      const response = await axios.post(url + "/api/order/status", {
-        orderId,
-        status,
-        comment,
-        acceptedDate,
-      });
-
+      const token = localStorage.getItem("token");
+      const response = await axios.post(
+        `${url}/api/order/status`,
+        { orderId, status: newStatus },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
       if (response.data.success) {
-        toast.success(response.data.message);
-        fetchAllOrders();
+        updateOrderStatusLocally(orderId, newStatus);
+        toast.success("Status updated");
       } else {
         toast.error(response.data.message);
       }
@@ -57,15 +52,14 @@ export const OrdersProvider = ({ children, url }) => {
   };
 
   useEffect(() => {
-    fetchAllOrders();
+    fetchOrders();
   }, []);
 
   return (
     <OrdersContext.Provider
       value={{
         orders,
-        setOrders,
-        fetchAllOrders,
+        fetchOrders,
         selectedStatuses,
         setSelectedStatuses,
         comment,
@@ -74,7 +68,6 @@ export const OrdersProvider = ({ children, url }) => {
         setAcceptedDate,
         updateOrderStatusLocally,
         statusHandler,
-        formattedDate,
       }}
     >
       {children}
@@ -82,5 +75,4 @@ export const OrdersProvider = ({ children, url }) => {
   );
 };
 
-// Custom hook (important!)
 export const useOrders = () => useContext(OrdersContext);

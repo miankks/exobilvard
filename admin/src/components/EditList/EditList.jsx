@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useListCar } from "../../context/ListCarContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { assets } from "../../assets/assets";
 import axios from "axios";
 
 const EditList = ({ url }) => {
-  const { carList, setCarList } = useListCar();
   const { id } = useParams();
   const navigate = useNavigate();
 

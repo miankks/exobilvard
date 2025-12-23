@@ -1,44 +1,28 @@
-import { useState, useEffect } from "react";
 import "./BookingsSummary.css";
-import axios from "axios";
-import { toast } from "react-toastify";
-import { formattedDate } from "../../customHooks/formattedDate";
 import { useNavigate } from "react-router-dom";
+import { useOrders } from "../../context/OrdersContext";
 
 const BookingsSummary = ({ url }) => {
-  const [orders, setOrders] = useState([]);
+  const {
+    orders,
+    statusHandler,
+    updateOrderStatusLocally,
+    selectedStatuses,
+    setSelectedStatuses,
+  } = useOrders();
   const navigate = useNavigate();
+
+  const pendingOrders = orders.filter((o) => o.status === "Pending to accept");
 
   const handleOrder = (orderID) => {
     navigate(`/orders/${orderID}`);
   };
 
-  const fetchAllOrders = async () => {
-    const token = localStorage.getItem("token");
-    const response = await axios.get(url + "/api/order/listcar", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    if (response.data.success) {
-      setOrders(response.data.data);
-    } else {
-      toast.error("Error");
-    }
-  };
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      fetchAllOrders();
-    }
-  }, []);
-
   return (
     <div className="order add">
       <h3>Beställnings sida</h3>
       <div className="booking-summary-list">
-        {orders.map((order, index) => {
+        {pendingOrders.map((order, index) => {
           return (
             <div className="booking-summary-description" key={index}>
               <div className="booking-summary-info">
