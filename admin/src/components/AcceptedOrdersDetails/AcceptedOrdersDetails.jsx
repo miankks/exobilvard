@@ -7,34 +7,20 @@ import { BsTelephoneForwardFill } from "react-icons/bs";
 import { FaCarAlt } from "react-icons/fa";
 import { CiCalendarDate } from "react-icons/ci";
 import { formattedDate } from "../../customHooks/formattedDate";
+import { useListCar } from "../../context/ListCarContext";
+import { useOrders } from "../../context/OrdersContext";
 
 const AcceptedOrdersDetails = ({ url }) => {
-  const [orders, setOrders] = useState([]);
+  const { fetchAcceptedOrders, updateOrderStatusLocally, acceptedList } =
+    useListCar();
+
   const [selectedStatuses, setSelectedStatuses] = useState({});
 
-  const fetchAllOrders = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const response = await axios.get(url + "/api/order/acceptedorders", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      if (response.data.success) {
-        setOrders(response.data.data);
-      } else {
-        toast.error("Error");
-      }
-    } catch (error) {
-      toast.error("Error fetching orders");
-    }
-  };
-
-  const updateOrderStatusLocally = (id, newStatus) => {
-    setOrders((prev) =>
-      prev.map((o) => (o._id === id ? { ...o, status: newStatus } : o))
-    );
-  };
+  // const updateOrderStatusLocally = (id, newStatus) => {
+  //   setOrders((prev) =>
+  //     prev.map((o) => (o._id === id ? { ...o, status: newStatus } : o))
+  //   );
+  // };
   const handleSelectChange = (orderId, value) => {
     setSelectedStatuses((prev) => ({
       ...prev,
@@ -50,27 +36,30 @@ const AcceptedOrdersDetails = ({ url }) => {
 
     if (response.data.success) {
       toast.success(response.data.message);
-      await fetchAllOrders();
+      await fetchAcceptedOrders();
     } else {
       toast.error(response.data.message);
     }
   };
   useEffect(() => {
-    fetchAllOrders();
+    fetchAcceptedOrders();
   }, []);
 
   return (
     <div className="order orders-add">
       <h3>Accepted Orders Page</h3>
       <div className="order-list">
-        {orders.map((order, index) => {
+        {acceptedList.map((order, index) => {
           const formatedDate = formattedDate(order?.date);
+
           return (
             <div className="order-item" key={index}>
               <img src={assets.parcel_icon} alt="" />
               <div>
                 <p className="order-item-car">
                   {order.items.map((item, index) => {
+                    console.log(item);
+
                     if (index === order.items.length - 1) {
                       return item.name + " x" + item.quantity;
                     } else {

@@ -2,9 +2,11 @@ import { Link } from "react-router-dom";
 import "./HomePage.css";
 import DashboardChart from "../../components/BarChart/DashboardChart/DashboardChart";
 import { useOrders } from "../../context/OrdersContext";
+import { useListCar } from "../../context/ListCarContext";
 
 const HomePage = () => {
   const { orders } = useOrders();
+  const { acceptedList } = useListCar();
   const cards = [
     { title: "Add Car", path: "/addcar" },
     { title: "List Cars", path: "/listcar" },
@@ -16,7 +18,6 @@ const HomePage = () => {
   ];
 
   const cardStats = [
-    { label: "Cars", count: 12 },
     { label: "Orders", count: 30 },
     { label: "Accepted", count: 18 },
     { label: "Completed", count: 10 },
@@ -42,7 +43,11 @@ const HomePage = () => {
         <div className="chart-section">
           <h2>Overview</h2>
           <div className="chart-wrapper">
-            <DashboardChart stats={cardStats} orders={orders} />
+            <DashboardChart
+              stats={cardStats}
+              orders={orders}
+              acceptedList={acceptedList}
+            />
           </div>
         </div>
       </div>

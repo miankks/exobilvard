@@ -12,6 +12,7 @@ const BookingsSummary = ({ url }) => {
   const handleOrder = (orderID) => {
     navigate(`/orders/${orderID}`);
   };
+
   const fetchAllOrders = async () => {
     const token = localStorage.getItem("token");
     const response = await axios.get(url + "/api/order/listcar", {
