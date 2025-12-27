@@ -24,3 +24,4 @@ dist-ssr
 *.sw?
 .env
 api/createSuperAdmin.js
+client/package-lock.json

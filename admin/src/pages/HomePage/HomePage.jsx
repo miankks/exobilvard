@@ -5,6 +5,13 @@ import { useOrders } from "../../context/OrdersContext";
 
 const HomePage = () => {
   const { orders } = useOrders();
+
+  const pendingOrders = orders.filter((o) => o.status === "Pending to accept");
+  const rejectedOrders = orders.filter((o) => o.status === "Rejected");
+  const accpetedOrders = orders.filter((o) => o.status === "Accepted");
+  
+
+  
   const cards = [
     { title: "Add Car", path: "/addcar" },
     { title: "List Cars", path: "/listcar" },
@@ -16,10 +23,9 @@ const HomePage = () => {
   ];
 
   const cardStats = [
-    { label: "Orders", count: 30 },
-    { label: "Accepted", count: 18 },
-    { label: "Completed", count: 10 },
-    { label: "Rejected", count: 2 },
+    { label: "Orders", count: pendingOrders.length },
+    { label: "Accepted", count: accpetedOrders.length },
+    { label: "Rejected", count: rejectedOrders.length },
   ];
 
   return (
@@ -41,7 +47,7 @@ const HomePage = () => {
         <div className="chart-section">
           <h2>Overview</h2>
           <div className="chart-wrapper">
-            <DashboardChart stats={cardStats} orders={orders} />
+            <DashboardChart stats={cardStats} />
           </div>
         </div>
       </div>

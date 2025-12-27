@@ -37,7 +37,7 @@ const App = () => {
             element={<AdminProfile url={API_URL} />}
           />
           <Route path="/listcar" element={<List url={API_URL} />} />
-          <Route path="/orders/" element={<BookingsSummary url={API_URL} />} />
+          <Route path="/orders" element={<BookingsSummary url={API_URL} />} />
           <Route path="/orders/:id" element={<Orders url={API_URL} />} />
           <Route
             path="/completedorders"
