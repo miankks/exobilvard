@@ -25,4 +25,3 @@ const userSchema = new mongoose.Schema(
 
 const userModel = mongoose.models.user || mongoose.model("user", userSchema);
 export default userModel;
-// minimize false is used for cart data will be created without any data

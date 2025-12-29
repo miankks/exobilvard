@@ -12,12 +12,11 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UserComments from "./components/UserComments/UserComments";
 import AboutUs from "./components/OurServices/AboutUs";
+import RouteTracker from "./utils/RouteTracker";
 
 const App = () => {
-  // const [showLogin, setShowLogin] = useState(false);
   return (
     <>
-      {/* {showLogin ? <LoginPopup setShowLogin={setShowLogin}/> : <></>} */}
       <div className="app">
         <ToastContainer
           position="top-right"
@@ -31,7 +30,7 @@ const App = () => {
           pauseOnHover
         />
         <Navbar />
-        {/* <Navbar setShowLogin={setShowLogin} /> */}
+        <RouteTracker />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
