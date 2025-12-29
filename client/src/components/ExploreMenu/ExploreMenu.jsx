@@ -3,6 +3,7 @@ import "./ExploreMenu.css";
 import { menu_list } from "../../assets/assets";
 import MobileOnlyText from "../MobileOnlyText/MobileOnlyText";
 import CarTyre from "../CarTyre/CarTyre";
+import BackToTop from "../BackToTop/BackToTop";
 
 const ExploreMenu = ({ category, setCategory }) => {
   const textPointRef = useRef(null);
@@ -99,6 +100,7 @@ const ExploreMenu = ({ category, setCategory }) => {
       </div>
 
       <hr />
+      <BackToTop />
       <MobileOnlyText />
     </div>
   );

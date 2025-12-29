@@ -70,10 +70,8 @@ const RejectedOrders = () => {
 
               <div className="select-update-btn">
                 <select
-                  value={order.status}
+                  value={selectedStatuses[order._id] ?? order.status}
                   onChange={(e) => {
-                    const newStatus = e.target.value;
-                    updateOrderStatusLocally(order._id, newStatus);
                     handleSelectChange(order._id, e.target.value);
                   }}
                 >

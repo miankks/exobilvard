@@ -20,41 +20,18 @@ const Orders = ({ url }) => {
   const [selectedServiceDate, setSelectedServiceDate] = useState({});
   const [filteredOrders, setFilteredOrders] = useState([]);
 
-  const { orders } = useOrders();
-
-  const pendingOrders = orders.filter((o) => o.status === "Pending to accept");
+  const { orders, fetchAllOrders, statusHandler } = useOrders();
 
   const onChangeHandler = (e) => {
     const value = e.target.value;
     setComment(value);
   };
 
-  const updateOrderStatusLocally = (id, newStatus) => {
-    setOrders((prev) =>
-      prev.map((o) => (o._id === id ? { ...o, status: newStatus } : o))
-    );
-  };
   const handleSelectChange = (orderId, value) => {
     setSelectedStatuses((prev) => ({
       ...prev,
       [orderId]: value,
     }));
-  };
-
-  const statusHandler = async (status, orderId) => {
-    const response = await axios.post(url + "/api/order/status", {
-      orderId,
-      status,
-      comment,
-      acceptedDate,
-    });
-
-    if (response.data.success) {
-      toast.success(response.data.message);
-      await fetchAllOrders();
-    } else {
-      toast.error(response.data.message);
-    }
   };
 
   const handleDate = (date) => {
@@ -70,11 +47,15 @@ const Orders = ({ url }) => {
     }
   }, [orders, id]);
 
+  const pendingOrders = filteredOrders.filter(
+    (o) => o.status === "Pending to accept"
+  );
+
   return (
     <div className="order orders-add">
       <h3>Beställning</h3>
       <div className="order-list">
-        {filteredOrders.map((order, index) => {
+        {pendingOrders.map((order, index) => {
           const selected = selectedServiceDate[order._id];
           const orderedDate = formattedDate(order?.date);
           return (
@@ -201,10 +182,8 @@ const Orders = ({ url }) => {
               {/* Column 4 */}
               <div className="select-update-btn">
                 <select
-                  value={order.status}
+                  value={selectedStatuses[order._id] ?? order.status}
                   onChange={(e) => {
-                    const newStatus = e.target.value;
-                    updateOrderStatusLocally(order._id, newStatus);
                     handleSelectChange(order._id, e.target.value);
                   }}
                 >
@@ -219,8 +198,8 @@ const Orders = ({ url }) => {
                   className="orders-add-btn"
                   onClick={() =>
                     statusHandler(
-                      selectedStatuses[order._id] ?? order.status,
-                      order._id
+                      order._id,
+                      selectedStatuses[order._id] ?? order.status
                     )
                   }
                 >
@@ -235,20 +214,20 @@ const Orders = ({ url }) => {
                   {order.address.userComment || "No comment provided"}
                 </p>
               </div>
+              <div className="order-description">
+                <b>Comments for client</b>
+                <textarea
+                  name="description"
+                  rows="6"
+                  placeholder="Write content here"
+                  required
+                  onChange={onChangeHandler}
+                  value={comment}
+                />
+              </div>
             </div>
           );
         })}
-        <div className="order-description">
-          <b>Comments for client</b>
-          <textarea
-            name="description"
-            rows="6"
-            placeholder="Write content here"
-            required
-            onChange={onChangeHandler}
-            value={comment}
-          />
-        </div>
       </div>
     </div>
   );

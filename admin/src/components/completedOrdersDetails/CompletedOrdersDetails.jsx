@@ -14,7 +14,8 @@ import { formattedDate } from "../../customHooks/formattedDate";
 
 const CompletedOrdersDetails = ({ url }) => {
   const { id } = useParams();
-  const { orders, setOrders, updateOrderStatusLocally } = useOrders();
+  const { orders, setOrders, updateOrderStatusLocally, statusHandler } =
+    useOrders();
   const [selectedStatuses, setSelectedStatuses] = useState({});
   const [confirmDeleteId, setConfirmDeleteId] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
@@ -25,24 +26,6 @@ const CompletedOrdersDetails = ({ url }) => {
       ...prev,
       [orderId]: value,
     }));
-  };
-
-  const statusHandler = async (status, orderId) => {
-    try {
-      const response = await axios.post(url + "/api/order/status", {
-        orderId,
-        status,
-      });
-
-      if (response.data.success) {
-        toast.success(response.data.message);
-        await fetchAllOrders();
-      } else {
-        toast.error(response.data.message);
-      }
-    } catch (err) {
-      toast.error("Error updating status");
-    }
   };
 
   const deleteHandler = async (orderId) => {
@@ -201,8 +184,6 @@ const CompletedOrdersDetails = ({ url }) => {
                   <select
                     value={selectedStatuses[order._id] ?? order.status}
                     onChange={(e) => {
-                      const newStatus = e.target.value;
-                      updateOrderStatusLocally(order._id, newStatus);
                       handleSelectChange(order._id, e.target.value);
                     }}
                   >
@@ -217,8 +198,8 @@ const CompletedOrdersDetails = ({ url }) => {
                     className="orders-add-btn"
                     onClick={() =>
                       statusHandler(
-                        selectedStatuses[order._id] ?? order.status,
-                        order._id
+                        order._id,
+                        selectedStatuses[order._id] ?? order.status
                       )
                     }
                   >

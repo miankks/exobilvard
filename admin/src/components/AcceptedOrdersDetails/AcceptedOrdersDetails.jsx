@@ -1,6 +1,3 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { toast } from "react-toastify";
 import { assets } from "../../assets/assets";
 import { MdEmail } from "react-icons/md";
 import { BsTelephoneForwardFill } from "react-icons/bs";
@@ -9,14 +6,9 @@ import { CiCalendarDate } from "react-icons/ci";
 import { formattedDate } from "../../customHooks/formattedDate";
 import { useOrders } from "../../context/OrdersContext";
 
-const AcceptedOrdersDetails = ({ url }) => {
-  const {
-    orders,
-    statusHandler,
-    updateOrderStatusLocally,
-    selectedStatuses,
-    setSelectedStatuses,
-  } = useOrders();
+const AcceptedOrdersDetails = () => {
+  const { orders, statusHandler, selectedStatuses, setSelectedStatuses } =
+    useOrders();
 
   const acceptedOrders = orders.filter((o) => o.status === "Accepted");
 
@@ -75,10 +67,8 @@ const AcceptedOrdersDetails = ({ url }) => {
               <p>Items: {order.items.length}</p>
               <div className="select-update-btn">
                 <select
-                  value={order.status}
+                  value={selectedStatuses[order._id] ?? order.status}
                   onChange={(e) => {
-                    const newStatus = e.target.value;
-                    updateOrderStatusLocally(order._id, newStatus);
                     handleSelectChange(order._id, e.target.value);
                   }}
                 >
@@ -92,8 +82,8 @@ const AcceptedOrdersDetails = ({ url }) => {
                   className="orders-add-btn"
                   onClick={() =>
                     statusHandler(
-                      selectedStatuses[order._id] ?? order.status,
-                      order._id
+                      order._id,
+                      selectedStatuses[order._id] ?? order.status
                     )
                   }
                 >
