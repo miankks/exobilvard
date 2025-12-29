@@ -1,31 +1,42 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./ExploreMenu.css";
 import { menu_list } from "../../assets/assets";
 import MobileOnlyText from "../MobileOnlyText/MobileOnlyText";
+import CarTyre from "../CarTyre/CarTyre";
 
 const ExploreMenu = ({ category, setCategory }) => {
   const textPointRef = useRef(null);
+  const tyreRef = useRef(null);
+  const [showTyre, setShowTyre] = useState(false);
   let lastScrollY = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
       if (!textPointRef.current) return;
 
-      if (window.scrollY > lastScrollY.current) {
-        // scrolling down → hide
+      const triggerPoint = textPointRef.current.offsetTop; // top of the text section
+      const scrollY = window.scrollY + window.innerHeight;
+
+      // Show tyre when bottom of viewport passes the top of the text section
+      if (scrollY > triggerPoint + 100) {
+        setShowTyre(true);
+      } else {
+        setShowTyre(false);
+      }
+
+      // Optional: hide text on scroll down, show on scroll up
+      if (scrollY > lastScrollY.current) {
         textPointRef.current.classList.remove("scroll-show");
         textPointRef.current.classList.add("scroll-hide");
       } else {
-        // scrolling up → show
         textPointRef.current.classList.remove("scroll-hide");
         textPointRef.current.classList.add("scroll-show");
       }
 
-      lastScrollY.current = window.scrollY;
+      lastScrollY.current = scrollY;
     };
 
     window.addEventListener("scroll", handleScroll);
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -63,6 +74,7 @@ const ExploreMenu = ({ category, setCategory }) => {
           Vi erbjuder ett komplett utbud av tjänster för att hålla din bil i
           bästa möjliga skick:
         </p>
+        {showTyre && <CarTyre />}
       </div>
 
       <div className="explore-menu-list">

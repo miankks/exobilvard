@@ -1,0 +1,87 @@
+.tyre-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #fff;
+}
+
+/* OUTER TYRE */
+.wheel {
+  width: 240px;
+  height: 240px;
+  background: #2f3a3a;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* TYRE DASH LINE */
+.wheel::before {
+  content: "";
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 3px dashed #8b9a9a;
+}
+
+/* RIM */
+.rim {
+  width: 160px;
+  height: 160px;
+  background: #e5e5e5;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* SPOKES */
+.spoke {
+  position: absolute;
+  width: 4px;
+  height: 70px;
+  background: #9c9c9c;
+  top: 10px;
+  left: 50%;
+  transform-origin: bottom center;
+}
+
+.spoke:nth-child(1) {
+  transform: translateX(-50%) rotate(0deg);
+}
+.spoke:nth-child(2) {
+  transform: translateX(-50%) rotate(45deg);
+}
+.spoke:nth-child(3) {
+  transform: translateX(-50%) rotate(90deg);
+}
+.spoke:nth-child(4) {
+  transform: translateX(-50%) rotate(135deg);
+}
+.spoke:nth-child(5) {
+  transform: translateX(-50%) rotate(180deg);
+}
+.spoke:nth-child(6) {
+  transform: translateX(-50%) rotate(225deg);
+}
+.spoke:nth-child(7) {
+  transform: translateX(-50%) rotate(270deg);
+}
+.spoke:nth-child(8) {
+  transform: translateX(-50%) rotate(315deg);
+}
+
+/* CENTER HUB */
+.hub {
+  width: 30px;
+  height: 30px;
+  background: #777;
+  border-radius: 50%;
+  border: 4px solid #666;
+  position: absolute;
+}

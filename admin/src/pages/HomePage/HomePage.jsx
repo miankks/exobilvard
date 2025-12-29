@@ -9,9 +9,7 @@ const HomePage = () => {
   const pendingOrders = orders.filter((o) => o.status === "Pending to accept");
   const rejectedOrders = orders.filter((o) => o.status === "Rejected");
   const accpetedOrders = orders.filter((o) => o.status === "Accepted");
-  
 
-  
   const cards = [
     { title: "Add Car", path: "/addcar" },
     { title: "List Cars", path: "/listcar" },
