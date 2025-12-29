@@ -6,41 +6,6 @@ import CarTyre from "../CarTyre/CarTyre";
 import BackToTop from "../BackToTop/BackToTop";
 
 const ExploreMenu = ({ category, setCategory }) => {
-  const textPointRef = useRef(null);
-  const tyreRef = useRef(null);
-  const [showTyre, setShowTyre] = useState(false);
-  let lastScrollY = useRef(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!textPointRef.current) return;
-
-      const triggerPoint = textPointRef.current.offsetTop; // top of the text section
-      const scrollY = window.scrollY + window.innerHeight;
-
-      // Show tyre when bottom of viewport passes the top of the text section
-      if (scrollY > triggerPoint + 100) {
-        setShowTyre(true);
-      } else {
-        setShowTyre(false);
-      }
-
-      // Optional: hide text on scroll down, show on scroll up
-      if (scrollY > lastScrollY.current) {
-        textPointRef.current.classList.remove("scroll-show");
-        textPointRef.current.classList.add("scroll-hide");
-      } else {
-        textPointRef.current.classList.remove("scroll-hide");
-        textPointRef.current.classList.add("scroll-show");
-      }
-
-      lastScrollY.current = scrollY;
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
     <div className="explore-menu" id="explore-menu">
       <div className="heading-section">
@@ -55,7 +20,7 @@ const ExploreMenu = ({ category, setCategory }) => {
         </p>
 
         {/* 👇 THIS is the animated block */}
-        <div ref={textPointRef} className="text-point scroll-show">
+        <div className="text-point scroll-show">
           <p className="explore-menu-text">Varför välja oss?</p>
           <ul>
             <li>Snabb och pålitlig service</li>
@@ -75,7 +40,7 @@ const ExploreMenu = ({ category, setCategory }) => {
           Vi erbjuder ett komplett utbud av tjänster för att hålla din bil i
           bästa möjliga skick:
         </p>
-        {showTyre && <CarTyre />}
+        <CarTyre />
       </div>
 
       <div className="explore-menu-list">
