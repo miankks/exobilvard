@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import "./HomePage.css";
 import DashboardChart from "../../components/BarChart/DashboardChart/DashboardChart";
 import { useOrders } from "../../context/OrdersContext";
+import VisitsChart from "../../components/BarChart/AnalyticsChart/AnalyticsChart";
 
 const HomePage = () => {
   const { orders } = useOrders();
@@ -48,6 +49,7 @@ const HomePage = () => {
             <DashboardChart stats={cardStats} />
           </div>
         </div>
+        <VisitsChart />
       </div>
     </div>
   );

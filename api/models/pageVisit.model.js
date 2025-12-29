@@ -1,3 +1,4 @@
+// models/PageVisit.js
 import mongoose from "mongoose";
 
 const PageVisitSchema = new mongoose.Schema({
@@ -11,4 +12,7 @@ const PageVisitSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.model("PageVisit", PageVisitSchema);
+const pageVisitModel =
+  mongoose.models.pageVisitModel ||
+  mongoose.model("PageVisit", PageVisitSchema);
+export default pageVisitModel;

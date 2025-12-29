@@ -15,7 +15,7 @@ import emailRouter from "./routes/email.route.js";
 import bodyParser from "body-parser";
 import adminRouter from "./routes/admin.route.js";
 import commentsRouter from "./routes/comments.route.js";
-import pageVisitRouter from "./routes/pageVisit.route.js";
+import { pageVisitRouter } from "./routes/pageVisit.route.js";
 
 dotenv.config();
 
@@ -63,6 +63,7 @@ app.use("/api/order", orderRouter);
 app.use("/api/sendemail", bodyParser.json(), emailRouter);
 app.use("/api/comment", commentsRouter);
 app.use("/api/tracker", pageVisitRouter);
+app.use("/api/admin", pageVisitRouter);
 
 // export default app
 
