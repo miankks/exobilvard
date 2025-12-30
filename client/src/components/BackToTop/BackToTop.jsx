@@ -46,7 +46,11 @@ const BackToTop = () => {
   };
 
   return (
-    <ButtonContainer isScrollButtonVisible={showButton} onClick={scrollToTop}>
+    <ButtonContainer
+      aria-label="Back to top"
+      isScrollButtonVisible={showButton}
+      onClick={scrollToTop}
+    >
       <svg
         width={24}
         height={24}

@@ -1,6 +1,0 @@
-.delete-btn {
-  grid-column: 1 / -1;
-  display: flex;
-  justify-content: flex-end;
-  padding: 20px;
-}
