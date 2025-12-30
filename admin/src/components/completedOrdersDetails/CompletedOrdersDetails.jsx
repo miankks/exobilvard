@@ -14,12 +14,16 @@ import { formattedDate } from "../../customHooks/formattedDate";
 
 const CompletedOrdersDetails = ({ url }) => {
   const { id } = useParams();
-  const { orders, setOrders, updateOrderStatusLocally, statusHandler } =
-    useOrders();
-  const [selectedStatuses, setSelectedStatuses] = useState({});
+  const {
+    orders,
+    statusHandler,
+    fetchAllOrders,
+    setSelectedStatuses,
+    selectedStatuses,
+  } = useOrders();
+  // const [selectedStatuses, setSelectedStatuses] = useState({});
   const [confirmDeleteId, setConfirmDeleteId] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
-  const [filteredOrder, setFilteredOrder] = useState([]);
 
   const handleSelectChange = (orderId, value) => {
     setSelectedStatuses((prev) => ({

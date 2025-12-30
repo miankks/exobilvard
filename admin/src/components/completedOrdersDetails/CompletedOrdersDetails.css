@@ -36,3 +36,10 @@
   opacity: 0.5;
   transform: translateX(4px);
 }
+
+.delete-btn {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+}
