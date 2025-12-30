@@ -1,0 +1,23 @@
+name: Admin Tests
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+jobs:
+  test-admin:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./admin
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 22
+
+      - run: npm ci
+      - run: npm test
