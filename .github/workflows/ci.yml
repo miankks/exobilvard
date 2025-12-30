@@ -1,0 +1,58 @@
+name: CI / Test Pipeline
+
+on:
+  push:
+    branches: ["develop", "feature/**"]
+  pull_request:
+    branches: ["develop", "feature/**"]
+
+jobs:
+  test-client:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./client
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
+
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        with:
+          path: client/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('client/package-lock.json') }}
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
+
+  test-admin:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./admin
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
+
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        with:
+          path: admin/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('admin/package-lock.json') }}
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test

@@ -26,3 +26,9 @@ jobs:
 
       - name: Run tests
         run: npm test
+
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: client/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('client/package-lock.json') }}
