@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useOrders } from "../../context/OrdersContext";
 import { assets } from "../../assets/assets";
 import { MdEmail } from "react-icons/md";
@@ -14,6 +14,7 @@ const RejectedOrders = () => {
     updateOrderStatusLocally,
     selectedStatuses,
     setSelectedStatuses,
+    fetchOrders,
   } = useOrders();
 
   const rejectedOrders = orders.filter((o) => o.status === "Rejected");
@@ -21,6 +22,10 @@ const RejectedOrders = () => {
   const handleSelectChange = (orderId, value) => {
     setSelectedStatuses((prev) => ({ ...prev, [orderId]: value }));
   };
+
+  useEffect(() => {
+    fetchOrders();
+  }, []);
 
   return (
     <div className="order orders-add">

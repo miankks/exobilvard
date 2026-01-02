@@ -12,7 +12,8 @@ import { FaCarAlt } from "react-icons/fa";
 import { CiCalendarDate } from "react-icons/ci";
 import { formattedDate } from "../../customHooks/formattedDate";
 
-const CompletedOrdersDetails = ({ url }) => {
+const CompletedOrdersDetails = () => {
+  const API_URL = import.meta.env.VITE_API_URL;
   const { id } = useParams();
   const {
     orders,
@@ -34,9 +35,17 @@ const CompletedOrdersDetails = ({ url }) => {
 
   const deleteHandler = async (orderId) => {
     try {
-      const response = await axios.post(url + "/api/order/deleteorders", {
-        orderId,
-      });
+      console.log(
+        "DELETE URL:",
+        `${API_URL}/api/order/deleteorders/${orderId}`
+      );
+      console.log("TOKEN:", token);
+      const response = await axios.delete(
+        `${API_URL}/api/order/deleteorders/${orderId}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
 
       if (response.data.success) {
         await fetchAllOrders();
@@ -44,7 +53,7 @@ const CompletedOrdersDetails = ({ url }) => {
         toast.error(response.data.message);
       }
     } catch (err) {
-      toast.error("Error deleting order");
+      toast.error(err.response?.data?.message || "Error deleting order");
     }
   };
 
@@ -255,9 +264,14 @@ const CompletedOrdersDetails = ({ url }) => {
 
               <button
                 className="px-4 py-2 rounded-lg bg-red-500 text-white hover:bg-red-600"
-                onClick={() => {
-                  deleteHandler(confirmDeleteId);
-                  setConfirmDeleteId(null);
+                onClick={async () => {
+                  if (!confirmDeleteId) {
+                    toast.error("No order selected to delete");
+                    return;
+                  }
+
+                  await deleteHandler(confirmDeleteId); // run the delete
+                  setConfirmDeleteId(null); // clear selection AFTER delete
                 }}
               >
                 Delete

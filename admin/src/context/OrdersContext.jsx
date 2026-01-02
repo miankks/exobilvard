@@ -4,17 +4,18 @@ import { toast } from "react-toastify";
 
 const OrdersContext = createContext();
 
-export const OrdersProvider = ({ children, url }) => {
+export const OrdersProvider = ({ children }) => {
   const [orders, setOrders] = useState([]); // all orders
   const [selectedStatuses, setSelectedStatuses] = useState({});
   const [comment, setComment] = useState("");
   const [acceptedDate, setAcceptedDate] = useState("");
+  const API_URL = import.meta.env.VITE_API_URL;
 
   // Fetch all orders
   const fetchOrders = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get(`${url}/api/order/allorders`, {
+      const response = await axios.get(`${API_URL}/api/order/allorders`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (response.data.success) setOrders(response.data.data);
@@ -36,7 +37,7 @@ export const OrdersProvider = ({ children, url }) => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        `${url}/api/order/status`,
+        `${API_URL}/api/order/status`,
         { orderId, status: newStatus, comment, acceptedDate },
         { headers: { Authorization: `Bearer ${token}` } }
       );
