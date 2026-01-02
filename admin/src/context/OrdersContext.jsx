@@ -32,12 +32,12 @@ export const OrdersProvider = ({ children, url }) => {
   };
 
   // Update status via API and refresh orders
-  const statusHandler = async (orderId, newStatus) => {
+  const statusHandler = async (orderId, newStatus, comment, acceptedDate) => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
         `${url}/api/order/status`,
-        { orderId, status: newStatus },
+        { orderId, status: newStatus, comment, acceptedDate },
         { headers: { Authorization: `Bearer ${token}` } }
       );
       if (response.data.success) {

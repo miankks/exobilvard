@@ -16,8 +16,6 @@ const RejectedOrders = () => {
     setSelectedStatuses,
   } = useOrders();
 
-  const [confirmDeleteId, setConfirmDeleteId] = useState(null);
-
   const rejectedOrders = orders.filter((o) => o.status === "Rejected");
 
   const handleSelectChange = (orderId, value) => {

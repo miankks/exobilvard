@@ -35,8 +35,8 @@ const Orders = ({ url }) => {
   };
 
   const handleDate = (date) => {
-    const dateAccepted = formattedDate(date);
-    setAcceptedDate(dateAccepted);
+    const newDateAccepted = formattedDate(date);
+    setAcceptedDate(newDateAccepted);
   };
 
   useEffect(() => {
@@ -199,7 +199,9 @@ const Orders = ({ url }) => {
                   onClick={() =>
                     statusHandler(
                       order._id,
-                      selectedStatuses[order._id] ?? order.status
+                      selectedStatuses[order._id] ?? order.status,
+                      comment,
+                      acceptedDate
                     )
                   }
                 >
