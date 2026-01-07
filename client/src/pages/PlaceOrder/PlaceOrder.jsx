@@ -11,7 +11,6 @@ const PlaceOrder = () => {
   const { cartItems, removeFromCart } = useContext(CartContext);
   const { car_list, url } = useContext(CarContext);
   const itemsInCart = car_list.filter((item) => cartItems[item._id] > 0);
-  console.log(itemsInCart.length);
 
   const navigate = useNavigate();
   const [data, setData] = useState({

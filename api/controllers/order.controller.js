@@ -68,8 +68,6 @@ export const getAllOrders = async (req, res) => {
 export const updateOrderStatus = async (req, res) => {
   try {
     const { orderId, status, comment, acceptedDate } = req.body;
-    console.log(comment, acceptedDate);
-
     const updates = {};
     if (status !== undefined) updates.status = status;
     if (comment !== undefined) updates.comment = comment;
