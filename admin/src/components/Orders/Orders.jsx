@@ -21,6 +21,7 @@ const Orders = ({ url }) => {
   const [filteredOrders, setFilteredOrders] = useState([]);
 
   const { orders, fetchAllOrders, statusHandler } = useOrders();
+  console.log(acceptedDate);
 
   const onChangeHandler = (e) => {
     const value = e.target.value;

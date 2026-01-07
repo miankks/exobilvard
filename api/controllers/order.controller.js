@@ -79,7 +79,7 @@ export const updateOrderStatus = async (req, res) => {
 
     // Send emails based on status
     if (updatedOrder.status === "Rejected") {
-      // await rejectedOrderEmail(updatedOrder);
+      await rejectedOrderEmail(updatedOrder);
     } else if (updatedOrder.status === "Accepted") {
       // await acceptedOrderEmail(updatedOrder);
     }
