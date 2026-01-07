@@ -52,7 +52,7 @@ const App = () => {
             element={<AcceptedOrders url={API_URL} />}
           />
           <Route
-            path="/acceptedorders/:id"
+            path="/acceptedorders/:orderId"
             element={<AcceptedOrdersDetails url={API_URL} />}
           />
           <Route

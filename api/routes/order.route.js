@@ -11,6 +11,7 @@ const orderRouter = express.Router();
 
 orderRouter.post("/place", placeOrder);
 orderRouter.get("/allorders", protectAdmin, getAllOrders);
+orderRouter.get("/allorders/:orderID", protectAdmin, getAllOrders);
 orderRouter.delete("/deleteorders/:orderId", protectAdmin, deleteOrder);
 orderRouter.post("/status", updateOrderStatus);
 
