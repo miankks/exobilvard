@@ -35,6 +35,10 @@ const RejectedOrders = () => {
     setSelectedStatuses((prev) => ({ ...prev, [orderId]: value }));
   };
 
+  useEffect(() => {
+    fetchOrders();
+  }, []);
+
   return (
     <div className="order orders-add">
       <h3>Accepted Order Details</h3>

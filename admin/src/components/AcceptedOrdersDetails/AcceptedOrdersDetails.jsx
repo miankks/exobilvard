@@ -6,11 +6,17 @@ import { CiCalendarDate } from "react-icons/ci";
 import { formattedDate } from "../../customHooks/formattedDate";
 import { useOrders } from "../../context/OrdersContext";
 import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 
 const AcceptedOrdersDetails = () => {
   const { orderId } = useParams();
-  const { orders, statusHandler, selectedStatuses, setSelectedStatuses } =
-    useOrders();
+  const {
+    orders,
+    statusHandler,
+    selectedStatuses,
+    setSelectedStatuses,
+    fetchOrders,
+  } = useOrders();
 
   if (!orders?.length) {
     return <p>Loading orders...</p>;
@@ -30,6 +36,10 @@ const AcceptedOrdersDetails = () => {
       [orderId]: value,
     }));
   };
+
+  useEffect(() => {
+    fetchOrders();
+  }, []);
 
   return (
     <div className="order orders-add">
