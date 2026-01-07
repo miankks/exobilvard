@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
-import { toast } from "react-toastify";
 import { assets } from "../../assets/assets";
 import { MdEmail } from "react-icons/md";
 import { BsTelephoneForwardFill } from "react-icons/bs";
@@ -12,7 +10,7 @@ import { formattedDate } from "../../customHooks/formattedDate";
 import { useParams } from "react-router-dom";
 import { useOrders } from "../../context/OrdersContext";
 
-const Orders = ({ url }) => {
+const Orders = () => {
   const { id } = useParams();
   const [selectedStatuses, setSelectedStatuses] = useState({});
   const [comment, setComment] = useState("");
@@ -21,8 +19,6 @@ const Orders = ({ url }) => {
   const [filteredOrders, setFilteredOrders] = useState([]);
 
   const { orders, fetchAllOrders, statusHandler } = useOrders();
-  console.log(acceptedDate);
-
   const onChangeHandler = (e) => {
     const value = e.target.value;
     setComment(value);
@@ -49,7 +45,7 @@ const Orders = ({ url }) => {
   }, [orders, id]);
 
   const pendingOrders = filteredOrders.filter(
-    (o) => o.status === "Pending to accept"
+    (order) => order.status === "Pending to accept"
   );
 
   return (

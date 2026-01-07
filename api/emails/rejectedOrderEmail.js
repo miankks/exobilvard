@@ -5,9 +5,6 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 const rejectedOrderEmail = async (order) => {
   try {
     const { fullName, email, phone, regnummer } = order.address || {};
-    console.log(order);
-    console.log("order date: ", order.acceptedDate);
-
     const { data, error } = await resend.emails.send({
       from: "Exobil <onboarding@resend.dev>",
       to: email,
