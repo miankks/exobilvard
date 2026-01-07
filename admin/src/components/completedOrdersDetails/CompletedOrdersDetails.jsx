@@ -3,7 +3,7 @@ import "./CompletedOrdersDetails.css";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { assets } from "../../assets/assets";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useOrders } from "../../context/OrdersContext";
 
 import { MdEmail } from "react-icons/md";
@@ -13,12 +13,13 @@ import { CiCalendarDate } from "react-icons/ci";
 import { formattedDate } from "../../customHooks/formattedDate";
 
 const CompletedOrdersDetails = () => {
+  const navigate = useNavigate();
   const API_URL = import.meta.env.VITE_API_URL;
   const { id } = useParams();
   const {
     orders,
     statusHandler,
-    fetchAllOrders,
+    fetchOrders,
     setSelectedStatuses,
     selectedStatuses,
   } = useOrders();
@@ -34,11 +35,7 @@ const CompletedOrdersDetails = () => {
 
   const deleteHandler = async (orderId) => {
     try {
-      console.log(
-        "DELETE URL:",
-        `${API_URL}/api/order/deleteorders/${orderId}`
-      );
-      console.log("TOKEN:", token);
+      const token = localStorage.getItem("token");
       const response = await axios.delete(
         `${API_URL}/api/order/deleteorders/${orderId}`,
         {
@@ -47,9 +44,9 @@ const CompletedOrdersDetails = () => {
       );
 
       if (response.data.success) {
-        await fetchAllOrders();
-      } else {
-        toast.error(response.data.message);
+        toast.success(response.data.message);
+        navigate("/completedorders");
+        fetchOrders();
       }
     } catch (err) {
       toast.error(err.response?.data?.message || "Error deleting order");

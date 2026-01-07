@@ -99,7 +99,6 @@ export const updateOrderStatus = async (req, res) => {
 export const deleteOrder = async (req, res) => {
   try {
     const deletedOrder = await orderModel.findByIdAndDelete(req.params.orderId);
-
     if (!deletedOrder) {
       return res
         .status(404)
