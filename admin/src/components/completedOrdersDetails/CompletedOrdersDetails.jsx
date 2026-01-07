@@ -22,7 +22,6 @@ const CompletedOrdersDetails = () => {
     setSelectedStatuses,
     selectedStatuses,
   } = useOrders();
-  // const [selectedStatuses, setSelectedStatuses] = useState({});
   const [confirmDeleteId, setConfirmDeleteId] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
 

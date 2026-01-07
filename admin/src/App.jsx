@@ -60,7 +60,7 @@ const App = () => {
             element={<RejectedOrders url={API_URL} />}
           />
           <Route
-            path="/rejectedorders/:id"
+            path="/rejectedorders/:orderId"
             element={<RejectedOrdersDetails url={API_URL} />}
           />
           <Route path="/editlist/:id" element={<EditList url={API_URL} />} />
