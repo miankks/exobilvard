@@ -81,7 +81,6 @@ app.use("/api/order", orderRouter);
 app.use("/api/sendemail", bodyParser.json(), emailRouter);
 app.use("/api/comment", commentsRouter);
 app.use("/api/tracker", pageVisitRouter);
-app.use("/api/admin", pageVisitRouter);
 
 // export default app
 
