@@ -49,8 +49,8 @@ const allowedOrigins = [
   "https://www.exobilvardscenter.se",
 
   // PRODUCTION Admin DOMAIN
-  "https://admin.exobilvardscenter.se/",
-  "https://www.admin.exobilvardscenter.se/",
+  "https://admin.exobilvardscenter.se",
+  "https://www.admin.exobilvardscenter.se",
 ];
 // can get access to backend from any frontend to backend
 app.use(
