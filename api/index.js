@@ -45,8 +45,8 @@ const allowedOrigins = [
   "https://exobilvard-client-git-main-bilal-jans-projects.vercel.app", // client
 
   // PRODUCTION DOMAIN
-  "https://exobilvårdscenter.se",
-  "https://www.exobilvårdscenter.se",
+  "https://exobilvardscenter.se",
+  "https://www.exobilvardscenter.se",
 
   // PRODUCTION Admin DOMAIN
   "https://admin.exobilvardscenter.se/",
