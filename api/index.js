@@ -36,15 +36,33 @@ app.use(express.json());
 // It adds middleware that converts URL-encoded request bodies into a usable JavaScript object stored in req.body
 app.use(express.urlencoded({ extended: true }));
 
+const allowedOrigins = [
+  "http://localhost:5000", // admin
+  "http://localhost:5173", // client
+
+  // Vercel preview URLs
+  "https://exobilvard-admin-git-main-bilal-jans-projects.vercel.app", // admin
+  "https://exobilvard-client-git-main-bilal-jans-projects.vercel.app", // client
+
+  // PRODUCTION DOMAIN
+  "https://exobilvårdscenter.se",
+  "https://www.exobilvårdscenter.se",
+
+  // PRODUCTION Admin DOMAIN
+  "https://admin.exobilvardscenter.se/",
+  "https://www.admin.exobilvardscenter.se/",
+];
 // can get access to backend from any frontend to backend
 app.use(
   cors({
-    origin: [
-      "http://localhost:5000", // admin
-      "http://localhost:5173", // client
-      "https://exobilvard-admin-git-main-bilal-jans-projects.vercel.app", // admin
-      "https://exobilvard-client-git-main-bilal-jans-projects.vercel.app", // client
-    ],
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin) || origin.endsWith(".vercel.app")) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   })
 );
