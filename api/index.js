@@ -1,5 +1,4 @@
 import "dotenv/config"; // MUST be first
-
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";

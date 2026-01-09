@@ -1,4 +1,4 @@
-import "dotenv/config";
+import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
@@ -6,7 +6,6 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { connectDB } from "./config/db.js";
 import userRouter from "./routes/user.route.js";
-import "dotenv/config";
 import cartRouter from "./routes/cart.route.js";
 import carRouter from "./routes/car.route.js";
 import orderRouter from "./routes/order.route.js";
