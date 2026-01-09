@@ -1,61 +1,59 @@
-import express from "express";
-import mongoose from "mongoose";
 import dotenv from "dotenv";
+import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import bodyParser from "body-parser";
 import path from "path";
 import { fileURLToPath } from "url";
+dotenv.config();
+
 import { connectDB } from "./config/db.js";
+
+// Routes
 import userRouter from "./routes/user.route.js";
-import "dotenv/config";
 import cartRouter from "./routes/cart.route.js";
 import carRouter from "./routes/car.route.js";
 import orderRouter from "./routes/order.route.js";
 import emailRouter from "./routes/email.route.js";
-import bodyParser from "body-parser";
 import adminRouter from "./routes/admin.route.js";
 import commentsRouter from "./routes/comments.route.js";
 import { pageVisitRouter } from "./routes/pageVisit.route.js";
 
-dotenv.config();
-
-// app config
 const app = express();
 const port = process.env.PORT || 3000;
+/* -------------------- Middleware -------------------- */
 
-// Determine base URL
-const isProduction = process.env.NODE_ENV === "production";
-
-const BASE_URL = isProduction
-  ? process.env.RENDER_EXTERNAL_URL || `https://exobilvard-1.onrender.com`
-  : `http://localhost:${port}`;
-
-// middleware, when request comes from frontend that will parse through json
 app.use(express.json());
-
-// It adds middleware that converts URL-encoded request bodies into a usable JavaScript object stored in req.body
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 const allowedOrigins = [
-  "http://localhost:5000", // admin
-  "http://localhost:5173", // client
+  "http://localhost:5000",
+  "http://localhost:5173",
 
-  // Vercel preview URLs
-  "https://exobilvard-admin-git-main-bilal-jans-projects.vercel.app", // admin
-  "https://exobilvard-client-git-main-bilal-jans-projects.vercel.app", // client
+  // Vercel previews
+  "https://exobilvard-admin-git-main-bilal-jans-projects.vercel.app",
+  "https://exobilvard-client-git-main-bilal-jans-projects.vercel.app",
 
-  // PRODUCTION DOMAIN
+  // Production
   "https://exobilvardscenter.se",
   "https://www.exobilvardscenter.se",
-
-  // PRODUCTION Admin DOMAIN
   "https://admin.exobilvardscenter.se",
   "https://www.admin.exobilvardscenter.se",
 ];
-// can get access to backend from any frontend to backend
+
+// Connect immediately on startup (local dev)
+connectDB()
+  .then(() => {
+    console.log("✅ MongoDB connected on startup");
+  })
+  .catch((err) => {
+    console.error("❌ MongoDB connection failed on startup:", err);
+  });
+
 app.use(
   cors({
-    origin: function (origin, callback) {
+    origin: (origin, callback) => {
       if (!origin) return callback(null, true);
       if (allowedOrigins.includes(origin) || origin.endsWith(".vercel.app")) {
         callback(null, true);
@@ -67,13 +65,34 @@ app.use(
   })
 );
 
-// DB connect
-connectDB();
+/* -------------------- DB Middleware -------------------- */
+// Ensures DB is connected per request (serverless-safe)
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (err) {
+    res.status(500).json({ error: "Database connection failed" });
+  }
+});
 
-// api endpoints
+/* -------------------- SPA / Static Files -------------------- */
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use(express.static(path.join(__dirname, "../client/dist")));
+app.get(/^(?!\/api).*/, (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
+});
+
+/* -------------------- Start Server -------------------- */
+if (process.env.RENDER === "true" || process.env.NODE_ENV !== "production") {
+  app.listen(port, () => console.log(`Server running on port ${port}`));
+}
+
+/* -------------------- Routes -------------------- */
+
 app.use("/api/car", carRouter);
-app.use("/images", express.static("uploads"));
-app.use("/adminimage", express.static("uploads/adminimage"));
 app.use("/api/admin", adminRouter);
 app.use("/api/user", userRouter);
 app.use("/api/cart", cartRouter);
@@ -82,32 +101,9 @@ app.use("/api/sendemail", bodyParser.json(), emailRouter);
 app.use("/api/comment", commentsRouter);
 app.use("/api/tracker", pageVisitRouter);
 
-// export default app
-
-// app.get("/", (req, res) => {
-//     res.send(`server is running at: ${BASE_URL}`)
-// })
-// app.listen(port, () => {
-//     console.log(`Server started on: ${port}`);
-// })
-
-// export default app
-// Serve static frontend files
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-// serve built Vite/Vercel client
-app.use(express.static(path.join(__dirname, "../client/dist")));
-// SPA fallback - MUST be last
-// SPA fallback
-app.get(/^(?!\/api).*/, (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
-});
-
 app.get("/api/health", (req, res) => {
   res.status(200).json({ status: "ok" });
 });
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
+/* -------------------- Export (NO listen) -------------------- */
+export default app;
