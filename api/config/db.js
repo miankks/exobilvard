@@ -22,7 +22,13 @@ export const connectDB = async () => {
 
   if (!cached.promise) {
     cached.promise = mongoose
-      .connect(MONGO_URI, { bufferCommands: false })
+      .connect(MONGO_URI, {
+        bufferCommands: false,
+        // critical for serverless: prevent hanging sockets
+        serverSelectionTimeoutMS: 5000,
+        socketTimeoutMS: 45000,
+        keepAlive: false,
+      })
       .then((mongoose) => {
         console.log("✅ MongoDB connected");
         return mongoose;

@@ -25,6 +25,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+console.log("NODE_ENV:", process.env.NODE_ENV);
+console.log("MONGO:", process.env.MONGO ? "found" : "missing");
+
 const allowedOrigins = [
   "http://localhost:5000",
   "http://localhost:5173",
@@ -63,9 +66,12 @@ app.use("/api/tracker", pageVisitRouter);
 /* -------------------- Health check -------------------- */
 app.get("/api/health", async (req, res) => {
   try {
-    await connectDB(); // cached connection used if already connected
+    console.log("Health check requested"); // logs appear now
+    await connectDB();
+    console.log("Health check DB connected"); // logs appear after DB ready
     res.status(200).json({ status: "ok" });
   } catch (err) {
+    console.error("Health check DB error:", err);
     res.status(500).json({ status: "db error", error: err.message });
   }
 });
