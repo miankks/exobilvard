@@ -4,13 +4,15 @@ import fs from "fs";
 // add car item
 
 const addCar = async (req, res, next) => {
-  let image_filename = `${req.file.filename}`;
+  let image_url = req.file.path; // Cloudinary URL
+  // let image_filename = `${req.file.filename}`;
+  console.log(req.body);
 
   const car = new carModel({
     name: req.body.name,
     description: req.body.description,
     category: req.body.category,
-    image: image_filename,
+    image: image_url,
   });
 
   try {

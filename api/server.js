@@ -1,36 +1,3 @@
-// api/index.js
-import express from "express";
-import serverless from "serverless-http";
-import { connectDB, closeDB } from "./config/db.js";
-
-const app = express();
-
-app.use(express.json());
-
-app.get("/api/health", async (req, res) => {
-  try {
-    await connectDB();
-    // closeDB() optional for health check only
-    await closeDB();
-    res.status(200).json({ status: "ok" });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// Example real route
-app.get("/api/test", async (req, res) => {
-  try {
-    const db = await connectDB();
-    const count = await db.collection("users").countDocuments();
-    res.json({ users: count });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-export default serverless(app);
-
 // // index.js
 // import "dotenv/config";
 // import express from "express";

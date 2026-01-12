@@ -1,4 +1,5 @@
 import dotenv from "dotenv";
+import "./config/cloudinary.js";
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
