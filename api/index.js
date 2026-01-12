@@ -24,6 +24,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+console.log("NODE_ENV:", process.env.NODE_ENV);
+console.log("MONGO:", process.env.MONGO ? "found" : "missing");
+
 const allowedOrigins = [
   "http://localhost:5000",
   "http://localhost:5173",
