@@ -1,101 +1,110 @@
-import dotenv from "dotenv";
+// api/index.js
 import express from "express";
-import cors from "cors";
-import cookieParser from "cookie-parser";
-import path from "path";
-import { fileURLToPath } from "url";
-import { connectDB } from "./config/db.js";
-import userRouter from "./routes/user.route.js";
-import cartRouter from "./routes/cart.route.js";
-import carRouter from "./routes/car.route.js";
-import orderRouter from "./routes/order.route.js";
-import emailRouter from "./routes/email.route.js";
-// import bodyParser from "body-parser";
-import adminRouter from "./routes/admin.route.js";
-import commentsRouter from "./routes/comments.route.js";
-import { pageVisitRouter } from "./routes/pageVisit.route.js";
+import serverless from "serverless-http";
+import { connectDB, closeDB } from "./config/db.js";
 
-dotenv.config();
-
-// app config
 const app = express();
-const port = process.env.PORT || 3000;
 
-// Determine base URL
-const isProduction = process.env.NODE_ENV === "production";
+app.use(express.json());
 
-const BASE_URL = isProduction
-  ? process.env.RENDER_EXTERNAL_URL || `https://exobilvard-1.onrender.com`
-  : `http://localhost:${port}`;
+app.get("/api/health", async (req, res) => {
+  try {
+    await connectDB();
+    // closeDB() optional for health check only
+    await closeDB();
+    res.status(200).json({ status: "ok" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
-// middleware, when request comes from frontend that will parse through json
+// Example real route
+app.get("/api/test", async (req, res) => {
+  try {
+    const db = await connectDB();
+    const count = await db.collection("users").countDocuments();
+    res.json({ users: count });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+export default serverless(app);
+
+// // index.js
+// import "dotenv/config";
+// import express from "express";
+// import cors from "cors";
+// import cookieParser from "cookie-parser";
+// import bodyParser from "body-parser";
+// import serverless from "serverless-http";
+
+// import { connectDB } from "./config/db.js";
+
+// // Routes
+// import userRouter from "./routes/user.route.js";
+// import cartRouter from "./routes/cart.route.js";
+// import carRouter from "./routes/car.route.js";
+// import orderRouter from "./routes/order.route.js";
+// import emailRouter from "./routes/email.route.js";
+// import adminRouter from "./routes/admin.route.js";
+// import commentsRouter from "./routes/comments.route.js";
+// import { pageVisitRouter } from "./routes/pageVisit.route.js";
+
+// const app = express();
+
+// /* -------------------- Middleware -------------------- */
 // app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+// app.use(cookieParser());
 
-// It adds middleware that converts URL-encoded request bodies into a usable JavaScript object stored in req.body
-app.use(express.urlencoded({ extended: true }));
+// console.log("NODE_ENV:", process.env.NODE_ENV);
+// console.log("MONGO:", process.env.MONGO ? "found" : "missing");
 
-const allowedOrigins = [
-  "http://localhost:5000", // admin
-  "http://localhost:5173", // client
+// const allowedOrigins = [
+//   "http://localhost:5000",
+//   "http://localhost:5173",
+//   "https://exobilvard-admin-git-main-bilal-jans-projects.vercel.app",
+//   "https://exobilvard-client-git-main-bilal-jans-projects.vercel.app",
+//   "https://exobilvardscenter.se",
+//   "https://www.exobilvardscenter.se",
+//   "https://admin.exobilvardscenter.se",
+//   "https://www.admin.exobilvardscenter.se",
+// ];
 
-  // Vercel preview URLs
-  "https://exobilvard-admin-git-main-bilal-jans-projects.vercel.app", // admin
-  "https://exobilvard-client-git-main-bilal-jans-projects.vercel.app", // client
+// app.use(
+//   cors({
+//     origin: (origin, callback) => {
+//       if (!origin) return callback(null, true);
+//       if (allowedOrigins.includes(origin) || origin.endsWith(".vercel.app")) {
+//         callback(null, true);
+//       } else {
+//         callback(new Error("Not allowed by CORS"));
+//       }
+//     },
+//     credentials: true,
+//   })
+// );
 
-  // PRODUCTION DOMAIN
-  "https://exobilvardscenter.se",
-  "https://www.exobilvardscenter.se",
+// /* -------------------- Routes -------------------- */
+// app.use("/api/car", carRouter);
+// app.use("/api/admin", adminRouter);
+// app.use("/api/user", userRouter);
+// app.use("/api/cart", cartRouter);
+// app.use("/api/order", orderRouter);
+// app.use("/api/sendemail", bodyParser.json(), emailRouter);
+// app.use("/api/comment", commentsRouter);
+// app.use("/api/tracker", pageVisitRouter);
 
-  // PRODUCTION Admin DOMAIN
-  "https://admin.exobilvardscenter.se",
-  "https://www.admin.exobilvardscenter.se",
-];
-// can get access to backend from any frontend to backend
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.includes(origin) || origin.endsWith(".vercel.app")) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    credentials: true,
-  })
-);
+// /* -------------------- Health check -------------------- */
+// app.get("/api/health", async (req, res) => {
+//   try {
+//     const db = await connectDB();
+//     res.status(200).json({ status: "ok" });
+//   } catch (err) {
+//     res.status(500).json({ error: err.message });
+//   }
+// });
 
-// DB connect
-connectDB();
-
-// api endpoints
-app.use("/api/car", carRouter);
-app.use("/images", express.static("uploads"));
-app.use("/adminimage", express.static("uploads/adminimage"));
-app.use("/api/admin", adminRouter);
-app.use("/api/user", userRouter);
-app.use("/api/cart", cartRouter);
-app.use("/api/order", orderRouter);
-app.use("/api/sendemail", emailRouter);
-app.use("/api/comment", commentsRouter);
-app.use("/api/tracker", pageVisitRouter);
-
-// Serve static frontend files
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-// serve built Vite/Vercel client
-app.use(express.static(path.join(__dirname, "../client/dist")));
-// SPA fallback - MUST be last
-// SPA fallback
-app.get(/^(?!\/api).*/, (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
-});
-
-app.get("/api/health", (req, res) => {
-  res.status(200).json({ status: "ok" });
-});
-
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
+// /* -------------------- Export ONLY -------------------- */
+// export default serverless(app);
