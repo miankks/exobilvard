@@ -1,13 +1,14 @@
+// api/config/db.js
 import { MongoClient } from "mongodb";
 
 let cachedClient = null;
 let cachedDb = null;
 
 export async function connectDB() {
-  if (cachedClient && cachedDb) return cachedDb;
+  if (cachedDb) return cachedDb;
 
   const client = new MongoClient(process.env.MONGO, {
-    serverSelectionTimeoutMS: 5000,
+    serverSelectionTimeoutMS: 5000, // fail fast
   });
   await client.connect();
 
@@ -16,6 +17,15 @@ export async function connectDB() {
   cachedDb = db;
 
   return db;
+}
+
+// Optional helper to close client for health checks
+export async function closeDB() {
+  if (cachedClient) {
+    await cachedClient.close();
+    cachedClient = null;
+    cachedDb = null;
+  }
 }
 
 // import mongoose from "mongoose";
