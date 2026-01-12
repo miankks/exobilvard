@@ -25,9 +25,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-console.log("NODE_ENV:", process.env.NODE_ENV);
-console.log("MONGO:", process.env.MONGO ? "found" : "missing");
-
 const allowedOrigins = [
   "http://localhost:5000",
   "http://localhost:5173",
@@ -53,13 +50,6 @@ app.use(
   })
 );
 
-/* -------------------- Connect to DB ONCE -------------------- */
-// top-level connection, only called once per serverless instance
-let dbPromise = null;
-if (!dbPromise) {
-  dbPromise = connectDB();
-}
-
 /* -------------------- Routes -------------------- */
 app.use("/api/car", carRouter);
 app.use("/api/admin", adminRouter);
@@ -70,9 +60,10 @@ app.use("/api/sendemail", bodyParser.json(), emailRouter);
 app.use("/api/comment", commentsRouter);
 app.use("/api/tracker", pageVisitRouter);
 
+/* -------------------- Health check -------------------- */
 app.get("/api/health", async (req, res) => {
   try {
-    await dbPromise; // make sure DB is ready
+    await connectDB(); // cached connection used if already connected
     res.status(200).json({ status: "ok" });
   } catch (err) {
     res.status(500).json({ status: "db error", error: err.message });
