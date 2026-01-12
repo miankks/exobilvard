@@ -60,8 +60,6 @@ export const registerAdmin = async (req, res) => {
 
 // ADMIN LOGIN
 export const loginAdmin = async (req, res) => {
-  console.log(req.body.email);
-
   try {
     const { email, password } = req.body;
 

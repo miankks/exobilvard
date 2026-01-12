@@ -19,6 +19,9 @@ dotenv.config();
 
 // app config
 const app = express();
+// REQUIRED on Render
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 const port = process.env.PORT || 3000;
 
 // Determine base URL
