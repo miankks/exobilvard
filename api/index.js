@@ -1,4 +1,5 @@
-import "dotenv/config"; // MUST be first
+// index.js
+import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
@@ -52,16 +53,12 @@ app.use(
   })
 );
 
-/* -------------------- DB -------------------- */
-// serverless-safe DB connection
-app.use(async (req, res, next) => {
-  try {
-    await connectDB();
-    next();
-  } catch (err) {
-    res.status(500).json({ error: "Database connection failed" });
-  }
-});
+/* -------------------- Connect to DB ONCE -------------------- */
+// top-level connection, only called once per serverless instance
+let dbPromise = null;
+if (!dbPromise) {
+  dbPromise = connectDB();
+}
 
 /* -------------------- Routes -------------------- */
 app.use("/api/car", carRouter);
@@ -73,8 +70,13 @@ app.use("/api/sendemail", bodyParser.json(), emailRouter);
 app.use("/api/comment", commentsRouter);
 app.use("/api/tracker", pageVisitRouter);
 
-app.get("/api/health", (req, res) => {
-  res.status(200).json({ status: "ok" });
+app.get("/api/health", async (req, res) => {
+  try {
+    await dbPromise; // make sure DB is ready
+    res.status(200).json({ status: "ok" });
+  } catch (err) {
+    res.status(500).json({ status: "db error", error: err.message });
+  }
 });
 
 /* -------------------- Export ONLY -------------------- */
