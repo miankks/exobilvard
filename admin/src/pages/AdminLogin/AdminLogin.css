@@ -61,3 +61,24 @@
   margin-top: 5px;
   color: #28a745;
 }
+
+.password-wrapper {
+  position: relative; /* Needed for absolute positioning of icon */
+  width: 100%;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 40px; /* Make space for the icon */
+  box-sizing: border-box;
+}
+
+.show-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 1.2rem; /* Adjust size as needed */
+  color: #555; /* Icon color */
+}
