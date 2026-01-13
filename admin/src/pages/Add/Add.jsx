@@ -20,6 +20,10 @@ const Add = ({ url }) => {
 
     setData((data) => ({ ...data, [name]: value }));
   };
+  // if (!image) {
+  //   toast.error("Please upload an image");
+  //   return;
+  // }
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
@@ -28,6 +32,7 @@ const Add = ({ url }) => {
     formData.append("description", data.description);
     formData.append("category", data.category);
     formData.append("image", image);
+
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(`${url}/api/car/addcar`, formData, {

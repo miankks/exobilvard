@@ -1,4 +1,6 @@
 import dotenv from "dotenv";
+dotenv.config();
+
 import "./config/cloudinary.js";
 import express from "express";
 import cors from "cors";
@@ -16,11 +18,9 @@ import adminRouter from "./routes/admin.route.js";
 import commentsRouter from "./routes/comments.route.js";
 import { pageVisitRouter } from "./routes/pageVisit.route.js";
 
-dotenv.config();
-
 // app config
-const app = express();
 // REQUIRED on Render
+const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const port = process.env.PORT || 3000;
@@ -33,7 +33,6 @@ const BASE_URL = isProduction
   : `http://localhost:${port}`;
 
 // middleware, when request comes from frontend that will parse through json
-// app.use(express.json());
 
 // It adds middleware that converts URL-encoded request bodies into a usable JavaScript object stored in req.body
 app.use(express.urlencoded({ extended: true }));
