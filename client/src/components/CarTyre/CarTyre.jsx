@@ -1,6 +1,12 @@
 import "./CarTyre.css";
 
 const CarTyre = () => {
+  const lineCardText = [
+    { class: "line1", text: "Säker & trygg hantering" },
+    { class: "line2", text: "Professionell montering" },
+    { class: "line3", text: "Däckförvaring tillgänglig" },
+    { class: "line4", text: "Balansering & Inställning" },
+  ];
   return (
     <div className="tyre-wrapper">
       {/* LEFT DIV */}
@@ -17,7 +23,7 @@ const CarTyre = () => {
 
       {/* RIGHT TYRE */}
       <div className="tyre-container small">
-        <div className="lines">
+        {/* <div className="lines">
           <span className="line line1">
             <div className="card">Säker & trygg hantering</div>
           </span>
@@ -30,6 +36,13 @@ const CarTyre = () => {
           <span className="line line4">
             <div className="card">Balansering & Inställning</div>
           </span>
+        </div> */}
+        <div className="lines">
+          {lineCardText.map((item, index) => (
+            <span key={index} className={`line ${item.class}`}>
+              <div className="card">{item.text}</div>
+            </span>
+          ))}
         </div>
         <div className="wheel">
           <div className="rim">

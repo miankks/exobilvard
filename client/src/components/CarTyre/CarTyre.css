@@ -1,45 +1,69 @@
-/* FLEX WRAPPER FOR LEFT & RIGHT */
+/* ===============================
+   GLOBAL SCALE VARIABLE
+================================ */
+:root {
+  --wheel-size: clamp(140px, 30vw, 240px);
+  --line-thickness: clamp(2px, 0.3vw, 3px);
+  --card-width: clamp(90px, 18vw, 120px);
+  --card-font: clamp(0.75rem, 1vw, 1rem);
+}
+
+/* ===============================
+   WRAPPER LAYOUT
+================================ */
 .tyre-wrapper {
   display: flex;
-  justify-content: space-between; /* left and right */
+  flex-wrap: wrap;
+  gap: 2.5rem;
   align-items: center;
-  width: 100%;
-  padding: 40px;
+  justify-content: center;
+  width: 80%;
+  padding: clamp(1rem, 4vw, 2.5rem);
   box-sizing: border-box;
 }
 
-/* TYRE CONTAINER */
+/* ===============================
+   LEFT CONTENT
+================================ */
+.left-info {
+  flex: 1 1 280px;
+  max-width: 420px;
+}
+
+.left-info h3 {
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  margin-bottom: 0.5rem;
+}
+
+.left-info p {
+  font-size: clamp(0.9rem, 1.2vw, 1rem);
+  line-height: 1.5;
+}
+
+/* ===============================
+   TYRE CONTAINER
+================================ */
 .tyre-container {
+  flex: 1 1 320px;
   display: flex;
-  position: relative;
+  /* overflow: hidden; */
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100vh;
+  position: relative;
+  padding: clamp(2rem, 6vw, 4rem);
+  /* padding: clamp(1.5rem, 4vw, 2.5rem); */
   background: linear-gradient(135deg, #ffffff, #f4ecff);
   border-radius: 14px;
   box-shadow: 0 8px 20px rgba(106, 17, 203, 0.15);
-  transition: all 0.3s ease;
-  padding: 40px; /* use padding instead of fixed height */
   box-sizing: border-box;
 }
 
-/* HALF SIZE VERSION */
-.tyre-container.small {
-  transform: scale(0.8); /* half size */
-  transform-origin: center right; /* anchor to right */
-  margin-right: 80px;
-}
-
-/* .tyre-container:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(106, 17, 203, 0.25);
-} */
-
-/* OUTER TYRE */
+/* ===============================
+   WHEEL
+================================ */
 .wheel {
-  width: 240px;
-  height: 240px;
+  width: var(--wheel-size);
+  height: var(--wheel-size);
   background: #2f3a3a;
   border-radius: 50%;
   position: relative;
@@ -48,20 +72,22 @@
   align-items: center;
 }
 
-/* TYRE DASH LINE */
+/* DASH RING */
 .wheel::before {
   content: "";
   position: absolute;
-  width: 200px;
-  height: 200px;
+  width: 83%;
+  height: 83%;
   border-radius: 50%;
   border: 3px dashed #8b9a9a;
 }
 
-/* RIM */
+/* ===============================
+   RIM
+================================ */
 .rim {
-  width: 160px;
-  height: 160px;
+  width: 66%;
+  height: 66%;
   background: #e5e5e5;
   border-radius: 50%;
   position: relative;
@@ -70,15 +96,18 @@
   align-items: center;
 }
 
-/* SPOKES */
+/* ===============================
+   SPOKES
+================================ */
 .spoke {
   position: absolute;
-  width: 4px;
-  height: 70px;
+  width: 3px;
+  height: 50%;
   background: #9c9c9c;
-  top: 10px;
+  top: 0%;
   left: 50%;
   transform-origin: bottom center;
+  transform: translate(-50%, -100%);
 }
 
 .spoke:nth-child(1) {
@@ -106,27 +135,32 @@
   transform: translateX(-50%) rotate(315deg);
 }
 
-/* CENTER HUB */
+/* ===============================
+   HUB
+================================ */
 .hub {
-  width: 30px;
-  height: 30px;
+  width: 12%;
+  height: 12%;
   background: #777;
   border-radius: 50%;
-  border: 4px solid #666;
+  border: 3px solid #666;
   position: absolute;
 }
 
+/* ===============================
+   LINES CONTAINER
+================================ */
 .lines {
   position: absolute;
-  width: 300px;
-  height: 300px;
+  width: calc(var(--wheel-size) * 1.35);
+  height: calc(var(--wheel-size) * 1.35);
 }
 
 /* LINE */
 .line {
   position: absolute;
-  width: 150px;
-  height: 3px;
+  width: 50%;
+  height: var(--line-thickness);
   background: red;
   top: 50%;
   left: 50%;
@@ -135,228 +169,54 @@
 
 /* ROTATIONS */
 .line1 {
-  transform: translate(50%, -50%) rotate(45deg);
+  transform: translate(0, -50%) rotate(45deg);
 }
 .line2 {
-  transform: translate(50%, -50%) rotate(-45deg);
+  transform: translate(0, -50%) rotate(-45deg);
 }
 .line3 {
-  transform: translate(-50%, -50%) rotate(135deg);
+  transform: translate(0, -50%) rotate(135deg);
 }
 .line4 {
-  transform: translate(-50%, -50%) rotate(-135deg);
+  transform: translate(0, -50%) rotate(-135deg);
 }
 
-/* CARD */
+/* ===============================
+   INFO CARDS
+================================ */
 .card {
   position: absolute;
-  color: red;
-  left: 100%; /* 👈 exactly at line tip */
+  left: 100%;
   top: 50%;
-  width: 120px;
-  padding: 10px;
-  background: white;
+  width: var(--card-width);
+  padding: 0.6rem;
+  font-size: var(--card-font);
+  background: #fff;
+  color: red;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transform: translate(0.6rem, -50%);
 }
 
+/* COUNTER ROTATION */
 .line1 .card {
-  transform: translate(8px, -50%) rotate(-45deg);
+  transform: translate(0.6rem, -50%) rotate(-45deg);
 }
-
 .line2 .card {
-  transform: translate(8px, -50%) rotate(45deg);
+  transform: translate(0.6rem, -50%) rotate(45deg);
 }
-
 .line3 .card {
-  transform: translate(8px, -50%) rotate(-135deg);
+  transform: translate(0.6rem, -50%) rotate(-135deg);
 }
-
 .line4 .card {
-  transform: translate(8px, -50%) rotate(135deg);
+  transform: translate(0.6rem, -50%) rotate(135deg);
 }
 
-/* LEFT DIV */
-.left-info {
-  flex: 1;
-  padding-right: 20px;
-  max-width: 40%;
-}
-
-.left-info h3 {
-  margin-bottom: 10px;
-  font-size: 1.5rem;
-}
-
-.left-info p {
-  font-size: 1rem;
-  line-height: 1.4;
-}
-
-@media screen and (max-width: 701px) {
+/* ===============================
+   OPTIONAL MOBILE STACKING
+================================ */
+@media (max-width: 600px) {
   .tyre-wrapper {
-    /* flex-direction: column;  */
-    align-items: center;
-    padding: 10px;
-  }
-
-  .left-info {
-    max-width: 100%;
-    padding-right: 0;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-
-  .tyre-container.small {
-    height: 500px;
-    transform: scale(0.5); /* slightly smaller for small screens */
-    transform-origin: center;
-    margin-right: 0;
-  }
-
-  .lines {
-    width: 200px; /* reduce line container size */
-    height: 200px;
-  }
-
-  .line {
-    width: 100px; /* shorter lines on mobile */
-    height: 2px;
-  }
-
-  .card {
-    width: 90px; /* smaller cards for mobile */
-    padding: 6px;
-    font-size: 0.8rem;
-    min-width: 100px;
-    max-width: 100px;
-  }
-
-  .wheel {
-    width: 120px;
-    height: 120px;
-  }
-
-  .rim {
-    width: 80px;
-    height: 80px;
-  }
-
-  .spoke {
-    width: 2px;
-    height: 35px;
-  }
-
-  .hub {
-    width: 15px;
-    height: 15px;
-    border-width: 2px;
-  }
-
-  /* TYRE DASH LINE */
-  .wheel::before {
-    width: 100px;
-    height: 100px;
-  }
-  .line1 .card {
-    left: 50px;
-    top: 80px;
-  }
-  .line2 .card {
-    left: 50px;
-    top: -80px;
-  }
-  .line3 .card {
-    left: 50px;
-    top: -80px;
-  }
-
-  .line4 .card {
-    left: 50px;
-    top: 80px;
-  }
-}
-
-@media screen and (max-width: 400px) {
-  .tyre-wrapper {
-    flex-direction: column; /* stack left div on top of tyre */
-    align-items: center;
-    padding: 10px;
-  }
-
-  .left-info {
-    max-width: 100%;
-    padding-right: 0;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-
-  .tyre-container.small {
-    height: 500px;
-    transform: scale(0.5); /* slightly smaller for small screens */
-    transform-origin: center;
-    margin-right: 0;
-  }
-
-  .lines {
-    width: 200px; /* reduce line container size */
-    height: 200px;
-  }
-
-  .line {
-    width: 100px; /* shorter lines on mobile */
-    height: 2px;
-  }
-
-  .card {
-    width: 90px; /* smaller cards for mobile */
-    padding: 6px;
-    font-size: 0.8rem;
-    min-width: 100px;
-    max-width: 100px;
-  }
-
-  .wheel {
-    width: 120px;
-    height: 120px;
-  }
-
-  .rim {
-    width: 80px;
-    height: 80px;
-  }
-
-  .spoke {
-    width: 2px;
-    height: 35px;
-  }
-
-  .hub {
-    width: 15px;
-    height: 15px;
-    border-width: 2px;
-  }
-
-  /* TYRE DASH LINE */
-  .wheel::before {
-    width: 100px;
-    height: 100px;
-  }
-  .line1 .card {
-    left: 40px;
-    top: 60px;
-  }
-  .line2 .card {
-    left: 40px;
-    top: -60px;
-  }
-  .line3 .card {
-    left: 40px;
-    top: -60px;
-  }
-
-  .line4 .card {
-    left: 40px;
-    top: 60px;
+    flex-direction: column;
   }
 }
