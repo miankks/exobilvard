@@ -208,6 +208,7 @@
   }
 
   .tyre-container.small {
+    height: 500px;
     transform: scale(0.5); /* slightly smaller for small screens */
     transform-origin: center;
     margin-right: 0;
@@ -227,6 +228,8 @@
     width: 90px; /* smaller cards for mobile */
     padding: 6px;
     font-size: 0.8rem;
+    min-width: 100px;
+    max-width: 100px;
   }
 
   .wheel {
@@ -248,5 +251,28 @@
     width: 15px;
     height: 15px;
     border-width: 2px;
+  }
+
+  /* TYRE DASH LINE */
+  .wheel::before {
+    width: 100px;
+    height: 100px;
+  }
+  .line1 .card {
+    left: 40px;
+    top: 60px;
+  }
+  .line2 .card {
+    left: 40px;
+    top: -60px;
+  }
+  .line3 .card {
+    left: 40px;
+    top: -60px;
+  }
+
+  .line4 .card {
+    left: 40px;
+    top: 60px;
   }
 }
