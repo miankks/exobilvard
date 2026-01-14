@@ -193,6 +193,90 @@
   line-height: 1.4;
 }
 
+@media screen and (max-width: 701px) {
+  .tyre-wrapper {
+    /* flex-direction: column;  */
+    align-items: center;
+    padding: 10px;
+  }
+
+  .left-info {
+    max-width: 100%;
+    padding-right: 0;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .tyre-container.small {
+    height: 500px;
+    transform: scale(0.5); /* slightly smaller for small screens */
+    transform-origin: center;
+    margin-right: 0;
+  }
+
+  .lines {
+    width: 200px; /* reduce line container size */
+    height: 200px;
+  }
+
+  .line {
+    width: 100px; /* shorter lines on mobile */
+    height: 2px;
+  }
+
+  .card {
+    width: 90px; /* smaller cards for mobile */
+    padding: 6px;
+    font-size: 0.8rem;
+    min-width: 100px;
+    max-width: 100px;
+  }
+
+  .wheel {
+    width: 120px;
+    height: 120px;
+  }
+
+  .rim {
+    width: 80px;
+    height: 80px;
+  }
+
+  .spoke {
+    width: 2px;
+    height: 35px;
+  }
+
+  .hub {
+    width: 15px;
+    height: 15px;
+    border-width: 2px;
+  }
+
+  /* TYRE DASH LINE */
+  .wheel::before {
+    width: 100px;
+    height: 100px;
+  }
+  .line1 .card {
+    left: 50px;
+    top: 80px;
+  }
+  .line2 .card {
+    left: 50px;
+    top: -80px;
+  }
+  .line3 .card {
+    left: 50px;
+    top: -80px;
+  }
+
+  .line4 .card {
+    left: 50px;
+    top: 80px;
+  }
+}
+
 @media screen and (max-width: 400px) {
   .tyre-wrapper {
     flex-direction: column; /* stack left div on top of tyre */
