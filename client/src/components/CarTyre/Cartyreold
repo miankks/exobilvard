@@ -1,4 +1,4 @@
-import "./CarTyre.css";
+<!-- import "./CarTyre.css";
 
 const CarTyre = () => {
   const lineCardText = [
@@ -76,4 +76,4 @@ const CarTyre = () => {
   );
 };
 
-export default CarTyre;
+export default CarTyre; -->

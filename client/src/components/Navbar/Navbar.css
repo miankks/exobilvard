@@ -73,43 +73,68 @@
   border-radius: 2px;
 }
 
-/* Contact Dropdown */
-/* Contact Dropdown (hidden by default) */
 .contact-dropdown {
-  position: absolute;
-  /* right: 150px; */
-  /* top: 84px; */
+  position: fixed; /* Center relative to viewport */
+  top: 83px; /* Distance from navbar */
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px);
+
   background: #fff;
   padding: 15px 20px;
-  margin-top: 130px;
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 
   display: flex;
   flex-direction: row;
-  justify-content: space-between; /* spread evenly */
   align-items: center;
-  gap: 15px;
-  min-width: 250px;
-  left: 25%;
+  gap: 20px;
 
-  /* Hidden state */
+  min-width: 280px;
+  max-width: calc(100vw - 40px); /* Prevent overflow on small screens */
+
   opacity: 0;
-  transform: translateY(-10px);
   pointer-events: none;
 
   transition: opacity 0.3s ease, transform 0.3s ease;
   color: #333;
-
-  z-index: 2000; /* <<< FIX */
+  z-index: 2000;
 }
 
 /* Visible state */
 .contact-dropdown.show {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateX(-50%) translateY(0);
   pointer-events: auto;
 }
+
+/* Contact item */
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.contact-item svg {
+  color: red;
+  font-size: 1.2rem;
+}
+
+/* Hide dropdown on mobile (you already have mobile menu) */
+@media (max-width: 768px) {
+  .contact-dropdown {
+    display: none;
+  }
+}
+
+/* Visible state */
+/* .contact-dropdown.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+} */
 
 .contact-item {
   display: flex !important;
