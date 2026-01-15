@@ -144,15 +144,6 @@ const Navbar = () => {
               Meny
             </Link>
 
-            <button
-              onClick={() => {
-                toggleContact();
-                setMobileOpen(false);
-              }}
-            >
-              Kontakta oss
-            </button>
-
             <Link
               to="/aboutus"
               onClick={() => {
@@ -162,6 +153,17 @@ const Navbar = () => {
             >
               Om oss
             </Link>
+            <hr />
+            <h3>Kontakta oss</h3>
+            <div className="contact-item">
+              <FaMobileAlt className="phone-icon" />
+              <span>076 140 40 40</span>
+            </div>
+
+            <div className="contact-item">
+              <MdOutlineMailOutline className="email-icon" />
+              <span>info@exobilvardscenter.se</span>
+            </div>
           </div>
         </div>
       )}
