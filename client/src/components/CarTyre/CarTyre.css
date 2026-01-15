@@ -17,7 +17,7 @@
   gap: 2.5rem;
   align-items: center;
   justify-content: center;
-  width: 80%;
+  width: 100%;
   padding: clamp(1rem, 4vw, 2.5rem);
   box-sizing: border-box;
 }
@@ -46,12 +46,11 @@
 .tyre-container {
   flex: 1 1 320px;
   display: flex;
-  /* overflow: hidden; */
+  overflow: hidden;
   justify-content: center;
   align-items: center;
   position: relative;
   padding: clamp(2rem, 6vw, 4rem);
-  /* padding: clamp(1.5rem, 4vw, 2.5rem); */
   background: linear-gradient(135deg, #ffffff, #f4ecff);
   border-radius: 14px;
   box-shadow: 0 8px 20px rgba(106, 17, 203, 0.15);
@@ -151,22 +150,19 @@
    LINES CONTAINER
 ================================ */
 .lines {
-  /* position: absolute;
-  width: calc(var(--wheel-size) * 1.35);
-  height: calc(var(--wheel-size) * 1.35); */
-
   position: absolute;
   top: 50%;
   left: 50%;
   width: var(--wheel-size);
   height: var(--wheel-size);
   transform: translate(-50%, -50%);
+  z-index: 1;
 }
 
 /* LINE */
 .line {
   position: absolute;
-  width: 50%;
+  width: 70%;
   height: var(--line-thickness);
   background: red;
   top: 50%;
@@ -187,36 +183,10 @@
 .line4 {
   transform: translateY(-50%) rotate(-135deg);
 }
-
-/* .line1 {
-  transform: translate(0, -50%) rotate(45deg);
-}
-.line2 {
-  transform: translate(0, -50%) rotate(-45deg);
-}
-.line3 {
-  transform: translate(0, -50%) rotate(135deg);
-}
-.line4 {
-  transform: translate(0, -50%) rotate(-135deg);
-} */
-
 /* ===============================
    INFO CARDS
 ================================ */
 .card {
-  /* position: absolute;
-  left: 100%;
-  top: 50%;
-  width: var(--card-width);
-  padding: 0.6rem;
-  font-size: var(--card-font);
-  background: #fff;
-  color: red;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  transform: translate(0.6rem, -50%); */
-
   position: absolute;
   width: var(--card-width);
   padding: 0.6rem;
@@ -231,23 +201,27 @@
 /* COUNTER ROTATION */
 
 .card.line1 {
-  top: calc(50% - 1rem);
-  left: calc(50% + var(--wheel-size) / 2 + 1rem);
+  top: calc(8% - 1rem);
+  left: calc(35% + var(--wheel-size) / 2 + 1rem);
+  transform: matrix(1, 0, 0, 1, 0, 0);
 }
 
 .card.line2 {
-  top: calc(50% - 1rem);
-  left: calc(50% + var(--wheel-size) / 2 + 1rem);
+  top: calc(90% - 1rem);
+  left: calc(35% + var(--wheel-size) / 2 + 1rem);
+  transform: matrix(1, 0, 0, 1, 0, 0);
 }
 
 .card.line3 {
-  top: calc(50% - 1rem);
+  top: calc(8% - 1rem);
   left: calc(50% - var(--wheel-size) / 2 - var(--card-width) - 1rem);
+  transform: matrix(1, 0, 0, 1, 0, 0);
 }
 
 .card.line4 {
-  top: calc(50% - 1rem);
+  top: calc(90% - 1rem);
   left: calc(50% - var(--wheel-size) / 2 - var(--card-width) - 1rem);
+  transform: matrix(1, 0, 0, 1, 0, 0);
 }
 /* .line1 .card {
   transform: translate(0.6rem, -50%) rotate(-45deg);
