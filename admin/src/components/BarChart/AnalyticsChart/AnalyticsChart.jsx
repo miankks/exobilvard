@@ -21,9 +21,10 @@ ChartJS.register(
 
 const VisitsChart = () => {
   const [data, setData] = useState(null);
+  const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/admin/analytics")
+    fetch(`${API_URL}/api/tracker/analytics`)
       .then((res) => res.json())
       .then((json) => {
         const labels = json.pageStats.map((p) => p._id);

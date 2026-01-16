@@ -10,6 +10,17 @@ import upload from "../middleware/multer.js";
 
 const adminRouter = express.Router();
 
+adminRouter.post(
+  "/register",
+  upload.single("image"),
+  protectAdmin,
+  registerAdmin
+);
+adminRouter.get("/getadmin", protectAdmin, getAdmin);
+adminRouter.post("/login", loginAdmin);
+
+export default adminRouter;
+
 // Image storage engine
 // cb is callback
 // const storage = multer.diskStorage({
@@ -33,14 +44,3 @@ const adminRouter = express.Router();
 //     }
 //   },
 // });
-
-adminRouter.post(
-  "/register",
-  upload.single("image"),
-  protectAdmin,
-  registerAdmin
-);
-adminRouter.get("/getadmin", protectAdmin, getAdmin);
-adminRouter.post("/login", loginAdmin);
-
-export default adminRouter;
