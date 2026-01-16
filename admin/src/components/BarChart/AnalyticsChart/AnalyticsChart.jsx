@@ -21,12 +21,19 @@ ChartJS.register(
 
 const VisitsChart = () => {
   const [data, setData] = useState(null);
+  const [filter, setFilter] = useState("all");
   const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
-    fetch(`${API_URL}/api/tracker/analytics`)
-      .then((res) => res.json())
-      .then((json) => {
+    const fetchData = async () => {
+      try {
+        // pass filter as query param
+        const res = await fetch(
+          `${API_URL}/api/tracker/analytics?filter=${filter}`
+        );
+        const json = await res.json();
+        console.log(json);
+
         const labels = json.pageStats.map((p) => p._id);
         const views = json.pageStats.map((p) => p.views);
         setData({
@@ -39,12 +46,39 @@ const VisitsChart = () => {
             },
           ],
         });
-      });
-  }, []);
+      } catch (error) {
+        console.error("Failed to load analytics:", err);
+        setData({ labels: [], datasets: [] });
+      }
+    };
+    fetchData();
+  }, [filter]);
 
   if (!data) return <p>Loading chart...</p>;
 
-  return <Bar data={data} />;
+  return (
+    <div>
+      {/* Dropdown to select filter */}
+      <div style={{ marginBottom: "1rem", paddingTop: "50px" }}>
+        <label htmlFor="filter">Select Time Range: </label>
+        <select
+          id="filter"
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+        >
+          <option value="daily">Daily</option>
+          <option value="monthly">Monthly</option>
+          <option value="all">All Time</option>
+        </select>
+      </div>
+      <div style={{ height: "400px" }}>
+        <Bar
+          data={data}
+          options={{ responsive: true, maintainAspectRatio: false }}
+        />
+      </div>
+    </div>
+  );
 };
 
 export default VisitsChart;
