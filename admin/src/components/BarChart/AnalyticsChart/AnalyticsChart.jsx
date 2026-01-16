@@ -1,4 +1,5 @@
 import { Bar } from "react-chartjs-2";
+import "./AnalyticsChart.css";
 import { useEffect, useState } from "react";
 import {
   Chart as ChartJS,
@@ -59,10 +60,14 @@ const VisitsChart = () => {
   return (
     <div>
       {/* Dropdown to select filter */}
-      <div style={{ marginBottom: "1rem", paddingTop: "50px" }}>
-        <label htmlFor="filter">Select Time Range: </label>
+      <div className="filter-container">
+        <label htmlFor="filter" className="filter-label">
+          Time Range
+        </label>
+
         <select
           id="filter"
+          className="filter-select"
           value={filter}
           onChange={(e) => setFilter(e.target.value)}
         >
@@ -71,6 +76,7 @@ const VisitsChart = () => {
           <option value="all">All Time</option>
         </select>
       </div>
+
       <div style={{ height: "400px" }}>
         <Bar
           data={data}
