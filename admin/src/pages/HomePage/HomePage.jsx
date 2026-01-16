@@ -46,7 +46,7 @@ const HomePage = () => {
 
   return (
     <div className="home-container">
-      <h1>Admin Dashboard</h1>
+      <h1>Administratörspanel</h1>
 
       {/* 🔹 NEW LAYOUT WRAPPER */}
       <div className="dashboard-layout">
@@ -61,7 +61,7 @@ const HomePage = () => {
 
         {/* RIGHT SIDE → CHART */}
         <div className="chart-section">
-          <h2>Overview</h2>
+          <h2>Översikt</h2>
           <div className="chart-wrapper">
             <DashboardChart stats={cardStats} />
           </div>

@@ -9,33 +9,29 @@ const Sidebar = () => {
       <div className="sidebar-group top-group">
         <NavLink to="/addcar" className="sidebar-option">
           <img src={assets.add_icon} alt="" />
-          <p>Add Items</p>
+          <p>Lägg till tjänst</p>
         </NavLink>
         <NavLink to="/listcar" className="sidebar-option">
           <img src={assets.order_icon} alt="" />
-          <p>List Items</p>
+          <p>Objekt lista</p>
         </NavLink>
       </div>
       <div className="sidebar-group bottom-group">
         <NavLink to="/orders" className="sidebar-option">
           <img src={assets.order_icon} alt="" />
-          <p>Booking Summary</p>
+          <p>Boknings sammanfattning</p>
         </NavLink>
-        {/* <NavLink to='/orders' className="sidebar-option">
-                <img src={assets.order_icon} alt="" />
-                <p>Orders</p>
-            </NavLink> */}
         <NavLink to="/acceptedorders" className="sidebar-option">
           <img src={assets.order_icon} alt="" />
-          <p>Accepted Orders</p>
+          <p>Accepterade Beställningar</p>
         </NavLink>
         <NavLink to="/rejectedorders" className="sidebar-option">
           <img src={assets.order_icon} alt="" />
-          <p>Rejected Orders</p>
+          <p>Avvisade Beställningar</p>
         </NavLink>
         <NavLink to="/completedorders" className="sidebar-option">
           <img src={assets.order_icon} alt="" />
-          <p>Completed Orders</p>
+          <p>Slutförda Beställningar</p>
         </NavLink>
       </div>
     </div>

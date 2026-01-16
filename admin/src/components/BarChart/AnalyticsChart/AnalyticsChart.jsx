@@ -33,15 +33,13 @@ const VisitsChart = () => {
           `${API_URL}/api/tracker/analytics?filter=${filter}`
         );
         const json = await res.json();
-        console.log(json);
-
         const labels = json.pageStats.map((p) => p._id);
         const views = json.pageStats.map((p) => p.views);
         setData({
           labels,
           datasets: [
             {
-              label: "Page Views",
+              label: "Sidvisninghistorik",
               data: views,
               backgroundColor: "rgba(75,192,192,0.6)",
             },

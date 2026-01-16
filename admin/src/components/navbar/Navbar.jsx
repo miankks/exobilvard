@@ -53,7 +53,7 @@ const Navbar = ({ url }) => {
         {/* Show Signup & Login only if NOT logged in */}
         {token && admin && admin.role === "superadmin" && (
           <li>
-            <Link to="/signup">Add new admin</Link>
+            <Link to="/signup">Lägg till ny administratör</Link>
           </li>
         )}
         {!token && (
