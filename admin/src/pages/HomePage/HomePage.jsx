@@ -13,13 +13,13 @@ const HomePage = () => {
   const accpetedOrders = orders.filter((o) => o.status === "Accepted");
 
   const cards = [
-    { title: "Add Car", path: "/addcar" },
-    { title: "List Cars", path: "/listcar" },
-    { title: "Admin Profile", path: "/adminprofile" },
-    { title: "Orders Summary", path: "/orders" },
-    { title: "Accepted Orders", path: "/acceptedorders" },
-    { title: "Completed Orders", path: "/completedorders" },
-    { title: "Rejected Orders", path: "/rejectedorders" },
+    // { title: "Add Car", path: "/addcar" },
+    // { title: "List Cars", path: "/listcar" },
+    // { title: "Admin Profile", path: "/adminprofile" },
+    // { title: "Orders Summary", path: "/orders" },
+    // { title: "Accepted Orders", path: "/acceptedorders" },
+    // { title: "Completed Orders", path: "/completedorders" },
+    // { title: "Rejected Orders", path: "/rejectedorders" },
   ];
 
   const cardStats = [
@@ -51,13 +51,13 @@ const HomePage = () => {
       {/* 🔹 NEW LAYOUT WRAPPER */}
       <div className="dashboard-layout">
         {/* LEFT SIDE → CARDS */}
-        <div className="card-grid">
+        {/* <div className="card-grid">
           {cards.map((card) => (
             <Link to={card.path} key={card.path} className="card">
               <h3>{card.title}</h3>
             </Link>
           ))}
-        </div>
+        </div> */}
 
         {/* RIGHT SIDE → CHART */}
         <div className="chart-section">
@@ -66,15 +66,7 @@ const HomePage = () => {
             <DashboardChart stats={cardStats} />
           </div>
         </div>
-        <motion.div
-          className="card-grid"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="show"
-          animate="show"
-        >
-          <VisitsChart className="user-visits" />
-        </motion.div>
+        <VisitsChart className="user-visits" />
       </div>
     </div>
   );

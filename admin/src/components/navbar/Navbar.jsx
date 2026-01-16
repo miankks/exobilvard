@@ -48,7 +48,7 @@ const Navbar = ({ url }) => {
       <img src={assets.logo} alt="" className="logo" />
       <ul className="nav-links">
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/">Hem</Link>
         </li>
         {/* Show Signup & Login only if NOT logged in */}
         {token && admin && admin.role === "superadmin" && (
@@ -58,14 +58,14 @@ const Navbar = ({ url }) => {
         )}
         {!token && (
           <li>
-            <Link to="/login">Login</Link>
+            <Link to="/login">Logga ut</Link>
           </li>
         )}
         {/* Show Logout if logged in */}
         {token && (
           <li>
             <button onClick={handleLogout} className="logout-btn">
-              Logout
+              Logga in
             </button>
           </li>
         )}
