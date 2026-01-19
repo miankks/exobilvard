@@ -7,6 +7,30 @@
   scroll-behavior: smooth;
 }
 
+:root {
+  --brand-red: #cd003a;
+  --brand-red-dark: #a8002f;
+
+  --white: #ffffff;
+  --off-white: #f8f8f8;
+  --light-gray: #e5e7eb;
+  --medium-gray: #9ca3af;
+  --dark-gray: #374151;
+  --almost-black: #111827;
+
+  --brand-blue: #1f3a5f;
+  --brand-slate: #2c2f36;
+
+  --success: #16a34a;
+  --warning: #f59e0b;
+  --error: #dc2626;
+
+  --text-main: #1f2933;
+  --bg-light: #f8f8f8;
+
+  --highlight: #fdecec;
+}
+
 body {
   min-height: 100vh;
 }
