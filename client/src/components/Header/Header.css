@@ -20,15 +20,12 @@
 
 .header .header-contents h2 {
   font-weight: 500;
-  /* color: white; */
-  /* color: rgb(140 163 220); */
   color: var(--brand-red);
   font-size: max(4.5vw, 22px);
 }
 
 .header .header-contents p {
   color: white;
-  /* color: rgb(140 163 220); */
   font-size: 1vw;
 }
 
@@ -70,5 +67,3 @@
     font-size: max(4.5vw, 19px);
   }
 }
-
-/* background-size: contain; */

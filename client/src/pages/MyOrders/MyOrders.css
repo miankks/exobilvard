@@ -1,7 +1,12 @@
+/* =========================
+   MY ORDERS SECTION
+========================= */
 .my-orders {
-  margin: 50px 0px;
+  margin: 50px 0;
+  font-family: "Poppins", sans-serif;
 }
 
+/* Container for all orders */
 .my-orders .container {
   display: flex;
   flex-direction: column;
@@ -9,46 +14,78 @@
   margin-top: 30px;
 }
 
+/* Individual order card */
 .my-orders-order {
   display: grid;
   grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr;
   align-items: center;
-  gap: 30px;
+  gap: 20px;
   font-size: 14px;
-  padding: 10px 20px;
-  color: #454545;
-  border: 1px solid tomato;
+  padding: 15px 20px;
+  color: var(--text-main);
+  border: 1px solid var(--brand-red-light);
+  border-radius: 12px;
+  background: var(--white);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
+.my-orders-order:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* Product image */
 .my-orders-order img {
   width: 50px;
+  border-radius: 8px;
 }
 
+/* Text inside order */
 .my-orders-order p span {
-  color: tomato;
+  color: var(--brand-red);
+  font-weight: 600;
 }
 
 .my-orders-order p b {
   font-weight: 500;
-  color: #454545;
+  color: var(--text-main);
 }
 
+/* Action button */
 .my-orders-order button {
   border: none;
-  padding: 12px 0px;
-  border-radius: 4px;
-  background-color: #ffe1e1;
+  padding: 10px 15px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--brand-red), var(--brand-red-dark));
   cursor: pointer;
-  color: #454545;
+  color: white;
+  font-weight: 600;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
+.my-orders-order button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
 @media (max-width: 900px) {
   .my-orders-order {
     grid-template-columns: 1fr 2fr 1fr;
     row-gap: 5px;
     font-size: 12px;
+    gap: 15px;
   }
+
   .my-orders-order button {
     font-size: 10px;
+    padding: 8px 12px;
+  }
+
+  .my-orders-order img {
+    width: 40px;
   }
 }

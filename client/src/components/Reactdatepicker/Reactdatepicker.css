@@ -1,29 +1,56 @@
-/* .datepicker { */
-/* text-align: center; */
-/* justify-content: center; */
-/* display: grid; */
-/* grid-template-columns: 100%; */
-/* margin: 10% 30% 10% 30%; */
-/* gap: 10%; */
-/* } */
-
+/* =========================
+   DATE PICKER CONTAINER
+========================= */
 .datepicker {
   margin-top: 20px;
   display: flex;
   flex-direction: row;
-  text-align: center;
-  justify-content: center;
+  justify-content: flex-start; /* align items to the start */
   gap: 20px;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  /* Dynamic offset to the right */
+  padding-left: 2%; /* pushes it slightly from the left */
 }
 
+/* =========================
+   DATE BUTTONS
+========================= */
 .datepicker button {
-  margin-top: 0px;
-  background-color: lightblue;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--brand-red), var(--brand-red-dark));
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.3s ease;
 }
 
+.datepicker button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+}
+
+.datepicker button:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+}
+
+.datepicker button:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
 @media (max-width: 900px) {
   .datepicker {
     width: 100%;
     flex-direction: column;
+    gap: 15px;
   }
 }

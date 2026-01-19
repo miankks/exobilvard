@@ -1,98 +1,143 @@
+/* =========================
+   COMMENT SECTION
+========================= */
 .placeorder-comment-section {
   display: flex;
   flex-direction: column;
+  gap: 15px;
 }
 
 .comment-area {
   padding: 10px 5px;
+  border: 1px solid var(--bg-light);
+  border-radius: 8px;
+  background-color: var(--bg-light);
+  color: var(--text-main);
+  font-size: 0.95rem;
+  resize: vertical;
 }
 
+/* =========================
+   PLACE ORDER CONTAINER
+========================= */
 .place-order {
   display: flex;
   flex-wrap: wrap-reverse;
-  align-items: start;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 50px;
   margin-top: 100px;
+  font-family: "Poppins", sans-serif;
 }
 
+/* LEFT SIDE */
 .place-order-left {
   width: 100%;
-  max-width: max(30%, 500px);
+  max-width: min(30%, 500px);
 }
 
 .place-order-left .title {
   font-size: 30px;
   font-weight: 600;
   margin-bottom: 50px;
+  color: var(--brand-red);
 }
 
+/* FORM FIELDS */
+.place-order-left input,
+.place-order-left textarea {
+  margin-bottom: 15px;
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #c5c5c5;
+  border-radius: 8px;
+  outline: none;
+  font-size: 0.95rem;
+  transition: border 0.25s ease, box-shadow 0.25s ease;
+  color: var(--text-main);
+  background-color: var(--white);
+}
+
+.place-order-left input:focus,
+.place-order-left textarea:focus {
+  border-color: var(--brand-red);
+  box-shadow: 0 0 6px rgba(205, 0, 58, 0.3);
+}
+
+/* MULTIPLE INPUTS SIDE-BY-SIDE */
+.place-order-left .multi-fields,
+.regandmileage {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.regandmileage .input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/* PLACE ORDER TITLE GRID */
 .place-order-title {
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  color: gray;
+  color: #6b7280;
   font-size: max(1vw, 12px);
 }
 
+/* ORDER ITEM LIST */
 .order-items-item {
   margin: 10px 0px;
-  color: black;
+  color: var(--text-main);
 }
 
-.place-order-left input {
-  margin-bottom: 15px;
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #c5c5c5;
-  border-radius: 4px;
-  outline-color: tomato;
-}
-
-.place-order-left .multi-fields {
-  display: flex;
-  gap: 10px;
-}
-
+/* RIGHT SIDE (CART TOTAL & BUTTONS) */
 .place-order-right {
   width: 100%;
-  max-width: max(40%, 500px);
+  max-width: min(40%, 500px);
 }
 
 .place-order .cart-total button {
   margin-top: 30px;
+  border: none;
+  padding: 12px 0;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  color: white;
+  background: linear-gradient(135deg, var(--brand-red), var(--brand-red-dark));
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.place-order .cart-total button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
 }
 
 .cart-total button:disabled {
-  background-color: #ccc; /* gray background */
-  color: #666; /* darker text color */
-  cursor: not-allowed; /* shows “no-entry” cursor */
-  opacity: 0.6; /* slightly transparent */
-  pointer-events: none; /* prevent clicks */
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+  opacity: 0.6;
+  pointer-events: none;
   transition: all 0.3s ease;
 }
 
-/* Two inputs side by side */
-.regandmileage {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  padding-bottom: 20px;
-}
-
-.regandmileage .input-group {
-  flex: 1; /* each input takes equal width */
-  display: flex;
-  flex-direction: column; /* label on top */
-}
-
+/* =========================
+   RESPONSIVE
+========================= */
 @media (max-width: 900px) {
   .place-order {
-    display: flex;
     flex-wrap: wrap;
-    align-items: start;
-    justify-content: space-between;
-    gap: 50px;
-    margin-top: 100px;
+    gap: 30px;
+    margin-top: 50px;
+  }
+
+  .place-order-left,
+  .place-order-right {
+    max-width: 100%;
   }
 }

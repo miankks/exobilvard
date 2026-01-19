@@ -1,39 +1,66 @@
+/* =========================
+   CART CONTAINER
+========================= */
 .cart {
-  margin: 100px;
+  margin: 100px 50px;
+  font-family: "Poppins", sans-serif;
+  color: var(--text-main);
 }
 
+/* =========================
+   CART ITEMS HEADER
+========================= */
 .cart-items-title {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   align-items: center;
-  color: gray;
+  color: #6b7280; /* muted gray for headers */
   font-size: max(1vw, 12px);
+  font-weight: 600;
 }
 
+/* =========================
+   CART ITEMS
+========================= */
 .cart-items-item {
   margin: 10px 0px;
-  color: black;
+  display: grid;
+  grid-template-columns: 60px 1fr 1fr 40px;
+  align-items: center;
+  color: var(--text-main);
+  gap: 10px;
 }
 
 .cart-items-item img {
   width: 50px;
+  border-radius: 8px;
 }
 
 .cart hr {
   height: 1px;
-  background-color: #e2e2e2;
+  background-color: #e5e7eb;
   border: none;
 }
 
 .cart-items-item .cross {
   cursor: pointer;
+  color: var(--brand-red);
+  transition: transform 0.2s ease;
 }
 
+.cart-items-item .cross:hover {
+  transform: scale(1.2);
+}
+
+/* =========================
+   CART BOTTOM SECTION
+========================= */
 .cart-bottom {
   margin-top: 80px;
   display: flex;
   justify-content: space-between;
   gap: max(12vw, 20px);
+  flex-wrap: wrap;
 }
 
 .cart-total {
@@ -41,15 +68,6 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-}
-
-.cart-total button:disabled {
-  background-color: #ccc; /* gray background */
-  color: #666; /* darker text color */
-  cursor: not-allowed; /* shows “no-entry” cursor */
-  opacity: 0.6; /* slightly transparent */
-  pointer-events: none; /* prevent clicks */
-  transition: all 0.3s ease;
 }
 
 .cart-total-details {
@@ -60,18 +78,42 @@
 
 .cart-total hr {
   margin: 10px 0px;
+  border: 0;
+  border-top: 1px solid #e5e7eb;
 }
 
+/* =========================
+   BUTTONS
+========================= */
 .cart-total button {
   border: none;
   color: white;
-  background-color: tomato;
+  background: linear-gradient(135deg, var(--brand-red), var(--brand-red-dark));
   width: max(15vw, 200px);
-  padding: 12px 0px;
-  border-radius: 4px;
+  padding: 12px 0;
+  border-radius: 8px;
   cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
+.cart-total button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+.cart-total button:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+  opacity: 0.6;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+/* =========================
+   PROMOCODE SECTION
+========================= */
 .cart-promocode {
   flex: 1;
 }
@@ -85,7 +127,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #eaeaea;
+  background-color: var(--bg-light);
+  border-radius: 8px;
+  padding: 5px;
 }
 
 .cart-promocode-input input {
@@ -93,35 +137,51 @@
   border: none;
   outline: none;
   padding-left: 10px;
+  color: var(--text-main);
+  font-size: 0.95rem;
+  flex: 1;
 }
 
 .cart-promocode-input button {
   width: max(10vw, 150px);
   padding: 12px 5px;
-  background-color: black;
+  background: var(--brand-red);
   border: none;
   color: white;
-  border-radius: 4px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
+.cart-promocode-input button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================
+   EMPTY CART MESSAGE
+========================= */
 .empty-cart {
-  color: red;
+  color: var(--brand-red);
   padding-bottom: 10px;
+  font-weight: 600;
 }
 
+/* =========================
+   RESPONSIVE
+========================= */
 @media (max-width: 750px) {
   .cart {
     margin: 20px;
   }
 
-  /* .cart-items-title{
-    grid-template-columns: 1fr  1fr;
-} */
   .cart-bottom {
     flex-direction: column-reverse;
   }
 
   .cart-promocode {
     justify-content: start;
+    margin-bottom: 20px;
   }
 }
