@@ -50,26 +50,31 @@ const Navbar = ({ url }) => {
         <li>
           <Link to="/">Hem</Link>
         </li>
-        {/* Show Signup & Login only if NOT logged in */}
-        {token && admin && admin.role === "superadmin" && (
+
+        {/* Superadmin only */}
+        {token && admin?.role === "superadmin" && (
           <li>
             <Link to="/signup">Lägg till ny administratör</Link>
           </li>
         )}
+
+        {/* LOGIN */}
         {!token && (
           <li>
-            <Link to="/login">Logga ut</Link>
+            <Link to="/login">Logga in</Link>
           </li>
         )}
-        {/* Show Logout if logged in */}
+
+        {/* LOGOUT */}
         {token && (
           <li>
             <button onClick={handleLogout} className="logout-btn">
-              Logga in
+              Logga ut
             </button>
           </li>
         )}
       </ul>
+
       <span className="profile-img">
         {token &&
           admin &&
