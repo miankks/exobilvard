@@ -72,7 +72,8 @@
   display: flex;
   flex-wrap: nowrap;
   gap: 20px;
-  animation: slideLeft 25s linear infinite;
+  width: 100%;
+  animation: slideLeft 10s linear infinite;
 }
 
 .marquee:hover {
@@ -82,8 +83,9 @@
 /* Individual comment card */
 .card {
   flex-shrink: 0;
-  min-width: 180px;
-  max-width: 220px;
+  width: 200px;
+  /* min-width: 180px;
+  max-width: 220px; */
   padding: 15px;
   background: var(--white);
   border-radius: 15px;
@@ -130,7 +132,7 @@
     transform: translateX(100%);
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-50%);
   }
 }
 

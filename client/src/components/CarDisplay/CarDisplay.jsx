@@ -74,7 +74,7 @@ const CarDisplay = ({ category }) => {
       {userComments && (
         <div className="marquee-container">
           <div className="marquee">
-            {userComments.map((comment, index) => (
+            {[...userComments, ...userComments].map((comment, index) => (
               <div className="card" key={index}>
                 <h4>"{comment.name}"</h4>
                 <p>{comment.comments}</p>
