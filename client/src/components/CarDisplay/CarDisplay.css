@@ -1,6 +1,7 @@
 .car-display {
   margin: 40px 20px;
   font-family: "Poppins", sans-serif;
+  color: var(--text-main);
 }
 
 .car-display h2 {
@@ -8,7 +9,7 @@
   font-weight: 700;
   text-align: center;
   margin-bottom: 30px;
-  color: #1f2937;
+  color: var(--brand-red);
 }
 
 .car-display-list {
@@ -19,12 +20,7 @@
 }
 
 /* Buttons */
-
-.cart-button-section {
-  text-align: left;
-  margin: 40px 0;
-}
-
+.cart-button-section,
 .comment-section {
   text-align: left;
   margin: 40px 0;
@@ -32,15 +28,15 @@
 
 .comment-section p {
   font-size: 1rem;
-  color: #374151;
+  color: #4b5563; /* subtle dark gray */
   margin-bottom: 12px;
 }
 
 .btn {
   display: inline-block;
   padding: 12px 25px;
-  background: linear-gradient(135deg, #6a5af9, #00c4ff);
-  color: white;
+  background: linear-gradient(135deg, var(--brand-red), var(--brand-red-dark));
+  color: var(--white);
   font-weight: 600;
   font-size: 1rem;
   border-radius: 12px;
@@ -66,9 +62,9 @@
   height: 25vh;
   overflow: hidden;
   padding: 15px 20px;
-  background: #f0f4f8;
+  background: var(--bg-light);
   border-radius: 15px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #e5e7eb;
   margin-top: 40px;
 }
 
@@ -89,7 +85,7 @@
   min-width: 180px;
   max-width: 220px;
   padding: 15px;
-  background: #ffffff;
+  background: var(--white);
   border-radius: 15px;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
   display: flex;
@@ -104,20 +100,19 @@
 .card h4 {
   margin: 0 0 5px 0;
   font-size: 1rem;
-  color: #111827;
+  color: var(--text-main);
   font-weight: 600;
 }
 
 .card p {
   margin: 0;
   font-size: 0.75rem;
-  color: #4b5563;
+  color: #6b7280; /* subtle gray */
   line-height: 1.3rem;
   word-break: break-word;
 }
 
 .card:hover {
-  /* transform: translateY(-5px); */
   box-shadow: 0 12px 22px rgba(0, 0, 0, 0.12);
   max-height: 280px;
 }
@@ -126,6 +121,7 @@
   display: flex;
   gap: 4px;
   margin-top: 6px;
+  color: var(--brand-red); /* star highlight */
 }
 
 /* Keyframes for marquee */
@@ -152,21 +148,6 @@
   }
 }
 
-/* Responsive adjustments */
-@media (max-width: 701px) {
-  .car-display-list {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 15px;
-    display: none;
-  }
-
-  .card {
-    min-width: 150px;
-    max-width: 180px;
-  }
-}
-
-/* Responsive adjustments */
 @media (max-width: 400px) {
   .card {
     min-width: 120px;
