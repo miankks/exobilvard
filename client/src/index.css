@@ -10,6 +10,7 @@
 :root {
   --brand-red: #cd003a;
   --brand-red-dark: #a8002f;
+  --brand-red-light: #ffe5ec;
 
   --white: #ffffff;
   --off-white: #f8f8f8;
@@ -27,6 +28,7 @@
 
   --text-main: #1f2933;
   --bg-light: #f8f8f8;
+  --white: #ffffff;
 
   --highlight: #fdecec;
 }
