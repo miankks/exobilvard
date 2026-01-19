@@ -1,6 +1,6 @@
-import { cloudinary } from "../config/cloudinary.js";
 import carModel from "../models/car.model.js";
 import fs from "fs";
+import path from "path";
 
 // add car item
 const addCar = async (req, res, next) => {
@@ -63,23 +63,21 @@ const editCar = async (req, res) => {
     car.category = req.body.category || car.category;
 
     if (req.file) {
-      // delete old image from cloudinary
-      await cloudinary.uploader.destroy(car.image.public_id);
+      const oldImage = car.image; // 👈 store old image filename
 
-      car.image = {
-        url: req.file.path,
-        public_id: req.file.filename,
-      };
+      // Save new image filename
+      car.image = req.file.filename;
+
       // Delete old image
-      if (car.image) {
-        fs.unlink(`uploads/${car.image}`, (err) => {
-          if (err) console.log("Error deleting old image", err);
+      if (oldImage) {
+        const oldPath = path.join("uploads", oldImage);
+        fs.unlink(oldPath, (err) => {
+          if (err) console.log("Error deleting old image:", err.message);
         });
       }
-      car.image = req.file.filename;
     }
     await car.save();
-    res.json({ success: true, message: "Car updated successfully" });
+    res.json({ success: true, message: "Car updated successfully", data: car });
   } catch (error) {
     console.log(error);
     res.status(500).json({ success: false, message: " Error updating car" });

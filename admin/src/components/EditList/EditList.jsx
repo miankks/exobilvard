@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useListCar } from "../../context/ListCarContext";
 import { toast } from "react-toastify";
 import { assets } from "../../assets/assets";
 import axios from "axios";
@@ -7,6 +8,7 @@ import axios from "axios";
 const EditList = ({ url }) => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { carList, updateCar } = useListCar();
 
   const [carData, setCarData] = useState(null);
   const [image, setImage] = useState(null); // new image file
@@ -16,7 +18,8 @@ const EditList = ({ url }) => {
 
   // Load car data from context
   useEffect(() => {
-    if (!carList || carList.length === 0) return; // wait until carList is loaded
+    if (!carList || carList.length === 0) return;
+
     const car = carList.find((c) => c._id === id);
 
     if (car) {
@@ -26,6 +29,16 @@ const EditList = ({ url }) => {
       navigate("/listcar"); // redirect if not found
     }
   }, [id, carList, navigate, url]);
+
+  // Update image preview whenever a new image is selected
+  useEffect(() => {
+    if (!image) return;
+
+    const objectUrl = URL.createObjectURL(image);
+    setPreview(objectUrl);
+
+    return () => URL.revokeObjectURL(objectUrl); // cleanup old URL
+  }, [image]);
 
   if (!carData) return <div>Loading...</div>;
 
@@ -42,7 +55,7 @@ const EditList = ({ url }) => {
     formData.append("category", carData.category);
 
     if (image) {
-      formData.append("image", image); // append new image only
+      formData.append("image", image);
     }
 
     try {
@@ -56,12 +69,9 @@ const EditList = ({ url }) => {
           },
         }
       );
-
       if (response.data.success) {
         // Update context with new car data
-        setCarList((prev) =>
-          prev.map((c) => (c._id === id ? response.data.data : c))
-        );
+        updateCar(id, response.data.data);
         toast.success("Car updated successfully");
         navigate("/listcar");
       } else {
@@ -77,17 +87,11 @@ const EditList = ({ url }) => {
     <div className="add">
       <h2>Edit Car</h2>
       <form className="flex-col" onSubmit={handleSubmit}>
+        {/* Image Upload */}
         <div className="add-img-upload flex-col">
           <p>Upload Image</p>
           <label htmlFor="image">
-            <img
-              src={
-                image
-                  ? URL.createObjectURL(image)
-                  : preview || assets.upload_area
-              }
-              alt=""
-            />
+            <img src={preview || assets.upload_area} alt="Car Preview" />
           </label>
           <input
             type="file"
@@ -97,6 +101,7 @@ const EditList = ({ url }) => {
           />
         </div>
 
+        {/* Product Name */}
         <div className="add-product-name flex-col">
           <p>Product Name</p>
           <input
@@ -108,6 +113,7 @@ const EditList = ({ url }) => {
           />
         </div>
 
+        {/* Product Description */}
         <div className="add-product-description flex-col">
           <p>Product Description</p>
           <textarea
@@ -119,6 +125,7 @@ const EditList = ({ url }) => {
           />
         </div>
 
+        {/* Product Category */}
         <div className="add-category-price">
           <div className="add-category flex-col">
             <p>Product Category</p>

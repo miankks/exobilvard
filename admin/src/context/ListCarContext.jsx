@@ -51,6 +51,10 @@ export const ListCarProvider = ({ children, url }) => {
     }
   };
 
+  const updateCar = (id, updatedCar) => {
+    setCarList((prev) => prev.map((c) => (c._id === id ? updatedCar : c)));
+  };
+
   useEffect(() => {
     fetchList();
   }, []);
@@ -62,6 +66,7 @@ export const ListCarProvider = ({ children, url }) => {
         orderList,
         setCarList,
         removeCar,
+        updateCar,
       }}
     >
       {children}

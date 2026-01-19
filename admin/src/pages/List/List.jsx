@@ -6,8 +6,8 @@ const List = ({ url }) => {
   const { carList, removeCar } = useListCar();
   const navigate = useNavigate();
 
-  const handleListEdit = (item) => {
-    navigate(`/editlist/${item}`);
+  const handleListEdit = (id) => {
+    navigate(`/editlist/${id}`);
   };
 
   return (
