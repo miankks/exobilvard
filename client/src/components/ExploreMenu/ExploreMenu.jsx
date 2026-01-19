@@ -21,7 +21,7 @@ const ExploreMenu = ({ category, setCategory }) => {
 
         {/* 👇 THIS is the animated block */}
         <div className="text-point scroll-show">
-          <p className="explore-menu-text">Varför välja oss?</p>
+          <p className="explore-menu-text">Varför du ska välja oss?</p>
           <ul>
             <li>Snabb och pålitlig service</li>
             <li>Erfaren personal och noggrant utförda arbeten</li>

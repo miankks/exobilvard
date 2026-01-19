@@ -50,7 +50,7 @@ const Cart = () => {
           </button>
           {itemsInCart.length === 0 && (
             <div>
-              <p className="empty-cart">Korg är tom</p>
+              <p className="empty-cart">Din varukorg är tom</p>
               <Link to={"/"}>
                 <button>Tillbaka till Meny</button>
               </Link>
