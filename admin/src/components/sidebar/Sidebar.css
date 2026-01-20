@@ -32,8 +32,39 @@
   background: white;
   border: 1px solid #e5e7eb;
   transition: 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  position: relative;
+}
+/* vertical animated line */
+.sidebar-option::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 4px;
+  height: 0;
+  background: #3b82f6;
+  border-radius: 4px;
+  transform: translateY(-50%);
+  transition: height 0.35s ease;
 }
 
+/* active state */
+.sidebar-option.active::before {
+  height: 70%;
+}
+
+.sidebar-option.active::after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  top: 0;
+  width: 6px;
+  height: 100%;
+  background: white; /* same as sidebar background */
+  z-index: 1;
+}
 /* Hover & Active */
 .sidebar-option:hover,
 .sidebar-option.active {

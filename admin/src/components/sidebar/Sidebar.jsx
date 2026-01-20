@@ -7,7 +7,12 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="sidebar-group top-group">
-        <NavLink to="/addcar" className="sidebar-option">
+        <NavLink
+          to="/addcar"
+          className={({ isActive }) =>
+            isActive ? "sidebar-option active" : "sidebar-option"
+          }
+        >
           <img src={assets.add_icon} alt="" />
           <p>Lägg till tjänst</p>
         </NavLink>
