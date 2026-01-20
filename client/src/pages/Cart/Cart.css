@@ -12,7 +12,7 @@
 ========================= */
 .cart-items-title {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 2fr 1fr 1fr;
   align-items: center;
   color: #6b7280; /* muted gray for headers */
   font-size: max(1vw, 12px);
@@ -25,7 +25,7 @@
 .cart-items-item {
   margin: 10px 0px;
   display: grid;
-  grid-template-columns: 60px 1fr 1fr 40px;
+  grid-template-columns: 1fr 2fr 1fr 1fr;
   align-items: center;
   color: var(--text-main);
   gap: 10px;
