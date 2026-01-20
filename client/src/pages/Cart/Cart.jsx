@@ -46,7 +46,7 @@ const Cart = () => {
             disabled={itemsInCart.length === 0}
             onClick={() => navigate("/order")}
           >
-            Proceed to checkout
+            Gå vidare till kassan
           </button>
           {itemsInCart.length === 0 && (
             <div>

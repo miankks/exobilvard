@@ -94,7 +94,9 @@
   border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .cart-total button:hover:not(:disabled) {
@@ -151,7 +153,9 @@
   border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .cart-promocode-input button:hover {

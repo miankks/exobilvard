@@ -221,7 +221,7 @@ const PlaceOrder = () => {
             />
           </div>
           <button disabled={itemsInCart.length === 0} type="submit">
-            Complete Booking
+            Slutför bokning
           </button>
         </div>
       </div>

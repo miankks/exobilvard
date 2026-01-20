@@ -13,7 +13,7 @@
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
 
   color: var(--white);
-  max-width: 1500px;
+  max-width: 90%;
   margin: 0 auto;
   font-family: "Poppins", sans-serif;
 }
@@ -102,7 +102,9 @@
   align-items: center;
   justify-content: space-between;
 
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .explore-menu-list-item:hover {
@@ -117,7 +119,9 @@
   border-radius: 12px;
 
   border: 3px solid transparent;
-  transition: transform 0.3s ease, border 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    border 0.3s ease;
 }
 
 .explore-menu-list-item:hover img,
@@ -160,7 +164,9 @@
   letter-spacing: 0.3px;
 
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .text-point .explore-menu-text {
