@@ -156,7 +156,7 @@
   width: var(--wheel-size);
   height: var(--wheel-size);
   transform: translate(-50%, -50%);
-  z-index: 1;
+  /* z-index: 1; */
 }
 
 /* LINE */
