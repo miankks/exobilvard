@@ -21,6 +21,14 @@ const Navbar = () => {
     }, 100);
   };
 
+  const goToHome = () => {
+    navigate("/");
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   const toggleContact = () => {
     setContactOpen((prev) => !prev);
     setMenu("contact-us");
@@ -42,6 +50,7 @@ const Navbar = () => {
           <Link
             to="/"
             onClick={() => {
+              goToHome();
               setMenu("home");
               setContactOpen(false);
             }}
