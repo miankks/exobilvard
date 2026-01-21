@@ -15,7 +15,9 @@ const Navbar = () => {
   const goToMenu = () => {
     navigate("/");
     setTimeout(() => {
-      document.getElementById("menu")?.scrollIntoView({ behavior: "smooth" });
+      document
+        .getElementById("car-display")
+        ?.scrollIntoView({ behavior: "smooth" });
     }, 100);
   };
 
@@ -105,7 +107,7 @@ const Navbar = () => {
             onClick={() => {
               window.open(
                 "https://www.google.com/maps/search/?api=1&query=59.61360353804017, 17.881595455641644",
-                "_blank"
+                "_blank",
               );
             }}
             style={{ cursor: "pointer" }}

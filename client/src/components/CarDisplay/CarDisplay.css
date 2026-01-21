@@ -4,6 +4,10 @@
   color: var(--text-main);
 }
 
+#car-display {
+  scroll-margin-top: 100px; /* adjust to navbar height */
+}
+
 .car-display h2 {
   font-size: clamp(1.5rem, 2vw, 2rem);
   font-weight: 700;
@@ -42,13 +46,20 @@
   border-radius: 12px;
   border: none;
   cursor: pointer;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.05);
-  transition: transform 0.25s, box-shadow 0.25s ease, background 0.3s;
+  box-shadow:
+    0 6px 14px rgba(0, 0, 0, 0.15),
+    0 2px 4px rgba(0, 0, 0, 0.05);
+  transition:
+    transform 0.25s,
+    box-shadow 0.25s ease,
+    background 0.3s;
 }
 
 .comment-section .btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.18), 0 4px 6px rgba(0, 0, 0, 0.08);
+  box-shadow:
+    0 10px 18px rgba(0, 0, 0, 0.18),
+    0 4px 6px rgba(0, 0, 0, 0.08);
 }
 
 .comment-section .btn:active {
