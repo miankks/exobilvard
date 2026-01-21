@@ -85,14 +85,6 @@ app.use("/api/tracker", pageVisitRouter);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// serve built Vite/Vercel client
-app.use(express.static(path.join(__dirname, "../client/dist")));
-// SPA fallback - MUST be last
-// SPA fallback
-app.get(/^(?!\/api).*/, (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
-});
-
 app.get("/api/health", (req, res) => {
   res.status(200).json({ status: "ok" });
 });
