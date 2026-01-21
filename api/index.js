@@ -4,7 +4,6 @@ dotenv.config();
 import "./config/cloudinary.js";
 import express from "express";
 import cors from "cors";
-import cookieParser from "cookie-parser";
 import path from "path";
 import { fileURLToPath } from "url";
 import { connectDB } from "./config/db.js";
@@ -13,7 +12,6 @@ import cartRouter from "./routes/cart.route.js";
 import carRouter from "./routes/car.route.js";
 import orderRouter from "./routes/order.route.js";
 import emailRouter from "./routes/email.route.js";
-// import bodyParser from "body-parser";
 import adminRouter from "./routes/admin.route.js";
 import commentsRouter from "./routes/comments.route.js";
 import { pageVisitRouter } from "./routes/pageVisit.route.js";
@@ -65,7 +63,7 @@ app.use(
       }
     },
     credentials: true,
-  })
+  }),
 );
 
 // DB connect
