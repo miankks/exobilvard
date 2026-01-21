@@ -23,27 +23,6 @@ const CarTyre = () => {
 
       {/* RIGHT TYRE */}
       <div className="tyre-container small">
-        {/* <div className="lines">
-          <span className="line line1">
-            <div className="card">Säker & trygg hantering</div>
-          </span>
-          <span className="line line2">
-            <div className="card">Professionell montering</div>
-          </span>
-          <span className="line line3">
-            <div className="card">Däckförvaring tillgänglig</div>
-          </span>
-          <span className="line line4">
-            <div className="card">Balansering & Inställning</div>
-          </span>
-        </div> */}
-        {/* <div className="lines">
-          {lineCardText.map((item, index) => (
-            <span key={index} className={`line ${item.class}`}>
-              <div className="card">{item.text}</div>
-            </span>
-          ))}
-        </div> */}
         {/* Lines */}
         <div className="lines">
           <span className="line line1"></span>

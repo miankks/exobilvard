@@ -223,18 +223,6 @@
   left: calc(50% - var(--wheel-size) / 2 - var(--card-width) - 1rem);
   transform: matrix(1, 0, 0, 1, 0, 0);
 }
-/* .line1 .card {
-  transform: translate(0.6rem, -50%) rotate(-45deg);
-}
-.line2 .card {
-  transform: translate(0.6rem, -50%) rotate(45deg);
-}
-.line3 .card {
-  transform: translate(0.6rem, -50%) rotate(-135deg);
-}
-.line4 .card {
-  transform: translate(0.6rem, -50%) rotate(135deg);
-} */
 
 /* ===============================
    OPTIONAL MOBILE STACKING
@@ -242,5 +230,72 @@
 @media (max-width: 600px) {
   .tyre-wrapper {
     flex-direction: column;
+  }
+
+  .tyre-container {
+    width: 100%;
+  }
+
+  .card {
+    font-size: 10px;
+  }
+
+  .card.line1 {
+    top: 5%;
+    left: calc(25% + var(--wheel-size) / 2 + 1rem);
+  }
+
+  .card.line2 {
+    top: 80%;
+    left: calc(25% + var(--wheel-size) / 2 + 1rem);
+  }
+
+  .card.line3 {
+    top: 5%;
+    left: calc(50% - var(--wheel-size) / 2 - var(--card-width) - 1rem);
+  }
+
+  .card.line4 {
+    top: 80%;
+    left: calc(50% - var(--wheel-size) / 2 - var(--card-width) - 1rem);
+  }
+
+  .wheel {
+    width: clamp(100px, 40vw, 160px);
+    height: clamp(100px, 40vw, 160px);
+  }
+}
+
+/* ===============================
+   OPTIONAL MOBILE STACKING
+================================ */
+@media (max-width: 400px) {
+  .card.line1 {
+    top: 5%;
+    left: calc(15% + var(--wheel-size) / 2 + 1rem);
+    width: 50px;
+  }
+
+  .card.line2 {
+    top: 80%;
+    left: calc(15% + var(--wheel-size) / 2 + 1rem);
+    width: 50px;
+  }
+
+  .card.line3 {
+    top: 5%;
+    left: calc(62% - var(--wheel-size) / 2 - var(--card-width) - 1rem);
+    width: 50px;
+  }
+
+  .card.line4 {
+    top: 80%;
+    left: calc(65% - var(--wheel-size) / 2 - var(--card-width) - 1rem);
+    width: 50px;
+  }
+
+  .wheel {
+    width: clamp(100px, 40vw, 160px);
+    height: clamp(100px, 40vw, 160px);
   }
 }
