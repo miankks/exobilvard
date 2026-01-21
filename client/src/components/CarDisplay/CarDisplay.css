@@ -84,7 +84,7 @@
   flex-wrap: nowrap;
   gap: 20px;
   width: 100%;
-  animation: slideLeft 10s linear infinite;
+  animation: slideLeft 40s linear infinite;
 }
 
 .marquee:hover {
