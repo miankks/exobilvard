@@ -5,9 +5,6 @@ import { Link } from "react-router-dom";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import { CommentContext } from "../../context/CommentContext";
 import { CarContext } from "../../context/CarContext";
-import MobileOnlyText from "../MobileOnlyText/MobileOnlyText";
-
-// import { useObjectEnabled } from '../../Customhooks/useObjectEnabled'
 
 const CarDisplay = ({ category }) => {
   const [isMobile, setIsMobile] = useState(false);

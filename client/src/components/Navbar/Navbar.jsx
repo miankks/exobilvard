@@ -21,6 +21,15 @@ const Navbar = () => {
     }, 100);
   };
 
+  const goToMobileMenu = () => {
+    navigate("/");
+    setTimeout(() => {
+      document
+        .getElementById("mobile-car-display")
+        ?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
+  };
+
   const goToHome = () => {
     navigate("/");
     window.scrollTo({
@@ -138,6 +147,7 @@ const Navbar = () => {
             <Link
               to="/"
               onClick={() => {
+                goToHome();
                 setMenu("home");
                 setMobileOpen(false);
               }}
@@ -148,7 +158,7 @@ const Navbar = () => {
             <Link
               to="/"
               onClick={() => {
-                goToMenu();
+                goToMobileMenu();
                 setMobileOpen(false);
               }}
             >

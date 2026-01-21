@@ -24,7 +24,7 @@ const MobileOnlyText = React.memo(() => {
   };
 
   return (
-    <div className="mobile-text-accordion">
+    <div className="mobile-text-accordion" id="mobile-car-display">
       <h2>Våra tjänster</h2>
       {menu_list.map((item, index) => (
         <div

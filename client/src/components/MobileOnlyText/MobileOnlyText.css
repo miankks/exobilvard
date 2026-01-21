@@ -10,6 +10,10 @@
   color: #eee;
 }
 
+#mobile-car-display {
+  scroll-margin-top: 100px; /* adjust to navbar height */
+}
+
 .accordion-card {
   background: #fff;
   border-radius: 12px;
