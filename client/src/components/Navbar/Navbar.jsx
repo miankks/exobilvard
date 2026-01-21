@@ -46,7 +46,12 @@ const Navbar = () => {
   return (
     <>
       <div className="navbar">
-        <Link to="/">
+        <Link
+          to="/"
+          onClick={() => {
+            goToHome();
+          }}
+        >
           <img
             src={assets.exobil_logo}
             alt="EXO Bilvårdscenter"
