@@ -1,7 +1,7 @@
 /* Full page layout */
 .profile-page {
   width: 100vw;
-  height: 100vh;
+  height: 120vh;
   background: linear-gradient(135deg, #55556a, #5a4b87);
   display: flex;
   justify-content: center;
@@ -13,10 +13,13 @@
 .profile-container {
   width: 100%;
   max-width: 500px;
+  min-height: 500px;
+  max-height: 120vh; /* keeps it inside screen */
+  overflow-y: auto; /* scroll if content grows */
   background-color: #fff;
   border-radius: 15px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  padding: 40px 30px;
+  padding: 25px 25px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -25,12 +28,12 @@
 
 /* Profile Picture */
 .profile-picture {
-  width: 140px;
-  height: 140px;
+  width: 110px;
+  height: 110px;
+  margin-bottom: 12px;
   border-radius: 50%;
   object-fit: cover;
   border: 5px solid #6366f1;
-  margin-bottom: 20px;
 }
 
 /* Name & Email */
@@ -77,22 +80,23 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 20px; /* spacing between fields */
-  margin-top: 10px;
+  gap: 12px; /* spacing between fields */
+  margin-top: 8px;
   text-align: left;
 }
 
 .profile-form label {
-  font-weight: bold;
-  margin-bottom: 5px;
-  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 4px;
   color: #333;
 }
 
 .profile-form input {
   width: 100%;
-  padding: 12px 15px;
-  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 13px;
+  border-radius: 8px;
   border: 1px solid #ccc;
   font-size: 14px;
   transition: border-color 0.3s ease;
@@ -109,6 +113,32 @@
   justify-content: flex-end;
   gap: 10px;
   margin-top: 10px;
+}
+
+.password-wrapper {
+  position: relative; /* Needed for absolute positioning of icon */
+  width: 100%;
+}
+
+.password-input {
+  position: relative;
+  width: 100%;
+}
+
+.password-input input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+/* move icon relative to input only */
+.password-input .show-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: #555;
 }
 
 /* Responsive tweaks */

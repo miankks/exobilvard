@@ -3,16 +3,21 @@ import { useAdmin } from "../../context/AdminContext";
 import { useAuth } from "../../context/AuthContext";
 import { assets } from "../../assets/assets";
 import "./AdminProfile.css";
+import { BiHide, BiShow } from "react-icons/bi";
 
 const AdminProfile = () => {
   const { admin, updateAdmin } = useAdmin(); // Assuming you have an update function in context
   const { url } = useAuth();
+  const [showPassword, setShowPassword] = useState(false);
+  const [changePasswordIcon, setChangePasswordIcon] = useState(false);
 
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
     name: admin?.name || "",
     email: admin?.email || "",
-    password: "", // For password reset
+    oldPassword: "",
+    newPasword: "",
+    confirmNewPassword: "", // For password reset
   });
 
   if (!admin) return <p>Loading...</p>;
@@ -41,6 +46,11 @@ const AdminProfile = () => {
       console.error(error);
       alert("Failed to update profile");
     }
+  };
+
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword);
+    setChangePasswordIcon(!changePasswordIcon);
   };
 
   return (
@@ -78,18 +88,73 @@ const AdminProfile = () => {
                 onChange={handleChange}
               />
             </label>
-
-            <label>
-              New Password:
-              <input
-                type="password"
-                name="password"
-                placeholder="Leave blank to keep current password"
-                value={formData.password}
-                onChange={handleChange}
-              />
-            </label>
-
+            <div className="password-wrapper">
+              <label>Old Password:</label>
+              <div className="password-input">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="oldPassword"
+                  value={formData.oldPassword}
+                  onChange={handleChange}
+                  required
+                />
+                {changePasswordIcon ? (
+                  <BiShow
+                    onClick={handleShowPassword}
+                    className="show-password"
+                  />
+                ) : (
+                  <BiHide
+                    onClick={handleShowPassword}
+                    className="show-password"
+                  />
+                )}
+              </div>
+            </div>
+            <div className="password-wrapper">
+              <label>New Password:</label>
+              <div className="password-input">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="newPassword"
+                  value={formData.newPassword}
+                  onChange={handleChange}
+                />
+                {changePasswordIcon ? (
+                  <BiShow
+                    onClick={handleShowPassword}
+                    className="show-password"
+                  />
+                ) : (
+                  <BiHide
+                    onClick={handleShowPassword}
+                    className="show-password"
+                  />
+                )}
+              </div>
+            </div>
+            <div className="password-wrapper">
+              <label>Confirm New Password:</label>
+              <div className="password-input">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="confirmNewPassword"
+                  value={formData.confirmNewPassword}
+                  onChange={handleChange}
+                />
+                {changePasswordIcon ? (
+                  <BiShow
+                    onClick={handleShowPassword}
+                    className="show-password"
+                  />
+                ) : (
+                  <BiHide
+                    onClick={handleShowPassword}
+                    className="show-password"
+                  />
+                )}
+              </div>
+            </div>
             <div className="profile-form-buttons">
               <button type="submit" className="profile-button">
                 Save
