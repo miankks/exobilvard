@@ -10,6 +10,7 @@ const AdminProfile = () => {
   const { url } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [changePasswordIcon, setChangePasswordIcon] = useState(false);
+  const [showPasswordInput, setShowPasswordInput] = useState(false);
 
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
@@ -28,6 +29,19 @@ const AdminProfile = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // password validation
+    if (formData.newPasword || formData.confirmNewPassword) {
+      if (formData.newPasword !== formData.confirmNewPassword) {
+        alert("New password do not match");
+        return;
+      }
+
+      if (formData.newPasword.length < 6) {
+        alert("Password must be atleast 6 characters");
+        return;
+      }
+    }
     try {
       // Example API call
       const response = await fetch(`${url}/admin/update/${admin.id}`, {
@@ -51,6 +65,10 @@ const AdminProfile = () => {
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
     setChangePasswordIcon(!changePasswordIcon);
+  };
+
+  const handleShowPasswordInput = () => {
+    setShowPasswordInput(!showPasswordInput);
   };
 
   return (
@@ -78,7 +96,6 @@ const AdminProfile = () => {
                 onChange={handleChange}
               />
             </label>
-
             <label>
               Email:
               <input
@@ -88,73 +105,85 @@ const AdminProfile = () => {
                 onChange={handleChange}
               />
             </label>
-            <div className="password-wrapper">
-              <label>Old Password:</label>
-              <div className="password-input">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  name="oldPassword"
-                  value={formData.oldPassword}
-                  onChange={handleChange}
-                  required
-                />
-                {changePasswordIcon ? (
-                  <BiShow
-                    onClick={handleShowPassword}
-                    className="show-password"
-                  />
-                ) : (
-                  <BiHide
-                    onClick={handleShowPassword}
-                    className="show-password"
-                  />
-                )}
-              </div>
+            <div className="password-checkbox">
+              <input
+                type="checkbox"
+                id="changePassword"
+                onClick={handleShowPasswordInput}
+              />
+              <label htmlFor="changePassword">Change Password</label>
             </div>
-            <div className="password-wrapper">
-              <label>New Password:</label>
-              <div className="password-input">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  name="newPassword"
-                  value={formData.newPassword}
-                  onChange={handleChange}
-                />
-                {changePasswordIcon ? (
-                  <BiShow
-                    onClick={handleShowPassword}
-                    className="show-password"
-                  />
-                ) : (
-                  <BiHide
-                    onClick={handleShowPassword}
-                    className="show-password"
-                  />
-                )}
+            {showPasswordInput && (
+              <div>
+                <div className="password-wrapper">
+                  <label>Old Password:</label>
+                  <div className="password-input">
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      name="oldPassword"
+                      value={formData.oldPassword}
+                      onChange={handleChange}
+                      required
+                    />
+                    {changePasswordIcon ? (
+                      <BiShow
+                        onClick={handleShowPassword}
+                        className="show-password"
+                      />
+                    ) : (
+                      <BiHide
+                        onClick={handleShowPassword}
+                        className="show-password"
+                      />
+                    )}
+                  </div>
+                </div>
+                <div className="password-wrapper">
+                  <label>New Password:</label>
+                  <div className="password-input">
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      name="newPassword"
+                      value={formData.newPassword}
+                      onChange={handleChange}
+                    />
+                    {changePasswordIcon ? (
+                      <BiShow
+                        onClick={handleShowPassword}
+                        className="show-password"
+                      />
+                    ) : (
+                      <BiHide
+                        onClick={handleShowPassword}
+                        className="show-password"
+                      />
+                    )}
+                  </div>
+                </div>
+                <div className="password-wrapper">
+                  <label>Confirm New Password:</label>
+                  <div className="password-input">
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      name="confirmNewPassword"
+                      value={formData.confirmNewPassword}
+                      onChange={handleChange}
+                    />
+                    {changePasswordIcon ? (
+                      <BiShow
+                        onClick={handleShowPassword}
+                        className="show-password"
+                      />
+                    ) : (
+                      <BiHide
+                        onClick={handleShowPassword}
+                        className="show-password"
+                      />
+                    )}
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="password-wrapper">
-              <label>Confirm New Password:</label>
-              <div className="password-input">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  name="confirmNewPassword"
-                  value={formData.confirmNewPassword}
-                  onChange={handleChange}
-                />
-                {changePasswordIcon ? (
-                  <BiShow
-                    onClick={handleShowPassword}
-                    className="show-password"
-                  />
-                ) : (
-                  <BiHide
-                    onClick={handleShowPassword}
-                    className="show-password"
-                  />
-                )}
-              </div>
-            </div>
+            )}
             <div className="profile-form-buttons">
               <button type="submit" className="profile-button">
                 Save
