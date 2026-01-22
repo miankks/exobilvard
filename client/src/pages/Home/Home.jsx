@@ -10,6 +10,9 @@ const Home = () => {
   return (
     <div>
       <Header />
+      <div className="marquee">
+        <h1>Din bilverkstad i Märsta – Exobilvårdscenter</h1>
+      </div>
       <ExploreMenu category={category} setCategory={setCategory} />
       <CarDisplay category={category} />
     </div>

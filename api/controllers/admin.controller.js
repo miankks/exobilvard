@@ -112,8 +112,8 @@ export const getAdmin = async (req, res) => {
 
 export const updateAdmin = async (req, res) => {
   try {
-    console.log("REQ BODY:", req.body);
-    console.log("REQ ADMIN:", req.admin);
+    // console.log("REQ BODY:", req.body);
+    // console.log("REQ ADMIN:", req.admin);
 
     // Authorization check
     if (req.admin.id !== req.params.id) {
