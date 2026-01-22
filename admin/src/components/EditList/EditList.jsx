@@ -67,7 +67,7 @@ const EditList = ({ url }) => {
             Authorization: `Bearer ${token}`,
             "Content-Type": "multipart/form-data",
           },
-        }
+        },
       );
       if (response.data.success) {
         // Update context with new car data

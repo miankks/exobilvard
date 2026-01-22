@@ -45,7 +45,7 @@ export const registerAdmin = async (req, res) => {
     const token = jwt.sign(
       { id: admin._id, role: admin.role },
       process.env.JWT_SECRET,
-      { expiresIn: "1d" }
+      { expiresIn: "1d" },
     );
 
     res.json({
@@ -80,7 +80,7 @@ export const loginAdmin = async (req, res) => {
     const token = jwt.sign(
       { id: admin._id, role: admin.role },
       process.env.JWT_SECRET,
-      { expiresIn: "1d" }
+      { expiresIn: "1d" },
     );
 
     res.json({
@@ -107,5 +107,58 @@ export const getAdmin = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).json({ success: false, message: "Admin fetch error" });
+  }
+};
+
+export const updateAdmin = async (req, res) => {
+  try {
+    console.log("REQ BODY:", req.body);
+    console.log("REQ ADMIN:", req.admin);
+
+    // Authorization check
+    if (req.admin.id !== req.params.id) {
+      return res.status(403).json({ message: "Unauthorized" });
+    }
+
+    const adminId = req.params.id;
+    const { name, email, oldPassword, newPassword } = req.body;
+
+    const admin = await adminModel.findById(adminId);
+    if (!admin) {
+      return res.status(404).json({ message: "Admin not found" });
+    }
+
+    // update name and email
+    if (name) admin.name = name;
+    if (email) admin.email = email;
+
+    // update password only if requested
+    if (newPassword) {
+      if (!oldPassword) {
+        return res
+          .status(400)
+          .json({ message: "Old password is required to change password" });
+      }
+
+      const isMatch = await bcrypt.compare(oldPassword, admin.password);
+      if (!isMatch) {
+        return res.status(400).json({ message: "Old password is incorrect" });
+      }
+
+      const salt = await bcrypt.genSalt(10);
+      admin.password = await bcrypt.hash(newPassword, salt);
+    }
+
+    const updatedAdmin = await admin.save();
+
+    res.status(200).json({
+      id: updatedAdmin._id,
+      name: updatedAdmin.name,
+      email: updatedAdmin.email,
+      image: updatedAdmin.image,
+    });
+  } catch (error) {
+    console.error("Update admin error:", error);
+    res.status(500).json({ message: "Server error" });
   }
 };

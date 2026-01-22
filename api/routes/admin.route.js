@@ -3,6 +3,7 @@ import {
   registerAdmin,
   loginAdmin,
   getAdmin,
+  updateAdmin,
 } from "../controllers/admin.controller.js";
 // import multer from "multer";
 import { protectAdmin } from "../middleware/auth.js";
@@ -14,10 +15,11 @@ adminRouter.post(
   "/register",
   upload.single("image"),
   protectAdmin,
-  registerAdmin
+  registerAdmin,
 );
 adminRouter.get("/getadmin", protectAdmin, getAdmin);
 adminRouter.post("/login", loginAdmin);
+adminRouter.put("/update/:id", protectAdmin, updateAdmin);
 
 export default adminRouter;
 
