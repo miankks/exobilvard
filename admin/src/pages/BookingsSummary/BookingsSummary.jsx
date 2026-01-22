@@ -2,14 +2,8 @@ import "./BookingsSummary.css";
 import { useNavigate } from "react-router-dom";
 import { useOrders } from "../../context/OrdersContext";
 
-const BookingsSummary = ({ url }) => {
-  const {
-    orders,
-    statusHandler,
-    updateOrderStatusLocally,
-    selectedStatuses,
-    setSelectedStatuses,
-  } = useOrders();
+const BookingsSummary = () => {
+  const { orders } = useOrders();
   const navigate = useNavigate();
 
   const pendingOrders = orders.filter((o) => o.status === "Pending to accept");

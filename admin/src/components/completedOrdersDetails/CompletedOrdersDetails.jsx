@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./CompletedOrdersDetails.css";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -40,7 +40,7 @@ const CompletedOrdersDetails = () => {
         `${API_URL}/api/order/deleteorders/${orderId}`,
         {
           headers: { Authorization: `Bearer ${token}` },
-        }
+        },
       );
 
       if (response.data.success) {
@@ -76,7 +76,7 @@ const CompletedOrdersDetails = () => {
         </span>
       ) : (
         part
-      )
+      ),
     );
   };
 
@@ -208,7 +208,7 @@ const CompletedOrdersDetails = () => {
                     onClick={() =>
                       statusHandler(
                         order._id,
-                        selectedStatuses[order._id] ?? order.status
+                        selectedStatuses[order._id] ?? order.status,
                       )
                     }
                   >

@@ -18,7 +18,7 @@ const Orders = () => {
   const [selectedServiceDate, setSelectedServiceDate] = useState({});
   const [filteredOrders, setFilteredOrders] = useState([]);
 
-  const { orders, fetchAllOrders, statusHandler } = useOrders();
+  const { orders, statusHandler } = useOrders();
   const onChangeHandler = (e) => {
     const value = e.target.value;
     setComment(value);
@@ -45,7 +45,7 @@ const Orders = () => {
   }, [orders, id]);
 
   const pendingOrders = filteredOrders.filter(
-    (order) => order.status === "Pending to accept"
+    (order) => order.status === "Pending to accept",
   );
 
   return (
@@ -66,7 +66,7 @@ const Orders = () => {
                   {order.items.map((item, index) =>
                     index === order.items.length - 1
                       ? item.name + " x" + item.quantity
-                      : item.name + " x " + item.quantity + ", "
+                      : item.name + " x " + item.quantity + ", ",
                   )}
                 </p>
 
@@ -198,7 +198,7 @@ const Orders = () => {
                       order._id,
                       selectedStatuses[order._id] ?? order.status,
                       comment,
-                      acceptedDate
+                      acceptedDate,
                     )
                   }
                 >

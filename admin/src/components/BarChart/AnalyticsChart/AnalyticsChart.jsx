@@ -17,7 +17,7 @@ ChartJS.register(
   BarElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
 );
 
 const VisitsChart = () => {
@@ -30,7 +30,7 @@ const VisitsChart = () => {
       try {
         // pass filter as query param
         const res = await fetch(
-          `${API_URL}/api/tracker/analytics?filter=${filter}`
+          `${API_URL}/api/tracker/analytics?filter=${filter}`,
         );
         const json = await res.json();
         const labels = json.pageStats.map((p) => p._id);
@@ -46,7 +46,7 @@ const VisitsChart = () => {
           ],
         });
       } catch (error) {
-        console.error("Failed to load analytics:", err);
+        console.error("Failed to load analytics:", error);
         setData({ labels: [], datasets: [] });
       }
     };

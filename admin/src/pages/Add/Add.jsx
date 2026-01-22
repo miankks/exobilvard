@@ -51,7 +51,9 @@ const Add = ({ url }) => {
       } else {
         toast.error(response.data.message);
       }
-    } catch (error) {}
+    } catch (error) {
+      toast.error("Data is not saved");
+    }
   };
 
   return (

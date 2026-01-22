@@ -1,8 +1,9 @@
+import React from "react";
 import "./RejectedOrders.css";
 import { useNavigate } from "react-router-dom";
 import { useOrders } from "../../context/OrdersContext";
 
-const RejectedOrders = ({ url }) => {
+const RejectedOrders = () => {
   const navigate = useNavigate();
   const { orders } = useOrders();
 

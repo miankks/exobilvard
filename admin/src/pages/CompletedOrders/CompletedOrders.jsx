@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./CompletedOrders.css";
 import { useNavigate } from "react-router-dom";
 import { useOrders } from "../../context/OrdersContext";
 
-const CompletedOrders = ({ url }) => {
+const CompletedOrders = () => {
   const { orders } = useOrders();
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
@@ -37,7 +37,7 @@ const CompletedOrders = ({ url }) => {
         </span>
       ) : (
         part
-      )
+      ),
     );
   };
 

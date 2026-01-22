@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useOrders } from "../../context/OrdersContext";
 import { assets } from "../../assets/assets";
 import { MdEmail } from "react-icons/md";
@@ -52,7 +52,7 @@ const RejectedOrders = () => {
               (item, index) =>
                 `${item.name} x${item.quantity}${
                   index < order.items.length - 1 ? ", " : ""
-                }`
+                }`,
             )}
           </p>
 
@@ -103,7 +103,7 @@ const RejectedOrders = () => {
             onClick={() =>
               statusHandler(
                 order._id,
-                selectedStatuses[order._id] ?? order.status
+                selectedStatuses[order._id] ?? order.status,
               )
             }
           >

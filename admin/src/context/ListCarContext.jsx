@@ -7,7 +7,6 @@ const ListCarContext = createContext();
 export const ListCarProvider = ({ children, url }) => {
   const [carList, setCarList] = useState([]);
   const [orderList, setOrderList] = useState([]);
-  const [rejectedList, setRejectedList] = useState([]);
   const fetchList = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -37,7 +36,7 @@ export const ListCarProvider = ({ children, url }) => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
 
       if (response.data.success) {

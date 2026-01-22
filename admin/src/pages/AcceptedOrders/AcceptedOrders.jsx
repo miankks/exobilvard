@@ -1,9 +1,8 @@
 import "./AcceptedOrders.css";
 import { useNavigate } from "react-router-dom";
 import { useOrders } from "../../context/OrdersContext";
-import { useParams } from "react-router-dom";
 
-const AcceptedOrders = ({ url }) => {
+const AcceptedOrders = () => {
   const navigate = useNavigate();
   const { orders } = useOrders();
   const acceptedOrders = orders.filter((o) => o.status === "Accepted");

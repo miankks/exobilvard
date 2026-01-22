@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth } from "../../context/AuthContext";
 import { assets } from "../../assets/assets";
@@ -7,7 +6,6 @@ import "./AdminSignup.css";
 
 const AdminSignup = () => {
   const { signup } = useAuth();
-  const navigate = useNavigate();
   const [image, setImage] = useState(null);
   const [form, setForm] = useState({ name: "", email: "", password: "" });
 
