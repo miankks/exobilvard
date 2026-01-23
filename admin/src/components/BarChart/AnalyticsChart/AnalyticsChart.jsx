@@ -60,7 +60,7 @@ const VisitsChart = () => {
       {/* Dropdown to select filter */}
       <div className="filter-container">
         <label htmlFor="filter" className="filter-label">
-          Time Range
+          Tid Interval
         </label>
 
         <select
