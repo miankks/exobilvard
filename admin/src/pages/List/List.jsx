@@ -10,6 +10,10 @@ const List = ({ url }) => {
     navigate(`/editlist/${id}`);
   };
 
+  const handleViewList = (id) => {
+    navigate(`/viewlist/${id}`);
+  };
+
   return (
     <div className="list">
       <p>All Car list</p>
@@ -25,7 +29,9 @@ const List = ({ url }) => {
           return (
             <div key={index} className="list-table-format">
               <img src={`${url}/images/` + item.image} alt="" />
-              <p>{item.name}</p>
+              <p onClick={() => handleViewList(item._id)} className="view-list">
+                {item.name}
+              </p>
               <p>{item.category}</p>
               <button
                 type="button"

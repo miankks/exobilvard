@@ -19,6 +19,7 @@ import AcceptedOrdersDetails from "./components/AcceptedOrdersDetails/AcceptedOr
 import AdminProfile from "./components/AdminProfile/AdminProfile";
 import HomePage from "./pages/HomePage/HomePage";
 import EditList from "./components/EditList/EditList";
+import ItemsListDetails from "./components/ItemsListDetails/ItemsListDetails";
 
 const App = () => {
   const API_URL = import.meta.env.VITE_API_URL;
@@ -64,6 +65,7 @@ const App = () => {
             element={<RejectedOrdersDetails url={API_URL} />}
           />
           <Route path="/editlist/:id" element={<EditList url={API_URL} />} />
+          <Route path="/viewlist/:id" element={<ItemsListDetails />} />
           <Route path="/signup" element={<AdminSignup url={API_URL} />} />
           <Route path="/login" element={<AdminLogin url={API_URL} />} />
         </Routes>

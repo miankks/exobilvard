@@ -118,7 +118,7 @@ const AdminProfile = () => {
         <img
           src={
             admin?.image
-              ? `${url}/adminimage/${admin.image}`
+              ? `${API_URL}/adminimage/${admin.image}`
               : assets.profile_icon
           }
           alt="Profile"

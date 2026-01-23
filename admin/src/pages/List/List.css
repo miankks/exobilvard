@@ -66,6 +66,10 @@
   height: 30px;
 }
 
+.view-list {
+  cursor: pointer;
+}
+
 @media (max-width: 600px) {
   .list-table-format {
     grid-template-columns: 1fr 3fr 1fr;
