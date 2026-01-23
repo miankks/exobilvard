@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import "./List.css";
 import { useListCar } from "../../context/ListCarContext";
+import { toast } from "react-toastify";
 
 const List = ({ url }) => {
   const { carList, removeCar } = useListCar();
@@ -12,6 +13,35 @@ const List = ({ url }) => {
 
   const handleViewList = (id) => {
     navigate(`/viewlist/${id}`);
+  };
+
+  const confirmDelete = (id) => {
+    toast(
+      ({ closeToast }) => (
+        <div>
+          <p>Are you sure you want to delete this car?</p>
+
+          <div style={{ display: "flex", gap: "10px", marginTop: "10px" }}>
+            <button
+              onClick={() => {
+                removeCar(id);
+                toast.success("Car deleted successfully");
+                closeToast();
+              }}
+            >
+              Yes
+            </button>
+
+            <button onClick={closeToast}>Cancel</button>
+          </div>
+        </div>
+      ),
+      {
+        autoClose: false,
+        closeOnClick: false,
+        closeButton: false,
+      },
+    );
   };
 
   return (
@@ -36,7 +66,7 @@ const List = ({ url }) => {
               <button
                 type="button"
                 className="cursor delete-button"
-                onClick={() => removeCar(item._id)}
+                onClick={() => confirmDelete(item._id)}
               >
                 x
               </button>

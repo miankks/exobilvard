@@ -98,6 +98,29 @@
   }
 }
 
+.Toastify__toast {
+  border-radius: 12px;
+  font-size: 14px;
+  padding: 20px;
+}
+
+.Toastify__toast button {
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.Toastify__toast button:first-child {
+  background: #ef4444;
+  color: white;
+}
+
+.Toastify__toast button:last-child {
+  background: #eef6ff;
+  border: 1px solid #3b82f6;
+}
+
 /* Responsive */
 @media (max-width: 600px) {
   .details {
