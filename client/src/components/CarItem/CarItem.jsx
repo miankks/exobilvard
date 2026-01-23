@@ -54,7 +54,7 @@ const CarItem = React.memo(({ id, name, description, image }) => {
             }}
           >
             {" "}
-            more
+            mer info
           </span>
         </p>
       </div>
