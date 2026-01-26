@@ -1,7 +1,5 @@
 import dotenv from "dotenv";
 dotenv.config();
-
-import "./config/cloudinary.js";
 import express from "express";
 import cors from "cors";
 import path from "path";
@@ -80,10 +78,6 @@ app.use("/api/order", orderRouter);
 app.use("/api/sendemail", emailRouter);
 app.use("/api/comment", commentsRouter);
 app.use("/api/tracker", pageVisitRouter);
-
-// Serve static frontend files
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 app.get("/api/health", (req, res) => {
   res.status(200).json({ status: "ok" });
