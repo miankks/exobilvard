@@ -44,7 +44,7 @@ const acceptedOrderEmail = async (order) => {
               <tr>
                 <td style="font-size:14px;padding-bottom:8px;">
                   <strong>Bokningsdatum & tid:</strong><br/>
-                  ${order.orderDate}
+                  ${order.acceptedDate}
                 </td>
               </tr>
               ${

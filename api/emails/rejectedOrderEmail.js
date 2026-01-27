@@ -1,8 +1,10 @@
 import { Resend } from "resend";
 
-// const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 const rejectedOrderEmail = async (order) => {
+  console.log(order);
+
   try {
     const { fullName, email, phone, regnummer } = order.address || {};
     const { data, error } = await resend.emails.send({
