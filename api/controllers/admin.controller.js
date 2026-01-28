@@ -110,11 +110,38 @@ export const getAdmin = async (req, res) => {
   }
 };
 
+export const getAllAdmins = async (req, res) => {
+  const { admin } = req;
+
+  try {
+    if (req.admin.role !== "superadmin") {
+      return res.status(404).json({
+        success: false,
+        message: "Unauthorized access",
+      });
+    }
+
+    const admins = await adminModel
+      .find()
+      .select("-password")
+      .sort({ createdAt: -1 });
+
+    res.status(200).json({
+      success: true,
+      count: admin.length,
+      data: admins,
+    });
+  } catch (error) {
+    console.error("Fetch admins error:", error);
+    res.status(500).json({
+      success: false,
+      message: "Admin fetch error",
+    });
+  }
+};
+
 export const updateAdmin = async (req, res) => {
   try {
-    // console.log("REQ BODY:", req.body);
-    // console.log("REQ ADMIN:", req.admin);
-
     // Authorization check
     if (req.admin.id !== req.params.id) {
       return res.status(403).json({ message: "Unauthorized" });

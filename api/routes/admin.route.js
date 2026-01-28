@@ -4,6 +4,7 @@ import {
   loginAdmin,
   getAdmin,
   updateAdmin,
+  getAllAdmins,
 } from "../controllers/admin.controller.js";
 // import multer from "multer";
 import { protectAdmin } from "../middleware/auth.js";
@@ -18,31 +19,8 @@ adminRouter.post(
   registerAdmin,
 );
 adminRouter.get("/getadmin", protectAdmin, getAdmin);
+adminRouter.get("/getalladmins", protectAdmin, getAllAdmins);
 adminRouter.post("/login", loginAdmin);
 adminRouter.put("/update/:id", protectAdmin, updateAdmin);
 
 export default adminRouter;
-
-// Image storage engine
-// cb is callback
-// const storage = multer.diskStorage({
-//   destination: "uploads/adminimage",
-//   filename: (req, file, cb) => {
-//     return cb(null, `${Date.now()}${file.originalname}`);
-//   },
-// });
-// const upload = multer({
-//   storage: storage,
-//   limits: { fileSize: 5 * 1024 * 1024 },
-//   fileFilter: (req, file, cb) => {
-//     if (
-//       file.mimetype === "image/jpeg" ||
-//       file.mimetype === "image/png" ||
-//       file.mimetype === "image/jpg"
-//     ) {
-//       cb(null, true);
-//     } else {
-//       cb(new Error("Only jpeg png and jpg images allowed"));
-//     }
-//   },
-// });

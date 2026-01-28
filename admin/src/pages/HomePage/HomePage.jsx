@@ -2,9 +2,11 @@ import "./HomePage.css";
 import DashboardChart from "../../components/BarChart/DashboardChart/DashboardChart";
 import { useOrders } from "../../context/OrdersContext";
 import VisitsChart from "../../components/BarChart/AnalyticsChart/AnalyticsChart";
+import { useAdmin } from "../../context/AdminContext";
 
 const HomePage = () => {
   const { orders } = useOrders();
+  const { allAdmins } = useAdmin();
 
   const pendingOrders = orders.filter((o) => o.status === "Pending to accept");
   const rejectedOrders = orders.filter((o) => o.status === "Rejected");
