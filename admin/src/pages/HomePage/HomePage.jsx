@@ -7,6 +7,10 @@ import { useAdmin } from "../../context/AdminContext";
 const HomePage = () => {
   const { orders } = useOrders();
   const { allAdmins } = useAdmin();
+  let myarray = [1, 2, 3, 4, 5];
+  for (let v in myarray) {
+    console.log(v);
+  }
 
   const pendingOrders = orders.filter((o) => o.status === "Pending to accept");
   const rejectedOrders = orders.filter((o) => o.status === "Rejected");

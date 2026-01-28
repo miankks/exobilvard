@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useAdmin } from "../../context/AdminContext";
-import { useAuth } from "../../context/AuthContext";
 import { assets } from "../../assets/assets";
 import "./AdminProfile.css";
 import { BiHide, BiShow } from "react-icons/bi";
